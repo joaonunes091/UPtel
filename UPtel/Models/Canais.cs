@@ -17,7 +17,7 @@ namespace UPtel.Models
 
         [Key]
         public int CanaisId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(20)]
         public string NomeCanal { get; set; }
 
