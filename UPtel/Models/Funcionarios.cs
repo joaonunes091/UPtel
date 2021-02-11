@@ -21,46 +21,74 @@ namespace UPtel.Models
 
         [Key]
         public int FuncionarioId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(80)]
+        [Display(Name = "Nome de funcionário")]
         public string NomeFuncionario { get; set; }
+
         public int CargoId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(50)]
+        [Display(Name = "Cargo")]
         public string NomeCargo { get; set; }
+
         [Column(TypeName = "date")]
+        [Display(Name = "Data de nascimento")]
         public DateTime DataNascimento { get; set; }
-        [Required]
-        [StringLength(9)]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(9, MinimumLength = 9)]
+        [Display(Name = "Número de contribuinte")]
         public string Contribuinte { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(80)]
+        [Display(Name = "Morada")]
         public string Morada { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(4)]
         public string CodigoPostal { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [EmailAddress]
         [StringLength(50)]
+        [Display(Name = "Endereço eletrónico")]
         public string Email { get; set; }
-        [Required]
-        [StringLength(9)]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(9, MinimumLength = 9)]
+        [Display(Name = "Número de telemóvel")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Número de telemovel inválido")]
         public string Telemovel { get; set; }
-        [Required]
-        [StringLength(8)]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(8, MinimumLength = 8)]
+        [Display(Name = "Número do cartão de cidadão")]
         public string CartaoCidadao { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column("IBAN")]
         [StringLength(25)]
+        [Display(Name = "IBAN")]
         public string Iban { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
+        [Display(Name = "Palavra-passe")]
         public string Password { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(10)]
+        [Display(Name = "Estado do funcionário(ativo/inativo)")]
         public string EstadoFuncionario { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3)]
         public string CodigoPostalExt { get; set; }
+
         public byte[] Fotografia { get; set; }
 
         [ForeignKey(nameof(CargoId))]
