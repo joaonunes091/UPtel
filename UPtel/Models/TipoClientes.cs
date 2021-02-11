@@ -17,6 +17,7 @@ namespace UPtel.Models
 
         [Key]
         public int TipoClienteId { get; set; }
+       
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(10)]
         [Display(Name = "Designação")]

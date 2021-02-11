@@ -19,12 +19,13 @@ namespace UPtel.Models
         public int TelefoneId { get; set; }
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Número")]
+        [Display(Name = "Número de telefone")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
         [StringLength(9, MinimumLength = 9)]
         public string Numero { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Limite de minutos")]
         public int Limite { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

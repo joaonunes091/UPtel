@@ -23,8 +23,10 @@ namespace UPtel.Models
         [StringLength(50)]
         public string NomePacote { get; set; }
 
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Preço")]
         [Column(TypeName = "decimal(6, 2)")]
+        //problema dos numero decimais?
         public decimal Preco { get; set; }
         public int? TelevisaoId { get; set; }
         public int? TelemovelId { get; set; }

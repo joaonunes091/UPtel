@@ -49,7 +49,7 @@ namespace UPtel.Models
         public string Morada { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(4)]
+        [StringLength(4, MinimumLength = 4)]
         public string CodigoPostal { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
@@ -71,7 +71,7 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column("IBAN")]
-        [StringLength(25)]
+        [StringLength(25, MinimumLength = 25)]
         [Display(Name = "IBAN")]
         public string Iban { get; set; }
 
@@ -86,7 +86,7 @@ namespace UPtel.Models
         public string EstadoFuncionario { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(3)]
+        [StringLength(3, MinimumLength = 3)]
         public string CodigoPostalExt { get; set; }
 
         public byte[] Fotografia { get; set; }

@@ -17,10 +17,16 @@ namespace UPtel.Models
 
         [Key]
         public int PromocaoId { get; set; }
+      
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(50)]
         [Display(Name = "Nome da Promoção")]
         public string NomePromocao { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Descrição")]
+        [StringLength(100)]
+        public string Descricao { get; set; }
 
         [InverseProperty("Promocao")]
         public virtual ICollection<Contratos> Contratos { get; set; }

@@ -18,9 +18,12 @@ namespace UPtel.Models
 
         [Key]
         public int TelevisaoId { get; set; }
+       
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Pacote de canais")]
         [StringLength(20)]
         public string Nome { get; set; }
+        
         [StringLength(100)]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
