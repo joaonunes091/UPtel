@@ -19,6 +19,7 @@ namespace UPtel.Models
         public int CargoId { get; set; }
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(50)]
+        [Display(Name = "Nome do Cargo")]
         public string NomeCargo { get; set; }
 
         [InverseProperty("Cargo")]

@@ -19,6 +19,7 @@ namespace UPtel.Models
         public int TipoClienteId { get; set; }
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(10)]
+        [Display(Name = "Designação")]
         public string Designacao { get; set; }
 
         [InverseProperty("TipoCliente")]

@@ -19,6 +19,7 @@ namespace UPtel.Models
         public int PromocaoId { get; set; }
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(50)]
+        [Display(Name = "Nome da Promoção")]
         public string NomePromocao { get; set; }
 
         [InverseProperty("Promocao")]
