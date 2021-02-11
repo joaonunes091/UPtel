@@ -19,36 +19,49 @@ namespace UPtel.Models
 
         [Key]
         public int ClienteId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(80)]
         public string NomeCliente { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime DataNascimento { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(8)]
         public string CartaoCidadao { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(9)]
         public string Contribuinte { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(80)]
         public string Morada { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(4)]
         public string CodigoPostal { get; set; }
+
         [StringLength(9)]
         public string Telefone { get; set; }
-        [Required]
-        [StringLength(9)]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
         public string Telemovel { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
+        [EmailAddress]
         [StringLength(50)]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(16)]
         public string Password { get; set; }
+
         public int TipoClienteId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório ")]
         [StringLength(3)]
         public string CodigoPostalExt { get; set; }
 
