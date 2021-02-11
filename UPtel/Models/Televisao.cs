@@ -22,6 +22,7 @@ namespace UPtel.Models
         [StringLength(20)]
         public string Nome { get; set; }
         [StringLength(100)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         [InverseProperty("Televisao")]

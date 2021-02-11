@@ -19,6 +19,7 @@ namespace UPtel.Models
         public int CanaisId { get; set; }
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(20)]
+        [Display(Name = "Nome do canal")]
         public string NomeCanal { get; set; }
 
         [InverseProperty("Canais")]
