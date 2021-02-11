@@ -25,17 +25,18 @@ namespace UPtel.Models
         [StringLength(80)]
         public string NomeCliente { get; set; }
 
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "date")]
         [Display(Name = "Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(8)]
+        [StringLength(8, MinimumLength = 8)]
         [Display(Name = "Número do Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(9)]
+        [StringLength(9, MinimumLength = 9)]
         [Display(Name = "Número de Contribuinte")]
         public string Contribuinte { get; set; }
 
@@ -44,11 +45,11 @@ namespace UPtel.Models
         public string Morada { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(4)]
+        [StringLength(4, MinimumLength = 4)]
         [Display(Name = "Código Postal")]
         public string CodigoPostal { get; set; }
 
-        [StringLength(9)]
+        [StringLength(9, MinimumLength = 9)]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
@@ -69,7 +70,7 @@ namespace UPtel.Models
         public int TipoClienteId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(3)]
+        [StringLength(3, MinimumLength = 3)]
         [Display(Name = "Extensão do Código Postal")]
         public string CodigoPostalExt { get; set; }
 

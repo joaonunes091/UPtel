@@ -12,7 +12,11 @@ namespace UPtel.Models
     {
         [Key]
         public int PacoteCanalId { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         public int TelevisaoId { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         public int CanaisId { get; set; }
 
         [ForeignKey(nameof(CanaisId))]

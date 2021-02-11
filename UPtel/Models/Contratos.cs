@@ -25,7 +25,7 @@ namespace UPtel.Models
         [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
 
-        [Display(Name = "Período de fidelização")]
+        [Display(Name = "Período de promoção")]
         public int? TempoPromocao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

@@ -17,6 +17,7 @@ namespace UPtel.Models
 
         [Key]
         public int CargoId { get; set; }
+       
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(50)]
         [Display(Name = "Nome do Cargo")]
