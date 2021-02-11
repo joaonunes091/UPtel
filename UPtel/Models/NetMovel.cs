@@ -17,12 +17,18 @@ namespace UPtel.Models
 
         [Key]
         public int NetMovelId { get; set; }
+       
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "decimal(5, 2)")]
         public decimal Limite { get; set; }
+        
         [StringLength(100)]
         public string Notas { get; set; }
-        [Required]
-        [StringLength(9)]
+        
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Número")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
+        [StringLength(9, MinimumLength = 9)]
         public string Numero { get; set; }
 
         [InverseProperty("NetMovel")]

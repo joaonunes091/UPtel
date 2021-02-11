@@ -11,25 +11,40 @@ namespace UPtel.Models
     public partial class Contratos
     {
         [Key]
-        public int Contrato { get; set; }
+        public int ContratoId { get; set; }
         public int ClienteId { get; set; }
         public int FuncionarioId { get; set; }
         public int PromocaoId { get; set; }
         public int PacoteId { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Data de início do contrato")]
         [Column(TypeName = "date")]
         public DateTime DataInicio { get; set; }
+
+        [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
+
+        [Display(Name = "Período de fidelização")]
         public int? TempoPromocao { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Nome do Cliente")]
         [StringLength(80)]
         public string NomeCliente { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Nome do pacote de serviços")]
         [StringLength(50)]
         public string NomePacote { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Nome da promoção")]
         [StringLength(50)]
         public string NomePromocao { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Nome do funcionário")]
         [StringLength(80)]
         public string NomeFuncionario { get; set; }
 

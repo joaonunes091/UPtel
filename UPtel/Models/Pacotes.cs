@@ -17,9 +17,13 @@ namespace UPtel.Models
 
         [Key]
         public int PacoteId { get; set; }
-        [Required]
+       
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name ="Nome do pacote")]
         [StringLength(50)]
         public string NomePacote { get; set; }
+
+        [Display(Name = "Preço")]
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Preco { get; set; }
         public int? TelevisaoId { get; set; }
