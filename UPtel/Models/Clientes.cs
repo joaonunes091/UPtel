@@ -19,37 +19,58 @@ namespace UPtel.Models
 
         [Key]
         public int ClienteId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name ="Nome  do Cliente")]
         [StringLength(80)]
         public string NomeCliente { get; set; }
+
         [Column(TypeName = "date")]
+        [Display(Name ="Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(8)]
+        [Display(Name ="Número do Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(9)]
+        [Display(Name = "Número de Contribuinte")]
         public string Contribuinte { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(80)]
         public string Morada { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(4)]
+        [Display(Name ="Código Postal")]
         public string CodigoPostal { get; set; }
+
         [StringLength(9)]
         public string Telefone { get; set; }
-        [Required]
-        [StringLength(9)]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
+        [Display(Name ="Telemóvel")]
         public string Telemovel { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [EmailAddress]
         [StringLength(50)]
+        [Display(Name ="E-mail")]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
         public string Password { get; set; }
+
         public int TipoClienteId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3)]
+        [Display(Name ="Extensão do Código Postal")]
         public string CodigoPostalExt { get; set; }
 
         [ForeignKey(nameof(TipoClienteId))]
