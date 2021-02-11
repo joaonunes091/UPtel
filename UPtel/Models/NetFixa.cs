@@ -17,12 +17,19 @@ namespace UPtel.Models
 
         [Key]
         public int NetFixaId { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "decimal(5, 2)")]
         public decimal Limite { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         public int Velocidade { get; set; }
-        [Required]
+       
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display( Name ="Tipo de Conexão")]
         [StringLength(30)]
         public string TipoConexao { get; set; }
+       
         [StringLength(100)]
         public string Notas { get; set; }
 
