@@ -19,7 +19,7 @@ namespace UPtel.Models
         public int TipoClienteId { get; set; }
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(10)]
+        [StringLength(10, ErrorMessage = "O limite de carateres(10) foi ultrapassado")]
         [Display(Name = "Designação")]
         public string Designacao { get; set; }
 
