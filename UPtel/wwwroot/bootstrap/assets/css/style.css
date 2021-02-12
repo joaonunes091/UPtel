@@ -556,6 +556,163 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
+# secondHero Section
+--------------------------------------------------------------*/
+#secondhero {
+    width: 100%;
+    height: 100vh;
+    background-color: #848484;
+    background-size: cover;
+    position: relative;
+}
+
+    #secondhero:before {
+        content: "";
+        background: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #secondhero .container {
+        padding-top: 72px;
+        position: relative;
+        text-align: center;
+    }
+
+    #secondhero h1 {
+        margin: 0 0 10px 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+    }
+
+    #secondhero h2 {
+        color: #eee;
+        margin-bottom: 40px;
+        font-size: 24px;
+    }
+
+    #secondhero .play-btn {
+        width: 94px;
+        height: 94px;
+        margin: 0 auto;
+        background: radial-gradient(#009961 50%, rgba(0, 153, 97, 0.4) 52%);
+        border-radius: 50%;
+        display: block;
+        overflow: hidden;
+        position: relative;
+    }
+
+        #secondhero .play-btn::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-40%) translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid #fff;
+            z-index: 100;
+            transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        #secondhero .play-btn::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-animation: pulsate-btn 3s;
+            animation: pulsate-btn 3s;
+            -webkit-animation-direction: forwards;
+            animation-direction: forwards;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: steps;
+            animation-timing-function: steps;
+            opacity: 1;
+            border-radius: 50%;
+            border: 5px solid rgba(0, 153, 97, 0.7);
+            top: -15%;
+            left: -15%;
+            background: rgba(198, 16, 0, 0);
+        }
+
+        #secondhero .play-btn:hover::after {
+            border-left: 15px solid #009961;
+            transform: scale(20);
+        }
+
+        #secondhero .play-btn:hover::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-40%) translateY(-50%);
+            width: 0;
+            height: 0;
+            border: none;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid #fff;
+            z-index: 200;
+            -webkit-animation: none;
+            animation: none;
+            border-radius: 0;
+        }
+
+@media (min-width: 1024px) {
+    #secondhero {
+        background-attachment: fixed;
+    }
+}
+
+@media (max-width: 768px) {
+    #secondhero h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    #secondhero h2 {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+@-webkit-keyframes pulsate-btn {
+    0% {
+        transform: scale(0.6, 0.6);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+@keyframes pulsate-btn {
+    0% {
+        transform: scale(0.6, 0.6);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+
+/*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
