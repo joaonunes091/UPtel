@@ -1,0 +1,49 @@
+﻿@model UPtel.Models.NetFixa
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>NetFixa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NetFixaId" />
+            <div class="form-group">
+                <label asp-for="Limite" class="control-label"></label>
+                <input asp-for="Limite" class="form-control" />
+                <span asp-validation-for="Limite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Velocidade" class="control-label"></label>
+                <input asp-for="Velocidade" class="form-control" />
+                <span asp-validation-for="Velocidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoConexao" class="control-label"></label>
+                <input asp-for="TipoConexao" class="form-control" />
+                <span asp-validation-for="TipoConexao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notas" class="control-label"></label>
+                <input asp-for="Notas" class="form-control" />
+                <span asp-validation-for="Notas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

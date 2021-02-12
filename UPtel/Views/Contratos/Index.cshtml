@@ -1,0 +1,95 @@
+﻿@model IEnumerable<UPtel.Models.Contratos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fidelizacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempoPromocao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomePacote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomePromocao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeFuncionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Funcionario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pacote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promocao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fidelizacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempoPromocao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePromocao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.CartaoCidadao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funcionario.CartaoCidadao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacote.NomePacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Promocao.Descricao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

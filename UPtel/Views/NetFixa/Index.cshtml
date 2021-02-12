@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UPtel.Models.NetFixa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Limite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Velocidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoConexao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notas)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Limite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Velocidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoConexao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NetFixaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NetFixaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NetFixaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
