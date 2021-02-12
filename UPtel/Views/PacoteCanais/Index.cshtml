@@ -4,38 +4,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <h1 class="display-4 text-center">UPtel</h1>
+        <div class="row justify-content-center">
+            <div class="col-xl-8">
+                <h2>Pacotes de Canais</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Canais)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Televisao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Canais.NomeCanal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Televisao.Nome)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PacoteCanalId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PacoteCanalId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PacoteCanalId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <p>
+                    <a asp-action="Create">Criar novo pacote de canais</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Canais)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Televisao)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Canais.NomeCanal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Televisao.Nome)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.PacoteCanalId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.PacoteCanalId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.PacoteCanalId">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
