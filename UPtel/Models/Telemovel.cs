@@ -35,6 +35,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Preço por minuto de chamadas nacional")]
         [Column(TypeName = "decimal(4, 2)")]
+
         public decimal PrecoMinutoNacional { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
