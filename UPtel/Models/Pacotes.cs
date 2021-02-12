@@ -26,6 +26,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Preço")]
         [Column(TypeName = "decimal(6, 2)")]
+        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
         //problema dos numero decimais?
         public decimal Preco { get; set; }
         public int? TelevisaoId { get; set; }

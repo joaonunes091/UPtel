@@ -17,9 +17,11 @@ namespace UPtel.Models
 
         [Key]
         public int NetMovelId { get; set; }
-       
+
+        [Display(Name = "Limite de plafond")]
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "decimal(5, 2)")]
+        [Range(1,999,ErrorMessage ="O valor não é válido")]
         public decimal Limite { get; set; }
         
         [StringLength(100)]
