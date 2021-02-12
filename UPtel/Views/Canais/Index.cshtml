@@ -4,21 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-left">
+<section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <h1 class="display-4 text-left">UPtel</h1>
         <div class="row justify-content-left">
             <div class="col-xl-8">
-
-                <h2 class="text-left">Canais</h2>
+                <h2>Canais</h2>
 
                 <p>
-                    <a class="float-left pb-2" asp-action="Create">Novo Canal</a>
+                    <a asp-action="Create">Novo Canal</a>
                 </p>
-                <table class="table">
+                <table class="table text-left">
                     <thead>
+
                         <tr>
-                            <th class="text-left" style="color:azure">
+                            <th>
                                 @Html.DisplayNameFor(model => model.NomeCanal)
                             </th>
                             <th></th>
@@ -28,13 +27,13 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td style="color:azure">
+                                <td>
                                     @Html.DisplayFor(modelItem => item.NomeCanal)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.CanaisId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CanaisId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CanaisId">Delete</a>
+                                    <a asp-action="Edit" asp-route-id="@item.CanaisId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.CanaisId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.CanaisId">Eliminar</a>
                                 </td>
                             </tr>
                         }
