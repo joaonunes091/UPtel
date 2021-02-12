@@ -4,32 +4,46 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<section id="hero" class="d-flex flex-column justify-content-left">
+    <div class="container">
+        <h1 class="display-4 text-left">UPtel</h1>
+        <div class="row justify-content-left">
+            <div class="col-xl-8">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCanal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCanal)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CanaisId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CanaisId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CanaisId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <h2 class="text-left">Canais</h2>
+
+                <p>
+                    <a class="float-left pb-2" asp-action="Create">Novo Canal</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-left" style="color:azure">
+                                @Html.DisplayNameFor(model => model.NomeCanal)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="color:azure">
+                                    @Html.DisplayFor(modelItem => item.NomeCanal)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.CanaisId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.CanaisId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.CanaisId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
