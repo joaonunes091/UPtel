@@ -19,13 +19,13 @@ namespace UPtel.Models
         public int PromocaoId { get; set; }
       
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O limite de carateres(50) foi ultrapassado")]
         [Display(Name = "Nome da Promoção")]
         public string NomePromocao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Descrição")]
-        [StringLength(100)]
+        [StringLength(100, ErrorMessage = "O limite de carateres(100) foi ultrapassado")]
         public string Descricao { get; set; }
 
         [InverseProperty("Promocao")]
