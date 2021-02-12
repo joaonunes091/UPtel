@@ -19,7 +19,7 @@ namespace UPtel.Models
         public int CanaisId { get; set; }
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(20)]
+        [StringLength(20,ErrorMessage ="O nome do canal precisa de ter menos de 20 caracteres")]
         [Display(Name = "Nome do canal")]
         public string NomeCanal { get; set; }
 

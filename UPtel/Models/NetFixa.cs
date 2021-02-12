@@ -18,9 +18,10 @@ namespace UPtel.Models
         [Key]
         public int NetFixaId { get; set; }
 
+        [Display(Name = "Limite de plafond")]
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "decimal(5, 2)")]
-        //como fazer o limite?
+        [Range(1,999,ErrorMessage ="Valor inválido")]
         public decimal Limite { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

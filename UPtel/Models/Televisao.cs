@@ -21,10 +21,10 @@ namespace UPtel.Models
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Pacote de canais")]
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "O limite de carateres(20) foi ultrapassado")]
         public string Nome { get; set; }
         
-        [StringLength(100)]
+        [StringLength(100, ErrorMessage = "O limite de carateres(100) foi ultrapassado")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
