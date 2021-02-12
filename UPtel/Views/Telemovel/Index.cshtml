@@ -1,0 +1,71 @@
+﻿@model IEnumerable<UPtel.Models.Telemovel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimiteMinutos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimiteSms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoMinutoNacional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoMinutoInternacional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoSms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoMms)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimiteMinutos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimiteSms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoSms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoMms)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TelemovelId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TelemovelId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TelemovelId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
