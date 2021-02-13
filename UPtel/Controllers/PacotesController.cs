@@ -54,7 +54,7 @@ namespace UPtel.Controllers
         {
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao");
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero");
-            ViewData["TelemovelId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero");
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero");
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero");
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome");
             return View();
@@ -75,7 +75,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelemovelId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
@@ -96,7 +96,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelemovelId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
@@ -136,7 +136,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelemovelId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
