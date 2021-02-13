@@ -26,7 +26,7 @@ namespace UPtel.Models
         
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Limite de minutos")]
-        [Range(0,44640,ErrorMessage ="O número não é válido, o valor tem que estar entre 0 e 44640.")]
+        [Range(0, 44640,ErrorMessage ="O número não é válido, o valor tem que estar entre 0 e 44640.")]
         public int LimiteMinutos { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

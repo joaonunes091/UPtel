@@ -228,10 +228,10 @@ namespace UPtel.Data
                     Email="MarioSP@uptel.pt",
                     Telemovel="926479568",
                     CartaoCidadao="54276388",
-                    Iban="PT50 5276 4724 27645972864 75",
+                    Iban="PT50527647242764597286475",
                     Password="MarioPassword",
                     EstadoFuncionario="Ativo",
-                },
+                }
             });
             DbContext.SaveChanges();
         }
