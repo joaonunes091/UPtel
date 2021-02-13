@@ -58,7 +58,7 @@ namespace UPtel.Models
         [Range(0, 99, ErrorMessage = "Esse valor não é válido")]
         public decimal PrecoMms { get; set; }
 
-        [InverseProperty("TelemovelNavigation")]
+        [InverseProperty("Telemovel")]
         public virtual ICollection<Pacotes> Pacotes { get; set; }
     }
 }

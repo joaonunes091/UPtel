@@ -42,15 +42,19 @@ namespace UPtel.Models
         [ForeignKey(nameof(NetMovelId))]
         [InverseProperty("Pacotes")]
         public virtual NetMovel NetMovel { get; set; }
-        [ForeignKey(nameof(TelemovelId))]
-        [InverseProperty(nameof(Telefone.Pacotes))]
-        public virtual Telefone Telemovel { get; set; }
+
         [ForeignKey(nameof(TelemovelId))]
         [InverseProperty("Pacotes")]
-        public virtual Telemovel TelemovelNavigation { get; set; }
+        public virtual Telemovel Telemovel { get; set; }
+
+        [ForeignKey(nameof(TelefoneId))]
+        [InverseProperty("Pacotes")]
+        public virtual Telefone Telefone { get; set; }
+
         [ForeignKey(nameof(TelevisaoId))]
         [InverseProperty("Pacotes")]
         public virtual Televisao Televisao { get; set; }
+
         [InverseProperty("Pacote")]
         public virtual ICollection<Contratos> Contratos { get; set; }
     }

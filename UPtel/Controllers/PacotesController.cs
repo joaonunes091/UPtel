@@ -22,7 +22,7 @@ namespace UPtel.Controllers
         // GET: Pacotes
         public async Task<IActionResult> Index()
         {
-            var uPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telemovel).Include(p => p.TelemovelNavigation).Include(p => p.Televisao);
+            var uPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telemovel).Include(p => p.Telefone).Include(p => p.Televisao);
             return View(await uPtelContext.ToListAsync());
         }
 
@@ -38,7 +38,7 @@ namespace UPtel.Controllers
                 .Include(p => p.NetIfixa)
                 .Include(p => p.NetMovel)
                 .Include(p => p.Telemovel)
-                .Include(p => p.TelemovelNavigation)
+                .Include(p => p.Telefone)
                 .Include(p => p.Televisao)
                 .FirstOrDefaultAsync(m => m.PacoteId == id);
             if (pacotes == null)
@@ -154,7 +154,7 @@ namespace UPtel.Controllers
                 .Include(p => p.NetIfixa)
                 .Include(p => p.NetMovel)
                 .Include(p => p.Telemovel)
-                .Include(p => p.TelemovelNavigation)
+                .Include(p => p.Telefone)
                 .Include(p => p.Televisao)
                 .FirstOrDefaultAsync(m => m.PacoteId == id);
             if (pacotes == null)
