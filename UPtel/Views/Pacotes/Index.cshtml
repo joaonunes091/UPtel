@@ -10,77 +10,72 @@
             <div class="col-xl-8">
                 <h1>Index</h1>
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NomePacote)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Preco)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TelefoneId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NetIfixa)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NetMovel)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Telemovel)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TelemovelNavigation)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Televisao)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NomePacote)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Preco)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TelefoneId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetMovel.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Telemovel.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TelemovelNavigation.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Televisao.Nome)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.PacoteId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.PacoteId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.PacoteId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomePacote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelefoneId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetIfixa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetMovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelemovelNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Televisao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePacote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefoneId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetMovel.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telemovel.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelemovelNavigation.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Televisao.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PacoteId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PacoteId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PacoteId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
