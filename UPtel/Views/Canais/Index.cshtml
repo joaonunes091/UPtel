@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.Canais>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -6,40 +6,82 @@
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-left">
             <div class="col-xl-8">
-                <h2 class="text-left">Canais</h2>
+                <h2>Canais</h2>
 
-                <p class="text-left">
+                <p>
                     <a asp-action="Create">Novo Canal</a>
                 </p>
-                <table class="table text-left">
-                    <thead>
+                @if (Model.Canais.Count() == 0)
+                {
+                    <p>Não existem canais para mostrar</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
 
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NomeCanal)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NomeCanal)
-                                </td>
-                                <td class="text-right">
-                                     <a asp-action="Edit" asp-route-id="@item.CanaisId" >Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CanaisId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CanaisId">Eliminar</a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Canais)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NomeCanal)
+                                    </td>
+                                    <td class="text-right">
+                                        <a asp-action="Edit" asp-route-id="@item.CanaisId">Editar</a> |
+                                        <a asp-action="Details" asp-route-id="@item.CanaisId">Detalhes</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.CanaisId">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
+                    <nav>
+                        <ul class="pagination">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                
+                }
             </div>
         </div>
     </div>

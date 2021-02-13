@@ -20,9 +20,27 @@ namespace UPtel.Controllers
         }
 
         // GET: Canais
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina = 1)
         {
-            return View(await _context.Canais.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Canais.CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Canais> canais = await _context.Canais
+                .OrderBy(c => c.NomeCanal)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Canais = canais
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Canais/Details/5
