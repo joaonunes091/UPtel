@@ -44,54 +44,98 @@
 
             <div class="row justify-content-center">
                 <div class="col-xl-9 d-flex align-items-center justify-content-between">
-                    <h1 class="logo"><a href="index.html">UPtel</a></h1>
+                    <h1 class="logo"><a asp-controller="Home" asp-action="Index">UPtel</a></h1>
+                    @*<h1 class="logo"><a href="index.html">UPtel</a></h1>*@
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
-                            <li @*class="active"*@><a href="index.html">Home</a></li>
-                            <li><a href="#about">Sobre</a></li>
-                            <li><a href="#services">teste</a></li>
-                            <li><a href="#portfolio">Clientes</a></li>
-                            <li><a asp-action="Index" asp-controller="Funcionarios">Funcionários</a></li>
+                            @*<li class="active"><a href="index.html">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">teste</a></li>*@
+                            <li class="drop-down">
+                                <a href="">Clientes</a>
+                                <ul>
+                                    <li><a asp-action="Index" asp-controller="Clientes">Clientes</a></li>
+                                    <li><a asp-action="Index" asp-controller="TipoClientes">Tipo de Clientes</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="">Funcionários</a>
+                                <ul>
+                                    <li><a asp-action="Index" asp-controller="Funcionarios">Lista de Funcionários</a></li>
+                                    <li><a asp-action="Index" asp-controller="Cargos">Cargos</a></li>
+                                </ul>
+                            </li>
                             <li class="drop-down">
                                 <a href="">Serviços</a>
                                 <ul>
                                     <li class="drop-down">
                                         <a href="#">Pacotes de Internet</a>
                                         <ul>
-                                            <li><a href="#">teste</a></li>
+                                            <li><a asp-action="Index" asp-controller="NetMovel">Net Móvel</a></li>
+                                            <li><a asp-action="Index" asp-controller="NetFixa">Net Fixa</a></li>
                                         </ul>
                                     </li>
                                     <li class="drop-down">
-                                        <a href="#">Pacotes de Telefone</a>
+                                        <a href="#">Televisão</a>
                                         <ul>
-                                            <li><a href="#">teste</a></li>
+                                            <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
+                                            <li><a asp-action="Index" asp-controller="Canais">Canais</a></li>
+                                            <li><a asp-action="Index" asp-controller="PacoteCanais">Pacotes de canais</a></li>
                                         </ul>
                                     </li>
-                                    <li class="drop-down">
-                                        <a href="#">Pacotes de Telemóvel</a>
-                                        <ul>
-                                            <li><a href="#">teste</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="drop-down">
-                                        <a href="#">Pacotes de Televisão</a>
-                                        <ul>
-                                            <li><a href="#">teste</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Drop Down 3</a></li>
-                                    <li><a href="#">Drop Down 4</a></li>
+                                    <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
+                                    <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
+                            <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
+                            <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
+
+
+                            @*<li class="drop-down">
+                    <a href="">Serviços</a>
+                    <ul>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Internet</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Telefone</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Telemóvel</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Televisão</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>*@
 
                         </ul>
                     </nav><!-- .nav-menu -->
 
-                    <a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>
+                    @*<a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>*@
+                <div class="row">
+                    <h1 class="logo mr-3"><a asp-controller="Home" asp-action="Index">Log in</a></h1>
+                    <h1 class="logo"><a asp-controller="Home" asp-action="Index">Registar</a></h1>
+                </div>
                 </div>
             </div>
 
