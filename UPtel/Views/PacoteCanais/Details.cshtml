@@ -1,19 +1,19 @@
 ﻿@model UPtel.Models.PacoteCanais
 
 @{
-    ViewData["Title"] = "Detalhes dos Pacotes";
+    ViewData["Title"] = "Detalhes dos pacotes de canais";
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-left">
             <div class="col-xl-8">
-                <h2>Detalhes dos Pacotes de Canais</h2>
+                <h2>Detalhes dos pacotes de canais</h2>
 
                 <div>
                     <h4>PacoteCanais</h4>
                     <hr />
-                    <dl class="row">
+                    <dl>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Canais)
                         </dt>
@@ -29,8 +29,8 @@
                     </dl>
                 </div>
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.PacoteCanalId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.PacoteCanalId">Editar</a> |
+                    <a asp-action="Index">Voltar</a>
                 </div>
             </div>
         </div>

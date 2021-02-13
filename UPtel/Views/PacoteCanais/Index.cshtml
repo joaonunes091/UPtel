@@ -6,7 +6,7 @@
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-left">
             <div class="col-xl-8">
                 <h2>Pacotes de Canais</h2>
 
@@ -35,7 +35,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Televisao.Nome)
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     <a asp-action="Edit" asp-route-id="@item.PacoteCanalId">Editar</a> |
                                     <a asp-action="Details" asp-route-id="@item.PacoteCanalId">Detalhes</a> |
                                     <a asp-action="Delete" asp-route-id="@item.PacoteCanalId">Eliminar</a>

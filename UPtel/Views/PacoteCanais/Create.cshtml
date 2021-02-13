@@ -1,11 +1,11 @@
 ﻿@model UPtel.Models.PacoteCanais
 
 @{
-    ViewData["Title"] = "Criar";
+    ViewData["Title"] = "Criar pacote de canais";
 }
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-left">
             <div class="col-xl-8">
                 <h2>Pacotes de Canais</h2>
 
@@ -24,14 +24,14 @@
                                 <select asp-for="CanaisId" class="form-control" asp-items="ViewBag.CanaisId"></select>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <input type="submit" value="Criar" class="btn btn-primary" />
                             </div>
                         </form>
                     </div>
                 </div>
 
                 <div>
-                    <a asp-action="Index">Voltar à lista de canais</a>
+                    <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {

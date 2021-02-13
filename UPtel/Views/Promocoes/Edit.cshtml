@@ -1,39 +1,47 @@
 ﻿@model UPtel.Models.Promocoes
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Promoção";
 }
 
-<h1>Edit</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+                <h2>Editar Promoção</h2>
 
-<h4>Promocoes</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PromocaoId" />
-            <div class="form-group">
-                <label asp-for="NomePromocao" class="control-label"></label>
-                <input asp-for="NomePromocao" class="form-control" />
-                <span asp-validation-for="NomePromocao" class="text-danger"></span>
+                <h4>Promoções</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="PromocaoId" />
+                            <div class="form-group">
+                                <label asp-for="NomePromocao" class="control-label"></label>
+                                <input asp-for="NomePromocao" class="form-control" />
+                                <span asp-validation-for="NomePromocao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Descricao" class="control-label"></label>
+                                <input asp-for="Descricao" class="form-control" />
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-action="Index">Voltar</a>
+                </div>
+
+                @*@section Scripts {
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }*@
             </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+</section>
