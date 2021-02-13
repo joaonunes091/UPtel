@@ -41,7 +41,7 @@ namespace UPtel.Models
         [Range(0, 99, ErrorMessage = "O valor não é válido")]
         public decimal PrecoMinutoInternacional { get; set; }
 
-        [InverseProperty("Telemovel")]
+        [InverseProperty("Telefone")]
         public virtual ICollection<Pacotes> Pacotes { get; set; }
     }
 }

@@ -24,24 +24,28 @@
             </div>
             <div class="form-group">
                 <label asp-for="TelevisaoId" class="control-label"></label>
-                <select asp-for="TelevisaoId" class ="form-control" asp-items="ViewBag.TelevisaoId"></select>
+                <select asp-for="TelevisaoId" class="form-control" asp-items="ViewBag.TelevisaoId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TelemovelId" class="control-label"></label>
-                <select asp-for="TelemovelId" class ="form-control" asp-items="ViewBag.TelemovelId"></select>
+                <select asp-for="TelemovelId" class="form-control" asp-items="ViewBag.TelemovelId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="NetIfixaId" class="control-label"></label>
-                <select asp-for="NetIfixaId" class ="form-control" asp-items="ViewBag.NetIfixaId"></select>
+                <select asp-for="NetIfixaId" class="form-control" asp-items="ViewBag.NetIfixaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TelefoneId" class="control-label"></label>
-                <input asp-for="TelefoneId" class="form-control" />
-                <span asp-validation-for="TelefoneId" class="text-danger"></span>
+                <select asp-for="TelefoneId" class="form-control" asp-items="ViewBag.TelefoneId"></select>
             </div>
+            @*<div class="form-group">
+            <label asp-for="TelefoneId" class="control-label"></label>
+            <input asp-for="TelefoneId" class="form-control" />
+            <span asp-validation-for="TelefoneId" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="NetMovelId" class="control-label"></label>
-                <select asp-for="NetMovelId" class ="form-control" asp-items="ViewBag.NetMovelId"></select>
+                <select asp-for="NetMovelId" class="form-control" asp-items="ViewBag.NetMovelId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -114,9 +114,9 @@ namespace UPtel.Data
                     .HasForeignKey(d => d.TelemovelId)
                     .HasConstraintName("FK_Pacotes_Telefone");
 
-                entity.HasOne(d => d.TelemovelNavigation)
+                entity.HasOne(d => d.Telefone)
                     .WithMany(p => p.Pacotes)
-                    .HasForeignKey(d => d.TelemovelId)
+                    .HasForeignKey(d => d.TelefoneId)
                     .HasConstraintName("FK_Pacotes_Telemovel");
 
                 entity.HasOne(d => d.Televisao)
