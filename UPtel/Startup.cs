@@ -73,7 +73,7 @@ namespace UPtel
             if (env.IsDevelopment())
             {
                 SeedData.InsereDadosTesteTodos(Dbcontext);
-                SeedDataAntonio.InsereDadosTesteTodos(Dbcontext);
+                
             }
         }
     }
