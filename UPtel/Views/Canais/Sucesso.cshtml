@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Sucesso";
+}
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-left">
+            <div class="col-xl-8">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+
+                        <p class="card-text">@ViewBag.Mensagem</p>
+
+                        <div>
+                            <a class="btn btn-primary" asp-action="Index">
+                                Ver lista de canais
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
