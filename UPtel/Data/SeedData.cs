@@ -10,7 +10,7 @@ namespace UPtel.Data
     {
         private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
         {
-            if (!DbContext.Televisao.Any()) return;
+            if (DbContext.Televisao.Any()) return;
             DbContext.Televisao.AddRange(new Televisao[] {
                 new Televisao
                 {
@@ -33,7 +33,7 @@ namespace UPtel.Data
         }
         private static void InsereDadosTesteTelefone(UPtelContext DbContext)
         {
-            if (!DbContext.Telefone.Any()) return;
+            if (DbContext.Telefone.Any()) return;
             DbContext.Telefone.AddRange(new Telefone[] {
                 new Telefone
                 {
@@ -61,7 +61,7 @@ namespace UPtel.Data
         }
         private static void InsereDadosTesteTelemovel(UPtelContext DbContext)
         {
-            if (!DbContext.Telemovel.Any()) return;
+            if (DbContext.Telemovel.Any()) return;
             DbContext.Telemovel.AddRange(new Telemovel[] {
                 new Telemovel
                 {
@@ -99,7 +99,7 @@ namespace UPtel.Data
 
         private static void InsereDadosTestePromocoes(UPtelContext DbContext)
         {
-            if (!DbContext.Telemovel.Any()) return;
+            if (DbContext.Telemovel.Any()) return;
             DbContext.Promocoes.AddRange(new Promocoes[] {
                 new Promocoes
                 {
@@ -124,7 +124,7 @@ namespace UPtel.Data
 
         private static void InsereDadosTesteCargos(UPtelContext DbContext)
         {
-            if (!DbContext.Cargos.Any()) return;
+            if (DbContext.Cargos.Any()) return;
             DbContext.Cargos.AddRange(new Cargos[] {
                 new Cargos
                 {
@@ -135,11 +135,12 @@ namespace UPtel.Data
                     NomeCargo = "Operador(a)",
                 }
             });
+            DbContext.SaveChanges();
         }
 
         private static void InsereDadosTesteTipoClientes(UPtelContext DbContext)
         {
-            if (!DbContext.TipoClientes.Any()) return;
+            if (DbContext.TipoClientes.Any()) return;
             DbContext.TipoClientes.AddRange(new TipoClientes[] {
                 new TipoClientes
                 {
@@ -150,11 +151,12 @@ namespace UPtel.Data
                     Designacao = "Empresarial",
                 }
             });
+            DbContext.SaveChanges();
         }
 
         private static void InsereDadosTesteCanais(UPtelContext DbContext)
         {
-            if (!DbContext.Canais.Any()) return;
+            if (DbContext.Canais.Any()) return;
             DbContext.Canais.AddRange(new Canais[] {
                 new Canais
                 {
@@ -173,10 +175,11 @@ namespace UPtel.Data
                     NomeCanal = "RTP Africa",
                 }
             });
+            DbContext.SaveChanges();
         }
         private static void InsereDadosTesteFuncionarios(UPtelContext DbContext)
         {
-            if (!DbContext.Funcionarios.Any()) return;
+            if (DbContext.Funcionarios.Any()) return;
             DbContext.Funcionarios.AddRange(new Funcionarios[] {
                 new Funcionarios
                 {
@@ -230,11 +233,12 @@ namespace UPtel.Data
                     EstadoFuncionario="Ativo",
                 },
             });
+            DbContext.SaveChanges();
         }
 
         private static void InsereDadosTesteClientes(UPtelContext DbContext)
         {
-            if (!DbContext.Clientes.Any()) return;
+            if (DbContext.Clientes.Any()) return;
             DbContext.Clientes.AddRange(new Clientes[] {
                 new Clientes
                 {
@@ -298,11 +302,12 @@ namespace UPtel.Data
                 },
 
             });
+            DbContext.SaveChanges();
         }
 
         private static void InsereDadosTesteContratos(UPtelContext DbContext) //Estão aqui algumas promoções, talvez seja preciso mudar
         {
-            if (!DbContext.Contratos.Any()) return;
+            if (DbContext.Contratos.Any()) return;
             DbContext.Contratos.AddRange(new Contratos[] {
                 new Contratos
                 {
@@ -361,10 +366,11 @@ namespace UPtel.Data
                     TempoPromocao=1,
                 },
             });
+            DbContext.SaveChanges();
         }
         private static void InsereDadosTesteNetfixa(UPtelContext DbContext)
         {
-            if (!DbContext.NetFixa.Any()) return;
+            if (DbContext.NetFixa.Any()) return;
             DbContext.NetFixa.AddRange(new NetFixa[] {
                 new NetFixa
                 {
@@ -388,10 +394,11 @@ namespace UPtel.Data
                     Notas="A internet mais rápida dos nossos serviços",
                 },
             });
+            DbContext.SaveChanges();
         }
         private static void InsereDadosTesteNetmovel(UPtelContext DbContext)
         {
-            if (!DbContext.NetMovel.Any()) return;
+            if (DbContext.NetMovel.Any()) return;
             DbContext.NetMovel.AddRange(new NetMovel[] {
                 new NetMovel
                 {
@@ -401,6 +408,7 @@ namespace UPtel.Data
                 },
                 
             });
+            DbContext.SaveChanges();
         }
 
         internal static void InsereDadosTesteTodos(UPtelContext DbContext)
@@ -408,14 +416,15 @@ namespace UPtel.Data
             InsereDadosTesteCargos(DbContext);
             InsereDadosTesteTipoClientes(DbContext);
             InsereDadosTesteCanais(DbContext);
-            InsereDadosTesteFuncionarios(DbContext);
-            InsereDadosTesteClientes(DbContext);
-            InsereDadosTesteContratos(DbContext);
             InsereDadosTesteNetfixa(DbContext);
             InsereDadosTesteTelevisao(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTestePromocoes(DbContext);
+            InsereDadosTesteFuncionarios(DbContext);
+            InsereDadosTesteClientes(DbContext);
+            InsereDadosTesteContratos(DbContext);
+            
 
         }
 
