@@ -88,7 +88,7 @@ namespace UPtel.Data
                     Numero = "90010002",
                     LimiteMinutos = 44000,
                     LimiteSms = 5000,
-                    PrecoMinutoNacional = 44000,
+                    PrecoMinutoNacional = 4,
                     PrecoMinutoInternacional = 0,
                     PrecoSms = 0.05M,
                     PrecoMms = 0.1M
@@ -184,7 +184,7 @@ namespace UPtel.Data
                 new Funcionarios
                 {
                     NomeFuncionario = "José Ferreira Pinto",
-                    CargoId=2,
+                    CargoId=4,
                     NomeCargo="Operador(a)",
                     DataNascimento=new DateTime(1990,05,25),
                     Contribuinte="264815975",
@@ -194,31 +194,31 @@ namespace UPtel.Data
                     Email="JoseFP@uptel.pt",
                     Telemovel="915948752",
                     CartaoCidadao="56195348",
-                    Iban="PT50 1234 5481 15487625934 72",
+                    Iban="PT50123454811548762593472",
                     Password="JosePassword",
                     EstadoFuncionario="Ativo",
                 },
                 new Funcionarios
                 {
                     NomeFuncionario = "Ana Gonçalves Gomes",
-                    CargoId=2,
+                    CargoId=5,
                     NomeCargo="Operador(a)",
                     DataNascimento=new DateTime(1994,10,5),
-                    Contribuinte="97595487",
+                    Contribuinte="9759548",
                     Morada="Rua da Oliveira ao Carmo nº7, 2º Direito ",
                     CodigoPostal="1000",
                     CodigoPostalExt="150",
                     Email="AnaGG@uptel.pt",
                     Telemovel="911485549",
                     CartaoCidadao="574952138",
-                    Iban="PT50 5948 1254 34615798246 82",
+                    Iban="PT50594812543461579824682",
                     Password="AnaPassword",
                     EstadoFuncionario="Ativo",
                 },
                 new Funcionarios
                 {
                     NomeFuncionario = "Mário Simão Pacheco",
-                    CargoId=1,
+                    CargoId=4,
                     NomeCargo="Administrador(a)",
                     DataNascimento=new DateTime(1994,10,5),
                     Contribuinte="97595487",
@@ -253,7 +253,7 @@ namespace UPtel.Data
                     Telemovel="961847659",
                     Email="José.Ramos.Figueiras@gmail.com",
                     Password="JoseRamos",
-                    TipoClienteId=1,
+                    TipoClienteId=5,
                 },
                 new Clientes
                 {
@@ -268,7 +268,7 @@ namespace UPtel.Data
                     Telemovel="927856988",
                     Email="Rui.Pedro.Santos@gmail.com",
                     Password="RuiPedro",
-                    TipoClienteId=1,
+                    TipoClienteId=4,
                 },
                 new Clientes
                 {
@@ -283,7 +283,7 @@ namespace UPtel.Data
                     Telemovel="961155484",
                     Email="Mariana.Rute.Guedes@gmail.com",
                     Password="MarianaRute",
-                    TipoClienteId=1,
+                    TipoClienteId=5,
                 },
                 new Clientes
                 {
@@ -298,7 +298,7 @@ namespace UPtel.Data
                     Telemovel="915444789",
                     Email="David.Rui.Pedroso@gmail.com",
                     Password="DavidRui",
-                    TipoClienteId=1,
+                    TipoClienteId=4,
                 },
 
             });
@@ -311,9 +311,9 @@ namespace UPtel.Data
             DbContext.Contratos.AddRange(new Contratos[] {
                 new Contratos
                 {
-                    ClienteId=1,
+                    ClienteId=6,
                     NomeCliente="José Ramos Figueiras",
-                    FuncionarioId=1,
+                    FuncionarioId=7,
                     NomeFuncionario="José Ferreira Pinto",
                     PromocaoId=0,
                     NomePromocao="",
@@ -321,13 +321,13 @@ namespace UPtel.Data
                     NomePacote="Premium",
                     DataInicio=new DateTime(2020,10,15),
                     Fidelizacao=2,
-                    TempoPromocao=1,                   
+                    TempoPromocao=1,
                 },
                 new Contratos
                 {
-                    ClienteId=2,
+                    ClienteId=4,
                     NomeCliente="Rui Pedro Santos",
-                    FuncionarioId=1,
+                    FuncionarioId=9,
                     NomeFuncionario="José Ferreira Pinto",
                     PromocaoId=1,
                     NomePromocao="Promoção de Natal",
@@ -339,9 +339,9 @@ namespace UPtel.Data
                 },
                 new Contratos
                 {
-                    ClienteId=3,
+                    ClienteId=5,
                     NomeCliente="Mariana Rute Guedes",
-                    FuncionarioId=2,
+                    FuncionarioId=8,
                     NomeFuncionario="Ana Gonçalves Gomes",
                     PromocaoId=2,
                     NomePromocao="Promoção de BlackFriday",
@@ -355,7 +355,7 @@ namespace UPtel.Data
                 {
                     ClienteId=4,
                     NomeCliente="David Rui Pedroso",
-                    FuncionarioId=2,
+                    FuncionarioId=7,
                     NomeFuncionario="Ana Gonçalves Gomes",
                     PromocaoId=1,
                     NomePromocao="Promoção de Natal",
@@ -423,7 +423,8 @@ namespace UPtel.Data
             InsereDadosTestePromocoes(DbContext);
             InsereDadosTesteFuncionarios(DbContext);
             InsereDadosTesteClientes(DbContext);
-            InsereDadosTesteContratos(DbContext);
+            //InsereDadosTesteContratos(DbContext);
+            
             
 
         }

@@ -34,6 +34,7 @@ namespace UPtel.Models
         [Column("LimiteSMS")]
         [Range(0,10000,ErrorMessage ="O número não é válido, o valor tem que estar entre 0 e 10000")]
         public int LimiteSms { get; set; }
+
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Preço por minuto de chamadas nacional")]
         [Column(TypeName = "decimal(4, 2)")]
