@@ -86,9 +86,9 @@ namespace UPtel.Data
                 new Telemovel
                 {
                     Numero = "90010002",
-                    LimiteMinutos = 44600,
+                    LimiteMinutos = 44000,
                     LimiteSms = 5000,
-                    PrecoMinutoNacional = 44600,
+                    PrecoMinutoNacional = 44000,
                     PrecoMinutoInternacional = 0,
                     PrecoSms = 0.05M,
                     PrecoMms = 0.1M
@@ -148,7 +148,7 @@ namespace UPtel.Data
                 },
                 new TipoClientes
                 {
-                    Designacao = "Empresarial",
+                    Designacao = "Empresa",
                 }
             });
             DbContext.SaveChanges();

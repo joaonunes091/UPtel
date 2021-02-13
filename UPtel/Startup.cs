@@ -70,11 +70,11 @@ namespace UPtel
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            if (env.IsDevelopment())
-            {
-                SeedData.InsereDadosTesteTodos(Dbcontext);
+            //if (env.IsDevelopment())
+            //{
+            //    SeedData.InsereDadosTesteTodos(Dbcontext);
                 
-            }
+            //}
         }
     }
 }
