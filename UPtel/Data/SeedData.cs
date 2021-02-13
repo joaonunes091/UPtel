@@ -411,21 +411,38 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
+        private static void InsereCanaisFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+          
+               
+            for (int i = 0; i < 1000; i++)
+            {
+                DbContext.Canais.Add(new Canais
+                {
+                    NomeCanal = "RTP " + i,
+
+                });
+            }
+
+            DbContext.SaveChanges();
+        }
         internal static void InsereDadosTesteTodos(UPtelContext DbContext)
         {
-            InsereDadosTesteCargos(DbContext);
-            InsereDadosTesteTipoClientes(DbContext);
-            InsereDadosTesteCanais(DbContext);
-            InsereDadosTesteNetfixa(DbContext);
-            InsereDadosTesteTelevisao(DbContext);
-            InsereDadosTesteTelefone(DbContext);
-            InsereDadosTesteTelemovel(DbContext);
-            InsereDadosTestePromocoes(DbContext);
-            InsereDadosTesteFuncionarios(DbContext);
-            InsereDadosTesteClientes(DbContext);
+
+            //InsereCanaisFicticiosParaTestarPaginacao(DbContext);
+            //InsereDadosTesteCargos(DbContext);
+            //InsereDadosTesteTipoClientes(DbContext);
+            //InsereDadosTesteCanais(DbContext);
+            //InsereDadosTesteNetfixa(DbContext);
+            //InsereDadosTesteTelevisao(DbContext);
+            //InsereDadosTesteTelefone(DbContext);
+            //InsereDadosTesteTelemovel(DbContext);
+            //InsereDadosTestePromocoes(DbContext);
+            //InsereDadosTesteFuncionarios(DbContext);
+            //InsereDadosTesteClientes(DbContext);
             //InsereDadosTesteContratos(DbContext);
-            
-            
+
 
         }
 
