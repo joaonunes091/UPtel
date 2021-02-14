@@ -14,7 +14,7 @@ namespace UPtel.Data
 
         private const string ROLE_ADMINISTRADOR = "Administrador";
         private const string ROLE_CLIENTE = "Cliente";
-        private const string ROLE_GESTOR_PRODUTOS = "GestorProdutos";
+        private const string ROLE_OPERADOR = "Operador";
 
 
         private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
@@ -460,14 +460,14 @@ namespace UPtel.Data
             await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
 
             IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");
-            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor, ROLE_GESTOR_PRODUTOS);
+            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor, ROLE_OPERADOR);
         }
 
         internal static async Task InsereRolesAsync(RoleManager<IdentityRole> gestorRoles)
         {
             await CriaRoleSeNecessario(gestorRoles, ROLE_ADMINISTRADOR);
             await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
-            await CriaRoleSeNecessario(gestorRoles, ROLE_GESTOR_PRODUTOS);
+            await CriaRoleSeNecessario(gestorRoles, ROLE_OPERADOR);
             //await CriaRoleSeNecessario(gestorRoles, "PodeAlterarPrecoProdutos");
         }
 
