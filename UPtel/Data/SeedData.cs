@@ -430,18 +430,18 @@ namespace UPtel.Data
         internal static void InsereDadosTesteTodos(UPtelContext DbContext)
         {
 
-            //InsereCanaisFicticiosParaTestarPaginacao(DbContext);
-            //InsereDadosTesteCargos(DbContext);
-            //InsereDadosTesteTipoClientes(DbContext);
-            //InsereDadosTesteCanais(DbContext);
-            //InsereDadosTesteNetfixa(DbContext);
-            //InsereDadosTesteTelevisao(DbContext);
-            //InsereDadosTesteTelefone(DbContext);
-            //InsereDadosTesteTelemovel(DbContext);
-            //InsereDadosTestePromocoes(DbContext);
-            //InsereDadosTesteFuncionarios(DbContext);
-            //InsereDadosTesteClientes(DbContext);
-            //InsereDadosTesteContratos(DbContext);
+            InsereCanaisFicticiosParaTestarPaginacao(DbContext);
+            InsereDadosTesteCargos(DbContext);
+            InsereDadosTesteTipoClientes(DbContext);
+            InsereDadosTesteCanais(DbContext);
+            InsereDadosTesteNetfixa(DbContext);
+            InsereDadosTesteTelevisao(DbContext);
+            InsereDadosTesteTelefone(DbContext);
+            InsereDadosTesteTelemovel(DbContext);
+            InsereDadosTestePromocoes(DbContext);
+            InsereDadosTesteFuncionarios(DbContext);
+            InsereDadosTesteClientes(DbContext);
+            InsereDadosTesteContratos(DbContext);
 
 
         }
