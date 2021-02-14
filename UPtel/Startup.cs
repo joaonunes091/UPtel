@@ -67,13 +67,13 @@ namespace UPtel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Canais}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
             if (env.IsDevelopment())
             {
                 
-                SeedData.InsereDadosTesteTodos(Dbcontext);
+                //SeedData.InsereDadosTesteTodos(Dbcontext);
 
             }
         }

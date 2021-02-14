@@ -416,7 +416,7 @@ namespace UPtel.Data
 
           
                
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 50; i++)
             {
                 DbContext.Canais.Add(new Canais
                 {
