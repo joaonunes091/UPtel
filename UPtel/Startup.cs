@@ -87,18 +87,19 @@ namespace UPtel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Canais}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            SeedData.InsereRolesAsync(gestorRoles).Wait();
-            SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
-            //if (env.IsDevelopment())
-            //{
 
-            //    SeedData.InsereDadosTesteTodos(Dbcontext);
-            //    SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
+            if (env.IsDevelopment())
+            {
+               
+                //SeedData.InsereDadosTesteTodos(Dbcontext);
+                //SeedData.InsereRolesAsync(gestorRoles).Wait();
+                //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
+                //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
 
-            //}
+            }
         }
     }
 }

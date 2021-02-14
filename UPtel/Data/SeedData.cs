@@ -422,10 +422,9 @@ namespace UPtel.Data
 
         private static void InsereCanaisFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
+          
+            for (int i = 0; i < 50; i++)
 
-
-
-            for (int i = 0; i < 1000; i++)
             {
                 DbContext.Canais.Add(new Canais
                 {
