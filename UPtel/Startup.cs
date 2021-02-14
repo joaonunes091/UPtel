@@ -61,7 +61,8 @@ namespace UPtel
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UPtelContext Dbcontext,
-            UserManager<IdentityUser> gestorUtilizadores)
+            UserManager<IdentityUser> gestorUtilizadores,
+            RoleManager<IdentityRole> gestorRoles)
         {
             if (env.IsDevelopment())
             {
@@ -89,11 +90,13 @@ namespace UPtel
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            SeedData.InsereRolesAsync(gestorRoles).Wait();
             SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
             //if (env.IsDevelopment())
             //{
 
             //    SeedData.InsereDadosTesteTodos(Dbcontext);
+            //    SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
 
             //}
         }
