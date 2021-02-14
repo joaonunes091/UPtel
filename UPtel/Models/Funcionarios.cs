@@ -88,7 +88,7 @@ namespace UPtel.Models
         [Display(Name = "Estado do funcionário(ativo/inativo)")]
         public string EstadoFuncionario { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         //[StringLength(3, MinimumLength = 3)]
         [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostalExt { get; set; }
