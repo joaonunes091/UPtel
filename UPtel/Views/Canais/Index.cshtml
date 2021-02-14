@@ -12,10 +12,9 @@
 
                 <div class="card border-info mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Pesquisa</h5>
+                        <h5 class="card-title">Pesquisa de Canais</h5>
                         <form asp-action="Index" method="get">
                             <div class="form-group">
-                                <label for="nomePesquisar" class="control-label">Nome</label>
                                 <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
                             </div>
                             <div class="form-group">
@@ -40,24 +39,33 @@
 
                             <tr>
                                 <th>
+                                    Fotografia
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.Canais)
+                            @foreach (var canais in Model.Canais)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NomeCanal)
-                                    </td>
-                                    <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.CanaisId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.CanaisId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.CanaisId">Eliminar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="width:200px;">
+                                    @if (canais.Foto != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid" />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => canais.NomeCanal)
+                                </td>
+                                <td class="text-right">
+                                    <a asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@canais.CanaisId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@canais.CanaisId">Eliminar</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

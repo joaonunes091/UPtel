@@ -12,7 +12,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-4">
-                        <form asp-action="Edit">
+                        <form asp-action="Edit" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="CanaisId" />
                             <div class="form-group">
@@ -21,9 +21,20 @@
                                 <span asp-validation-for="NomeCanal" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label for="ficheiroFoto" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
+                                <input name="ficheiroFoto" class="form-control-file" type="file" />
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Foto" type="hidden" />
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
                             </div>
                         </form>
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.Foto != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" />
+                        }
                     </div>
                 </div>
 

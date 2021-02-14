@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UPtel.Data;
 using UPtel.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace UPtel.Controllers
 {
@@ -73,20 +75,32 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CanaisId,NomeCanal")] Canais canais)
+        public async Task<IActionResult> Create([Bind("CanaisId,NomeCanal")] Canais canais, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
             {
                 return View(canais);
             }
 
+            AtualizaFotoCanais(canais, ficheiroFoto);
+
             _context.Add(canais);
             await _context.SaveChangesAsync();
 
             ViewBag.Mensagem = "Canal adicionado com sucesso";
             return View("Sucesso");
+        }
 
-            
+        private void AtualizaFotoCanais(Canais canais, IFormFile ficheiroFoto)
+        {
+            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroFoto.CopyTo(ficheiroMemoria);
+                    canais.Foto = ficheiroMemoria.ToArray();
+                }
+            }
         }
 
         // GET: Canais/Edit/5
@@ -110,7 +124,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CanaisId,NomeCanal")] Canais canais)
+        public async Task<IActionResult> Edit(int id, [Bind("CanaisId,NomeCanal,Foto")] Canais canais, IFormFile ficheiroFoto)
         {
             if (id != canais.CanaisId)
             {
@@ -121,6 +135,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    AtualizaFotoCanais(canais, ficheiroFoto);
                     _context.Update(canais);
                     await _context.SaveChangesAsync();
                 }

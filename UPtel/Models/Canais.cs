@@ -23,6 +23,8 @@ namespace UPtel.Models
         [Display(Name = "Nome do canal")]
         public string NomeCanal { get; set; }
 
+        public byte[] Foto { get; set; }
+
         [InverseProperty("Canais")]
         public virtual ICollection<PacoteCanais> PacoteCanais { get; set; }
     }
