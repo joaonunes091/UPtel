@@ -130,12 +130,12 @@
 
                         </ul>
                     </nav><!-- .nav-menu -->
-
                     @*<a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>*@
-                <div class="row">
-                    <h1 class="logo mr-3"><a asp-controller="Home" asp-action="Index">Log in</a></h1>
-                    <h1 class="logo"><a asp-controller="Home" asp-action="Index">Registar</a></h1>
-                </div>
+                    <partial name="_LoginPartial" />
+                    <div class="row">
+                        <h1 class="logo mr-3"><a asp-controller="Home" asp-action="Index">Log in</a></h1>
+                        <h1 class="logo"><a asp-controller="Home" asp-action="Index">Registar</a></h1>
+                    </div>
                 </div>
             </div>
 

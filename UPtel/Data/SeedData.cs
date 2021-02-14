@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using UPtel.Models;
 
 namespace UPtel.Data
 {
     public class SeedData
     {
+        private const string NOME_UTILIZADOR_ADMIN_PADRAO = "admin@UPtel.pt";
+        private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "ADMIN123";
+
         private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
         {
             if (DbContext.Televisao.Any()) return;
@@ -445,6 +449,15 @@ namespace UPtel.Data
 
 
         }
+        internal static async Task InsereAdministradorPadraoAsync(UserManager<IdentityUser> gestorUtilizadores)
+        {
+            IdentityUser utilizador = await gestorUtilizadores.FindByNameAsync(NOME_UTILIZADOR_ADMIN_PADRAO);
 
+            if (utilizador == null)
+            {
+                utilizador = new IdentityUser(NOME_UTILIZADOR_ADMIN_PADRAO);
+                await gestorUtilizadores.CreateAsync(utilizador, PASSWORD_UTILIZADOR_ADMIN_PADRAO);
+            }
+        }
     }
 }
