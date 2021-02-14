@@ -9,5 +9,6 @@ namespace UPtel.Models
     {
         public List<Canais> Canais { get; set; }
         public Paginacao Paginacao { get; set; }
+        public string NomePesquisar { get; set; }
     }
 }

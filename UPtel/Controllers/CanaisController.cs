@@ -20,15 +20,15 @@ namespace UPtel.Controllers
         }
 
         // GET: Canais
-        public async Task<IActionResult> Index(int pagina = 1)
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Canais.CountAsync(),
+                TotalItems = await _context.Canais.Where(p => nomePesquisar == null || p.NomeCanal.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<Canais> canais = await _context.Canais
+            List<Canais> canais = await _context.Canais.Where(p => nomePesquisar == null || p.NomeCanal.Contains(nomePesquisar))
                 .OrderBy(c => c.NomeCanal)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
@@ -37,7 +37,8 @@ namespace UPtel.Controllers
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Canais = canais
+                Canais = canais,
+                NomePesquisar = nomePesquisar
             };
 
             return base.View(modelo);
