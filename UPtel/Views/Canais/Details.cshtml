@@ -21,6 +21,12 @@
                         </dd>
                     </dl>
                 </div>
+                <div class="col-md-6">
+                    @if (Model.Foto != null)
+                    {
+                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" />
+                    }
+                </div>
                 <div>
                     <a asp-action="Edit" asp-route-id="@Model.CanaisId" class="btn btn-primary">Editar</a> |
                     <a asp-action="Index">Voltar</a>

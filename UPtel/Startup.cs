@@ -35,7 +35,8 @@ namespace UPtel
                      Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => {
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
                 // Sign in
                 options.SignIn.RequireConfirmedAccount = false;
 
@@ -53,9 +54,9 @@ namespace UPtel
                 options.Lockout.MaxFailedAccessAttempts = 5;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultUI();
+             .AddDefaultUI();
 
-                
+
             services.AddControllersWithViews();
         }
 
