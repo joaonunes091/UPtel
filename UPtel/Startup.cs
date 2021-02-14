@@ -35,14 +35,34 @@ namespace UPtel
                      Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => {
+                // Sign in
+                options.SignIn.RequireConfirmedAccount = false;
 
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                // Password
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 6;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+
+                // Lockout
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultUI();
+
+                
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UPtelContext Dbcontext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UPtelContext Dbcontext,
+            UserManager<IdentityUser> gestorUtilizadores,
+            RoleManager<IdentityRole> gestorRoles)
         {
             if (env.IsDevelopment())
             {
@@ -70,10 +90,14 @@ namespace UPtel
                     pattern: "{controller=Canais}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
             if (env.IsDevelopment())
             {
-                
+               
                 //SeedData.InsereDadosTesteTodos(Dbcontext);
+                //SeedData.InsereRolesAsync(gestorRoles).Wait();
+                //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
+                //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
 
             }
         }

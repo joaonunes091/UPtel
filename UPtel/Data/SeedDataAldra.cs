@@ -2,40 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using UPtel.Models;
 
 namespace UPtel.Data
 {
-    public class SeedData
+    public class SeedDataAldra
     {
-        private const string NOME_UTILIZADOR_ADMIN_PADRAO = "admin@UPtel.pt";
-        private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "ADMIN123";
-
-        private const string ROLE_ADMINISTRADOR = "Administrador";
-        private const string ROLE_CLIENTE = "Cliente";
-        private const string ROLE_GESTOR_PRODUTOS = "GestorProdutos";
-
-
         private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
         {
             if (DbContext.Televisao.Any()) return;
             DbContext.Televisao.AddRange(new Televisao[] {
                 new Televisao
                 {
-                    Nome = "Base"
+                    TelevisaoId = 1,
+                    Nome = "Base",
+                    Descricao = "Pacote com os canais Base"
                 },
                 new Televisao
                 {
-                    Nome = "Base + Informação"
+                    TelevisaoId = 2,
+                    Nome = "Base + Informação",
+                    Descricao = "Pacote com os canais Base e Informação"
                 },
                 new Televisao
                 {
-                    Nome = "Series e Filmes"
+                    TelevisaoId = 3,
+                    Nome = "Ficção",
+                    Descricao = "Pacote com os canais Series e Filmes"
                 },
                 new Televisao
                 {
-                    Nome = "Up"
+                    TelevisaoId = 4,
+                    Nome = "Up",
+                    Descricao = "Pacote com todos os canais"
+
                 }
             });
             DbContext.SaveChanges();
@@ -46,6 +46,7 @@ namespace UPtel.Data
             DbContext.Telefone.AddRange(new Telefone[] {
                 new Telefone
                 {
+                    TelefoneId = 1,
                     Numero = "220000000",
                     Limite = 3000,
                     PrecoMinutoNacional = 0,
@@ -53,6 +54,7 @@ namespace UPtel.Data
                 },
                 new Telefone
                 {
+                    TelefoneId = 2,
                     Numero = "200100000",
                     Limite = 44600,
                     PrecoMinutoNacional = 0,
@@ -60,6 +62,7 @@ namespace UPtel.Data
                 },
                 new Telefone
                 {
+                    TelefoneId = 3,
                     Numero = "290100000",
                     Limite = 44600,
                     PrecoMinutoNacional = 0,
@@ -74,6 +77,7 @@ namespace UPtel.Data
             DbContext.Telemovel.AddRange(new Telemovel[] {
                 new Telemovel
                 {
+                    TelemovelId = 1,
                     Numero = "90010000",
                     LimiteMinutos = 3000,
                     LimiteSms = 3000,
@@ -84,6 +88,7 @@ namespace UPtel.Data
                 },
                 new Telemovel
                 {
+                    TelemovelId = 2,
                     Numero = "90010001",
                     LimiteMinutos = 44600,
                     LimiteSms = 5000,
@@ -94,6 +99,7 @@ namespace UPtel.Data
                 },
                 new Telemovel
                 {
+                    TelemovelId = 3,
                     Numero = "90010002",
                     LimiteMinutos = 44000,
                     LimiteSms = 5000,
@@ -112,17 +118,20 @@ namespace UPtel.Data
             DbContext.Promocoes.AddRange(new Promocoes[] {
                 new Promocoes
                 {
+                    PromocaoId = 1,
                     NomePromocao = "Extra Nacional",
                     Descricao = "Oferta de minutos nacionais"
                 },
                 new Promocoes
                 {
+                    PromocaoId = 2,
                     NomePromocao = "Inter Extra",
                     Descricao = "Oferta de minutos internacionais"
 
                 },
                 new Promocoes
                 {
+                    PromocaoId = 3,
                     NomePromocao = "Up Top",
                     Descricao = "VIP only!... Comunicações grátis!"
 
@@ -137,10 +146,12 @@ namespace UPtel.Data
             DbContext.Cargos.AddRange(new Cargos[] {
                 new Cargos
                 {
+                    CargoId = 1,
                     NomeCargo = "Administrador(a)",
                 },
                 new Cargos
                 {
+                    CargoId = 2,
                     NomeCargo = "Operador(a)",
                 }
             });
@@ -153,10 +164,12 @@ namespace UPtel.Data
             DbContext.TipoClientes.AddRange(new TipoClientes[] {
                 new TipoClientes
                 {
+                    TipoClienteId = 1,
                     Designacao = "Particular",
                 },
                 new TipoClientes
                 {
+                    TipoClienteId = 2,
                     Designacao = "Empresa",
                 }
             });
@@ -169,18 +182,22 @@ namespace UPtel.Data
             DbContext.Canais.AddRange(new Canais[] {
                 new Canais
                 {
+                    CanaisId = 1,
                     NomeCanal = "RTP 1",
                 },
                 new Canais
                 {
+                    CanaisId = 2,
                     NomeCanal = "RTP 2",
                 },
                 new Canais
                 {
+                    CanaisId = 3,
                     NomeCanal = "RTP 3",
                 },
                 new Canais
                 {
+                    CanaisId = 4,
                     NomeCanal = "RTP Africa",
                 }
             });
@@ -192,6 +209,7 @@ namespace UPtel.Data
             DbContext.Funcionarios.AddRange(new Funcionarios[] {
                 new Funcionarios
                 {
+                    FuncionarioId = 1,
                     NomeFuncionario = "José Ferreira Pinto",
                     CargoId=4,
                     NomeCargo="Operador(a)",
@@ -209,6 +227,7 @@ namespace UPtel.Data
                 },
                 new Funcionarios
                 {
+                    FuncionarioId = 2,
                     NomeFuncionario = "Ana Gonçalves Gomes",
                     CargoId=5,
                     NomeCargo="Operador(a)",
@@ -226,6 +245,7 @@ namespace UPtel.Data
                 },
                 new Funcionarios
                 {
+                    FuncionarioId = 3,
                     NomeFuncionario = "Mário Simão Pacheco",
                     CargoId=4,
                     NomeCargo="Administrador(a)",
@@ -251,6 +271,7 @@ namespace UPtel.Data
             DbContext.Clientes.AddRange(new Clientes[] {
                 new Clientes
                 {
+                    ClienteId = 1,
                     NomeCliente = "José Ramos Figueiras",
                     DataNascimento=new DateTime(1969,12,18),
                     CartaoCidadao="15485963",
@@ -266,6 +287,7 @@ namespace UPtel.Data
                 },
                 new Clientes
                 {
+                    ClienteId = 2,
                     NomeCliente = "Rui Pedro Santos",
                     DataNascimento=new DateTime(1990,8,8),
                     CartaoCidadao="240452120",
@@ -281,6 +303,7 @@ namespace UPtel.Data
                 },
                 new Clientes
                 {
+                    ClienteId = 3,
                     NomeCliente = "Mariana Rute Guedes",
                     DataNascimento=new DateTime(1987,11,7),
                     CartaoCidadao="15487986",
@@ -296,6 +319,7 @@ namespace UPtel.Data
                 },
                 new Clientes
                 {
+                    ClienteId = 4,
                     NomeCliente = "David Rui Pedroso",
                     DataNascimento=new DateTime(1985,1,20),
                     CartaoCidadao="34657986",
@@ -320,11 +344,12 @@ namespace UPtel.Data
             DbContext.Contratos.AddRange(new Contratos[] {
                 new Contratos
                 {
-                    ClienteId=6,
+                    ContratoId = 1,
+                    ClienteId=1,
                     NomeCliente="José Ramos Figueiras",
-                    FuncionarioId=7,
+                    FuncionarioId=1,
                     NomeFuncionario="José Ferreira Pinto",
-                    PromocaoId=0,
+                    PromocaoId=1,
                     NomePromocao="",
                     PacoteId=1,
                     NomePacote="Premium",
@@ -334,9 +359,10 @@ namespace UPtel.Data
                 },
                 new Contratos
                 {
-                    ClienteId=4,
+                    ContratoId = 2,
+                    ClienteId=2,
                     NomeCliente="Rui Pedro Santos",
-                    FuncionarioId=9,
+                    FuncionarioId=1,
                     NomeFuncionario="José Ferreira Pinto",
                     PromocaoId=1,
                     NomePromocao="Promoção de Natal",
@@ -348,9 +374,10 @@ namespace UPtel.Data
                 },
                 new Contratos
                 {
-                    ClienteId=5,
+                    ContratoId = 3,
+                    ClienteId=3,
                     NomeCliente="Mariana Rute Guedes",
-                    FuncionarioId=8,
+                    FuncionarioId=2,
                     NomeFuncionario="Ana Gonçalves Gomes",
                     PromocaoId=2,
                     NomePromocao="Promoção de BlackFriday",
@@ -362,9 +389,10 @@ namespace UPtel.Data
                 },
                 new Contratos
                 {
+                    ContratoId = 4,
                     ClienteId=4,
                     NomeCliente="David Rui Pedroso",
-                    FuncionarioId=7,
+                    FuncionarioId=2,
                     NomeFuncionario="Ana Gonçalves Gomes",
                     PromocaoId=1,
                     NomePromocao="Promoção de Natal",
@@ -383,6 +411,7 @@ namespace UPtel.Data
             DbContext.NetFixa.AddRange(new NetFixa[] {
                 new NetFixa
                 {
+                    NetFixaId = 1,
                     Limite = 7.5m,
                     Velocidade=100,
                     TipoConexao="Fibra",
@@ -390,6 +419,7 @@ namespace UPtel.Data
                 },
                 new NetFixa
                 {
+                    NetFixaId = 2,
                     Limite = 15,
                     Velocidade=200,
                     TipoConexao="Fibra",
@@ -397,6 +427,7 @@ namespace UPtel.Data
                 },
                 new NetFixa
                 {
+                    NetFixaId = 3,
                     Limite = 30,
                     Velocidade=500,
                     TipoConexao="Fibra",
@@ -411,20 +442,22 @@ namespace UPtel.Data
             DbContext.NetMovel.AddRange(new NetMovel[] {
                 new NetMovel
                 {
+                    NetMovelId = 1,
                     Limite = 2m,
-                    Numero="", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
+                    Numero="910010011",
                     Notas="",
                 },
-
+                
             });
             DbContext.SaveChanges();
         }
 
         private static void InsereCanaisFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
-          
-            for (int i = 0; i < 50; i++)
 
+          
+               
+            for (int i = 0; i < 1000; i++)
             {
                 DbContext.Canais.Add(new Canais
                 {
@@ -435,6 +468,91 @@ namespace UPtel.Data
 
             DbContext.SaveChanges();
         }
+
+        private static void InsereDadosTestePacotes(UPtelContext DbContext)
+        {
+            if (DbContext.Pacotes.Any()) return;
+            DbContext.Pacotes.AddRange(new Pacotes[] {
+                new Pacotes
+                {
+                    PacoteId = 1,
+                    NomePacote = "UP Top",
+                    Preco = 2m,
+                    TelevisaoId = 1,
+                    TelemovelId = 1,
+                    NetIfixaId = 1,
+                    TelefoneId = 1,
+                    NetMovelId = 1,
+                },
+                new Pacotes
+                {
+                    PacoteId = 2,
+                    NomePacote = "UP grade",
+                    Preco = 4m,
+                    TelevisaoId = 2,
+                    TelemovelId = 2,
+                    NetIfixaId = 2,
+                    TelefoneId = 2,
+                    NetMovelId = 2,
+                },
+
+            });
+            DbContext.SaveChanges();
+        }
+
+        private static void InsereDadosTestePacoteCanais(UPtelContext DbContext)
+        {
+            if (DbContext.PacoteCanais.Any()) return;
+            DbContext.PacoteCanais.AddRange(new PacoteCanais[] {
+                new PacoteCanais
+                {
+                    
+                    TelevisaoId = 1,
+                    CanaisId = 1,
+                },
+                new PacoteCanais
+                {
+                    TelevisaoId = 1,
+                    CanaisId = 2,
+                },
+                new PacoteCanais
+                {
+
+                    TelevisaoId = 1,
+                    CanaisId = 3,
+                },
+                new PacoteCanais
+                {
+                    TelevisaoId = 1,
+                    CanaisId = 4,
+                },
+                new PacoteCanais
+                {
+
+                    TelevisaoId = 2,
+                    CanaisId = 1,
+                },
+                new PacoteCanais
+                {
+                    TelevisaoId = 2,
+                    CanaisId = 2,
+                },
+                new PacoteCanais
+                {
+
+                    TelevisaoId = 2,
+                    CanaisId = 3,
+                },
+                new PacoteCanais
+                {
+                    TelevisaoId = 2,
+                    CanaisId = 4,
+                },
+
+            });
+            DbContext.SaveChanges();
+        }
+
         internal static void InsereDadosTesteTodos(UPtelContext DbContext)
         {
 
@@ -447,65 +565,14 @@ namespace UPtel.Data
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTestePromocoes(DbContext);
+            InsereDadosTestePacotes(DbContext);
+            InsereDadosTestePacoteCanais(DbContext);
             InsereDadosTesteFuncionarios(DbContext);
             InsereDadosTesteClientes(DbContext);
             InsereDadosTesteContratos(DbContext);
-
-
         }
 
-        internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
-        {
-            IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "joao@ipg.pt", "Secret123$");
-            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
-
-            IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");
-            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor, ROLE_GESTOR_PRODUTOS);
-        }
-
-        internal static async Task InsereRolesAsync(RoleManager<IdentityRole> gestorRoles)
-        {
-            await CriaRoleSeNecessario(gestorRoles, ROLE_ADMINISTRADOR);
-            await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
-            await CriaRoleSeNecessario(gestorRoles, ROLE_GESTOR_PRODUTOS);
-            //await CriaRoleSeNecessario(gestorRoles, "PodeAlterarPrecoProdutos");
-        }
-
-        private static async Task CriaRoleSeNecessario(RoleManager<IdentityRole> gestorRoles, string funcao)
-        {
-            if (!await gestorRoles.RoleExistsAsync(funcao))
-            {
-                IdentityRole role = new IdentityRole(funcao);
-                await gestorRoles.CreateAsync(role);
-            }
-        }
-
-
-        internal static async Task InsereAdministradorPadraoAsync(UserManager<IdentityUser> gestorUtilizadores)
-        {
-            IdentityUser utilizador = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, NOME_UTILIZADOR_ADMIN_PADRAO, PASSWORD_UTILIZADOR_ADMIN_PADRAO);
-            await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, utilizador, ROLE_ADMINISTRADOR);
-        }
-
-        private static async Task AdicionaUtilizadorRoleSeNecessario(UserManager<IdentityUser> gestorUtilizadores, IdentityUser utilizador, string role)
-        {
-            if (!await gestorUtilizadores.IsInRoleAsync(utilizador, role))
-            {
-                await gestorUtilizadores.AddToRoleAsync(utilizador, role);
-            }
-        }
-
-        private static async Task<IdentityUser> CriaUtilizadorSeNaoExiste(UserManager<IdentityUser> gestorUtilizadores, string nomeUtilizador, string password)
-        {
-            IdentityUser utilizador = await gestorUtilizadores.FindByNameAsync(nomeUtilizador);
-
-            if (utilizador == null)
-            {
-                utilizador = new IdentityUser(nomeUtilizador);
-                await gestorUtilizadores.CreateAsync(utilizador, password);
-            }
-
-            return utilizador;
-        }
     }
+
+
 }
