@@ -1,35 +1,43 @@
 ﻿@model IEnumerable<UPtel.Models.TipoClientes>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tipo de clientes";
 }
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+                <h2>Tipo de clientes</h2>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Designacao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Designacao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TipoClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TipoClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TipoClienteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <p>
+                    <a asp-action="Create">Adicionar tipo de cliente</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Designacao)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Designacao)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TipoClienteId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TipoClienteId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TipoClienteId">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
