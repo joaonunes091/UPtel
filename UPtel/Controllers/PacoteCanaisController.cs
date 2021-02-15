@@ -22,8 +22,21 @@ namespace UPtel.Controllers
         // GET: PacoteCanais
         public async Task<IActionResult> Index()
         {
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.PacoteCanais.CountAsync(),
+                PaginaAtual = 1
+            };
             var uPtelContext = _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao);
-            return View(await uPtelContext.ToListAsync());
+            List<PacoteCanais> pacoteCanais = await uPtelContext.ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                PacoteCanais = pacoteCanais
+            };
+            
+            return base.View(modelo);
         }
 
         // GET: PacoteCanais/Details/5
