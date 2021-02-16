@@ -114,11 +114,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => cliente.TipoCliente.Designacao)
                 </td>
-<td>
-                                        <a asp-action="Edit" asp-route-id="@cliente.ClienteId">Edit</a>
-                                        <a asp-action="Details" asp-route-id="@cliente.ClienteId">Details</a>
-                                        <a asp-action="Delete" asp-route-id="@cliente.ClienteId">Delete</a>
-                                    </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@cliente.ClienteId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@cliente.ClienteId">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@cliente.ClienteId">Eliminar</a>
+                </td>
                                 </tr>
                             }
                         </tbody>
