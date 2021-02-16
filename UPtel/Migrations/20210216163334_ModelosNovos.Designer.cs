@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210216163334_ModelosNovos")]
+    partial class ModelosNovos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -337,11 +339,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
-
                     b.Property<decimal>("PrecoNetMovel")
                         .HasColumnType("decimal(5,2)");
 
@@ -456,11 +453,6 @@ namespace UPtel.Migrations
                     b.Property<int>("Limite")
                         .HasColumnType("int");
 
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
-
                     b.Property<decimal>("PrecoMinutoInternacional")
                         .HasColumnType("decimal(4,2)");
 
@@ -488,11 +480,6 @@ namespace UPtel.Migrations
                     b.Property<int>("LimiteSms")
                         .HasColumnType("int")
                         .HasColumnName("LimiteSMS");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
 
                     b.Property<decimal>("PrecoMinutoInternacional")
                         .HasColumnType("decimal(4,2)");

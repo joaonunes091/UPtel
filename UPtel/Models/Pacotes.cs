@@ -20,15 +20,15 @@ namespace UPtel.Models
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name ="Nome do pacote")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
         public string NomePacote { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Preço")]
-        [Column(TypeName = "decimal(6, 2)")]
+        [Display(Name = "Preço do pacote")]
+        [Column(TypeName = "decimal(5, 2)")]
         [Range(1, 9999, ErrorMessage = "O valor não é válido")]
         //problema dos numero decimais?
-        public decimal Preco { get; set; }
+        public decimal PrecoTotal { get; set; }
         public int? TelevisaoId { get; set; }
         public int? TelemovelId { get; set; }
         [Column("NetIFixaId")]

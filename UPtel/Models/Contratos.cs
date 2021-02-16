@@ -31,23 +31,30 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Nome do Cliente")]
-        [StringLength(80)]
+        [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         public string NomeCliente { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Nome do pacote de serviços")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
         public string NomePacote { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Nome da promoção")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
         public string NomePromocao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Nome do funcionário")]
-        [StringLength(80)]
+        [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         public string NomeFuncionario { get; set; }
+
+        [Display(Name = "Valor total do contrato")]
+        [Required(ErrorMessage = "Deve preencher o preço.")]
+        [Column(TypeName = "decimal(5, 2)")]
+        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
+        public decimal PrecoContrato { get; set; }
+
 
         [ForeignKey(nameof(ClienteId))]
         [InverseProperty(nameof(Clientes.Contratos))]

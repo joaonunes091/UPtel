@@ -19,7 +19,7 @@ namespace UPtel.Models
         public int CargoId { get; set; }
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
         [Display(Name = "Nome do Cargo")]
         public string NomeCargo { get; set; }
 
