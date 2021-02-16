@@ -24,10 +24,16 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Nome da promoção
+                                    @Html.DisplayNameFor(model => model.Promocoes[0].NomePromocao)
                                 </th>
                                 <th>
-                                    Descrição da promoção
+                                    @Html.DisplayNameFor(model => model.Promocoes[0].Descricao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Promocoes[0].PromoCanais)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Promocoes[0].Desconto)
                                 </th>
                                 <th></th>
                             </tr>
@@ -35,19 +41,25 @@
                         <tbody>
                             @foreach (var item in Model.Promocoes)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NomePromocao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>
-                                    <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.PromocaoId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PromocaoId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PromocaoId">Eliminar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomePromocao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PromoCanais)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Desconto)
+                                </td>
+                                <td class="text-right">
+                                    <a asp-action="Edit" asp-route-id="@item.PromocaoId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.PromocaoId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.PromocaoId">Eliminar</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
