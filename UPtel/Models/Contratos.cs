@@ -20,6 +20,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Data de início do contrato")]
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Fidelização")]

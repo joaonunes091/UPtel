@@ -5,108 +5,119 @@
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
-    <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Canais</h2>
+    <div class="row justify-content-center text-left">
+        <div class="col-md-2 float-left">
+            <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100px" />
 
-                <div class="col-md-6 border-info mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Pesquisa de Canais</h5>
-                        <form asp-action="Index" method="get">
-                            <div class="form-group">
-                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Pesquisar" class="btn btn-primary" />
-                                <a asp-action="Index" class="btn btn-secondary">Limpar</a>
-                            </div>
-                        </form>
+        </div>
+        <div class="col-md-7">
+            <div class="justify-content-center">
+
+                <div class="col-xl-8">
+                    <h2>Canais</h2>
+
+                    <div class="border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Pesquisa de Canais</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                                    <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
+                    <p>
+                        <a asp-action="Create">Novo Canal</a>
+                    </p>
+                    @if (Model.Canais.Count() == 0)
+                    {
+                        <p>Não existem canais para mostrar</p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Logo
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var canais in Model.Canais)
+                                {
+                                    <tr>
+                                        <td style="width:50px;">
+                                            @if (canais.Foto != null)
+                                            {
+                                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid" />
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => canais.NomeCanal)
+                                        </td>
+                                        <td class="text-right">
+                                            <a asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |
+                                            <a asp-action="Details" asp-route-id="@canais.CanaisId">Detalhes</a> |
+                                            <a asp-action="Delete" asp-route-id="@canais.CanaisId">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                @{
+                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
+                                    if (paginaInicial < 1)
+                                    {
+                                        paginaInicial = 1;
+                                    }
+
+                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
+                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                    {
+                                        paginaFinal = Model.Paginacao.TotalPaginas;
+                                    }
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                                </li>
+
+                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                {
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    }
                 </div>
 
-                <p>
-                    <a asp-action="Create">Novo Canal</a>
-                </p>
-                @if (Model.Canais.Count() == 0)
-                {
-                    <p>Não existem canais para mostrar</p>
-                }
-                else
-                {
-                    <table class="table">
-                        <thead>
-
-                            <tr>
-                                <th>
-                                    Fotografia
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var canais in Model.Canais)
-                            {
-                            <tr>
-                                <td style="width:200px;">
-                                    @if (canais.Foto != null)
-                                    {
-                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid" />
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => canais.NomeCanal)
-                                </td>
-                                <td class="text-right">
-                                    <a asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@canais.CanaisId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@canais.CanaisId">Eliminar</a>
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-
-                    <nav>
-                        <ul class="pagination pagination-sm justify-content-end">
-                            @{
-                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
-                                if (paginaInicial < 1)
-                                {
-                                    paginaInicial = 1;
-                                }
-
-                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
-                                if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                {
-                                    paginaFinal = Model.Paginacao.TotalPaginas;
-                                }
-                            }
-
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="1"  asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                            </li>
-
-                            @for (int i = paginaInicial; i <= paginaFinal; i++)
-                            {
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
-                                </li>
-                            }
-
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas"  asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                }
             </div>
+        </div>
+        <div class="col-md-2 float-left">
+            <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100px" />
+
         </div>
     </div>
 </section>

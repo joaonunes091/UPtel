@@ -150,7 +150,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Canal editado com sucesso";
+                return View("Sucesso");
             }
             return View(canais);
         }

@@ -28,6 +28,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "date")]
         [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
