@@ -1,101 +1,170 @@
-﻿@model IEnumerable<UPtel.Models.Clientes>
+﻿@model ListaClientesViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes";
 }
 
-<h1>Index</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+                <h2>Clientes</h2>
+                //Pesquisa de clientes
+                <div class="col-md-6 border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisa de Clientes</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                                <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                //Novo Cliente
+                <p>
+                    <a asp-action="Create">Novo Cliente</a>
+                </p>
+                @if (Model.Clientes.Count() == 0)
+                {
+                    <p>Não existem clientes para mostrar</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Clientes[0].NomeCliente)
+                                </th>
+                                @*<th>
+                            @Html.DisplayNameFor(model => model.DataNascimento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CartaoCidadao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contribuinte)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Morada)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CodigoPostal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telemovel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CodigoPostalExt)
+                        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Clientes[0].TipoCliente)
+                        </th>
+                        <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cliente in Model.Clientes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => cliente.NomeCliente)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.DataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CartaoCidadao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contribuinte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Morada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telemovel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoPostalExt)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => cliente.TipoCliente.Designacao)
+                </td>
+<td>
+                                        <a asp-action="Edit" asp-route-id="@cliente.ClienteId">Edit</a>
+                                        <a asp-action="Details" asp-route-id="@cliente.ClienteId">Details</a>
+                                        <a asp-action="Delete" asp-route-id="@cliente.ClienteId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    //Paginação
+                    <nav>
+                        <ul class="pagination pagination-sm justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCliente)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CartaoCidadao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contribuinte)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Morada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoPostal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telemovel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoPostalExt)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.TipoCliente)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCliente)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CartaoCidadao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contribuinte)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telemovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPostalExt)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoCliente.Designacao)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |*@
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> 
-                @*<a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                }
+
+
+            </div>
+        </div>    
+    </div>    
+</section>
+
+
