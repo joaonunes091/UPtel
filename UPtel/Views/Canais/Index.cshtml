@@ -6,22 +6,22 @@
 
 
 @*<div class="border-info mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Pesquisa de Canais</h5>
-            <form asp-action="Index" method="get">
-                <div class="form-group">
-                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-secondary">Limpar</a>
-                </div>
-            </form>
-        </div>
-   </div>*@
+         <div class="card-body">
+             <h5 class="card-title">Pesquisa de Canais</h5>
+             <form asp-action="Index" method="get">
+                 <div class="form-group">
+                     <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                 </div>
+                 <div class="form-group">
+                     <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                     <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+                 </div>
+             </form>
+         </div>
+    </div>*@
 
 
- 
+
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
 
@@ -128,4 +128,11 @@
     </div>
 </section>
 
+@*<li>
+        <form asp-action="Index" method="get" class="form ml-auto">
+            <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+            <button type="submit" class="btn btn-outline-light">Search</button>
+            <button asp-action="Index" class="btn btn-outline-light">Limpar</button>
+        </form>
+    </li>*@
 
