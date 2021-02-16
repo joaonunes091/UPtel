@@ -40,7 +40,7 @@ namespace UPtel.Models
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9)]
         [RegularExpression(@"\d{9}", ErrorMessage = "Este valor é inválido")]
         [Display(Name = "Número de contribuinte")]
         public string Contribuinte { get; set; }
@@ -51,7 +51,7 @@ namespace UPtel.Models
         public string Morada { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(4, MinimumLength = 4)]
+        [StringLength(4, MinimumLength = 4)]
         [RegularExpression(@"([123456789]|1)\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostal { get; set; }
 
@@ -62,13 +62,13 @@ namespace UPtel.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9)]
         [Display(Name = "Número de telemóvel")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Número de telemóvel inválido")]
         public string Telemovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(8, MinimumLength = 8)]
+        [StringLength(8, MinimumLength = 8)]
         [RegularExpression(@"\d{8}", ErrorMessage = "Este valor é inválido")]
         [Display(Name = "Número do cartão de cidadão")]
         public string CartaoCidadao { get; set; }
@@ -90,7 +90,7 @@ namespace UPtel.Models
         public string EstadoFuncionario { get; set; }
 
         //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(3, MinimumLength = 3)]
+        [StringLength(3, MinimumLength = 3)]
         [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostalExt { get; set; }
 
