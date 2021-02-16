@@ -54,7 +54,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NetFixaId,Limite,Velocidade,TipoConexao,Notas")] NetFixa netFixa)
+        public async Task<IActionResult> Create([Bind("NetFixaId,Limite,Velocidade,TipoConexao,PrecoNetFixa,Notas")] NetFixa netFixa)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NetFixaId,Limite,Velocidade,TipoConexao,Notas")] NetFixa netFixa)
+        public async Task<IActionResult> Edit(int id, [Bind("NetFixaId,Limite,Velocidade,TipoConexao,PrecoNetFixa,Notas")] NetFixa netFixa)
         {
             if (id != netFixa.NetFixaId)
             {

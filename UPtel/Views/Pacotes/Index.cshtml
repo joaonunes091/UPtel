@@ -22,31 +22,25 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Nome do Pacote
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].NomePacote)
                                 </th>
                                 <th>
-                                    Preço
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].PrecoTotal)
                                 </th>
                                 <th>
-                                    Telefone
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].NetIfixa)
                                 </th>
                                 <th>
-                                    Net Fixa
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].NetMovel)
                                 </th>
                                 <th>
-                                    Net Movel
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].Telemovel)
                                 </th>
                                 <th>
-                                    Telemóvel
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].Telefone)
                                 </th>
                                 <th>
-                                    Telefone
-                                </th>
-                                <th>
-                                    Televisão
-                                </th>
-                                <th>
-                                    Preço total do pacote
+                                    @Html.DisplayNameFor(model => model.Pacotes[0].Televisao)
                                 </th>
                                 <th></th>
                             </tr>
@@ -59,7 +53,7 @@
                                     @Html.DisplayFor(modelItem => item.NomePacote)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.TelefoneId)
+                                    @Html.DisplayFor(modelItem => item.PrecoTotal)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
@@ -75,9 +69,6 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Televisao.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoTotal)
                                 </td>
                                 <td class="text-right">
                                     <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |

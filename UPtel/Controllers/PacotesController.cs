@@ -27,7 +27,7 @@ namespace UPtel.Controllers
                 TotalItems = await _context.Pacotes.CountAsync(),
                 PaginaAtual = 1
             };
-            var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telemovel).Include(p => p.Telefone).Include(p => p.Televisao);
+            var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telefone).Include(p => p.Telemovel).Include(p => p.Televisao);
             List<Pacotes> pacotes = await UPtelContext.ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
@@ -51,8 +51,8 @@ namespace UPtel.Controllers
             var pacotes = await _context.Pacotes
                 .Include(p => p.NetIfixa)
                 .Include(p => p.NetMovel)
-                .Include(p => p.Telemovel)
                 .Include(p => p.Telefone)
+                .Include(p => p.Telemovel)
                 .Include(p => p.Televisao)
                 .FirstOrDefaultAsync(m => m.PacoteId == id);
             if (pacotes == null)
@@ -79,7 +79,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacoteId,NomePacote,Preco,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
+        public async Task<IActionResult> Create([Bind("PacoteId,NomePacote,PrecoTotal,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelefoneId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
@@ -110,7 +110,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelefoneId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
@@ -121,7 +121,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PacoteId,NomePacote,Preco,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
+        public async Task<IActionResult> Edit(int id, [Bind("PacoteId,NomePacote,PrecoTotal,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
         {
             if (id != pacotes.PacoteId)
             {
@@ -150,7 +150,7 @@ namespace UPtel.Controllers
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
-            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelemovelId);
+            ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelefoneId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
             return View(pacotes);
@@ -167,8 +167,8 @@ namespace UPtel.Controllers
             var pacotes = await _context.Pacotes
                 .Include(p => p.NetIfixa)
                 .Include(p => p.NetMovel)
-                .Include(p => p.Telemovel)
                 .Include(p => p.Telefone)
+                .Include(p => p.Telemovel)
                 .Include(p => p.Televisao)
                 .FirstOrDefaultAsync(m => m.PacoteId == id);
             if (pacotes == null)

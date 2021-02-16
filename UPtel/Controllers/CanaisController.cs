@@ -75,7 +75,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CanaisId,NomeCanal")] Canais canais, IFormFile ficheiroFoto)
+        public async Task<IActionResult> Create([Bind("CanaisId,NomeCanal,PrecoCanais,Foto")] Canais canais, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
             {
@@ -124,7 +124,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CanaisId,NomeCanal,Foto")] Canais canais, IFormFile ficheiroFoto)
+        public async Task<IActionResult> Edit(int id, [Bind("CanaisId,NomeCanal,PrecoCanais,Foto")] Canais canais, IFormFile ficheiroFoto)
         {
             if (id != canais.CanaisId)
             {
