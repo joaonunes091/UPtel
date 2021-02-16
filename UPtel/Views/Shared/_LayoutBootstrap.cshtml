@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+
+@model ListaCanaisViewModel
+
 <html lang="en">
 
 <head>
@@ -52,13 +55,14 @@
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
                             @*<li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="#about">Sobre</a></li>
-                                <li><a href="#services">teste</a></li>*@
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#services">teste</a></li>*@
                             <li class="drop-down">
                                 <a href="">Clientes</a>
                                 <ul>
                                     <li><a asp-action="Index" asp-controller="Clientes">Clientes</a></li>
                                     <li><a asp-action="Index" asp-controller="TipoClientes">Tipo de Clientes</a></li>
+                                    <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
                                 </ul>
                             </li>
                             <li class="drop-down">
@@ -90,51 +94,59 @@
                                     <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
                                 </ul>
                             </li>
-                            <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
+                           
                             <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
                             <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
-
-
+                            <li>
+                                <form asp-action="Index" method="get" class="form ml-auto">
+                                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                                    <button type="submit" class="btn btn-outline-light">Search</button>
+                                    <button asp-action="Index" class="btn btn-outline-light">Limpar</button>
+                                </form>
+                            </li>
+                           
                             @*<li class="drop-down">
-                                    <a href="">Serviços</a>
-                                    <ul>
-                                        <li class="drop-down">
-                                            <a href="#">Pacotes de Internet</a>
-                                            <ul>
-                                                <li><a href="#">teste</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="drop-down">
-                                            <a href="#">Pacotes de Telefone</a>
-                                            <ul>
-                                                <li><a href="#">teste</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="drop-down">
-                                            <a href="#">Pacotes de Telemóvel</a>
-                                            <ul>
-                                                <li><a href="#">teste</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="drop-down">
-                                            <a href="#">Pacotes de Televisão</a>
-                                            <ul>
-                                                <li><a href="#">teste</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Drop Down 3</a></li>
-                                        <li><a href="#">Drop Down 4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#contact">Contact</a></li>*@
-
+            <a href="">Serviços</a>
+            <ul>
+                <li class="drop-down">
+                    <a href="#">Pacotes de Internet</a>
+                    <ul>
+                        <li><a href="#">teste</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down">
+                    <a href="#">Pacotes de Telefone</a>
+                    <ul>
+                        <li><a href="#">teste</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down">
+                    <a href="#">Pacotes de Telemóvel</a>
+                    <ul>
+                        <li><a href="#">teste</a></li>
+                    </ul>
+                </li>
+                <li class="drop-down">
+                    <a href="#">Pacotes de Televisão</a>
+                    <ul>
+                        <li><a href="#">teste</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Drop Down 3</a></li>
+                <li><a href="#">Drop Down 4</a></li>
+            </ul>
+        </li>
+        <li><a href="#contact">Contact</a></li>*@
+                            <li>
+                                <div>
+                                    <button class="btn"><a asp-area="Identity" asp-page="/Account/Login">Log in</a></button>
+                                    <button class="btn"><a asp-area="Identity" asp-page="/Account/Register">Registar</a></button>
+                                </div>
+                            </li>
                         </ul>
                     </nav><!-- .nav-menu -->
                     @*<a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>*@
-                    <div class="row">
-                        <h1 class="logo mr-3"><a asp-area="Identity" asp-page="/Account/Login">Log in</a></h1>
-                        <h1 class="logo"><a asp-area="Identity" asp-page="/Account/Register">Registar</a></h1>
-                    </div>
+                  
                     @*<partial name="_LoginPartial" />*@
                 </div>
             </div>
