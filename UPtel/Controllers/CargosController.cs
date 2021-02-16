@@ -56,13 +56,18 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CargoId,NomeCargo")] Cargos cargos)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                _context.Add(cargos);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(cargos);
             }
-            return View(cargos);
+
+            _context.Add(cargos);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Canal adicionado com sucesso";
+            return View("Sucesso");
+
         }
 
         // GET: Cargos/Edit/5
