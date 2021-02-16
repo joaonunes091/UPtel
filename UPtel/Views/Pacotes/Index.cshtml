@@ -45,43 +45,46 @@
                                 <th>
                                     Televisão
                                 </th>
+                                <th>
+                                    Preço total do pacote
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.Pacotes)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NomePacote)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Preco)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TelefoneId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NetMovel.Numero)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Telemovel.Numero)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Telefone.Numero)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Televisao.Nome)
-                                    </td>
-                                    <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PacoteId">Eliminar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomePacote)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TelefoneId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NetMovel.Numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telemovel.Numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Telefone.Numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Televisao.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecoTotal)
+                                </td>
+                                <td class="text-right">
+                                    <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.PacoteId">Eliminar</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
