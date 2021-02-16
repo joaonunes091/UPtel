@@ -201,10 +201,37 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
+
+        private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
+        {
+            if (DbContext.Televisao.Any()) return;
+            DbContext.Televisao.AddRange(new Televisao[] {
+                new Televisao
+                {
+                    Nome = "Base"
+                },
+                new Televisao
+                {
+                    Nome = "Base + Informação"
+                },
+                new Televisao
+                {
+                    Nome = "Series e Filmes"
+                },
+                new Televisao
+                {
+                    Nome = "Up"
+                }
+            });
+            DbContext.SaveChanges();
+        }
+
         internal static void InsereDadosTesteTodos(UPtelContext DbContext)
+
+
         {
 
-            
+            InsereDadosTesteTelevisao(DbContext);
             InsereDadosTesteFuncionarios(DbContext);
             InsereDadosTesteClientes(DbContext);
             InsereDadosTesteContratos(DbContext);
