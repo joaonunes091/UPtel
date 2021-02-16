@@ -21,13 +21,11 @@
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => model.NomePacote)
                         </dd>
-   
-
                         <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Telefone)
+                            @Html.DisplayNameFor(model => model.PrecoTotal)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Telefone)
+                            @Html.DisplayFor(model => model.PrecoTotal)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.NetIfixa)
@@ -38,11 +36,21 @@
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.NetMovel)
                         </dt>
-
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.NetMovel.Numero)
+                        </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Telemovel)
                         </dt>
-
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Telemovel.Numero)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Telefone.Numero)
+                        </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Televisao)
                         </dt>
