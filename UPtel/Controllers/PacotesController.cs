@@ -22,9 +22,23 @@ namespace UPtel.Controllers
         // GET: Pacotes
         public async Task<IActionResult> Index()
         {
-            var uPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telemovel).Include(p => p.Telefone).Include(p => p.Televisao);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Pacotes.CountAsync(),
+                PaginaAtual = 1
+            };
+            var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telemovel).Include(p => p.Telefone).Include(p => p.Televisao);
+            List<Pacotes> pacotes = await UPtelContext.ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Pacotes = pacotes
+            };
+
+            return base.View(modelo);
         }
+        
 
         // GET: Pacotes/Details/5
         public async Task<IActionResult> Details(int? id)

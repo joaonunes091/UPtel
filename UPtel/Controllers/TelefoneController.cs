@@ -22,7 +22,20 @@ namespace UPtel.Controllers
         // GET: Telefone
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Telefone.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Promocoes.CountAsync(),
+                PaginaAtual = 1
+            };
+            List<Telefone> telefone = await _context.Telefone.ToListAsync();
+            //var UPtelContext = _context.Promocoes.Include(p => p.NomePromocao).Include(p => p.Descricao);
+            ListaCanaisViewModel model = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Telefone = telefone
+            };
+
+            return base.View(model);
         }
 
         // GET: Telefone/Details/5

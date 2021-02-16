@@ -27,8 +27,8 @@ namespace UPtel.Controllers
                 TotalItems = await _context.PacoteCanais.CountAsync(),
                 PaginaAtual = 1
             };
-            var uPtelContext = _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao);
-            List<PacoteCanais> pacoteCanais = await uPtelContext.ToListAsync();
+            var UPtelContext = _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao);
+            List<PacoteCanais> pacoteCanais = await UPtelContext.ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
