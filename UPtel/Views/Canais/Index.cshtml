@@ -24,8 +24,7 @@
 
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
-
-    <div class="row justify-content-center text-left">
+   <div class="row justify-content-center text-left">
 
         <div class="col-md-2">
             <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%" />
@@ -33,10 +32,13 @@
         </div>
         <div class="col-md-8 d-flex justify-content-center" style="margin-top:5%">
             <div class="justify-content-center">
-
                 <div>
                     <h2>Canais</h2>
-
+                    <form asp-action="Index" method="get" class="form ml-auto col-6">
+                        <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                        <button type="submit" class="btn btn-outline-light">Search</button>
+                        <button asp-action="Index" class="btn btn-outline-light">Limpar</button>
+                    </form>
                     <p>
                         <a asp-action="Create">Novo Canal</a>
                     </p>
@@ -46,7 +48,7 @@
                     }
                     else
                     {
-                        <table class="table">
+                        <table class="table text-white">
                             <thead>
                                 <tr>
                                     <th>
@@ -55,6 +57,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
                                     </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Canais[0].PrecoCanais)
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -62,7 +67,7 @@
                                 @foreach (var canais in Model.Canais)
                                 {
                                     <tr>
-                                        <td style="width:50px;">
+                                        <td style="width:50px">
                                             @if (canais.Foto != null)
                                             {
                                                 <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid" />
@@ -70,6 +75,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => canais.NomeCanal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => canais.PrecoCanais)
                                         </td>
                                         <td class="text-right">
                                             <a asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |

@@ -1,5 +1,6 @@
 ﻿@model UPtel.Models.Canais
 
+
 @{
     ViewData["Title"] = "Edit";
 }
@@ -11,7 +12,7 @@
                 <h2>Editar Canais</h2>
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-white">
                         <form asp-action="Edit" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="CanaisId" />
@@ -19,6 +20,11 @@
                                 <label asp-for="NomeCanal" class="control-label text-white"></label>
                                 <input asp-for="NomeCanal" class="form-control" />
                                 <span asp-validation-for="NomeCanal" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PrecoCanais" class="control-label"></label>
+                                <input asp-for="PrecoCanais" class="form-control" />
+                                <span asp-validation-for="PrecoCanais" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="ficheiroFoto" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
@@ -33,7 +39,7 @@
                     <div class="col-md-6">
                         @if (Model.Foto != null)
                         {
-                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" />
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid"  style="width:50px;"/>
                         }
                     </div>
                 </div>
