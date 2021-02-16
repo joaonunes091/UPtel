@@ -54,7 +54,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NetMovelId,Limite,Notas,Numero")] NetMovel netMovel)
+        public async Task<IActionResult> Create([Bind("NetMovelId,Limite,PrecoNetMovel,Numero,Notas")] NetMovel netMovel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NetMovelId,Limite,Notas,Numero")] NetMovel netMovel)
+        public async Task<IActionResult> Edit(int id, [Bind("NetMovelId,Limite,PrecoNetMovel,Numero,Notas")] NetMovel netMovel)
         {
             if (id != netMovel.NetMovelId)
             {
