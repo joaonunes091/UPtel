@@ -18,9 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Notas)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numero)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -32,9 +29,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Notas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.NetMovelId">Edit</a> |

@@ -32,7 +32,13 @@ namespace UPtel.Models
         [Display( Name ="Tipo de Conexão")]
         [StringLength(30)]
         public string TipoConexao { get; set; }
-       
+
+        [Display(Name = "Preço do tarifário")]
+        [Required(ErrorMessage = "Deve preencher o preço.")]
+        [Column(TypeName = "decimal(5, 2)")]
+        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
+        public decimal PrecoNetFixa { get; set; }
+
         [StringLength(100)]
         public string Notas { get; set; }
 
