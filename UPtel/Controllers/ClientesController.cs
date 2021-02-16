@@ -20,10 +20,27 @@ namespace UPtel.Controllers
         }
 
         // GET: Clientes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            var uPtelContext = _context.Clientes.Include(c => c.TipoCliente);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Clientes.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+            List<Clientes> clientes = await _context.Clientes.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar))
+                    .OrderBy(c => c.NomeCliente)
+                    .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                    .Take(paginacao.ItemsPorPagina)
+                    .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Clientes = clientes,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Clientes/Details/5
