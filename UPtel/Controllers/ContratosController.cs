@@ -63,7 +63,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,DataInicio,Fidelizacao,TempoPromocao,NomeCliente,NomePacote,NomePromocao,NomeFuncionario")] Contratos contratos)
+        public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,DataInicio,Fidelizacao,TempoPromocao,NomeCliente,NomePacote,NomePromocao,NomeFuncionario,PrecoContrato")] Contratos contratos)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,DataInicio,Fidelizacao,TempoPromocao,NomeCliente,NomePacote,NomePromocao,NomeFuncionario")] Contratos contratos)
+        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,DataInicio,Fidelizacao,TempoPromocao,NomeCliente,NomePacote,NomePromocao,NomeFuncionario,PrecoContrato")] Contratos contratos)
         {
             if (id != contratos.ContratoId)
             {

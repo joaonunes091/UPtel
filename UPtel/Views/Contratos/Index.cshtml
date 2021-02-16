@@ -34,6 +34,9 @@
                 @Html.DisplayNameFor(model => model.NomeFuncionario)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PrecoContrato)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
             <th>
@@ -71,6 +74,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NomeFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoContrato)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cliente.CartaoCidadao)
