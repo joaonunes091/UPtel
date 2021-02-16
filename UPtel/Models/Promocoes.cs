@@ -28,6 +28,9 @@ namespace UPtel.Models
         [StringLength(100, ErrorMessage = "O limite de carateres(100) foi ultrapassado")]
         public string Descricao { get; set; }
 
+        public int PromoCanais { get; set; }
+        public int Desconto { get; set; }
+
         [InverseProperty("Promocao")]
         public virtual ICollection<Contratos> Contratos { get; set; }
     }

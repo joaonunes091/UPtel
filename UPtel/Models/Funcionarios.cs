@@ -57,7 +57,7 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [EmailAddress]
-        [StringLength(50, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
+        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
         [Display(Name = "Endereço eletrónico")]
         public string Email { get; set; }
 
@@ -75,12 +75,12 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column("IBAN")]
-        [StringLength(25, MinimumLength = 25)]
+        [StringLength(25, ErrorMessage = "O limite de caracteres(25) foi ultrapassado", MinimumLength = 25)]
         [Display(Name = "IBAN")]
         public string Iban { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(16)]
+        [StringLength(16, ErrorMessage = "O limite de caracteres(16) foi ultrapassado")]
         [Display(Name = "Palavra-passe")]
         public string Password { get; set; }
 
@@ -90,8 +90,9 @@ namespace UPtel.Models
         public string EstadoFuncionario { get; set; }
 
         //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Extensão do Código Postal")]
         [StringLength(3, MinimumLength = 3)]
-        [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
+        [RegularExpression(@"\d{3}")]
         public string CodigoPostalExt { get; set; }
 
         public byte[] Fotografia { get; set; }
