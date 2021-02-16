@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210216123047_Clientes")]
+    partial class Clientes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,8 +115,7 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Telemovel")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TipoClienteId")
                         .HasColumnType("int");
@@ -205,22 +206,18 @@ namespace UPtel.Migrations
 
                     b.Property<string>("CartaoCidadao")
                         .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CodigoPostal")
                         .IsRequired()
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CodigoPostalExt")
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contribuinte")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("date");
@@ -266,8 +263,7 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Telemovel")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("FuncionarioId");
 
@@ -441,8 +437,7 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Numero")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecoMinutoInternacional")
                         .HasColumnType("decimal(4,2)");

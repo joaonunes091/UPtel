@@ -32,13 +32,13 @@ namespace UPtel.Models
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(8, MinimumLength = 8,ErrorMessage ="Este valor é inválido")]
+        [StringLength(8, MinimumLength = 8,ErrorMessage ="Este valor é inválido")]
         [RegularExpression(@"\d{8}",ErrorMessage ="Este valor não é válido")]
         [Display(Name = "Número do Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(9, MinimumLength = 9,ErrorMessage ="Este valor é inválido")]
+        [StringLength(9, MinimumLength = 9,ErrorMessage ="Este valor é inválido")]
         [RegularExpression(@"\d{9}",ErrorMessage ="Este valor é inválido")]
         [Display(Name = "Número de Contribuinte")]
         public string Contribuinte { get; set; }
@@ -48,17 +48,18 @@ namespace UPtel.Models
         public string Morada { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[StringLength(4, MinimumLength = 4)]
+        [StringLength(4, MinimumLength = 4)]
         [Display(Name = "Código Postal")]
         [RegularExpression(@"([123456789]|1)\d{3}",ErrorMessage ="Valor inválido")]
         public string CodigoPostal { get; set; }
 
-        //[StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9)]
         [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
         [Display(Name = "Número de telefone")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(9, MinimumLength = 9)]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
         [Display(Name = "Número de telemóvel")]
         public string Telemovel { get; set; }
@@ -75,7 +76,7 @@ namespace UPtel.Models
 
         public int TipoClienteId { get; set; }
 
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3, MinimumLength = 3)]
         [Display(Name = "Extensão do Código Postal")]
         [RegularExpression(@"\d{3}")]
