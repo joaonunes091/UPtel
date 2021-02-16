@@ -17,12 +17,12 @@ namespace UPtel.Models
 
         [Key]
         public int TelefoneId { get; set; }
-       
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Número de telefone")]
-        //[RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
-        //[StringLength(9, MinimumLength = 9)]
-        //public string Numero { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Número de telefone")]
+        [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
+        [StringLength(9, MinimumLength = 9)]
+        public string Numero { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Limite de minutos")]

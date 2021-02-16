@@ -30,6 +30,12 @@ namespace UPtel.Models
         [Range(1, 9999, ErrorMessage = "O valor não é válido")]
         public decimal PrecoNetMovel { get; set; }
 
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Número")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
+        [StringLength(9, MinimumLength = 9)]
+        public string Numero { get; set; }
+
         [StringLength(100)]
         public string Notas { get; set; }
         

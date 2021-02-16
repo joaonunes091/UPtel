@@ -17,13 +17,13 @@ namespace UPtel.Models
 
         [Key]
         public int TelemovelId { get; set; }
-       
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Número de telemóvel")]
-        //[RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Número de telemóvel inválido")]
-        //[StringLength(9, MinimumLength = 9,ErrorMessage ="Número de telemóvel inválido")]
-        //public string Numero { get; set; }
-        
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Número de telemóvel")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Número de telemóvel inválido")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Número de telemóvel inválido")]
+        public string Numero { get; set; }
+
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Limite de minutos")]
         [Range(0, 44640,ErrorMessage ="O número não é válido, o valor tem que estar entre 0 e 44640.")]
