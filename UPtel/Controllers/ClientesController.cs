@@ -28,6 +28,7 @@ namespace UPtel.Controllers
                 PaginaAtual = pagina
             };
             List<Clientes> clientes = await _context.Clientes.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar))
+                    .Include(t => t.TipoCliente)
                     .OrderBy(c => c.NomeCliente)
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
