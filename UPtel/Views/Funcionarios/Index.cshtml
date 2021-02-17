@@ -1,119 +1,134 @@
-﻿@model IEnumerable<UPtel.Models.Funcionarios>
-
+﻿@model ListaCanaisViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    .btn-costum {
+        background-color: #00b371;
+        color: white;
+        border-color: #009961;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeFuncionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCargo)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contribuinte)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Morada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoPostal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telemovel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CartaoCidadao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Iban)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstadoFuncionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoPostalExt)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Fotografia)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Cargo)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCargo)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contribuinte)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telemovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CartaoCidadao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Iban)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPostalExt)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Fotografia)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Cargo.NomeCargo)
-            </td>*@
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.FuncionarioId">Edit</a> |*@
-                <a asp-action="Details" asp-route-id="@item.FuncionarioId">Details</a> 
-                @*<a asp-action="Delete" asp-route-id="@item.FuncionarioId">Delete</a>*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .btn-costum:hover {
+        background-color: #009961;
+        color: white;
+        border-color: #009961;
+    }
+
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #00b371;
+        border-color: #009961;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        background-color: #009961;
+        border-color: #009961;
+    }
+</style>
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+
+                <div class="border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisar Funcionários</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
+                                <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <h1>Funcionários</h1>
+
+                <p>
+                    <a class="btn btn-costum" asp-action="Create">Novo Funcionário</a>
+                </p>
+
+                <div>
+                    @if (Model.Funcionarios.Count() == 0)
+                    {
+                        <p>Não existem funcionários para mostrar</p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Cargo
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var funcionario in Model.Funcionarios)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => funcionario.NomeFuncionario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => funcionario.NomeCargo)
+                                        </td>
+                                        <td class="text-right">
+                                            <a class="btn btn-costum" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                @{
+                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaInicial < 1)
+                                    {
+                                        paginaInicial = 1;
+                                    }
+
+                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                    {
+                                        paginaFinal = Model.Paginacao.TotalPaginas;
+                                    }
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                                </li>
+
+                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                {
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
