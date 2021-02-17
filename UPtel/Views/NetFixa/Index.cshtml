@@ -4,56 +4,80 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    .btn-costum {
+        background-color: #00b371;
+        color: white;
+        border-color: #009961;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Limite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Velocidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoConexao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecoNetFixa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notas)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Limite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Velocidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoConexao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecoNetFixa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notas)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NetFixaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NetFixaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NetFixaId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .btn-costum:hover {
+        background-color: #009961;
+        color: white;
+        border-color: #009961;
+    }
+</style>
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+
+                <h1>Net Fixa</h1>
+
+                <p>
+                    <a class="btn btn-costum" asp-action="Create">Criar Novo</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Limite)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Velocidade)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TipoConexao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PrecoNetFixa)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Notas)
+                            </th>
+                           <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Limite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Velocidade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoConexao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecoNetFixa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Notas)
+                                </td>
+                                <td>
+                                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a> 
+                                    <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a> 
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
