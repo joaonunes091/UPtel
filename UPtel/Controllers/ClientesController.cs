@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,13 +15,15 @@ namespace UPtel.Controllers
     public class ClientesController : Controller
     {
         private readonly UPtelContext _context;
-
-        public ClientesController(UPtelContext context)
+        private readonly UserManager<IdentityUser> _gestorUtilizadores;
+        public ClientesController(UPtelContext context, UserManager<IdentityUser> gestorUtilizadores)
         {
             _context = context;
+            _gestorUtilizadores = gestorUtilizadores;
         }
 
         // GET: Clientes
+        //[Authorize(Roles = "Administrador")] IMPORTANTE RETIRAR DE COMENTÁRIO QUANDO OS ROLES ESTIVEREM ATIVOS
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
@@ -64,7 +68,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Clientes/Create
-        public IActionResult Create()
+        public IActionResult Registo()
         {
             ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao");
             return View();
@@ -75,16 +79,54 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteId,NomeCliente,DataNascimento,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Password,TipoClienteId,CodigoPostalExt")] Clientes clientes)
+        public async Task<IActionResult> Registo([Bind("ClienteId,NomeCliente,DataNascimento,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Password,TipoClienteId,CodigoPostalExt")] RegistoClienteViewModel infoclientes)
         {
-            if (ModelState.IsValid)
+            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+
+            if (utilizador != null)
             {
+                ModelState.AddModelError("Email", "Já existe uma conta com este email");
+            }
+
+            utilizador = new IdentityUser(infoclientes.Email);
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            if (!resultado.Succeeded)
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            else
+            {
+                await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
+            }
+
+            if (!ModelState.IsValid)
+            {
+
+                return View(infoclientes);
+            }
+
+            
+
+
+            Clientes clientes = new Clientes
+            {
+                NomeCliente = infoclientes.NomeCliente,
+                DataNascimento = infoclientes.DataNascimento,
+                CartaoCidadao = infoclientes.CartaoCidadao,
+                Contribuinte = infoclientes.Contribuinte,
+                Morada = infoclientes.Morada,
+                CodigoPostal = infoclientes.CodigoPostal,
+                Telefone = infoclientes.Telefone,
+                Telemovel = infoclientes.Telemovel,
+                Email = infoclientes.Email,
+                Password = infoclientes.Password,
+                CodigoPostalExt = infoclientes.CodigoPostalExt
+            };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
-            return View(clientes);
+                return RedirectToAction(nameof(Details));
+            
+            //ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
         }
 
         // GET: Clientes/Edit/5
