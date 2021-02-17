@@ -19,7 +19,6 @@ namespace UPtel.Models
         public Paginacao Paginacao { get; set; }
         public string NomePesquisar { get; set; }
         public List<Clientes> Clientes { get; set; }
-        public List<TipoClientes> TipoClientes { get; set; }
 
         public IEnumerable<Funcionarios> Funcionarios { get; set; }
         public IEnumerable<Contratos> Contratos { get; set; }

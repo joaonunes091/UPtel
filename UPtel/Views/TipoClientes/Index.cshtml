@@ -1,4 +1,4 @@
-﻿@model ListaCanaisViewModel
+﻿@model IEnumerable<UPtel.Models.TipoClientes>
 
 @{
     ViewData["Title"] = "Tipo de clientes";
@@ -12,7 +12,7 @@
                 <p>
                     <a asp-action="Create">Adicionar tipo de cliente</a>
                 </p>
-                @if (Model.TipoClientes.Count() == 0)
+                @if (Model.Count() == 0)
                 {
                     <p>Não existem dados para mostrar</p>
                 }
@@ -22,13 +22,13 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.TipoClientes[0].Designacao)
+                                    @Html.DisplayNameFor(model => model.Designacao)
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var tipo in Model.TipoClientes)
+                            @foreach (var tipo in Model)
                             {
                                 <tr>
                                     <td>
