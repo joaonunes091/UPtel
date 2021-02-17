@@ -73,7 +73,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
         public string Password { get; set; }
-
+        [Display(Name = "Tipo de Cliente")]
         public int TipoClienteId { get; set; }
 
         //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
