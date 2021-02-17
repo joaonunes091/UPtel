@@ -100,6 +100,9 @@ namespace UPtel
                 //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
                 //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
 
+                //SeedData.InsereDadosCargos(Dbcontext);
+                //SeedData.InsereDadosFuncionarios(Dbcontext);
+                //SeedData.InsereDadosNetFixa(Dbcontext);
             }
         }
     }
