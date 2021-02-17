@@ -21,25 +21,31 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Descricao)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PrecoPacoteTelevisao)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Descricao)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TelevisaoId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TelevisaoId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TelevisaoId">Eliminar</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descricao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoPacoteTelevisao)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.TelevisaoId">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.TelevisaoId">Detalhes</a> |
+                                <a asp-action="Delete" asp-route-id="@item.TelevisaoId">Eliminar</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
