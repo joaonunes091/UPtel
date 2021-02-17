@@ -1,16 +1,16 @@
-﻿@model UPtel.Models.Clientes
+﻿@model RegistoClienteViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registo";
 }
 
-<h1>Create</h1>
+<h1>Registo</h1>
 
-<h4>Clientes</h4>
+<h4>Novo cliente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Registo">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NomeCliente" class="control-label"></label>
@@ -63,8 +63,13 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ConfirmePassword" class="control-label"></label>
+                <input asp-for="ConfirmePassword" class="form-control" />
+                <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="TipoClienteId" class="control-label"></label>
-                <select asp-for="TipoClienteId" class ="form-control" asp-items="ViewBag.TipoClienteId"></select>
+                <select asp-for="TipoClienteId" class="form-control" asp-items="ViewBag.TipoClienteId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CodigoPostalExt" class="control-label"></label>
@@ -72,15 +77,15 @@
                 <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

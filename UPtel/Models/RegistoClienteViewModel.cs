@@ -60,9 +60,12 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Display(Name ="Confirme a sua password")]
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [DataType(DataType.Password)]
         [StringLength(16)]
         [Compare("Password",ErrorMessage ="A passord não coincide.")]
         public string ConfirmePassword { get; set; }
