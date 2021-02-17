@@ -17,6 +17,9 @@
                     <thead>
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.Numero)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.LimiteMinutos)
                             </th>
                             <th>
@@ -34,37 +37,46 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.PrecoMms)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PrecoPacoteTelemovel)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteSms)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoSms)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMms)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TelemovelId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TelemovelId">Eliminar</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LimiteMinutos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LimiteSms)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoSms)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoMms)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoPacoteTelemovel)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.TelemovelId">Editar</a> |
+                                <a asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a> |
+                                <a asp-action="Delete" asp-route-id="@item.TelemovelId">Eliminar</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

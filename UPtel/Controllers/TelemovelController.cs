@@ -54,7 +54,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms")] Telemovel telemovel)
+        public async Task<IActionResult> Create([Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms")] Telemovel telemovel)
+        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (id != telemovel.TelemovelId)
             {
