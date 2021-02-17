@@ -1,101 +1,142 @@
-﻿@model IEnumerable<UPtel.Models.Contratos>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    .btn-costum {
+        background-color: #00b371;
+        color: white;
+        border-color: #009961;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fidelizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TempoPromocao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomePacote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomePromocao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeFuncionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecoContrato)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Funcionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pacote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Promocao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fidelizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempoPromocao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomePacote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomePromocao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeFuncionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecoContrato)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.CartaoCidadao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Funcionario.CartaoCidadao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pacote.NomePacote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Promocao.Descricao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .btn-costum:hover {
+            background-color: #009961;
+            color: white;
+            border-color: #009961;
+        }
+
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #00b371;
+        border-color: #009961;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        background-color: #009961;
+        border-color: #009961;
+    }
+</style>
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+
+                <div class="border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisar Funcionários</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
+                                <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <h1>Contratos</h1>
+
+                <p>
+                    <a class="btn btn-costum" asp-action="Create">Novo Contrato</a>
+                </p>
+
+                <div>
+                    @if (Model.Contratos.Count() == 0)
+                    {
+                        <p>Não existem contratos para mostrar</p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nome do Cliente
+                                    </th>
+                                    <th>
+                                        Data de Início
+                                    </th>
+                                    <th>
+                                       Fidelização
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var contratos in Model.Contratos)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => contratos.NomeCliente)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => contratos.DataInicio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                @{
+                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaInicial < 1)
+                                    {
+                                        paginaInicial = 1;
+                                    }
+
+                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                    {
+                                        paginaFinal = Model.Paginacao.TotalPaginas;
+                                    }
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                                </li>
+
+                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                {
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

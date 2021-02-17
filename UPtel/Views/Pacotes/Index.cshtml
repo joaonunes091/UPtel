@@ -12,6 +12,11 @@
                 <p>
                     <a asp-action="Create">Criar novo pacote</a>
                 </p>
+                <form asp-action="Index" method="get" class="form ml-auto col-6">
+                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                    <button type="submit" class="btn btn-outline-light">Procurar</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                </form>
                 @if (Model.Pacotes.Count() == 0)
                 {
                     <p>Não existem pacotes de serviços a mostrar</p>
@@ -48,34 +53,34 @@
                         <tbody>
                             @foreach (var item in Model.Pacotes)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NomePacote)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoTotal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetMovel.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Telemovel.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Telefone.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Televisao.Nome)
-                                </td>
-                                <td class="text-right">
-                                    <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.PacoteId">Eliminar</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NomePacote)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoTotal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NetIfixa.TipoConexao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NetMovel.Numero)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Telemovel.Numero)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Telefone.Numero)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Televisao.Nome)
+                                    </td>
+                                    <td class="text-right">
+                                        <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |
+                                        <a asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.PacoteId">Eliminar</a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

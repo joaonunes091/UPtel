@@ -19,11 +19,28 @@ namespace UPtel.Controllers
             _context = context;
         }
 
-        // GET: Funcionarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            var uPtelContext = _context.Funcionarios.Include(f => f.Cargo);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Funcionarios> funcionarios = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar))
+                .OrderBy(f => f.NomeFuncionario)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Funcionarios = funcionarios,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Funcionarios/Details/5
@@ -61,12 +78,15 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(funcionarios);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(funcionarios);
             }
             ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
-            return View(funcionarios);
+            
+            _context.Add(funcionarios);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Funcionário adicionado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: Funcionarios/Edit/5

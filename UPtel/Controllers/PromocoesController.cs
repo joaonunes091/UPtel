@@ -20,19 +20,24 @@ namespace UPtel.Controllers
         }
 
         // GET: Promocoes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Promocoes.CountAsync(),
-                PaginaAtual = 1
+                TotalItems = await _context.Promocoes.Where(p => nomePesquisar == null || p.NomePromocao.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
             };
-            List<Promocoes> promocoes = await _context.Promocoes.ToListAsync();
+            List<Promocoes> promocoes = await _context.Promocoes.Where(p => nomePesquisar == null || p.NomePromocao.Contains(nomePesquisar))
+                .OrderBy(c => c.NomePromocao)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
             //var UPtelContext = _context.Promocoes.Include(p => p.NomePromocao).Include(p => p.Descricao);
             ListaCanaisViewModel model = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Promocoes = promocoes
+                Promocoes = promocoes,
+                NomePesquisar = nomePesquisar
             };
 
             return base.View(model);

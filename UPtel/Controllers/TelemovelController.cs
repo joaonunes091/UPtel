@@ -19,11 +19,30 @@ namespace UPtel.Controllers
             _context = context;
         }
 
-        // GET: Telemovel
-        public async Task<IActionResult> Index()
+        // GET: Telemovel.        
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.Telemovel.ToListAsync());
-        }
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Telemovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+        List<Telemovel> telemovel = await _context.Telemovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
+            .OrderBy(c => c.Numero)
+            .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+            .Take(paginacao.ItemsPorPagina)
+            .ToListAsync();
+
+        ListaCanaisViewModel model = new ListaCanaisViewModel
+        {
+            Paginacao = paginacao,
+            Telemovel = telemovel,
+            NomePesquisar = nomePesquisar
+        };
+
+            return base.View(model);
+    }
+
 
         // GET: Telemovel/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -54,7 +73,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms")] Telemovel telemovel)
+        public async Task<IActionResult> Create([Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +105,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms")] Telemovel telemovel)
+        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (id != telemovel.TelemovelId)
             {

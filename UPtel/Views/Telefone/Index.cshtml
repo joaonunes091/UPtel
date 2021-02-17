@@ -13,6 +13,11 @@
                 <p>
                     <a asp-action="Create">Inserir telefone</a>
                 </p>
+                <form asp-action="Index" method="get" class="form ml-auto col-6">
+                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                    <button type="submit" class="btn btn-outline-light">Procurar</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                </form>
                 @if (Model.Telefone.Count() == 0)
                 {
                     <p>Não existem pacotes de serviços a mostrar</p>
@@ -23,16 +28,19 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Número de telefone
+                                    @Html.DisplayNameFor(model => model.Telefone[0].Numero)
                                 </th>
                                 <th>
-                                    Limite
+                                    @Html.DisplayNameFor(model => model.Telefone[0].Limite)
                                 </th>
                                 <th>
-                                    Preço por Minuto Nacional
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoMinutoNacional)
                                 </th>
                                 <th>
-                                    Preço por Minuto Internacional
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoMinutoInternacional)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoPacoteTelefone)
                                 </th>
                                 <th></th>
                             </tr>
@@ -52,6 +60,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoPacoteTelefone)
                                     </td>
                                     <td class="text-right">
                                         <a asp-action="Edit" asp-route-id="@item.TelefoneId">Editar</a> |

@@ -20,19 +20,24 @@ namespace UPtel.Controllers
         }
 
         // GET: Telefone
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Promocoes.CountAsync(),
-                PaginaAtual = 1
+                TotalItems = await _context.Telefone.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
             };
-            List<Telefone> telefone = await _context.Telefone.ToListAsync();
-            //var UPtelContext = _context.Promocoes.Include(p => p.NomePromocao).Include(p => p.Descricao);
+            List<Telefone> telefone = await _context.Telefone.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
+                .OrderBy(c => c.Numero)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
             ListaCanaisViewModel model = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Telefone = telefone
+                Telefone = telefone,
+                NomePesquisar = nomePesquisar
             };
 
             return base.View(model);
@@ -67,7 +72,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional")] Telefone telefone)
+        public async Task<IActionResult> Create([Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +104,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional")] Telefone telefone)
+        public async Task<IActionResult> Edit(int id, [Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
         {
             if (id != telefone.TelefoneId)
             {

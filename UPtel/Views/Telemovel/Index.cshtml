@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.Telemovel>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Telemóvel";
@@ -13,61 +13,119 @@
                 <p>
                     <a asp-action="Create">Inserir telemóvel</a>
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LimiteMinutos)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LimiteSms)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoMinutoNacional)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoMinutoInternacional)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoSms)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoMms)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                <form asp-action="Index" method="get" class="form ml-auto col-6">
+                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                    <button type="submit" class="btn btn-outline-light">Procurar</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                </form>
+                @if (Model.Telefone.Count() == 0)
+                {
+                    <p>Não existem pacotes de serviços a mostrar</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteSms)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoSms)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMms)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TelemovelId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TelemovelId">Eliminar</a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].Numero)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].LimiteMinutos)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].LimiteSms)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMinutoNacional)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMinutoInternacional)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoSms)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMms)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoPacoteTelemovel)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Telemovel)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Numero)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LimiteMinutos)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LimiteSms)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoSms)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoMms)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoPacoteTelemovel)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.TelemovelId">Editar</a> |
+                                        <a asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.TelemovelId">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination pagination-sm justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
             </div>
         </div>
     </div>

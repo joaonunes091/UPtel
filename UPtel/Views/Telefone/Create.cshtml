@@ -16,6 +16,11 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
+                                <label asp-for="Numero" class="control-label"></label>
+                                <input asp-for="Numero" class="form-control" />
+                                <span asp-validation-for="Numero" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="Limite" class="control-label"></label>
                                 <input asp-for="Limite" class="form-control" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
@@ -29,6 +34,11 @@
                                 <label asp-for="PrecoMinutoInternacional" class="control-label"></label>
                                 <input asp-for="PrecoMinutoInternacional" class="form-control" />
                                 <span asp-validation-for="PrecoMinutoInternacional" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PrecoPacoteTelefone" class="control-label"></label>
+                                <input asp-for="PrecoPacoteTelefone" class="form-control" />
+                                <span asp-validation-for="PrecoPacoteTelefone" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Adicionar" class="btn btn-primary" />

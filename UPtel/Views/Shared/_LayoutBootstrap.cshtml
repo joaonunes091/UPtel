@@ -44,7 +44,10 @@
 
             <div class="row justify-content-center">
                 <div class="col-xl-9 d-flex align-items-center justify-content-between">
-                    <h1 class="logo"><a asp-controller="Home" asp-action="Index">UPtel</a></h1>
+                    <a asp-controller="Home" asp-action="Index">
+                        <img class="logo" src="~/bootstrap/assets/img/UPtel_capa1.png" alt="UPtel" />
+                     </a>
+                    @*<a class="logo" asp-controller="Home" asp-action="Index">UPtel</a>*@
                     @*<h1 class="logo"><a href="index.html">UPtel</a></h1>*@
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -52,8 +55,8 @@
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
                             @*<li class="active"><a href="index.html">Home</a></li>
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#services">teste</a></li>*@
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">teste</a></li>*@
                             <li class="drop-down">
                                 <a href="">Clientes</a>
                                 <ul>
@@ -91,43 +94,43 @@
                                     <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
                                 </ul>
                             </li>
-                           
+
                             <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
                             <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
 
-                         
+
                             @*<li class="drop-down">
-            <a href="">Serviços</a>
-            <ul>
-                <li class="drop-down">
-                    <a href="#">Pacotes de Internet</a>
+                    <a href="">Serviços</a>
                     <ul>
-                        <li><a href="#">teste</a></li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Internet</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Telefone</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Telemóvel</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Pacotes de Televisão</a>
+                            <ul>
+                                <li><a href="#">teste</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
                     </ul>
                 </li>
-                <li class="drop-down">
-                    <a href="#">Pacotes de Telefone</a>
-                    <ul>
-                        <li><a href="#">teste</a></li>
-                    </ul>
-                </li>
-                <li class="drop-down">
-                    <a href="#">Pacotes de Telemóvel</a>
-                    <ul>
-                        <li><a href="#">teste</a></li>
-                    </ul>
-                </li>
-                <li class="drop-down">
-                    <a href="#">Pacotes de Televisão</a>
-                    <ul>
-                        <li><a href="#">teste</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Drop Down 3</a></li>
-                <li><a href="#">Drop Down 4</a></li>
-            </ul>
-        </li>
-        <li><a href="#contact">Contact</a></li>*@
+                <li><a href="#contact">Contact</a></li>*@
                             <li>
                                 <div>
                                     <button class="btn"><a asp-area="Identity" asp-page="/Account/Login">Log in</a></button>
@@ -138,7 +141,7 @@
                         </ul>
                     </nav><!-- .nav-menu -->
                     @*<a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>*@
-                  
+
                     @*<partial name="_LoginPartial" />*@
                 </div>
             </div>

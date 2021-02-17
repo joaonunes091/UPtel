@@ -128,8 +128,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-#header .logo img {
-  max-height: 40px;
+#header .logo a img {
+  max-height: 100px;
 }
 
 @media (max-width: 992px) {
@@ -1559,3 +1559,5 @@ section {
 #footer .credits a:hover {
   color: #009961;
 }
+
+

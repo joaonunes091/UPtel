@@ -17,8 +17,8 @@
                                 <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Pesquisar" class="btn btn-primary" />
-                                <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
                             </div>
                         </form>
                     </div>
@@ -32,7 +32,7 @@
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table text-white">
                         <thead>
                             <tr>
                                 <th>
@@ -76,11 +76,11 @@
                         </thead>
                         <tbody>
                             @foreach (var cliente in Model.Clientes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => cliente.NomeCliente)
-                </td>
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => cliente.NomeCliente)
+                                    </td>
                 @*<td>
             @Html.DisplayFor(modelItem => item.DataNascimento)
         </td>

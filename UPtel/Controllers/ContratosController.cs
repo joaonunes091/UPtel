@@ -20,10 +20,28 @@ namespace UPtel.Controllers
         }
 
         // GET: Contratos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            var uPtelContext = _context.Contratos.Include(c => c.Cliente).Include(c => c.Funcionario).Include(c => c.Pacote).Include(c => c.Promocao);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Contratos.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Contratos> contratos = await _context.Contratos.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar))
+                .OrderBy(c => c.NomeCliente)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Contratos = contratos,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Contratos/Details/5
@@ -67,15 +85,18 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contratos);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(contratos);
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "CartaoCidadao", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "CartaoCidadao", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
-            return View(contratos);
+
+            _context.Add(contratos);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Contrato adicionado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: Contratos/Edit/5
