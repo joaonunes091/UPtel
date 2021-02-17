@@ -13,6 +13,11 @@
                 <p>
                     <a asp-action="Create">Inserir telefone</a>
                 </p>
+                <form asp-action="Index" method="get" class="form ml-auto col-6">
+                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                    <button type="submit" class="btn btn-outline-light">Procurar</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                </form>
                 @if (Model.Telefone.Count() == 0)
                 {
                     <p>Não existem pacotes de serviços a mostrar</p>
@@ -43,28 +48,28 @@
                         <tbody>
                             @foreach (var item in Model.Telefone)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Numero)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Limite)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoPacoteTelefone)
-                                </td>
-                                <td class="text-right">
-                                    <a asp-action="Edit" asp-route-id="@item.TelefoneId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TelefoneId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TelefoneId">Eliminar</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Numero)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Limite)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoPacoteTelefone)
+                                    </td>
+                                    <td class="text-right">
+                                        <a asp-action="Edit" asp-route-id="@item.TelefoneId">Editar</a> |
+                                        <a asp-action="Details" asp-route-id="@item.TelefoneId">Detalhes</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.TelefoneId">Eliminar</a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

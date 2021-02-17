@@ -12,6 +12,8 @@ namespace UPtel.Models
         public List<Pacotes> Pacotes { get; set; }
         public List<Promocoes> Promocoes { get; set; }
         public List<Telefone> Telefone { get; set; }
+        public List<Telemovel> Telemovel { get; set; }
+
 
         public Paginacao Paginacao { get; set; }
         public string NomePesquisar { get; set; }

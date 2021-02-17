@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
@@ -35,6 +36,11 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(4, 2)")]
         [Range(0,99, ErrorMessage ="O valor não é válido")]
         public decimal PrecoMinutoNacional { get; set; }
+
+        internal static object ConvertAll(Func<object, SelectListItem> p)
+        {
+            throw new NotImplementedException();
+        }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Preço por minuto de chamadas internacionais")]
