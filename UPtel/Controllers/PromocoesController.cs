@@ -28,7 +28,7 @@ namespace UPtel.Controllers
                 PaginaAtual = pagina
             };
             List<Promocoes> promocoes = await _context.Promocoes.Where(p => nomePesquisar == null || p.NomePromocao.Contains(nomePesquisar))
-                .OrderBy(c => c.NomePacote)
+                .OrderBy(c => c.NomePromocao)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
                 .ToListAsync();
@@ -36,7 +36,8 @@ namespace UPtel.Controllers
             ListaCanaisViewModel model = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Promocoes = promocoes
+                Promocoes = promocoes,
+                NomePesquisar = nomePesquisar
             };
 
             return base.View(model);
