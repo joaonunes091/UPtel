@@ -81,14 +81,26 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registo([Bind("ClienteId,NomeCliente,DataNascimento,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Password,TipoClienteId,CodigoPostalExt")] RegistoClienteViewModel infoclientes)
         {
+
             IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
 
             if (utilizador != null)
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
             }
-
             utilizador = new IdentityUser(infoclientes.Email);
+
+            if (ModelState.IsValid)
+            {
+                if (infoclientes.DataNascimento < DateTime.Today)
+                {
+                    ModelState.AddModelError("DataNascimento", "Este valor não é válido para a data");
+                    return View(infoclientes);
+                }
+                return View(infoclientes);
+            }
+
+
             IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
             if (!resultado.Succeeded)
             {

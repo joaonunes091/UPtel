@@ -22,12 +22,13 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Nome do Cliente")]
-        [StringLength(80,ErrorMessage ="O limite de caracteres(80) foi ultrapassado")]
+        [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         public string NomeCliente { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "date")]
         [Display(Name = "Data de Nascimento")]
+        //[RestrictedDate]
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
@@ -88,4 +89,13 @@ namespace UPtel.Models
         [InverseProperty("Cliente")]
         public virtual ICollection<Contratos> Contratos { get; set; }
     }
+
+//    public class RestrictedDate : ValidationAttribute
+//    {
+//        public override bool IsValid(object DataNascimento)
+//        {
+//            DateTime DataNascimento = (DateTime)DataNascimento;
+//            return DataNascimento < DateTime.Now;
+//        }
+//    }
 }

@@ -131,15 +131,15 @@
             </ul>
         </li>
         <li><a href="#contact">Contact</a></li>*@
-                            <li><a asp-area="Identity" asp-page="/Account/Login">Log in</a></li>
-                            <li><a asp-controller="Clientes" asp-action="Registo">Registar</a></li>
+                            <partial name="_LoginPartial" />
+                            
                             <!--<li>
-                                <div>
-                                    <button class="btn"><a asp-area="Identity" asp-page="/Account/Login">Log in</a></button>
-                                    <button class="btn"><a asp-controller="Clientes" asp-action="Registo">Registar</a></button>-->
-                                    @*<button class="btn"><a asp-area="Identity" asp-page="/Account/Register">Registar</a></button> teste para logins *@
-                                <!--</div>
-                            </li>-->
+        <div>
+            <button class="btn"><a asp-area="Identity" asp-page="/Account/Login">Log in</a></button>
+            <button class="btn"><a asp-controller="Clientes" asp-action="Registo">Registar</a></button>-->
+                            @*<button class="btn"><a asp-area="Identity" asp-page="/Account/Register">Registar</a></button> teste para logins *@
+                            <!--</div>
+    </li>-->
                         </ul>
                     </nav><!-- .nav-menu -->
                     @*<a href="#about" class="get-started-btn scrollto">Ainda não sabemos se é o registo</a>*@
