@@ -23,16 +23,19 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Número de telefone
+                                    @Html.DisplayNameFor(model => model.Telefone[0].Numero)
                                 </th>
                                 <th>
-                                    Limite
+                                    @Html.DisplayNameFor(model => model.Telefone[0].Limite)
                                 </th>
                                 <th>
-                                    Preço por Minuto Nacional
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoMinutoNacional)
                                 </th>
                                 <th>
-                                    Preço por Minuto Internacional
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoMinutoInternacional)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telefone[0].PrecoPacoteTelefone)
                                 </th>
                                 <th></th>
                             </tr>
@@ -40,25 +43,28 @@
                         <tbody>
                             @foreach (var item in Model.Telefone)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Numero)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Limite)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
-                                    </td>
-                                    <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.TelefoneId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.TelefoneId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.TelefoneId">Eliminar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Limite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecoMinutoNacional)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecoMinutoInternacional)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecoPacoteTelefone)
+                                </td>
+                                <td class="text-right">
+                                    <a asp-action="Edit" asp-route-id="@item.TelefoneId">Editar</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TelefoneId">Detalhes</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TelefoneId">Eliminar</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
