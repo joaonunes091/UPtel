@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using UPtel.Models;
 
+
 namespace UPtel.Data
 {
     //public class SeedData
     //{
+
         //    private const string NOME_UTILIZADOR_ADMIN_PADRAO = "admin@UPtel.pt";
         //    private const string PASSWORD_UTILIZADOR_ADMIN_PADRAO = "Secret123$";
 
@@ -150,6 +152,53 @@ namespace UPtel.Data
         //    }
 
 
+
+        //    private static void InsereDadosTesteNetfixa(UPtelContext DbContext)
+        //    {
+        //        if (DbContext.NetFixa.Any()) return;
+        //        DbContext.NetFixa.AddRange(new NetFixa[] {
+        //            new NetFixa
+        //            {
+        //                Limite = 7.5m,
+        //                Velocidade=100,
+        //                TipoConexao="Fibra",
+        //                Notas="",
+        //            },
+        //            new NetFixa
+        //            {
+        //                Limite = 15,
+        //                Velocidade=200,
+        //                TipoConexao="Fibra",
+        //                Notas="",
+        //            },
+        //            new NetFixa
+        //            {
+        //                Limite = 30,
+        //                Velocidade=500,
+        //                TipoConexao="Fibra",
+        //                Notas="A internet mais rápida dos nossos serviços",
+        //            },
+        //        });
+        //        DbContext.SaveChanges();
+        //    }
+        //private static void InsereDadosTesteNetmovel(UPtelContext DbContext)
+        //{
+
+        //    for (int i = 1; i < 50; i++)
+        //    {
+
+        //        DbContext.NetMovel.Add(new NetMovel
+        //        {
+        //            Limite = 2,
+        //            PrecoNetMovel = 1,
+        //            Numero = "910000000", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
+        //            Notas = "teste" +i 
+        //        });
+
+        //    }
+        //    DbContext.SaveChanges();
+        //}
+
         //    private static void InsereDadosTesteTelefone(UPtelContext DbContext)
         //    {
         //        if (DbContext.Telefone.Any()) return;
@@ -194,6 +243,7 @@ namespace UPtel.Data
         //        DbContext.SaveChanges();
         //    }
 
+
         //    private static void InsereCanaisFicticiosParaTestarPaginacao(UPtelContext DbContext)
         //    {
 
@@ -209,6 +259,7 @@ namespace UPtel.Data
 
         //        DbContext.SaveChanges();
         //    }
+
         //    internal static void InsereDadosTesteTodos(UPtelContext DbContext)
         //    {
 
@@ -351,4 +402,61 @@ namespace UPtel.Data
     //        DbContext.SaveChanges();
     //    }
     //}
-}
+
+     
+
+        //    internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
+        //    {
+        //        IdentityUser cliente = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "joao@ipg.pt", "Secret123$");
+        //        await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, cliente, ROLE_CLIENTE);
+
+        //        IdentityUser gestor = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, "maria@ipg.pt", "Secret123$");
+        //        await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, gestor, ROLE_OPERADOR);
+        //    }
+
+        //    internal static async Task InsereRolesAsync(RoleManager<IdentityRole> gestorRoles)
+        //    {
+        //        await CriaRoleSeNecessario(gestorRoles, ROLE_ADMINISTRADOR);
+        //        await CriaRoleSeNecessario(gestorRoles, ROLE_CLIENTE);
+        //        await CriaRoleSeNecessario(gestorRoles, ROLE_OPERADOR);
+        //        //await CriaRoleSeNecessario(gestorRoles, "PodeAlterarPrecoProdutos");
+        //    }
+
+        //    private static async Task CriaRoleSeNecessario(RoleManager<IdentityRole> gestorRoles, string funcao)
+        //    {
+        //        if (!await gestorRoles.RoleExistsAsync(funcao))
+        //        {
+        //            IdentityRole role = new IdentityRole(funcao);
+        //            await gestorRoles.CreateAsync(role);
+        //        }
+        //    }
+
+
+        //    internal static async Task InsereAdministradorPadraoAsync(UserManager<IdentityUser> gestorUtilizadores)
+        //    {
+        //        IdentityUser utilizador = await CriaUtilizadorSeNaoExiste(gestorUtilizadores, NOME_UTILIZADOR_ADMIN_PADRAO, PASSWORD_UTILIZADOR_ADMIN_PADRAO);
+        //        await AdicionaUtilizadorRoleSeNecessario(gestorUtilizadores, utilizador, ROLE_ADMINISTRADOR);
+        //    }
+
+        //    private static async Task AdicionaUtilizadorRoleSeNecessario(UserManager<IdentityUser> gestorUtilizadores, IdentityUser utilizador, string role)
+        //    {
+        //        if (!await gestorUtilizadores.IsInRoleAsync(utilizador, role))
+        //        {
+        //            await gestorUtilizadores.AddToRoleAsync(utilizador, role);
+        //        }
+        //    }
+
+        //    private static async Task<IdentityUser> CriaUtilizadorSeNaoExiste(UserManager<IdentityUser> gestorUtilizadores, string nomeUtilizador, string password)
+        //    {
+        //        IdentityUser utilizador = await gestorUtilizadores.FindByNameAsync(nomeUtilizador);
+
+        //        if (utilizador == null)
+        //        {
+        //            utilizador = new IdentityUser(nomeUtilizador);
+        //            await gestorUtilizadores.CreateAsync(utilizador, password);
+        //        }
+
+        //        return utilizador;
+//        //    }
+//    }
+//}

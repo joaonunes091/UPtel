@@ -7,6 +7,7 @@ namespace UPtel.Models
 {
     public class ListaCanaisViewModel
     {
+        public List<NetMovel> NetMovel { get; set; }
         public List<Canais> Canais { get; set; }
         public List<PacoteCanais> PacoteCanais { get; set; }
         public List<Pacotes> Pacotes { get; set; }
