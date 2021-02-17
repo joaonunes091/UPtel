@@ -4,48 +4,57 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>NetFixa</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Limite)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Limite)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Velocidade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Velocidade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoConexao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoConexao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecoNetFixa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrecoNetFixa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notas)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Notas)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="NetFixaId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+                <h1>Eliminar</h1>
+
+                <h3>Tem a certeza que quer eliminar?</h3>
+                <div>
+                    <h4>Net Fixa</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Limite)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Limite)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Velocidade)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Velocidade)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.TipoConexao)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.TipoConexao)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.PrecoNetFixa)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.PrecoNetFixa)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Notas)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Notas)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="NetFixaId" />
+                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                        <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
