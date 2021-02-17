@@ -85,15 +85,18 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contratos);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(contratos);
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "CartaoCidadao", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "CartaoCidadao", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
-            return View(contratos);
+
+            _context.Add(contratos);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Contrato adicionado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: Contratos/Edit/5

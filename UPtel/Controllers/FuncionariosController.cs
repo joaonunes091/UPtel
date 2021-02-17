@@ -78,12 +78,15 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(funcionarios);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(funcionarios);
             }
             ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
-            return View(funcionarios);
+            
+            _context.Add(funcionarios);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Funcionário adicionado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: Funcionarios/Edit/5
