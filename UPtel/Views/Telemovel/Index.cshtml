@@ -28,34 +28,34 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Numero)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].Numero)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.LimiteMinutos)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].LimiteMinutos)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.LimiteSms)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].LimiteSms)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PrecoMinutoNacional)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMinutoNacional)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PrecoMinutoInternacional)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMinutoInternacional)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PrecoSms)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoSms)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PrecoMms)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoMms)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PrecoPacoteTelemovel)
+                                    @Html.DisplayNameFor(model => model.Telemovel[0].PrecoPacoteTelemovel)
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Telemovel)
                             {
                                 <tr>
                                     <td>
