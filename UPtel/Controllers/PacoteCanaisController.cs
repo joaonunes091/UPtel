@@ -20,12 +20,12 @@ namespace UPtel.Controllers
         }
 
         // GET: PacoteCanais
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
                 TotalItems = await _context.PacoteCanais.CountAsync(),
-                PaginaAtual = 1
+                PaginaAtual = pagina
             };
             var UPtelContext = _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao);
             List<PacoteCanais> pacoteCanais = await UPtelContext.ToListAsync();

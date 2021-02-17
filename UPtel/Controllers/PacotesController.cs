@@ -20,20 +20,26 @@ namespace UPtel.Controllers
         }
 
         // GET: Pacotes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Pacotes.CountAsync(),
-                PaginaAtual = 1
+                TotalItems = await _context.Pacotes.Where(p => nomePesquisar == null || p.NomePacote.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
             };
-            var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telefone).Include(p => p.Telemovel).Include(p => p.Televisao);
-            List<Pacotes> pacotes = await UPtelContext.ToListAsync();
+            //var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telefone).Include(p => p.Telemovel).Include(p => p.Televisao);
+            
+            List<Pacotes> pacotes = await _context.Pacotes.Where(p => nomePesquisar == null || p.NomePacote.Contains(nomePesquisar))
+                .OrderBy(c => c.NomePacote)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Pacotes = pacotes
+                Pacotes = pacotes,
+                NomePesquisar = nomePesquisar
             };
 
             return base.View(modelo);
