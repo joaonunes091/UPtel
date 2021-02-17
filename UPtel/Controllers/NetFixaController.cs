@@ -56,13 +56,18 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NetFixaId,Limite,Velocidade,TipoConexao,PrecoNetFixa,Notas")] NetFixa netFixa)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(netFixa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(netFixa);
             }
-            return View(netFixa);
+
+          
+
+            _context.Add(netFixa);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Net fixa adicionado com sucesso";
+            return View("Sucesso");
         }
 
         // GET: NetFixa/Edit/5
