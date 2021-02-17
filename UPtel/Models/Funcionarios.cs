@@ -53,6 +53,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(4, MinimumLength = 4)]
         [RegularExpression(@"([123456789]|1)\d{3}", ErrorMessage = "Este valor é inválido")]
+        [Display(Name ="Código Postal")]
         public string CodigoPostal { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
