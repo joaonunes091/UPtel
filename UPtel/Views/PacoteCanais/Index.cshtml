@@ -15,6 +15,12 @@
                 <p>
                     <a asp-action="Create">Criar novo pacote de canais</a>
                 </p>
+                <form asp-action="Index" method="get" class="form ml-auto col-6">
+                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
+                    <button type="submit" class="btn btn-outline-light">Procurar</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                </form>
+
                 @if (Model.PacoteCanais.Count() == 0)
                 {
                     <p>Não existem pacotes de canais a mostrar</p>

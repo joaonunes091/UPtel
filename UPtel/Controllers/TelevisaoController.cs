@@ -20,9 +20,27 @@ namespace UPtel.Controllers
         }
 
         // GET: Televisao
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.Televisao.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Televisao.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+            List<Televisao> televisao = await _context.Televisao.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel model = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Televisao = televisao,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(model);
         }
 
         // GET: Televisao/Details/5
