@@ -124,8 +124,11 @@ namespace UPtel.Controllers
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details));
-            
+                ViewBag.Mensagem = "Canal adicionado com sucesso";
+                return View("Sucesso");
+
+
+            //return RedirectToAction(nameof(Details));
             //ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
         }
 
