@@ -9,7 +9,7 @@
 <h4>Novo cliente</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Registo">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -37,10 +37,25 @@
                 <input asp-for="Morada" class="form-control" />
                 <span asp-validation-for="Morada" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-row">
                 <label asp-for="CodigoPostal" class="control-label"></label>
-                <input asp-for="CodigoPostal" class="form-control" />
-                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <input asp-for="CodigoPostal" class="form-control" />
+                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                </div>
+                -
+                <div class="col-md-4">
+                    <input asp-for="CodigoPostalExt" class="form-control" />
+                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CodigoPostalExt" class="control-label"></label>*@
+                @*<input asp-for="CodigoPostalExt" class="form-control" />
+            <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>*@
             </div>
             <div class="form-group">
                 <label asp-for="Telefone" class="control-label"></label>
@@ -70,11 +85,6 @@
             <div class="form-group">
                 <label asp-for="TipoClienteId" class="control-label"></label>
                 <select asp-for="TipoClienteId" class="form-control" asp-items="ViewBag.TipoClienteId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                <input asp-for="CodigoPostalExt" class="form-control" />
-                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Registar" class="btn btn-primary" />
