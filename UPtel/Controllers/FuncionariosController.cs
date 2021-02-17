@@ -19,13 +19,6 @@ namespace UPtel.Controllers
             _context = context;
         }
 
-        // GET: Funcionarios
-        //public async Task<IActionResult> Index()
-        //{
-        //    var uPtelContext = _context.Funcionarios.Include(f => f.Cargo);
-        //    return View(await uPtelContext.ToListAsync());
-        //}
-
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao

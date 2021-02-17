@@ -19,5 +19,6 @@ namespace UPtel.Models
         public List<TipoClientes> TipoClientes { get; set; }
 
         public IEnumerable<Funcionarios> Funcionarios { get; set; }
+        public IEnumerable<Contratos> Contratos { get; set; }
     }
 }
