@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.TipoClientes>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Tipo de clientes";
@@ -12,31 +12,38 @@
                 <p>
                     <a asp-action="Create">Adicionar tipo de cliente</a>
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Designacao)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model.TipoClientes.Count() == 0)
+                {
+                    <p>Não existem dados para mostrar</p>
+                }
+                else
+                {
+                    <table class="table text-white">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Designacao)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TipoClienteId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TipoClienteId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TipoClienteId">Eliminar</a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TipoClientes[0].Designacao)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var tipo in Model.TipoClientes)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => tipo.Designacao)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@tipo.TipoClienteId">Editar</a> |
+                                        <a asp-action="Details" asp-route-id="@tipo.TipoClienteId">Detalhes</a> |
+                                        <a asp-action="Delete" asp-route-id="@tipo.TipoClienteId">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
             </div>
         </div>
     </div>
