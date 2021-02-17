@@ -88,6 +88,17 @@ namespace UPtel.Controllers
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
             }
 
+            utilizador = new IdentityUser(infoclientes.Email);
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            if (!resultado.Succeeded)
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            else
+            {
+                await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
+            }
+
             if (!ModelState.IsValid)
             {
 
@@ -113,7 +124,7 @@ namespace UPtel.Controllers
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             
             //ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
         }
