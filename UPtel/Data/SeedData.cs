@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using UPtel.Models;
 
 
-namespace UPtel.Data
-{
+    //namespace UPtel.Data
+    //{
     //public class SeedData
     //{
 
