@@ -4,39 +4,50 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>NetMovel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Limite)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Limite)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecoNetMovel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PrecoNetMovel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Numero)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Numero)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notas)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Notas)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.NetMovelId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left">
+            <div class="col-xl-8">
+                <h2>Detalhe Pacote Internet Móvel</h2>
+                <hr />
+                <div class="row text-white">
+                    <div class="col-md-10">
+                        <dl>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Limite)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Limite)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.PrecoNetMovel)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.PrecoNetMovel)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Numero)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Numero)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Notas)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Notas)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.NetMovelId" class="btn btn-primary">Editar</a> |
+                        <a asp-action="Index">Voltar</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

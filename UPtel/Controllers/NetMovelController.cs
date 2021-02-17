@@ -20,13 +20,32 @@ namespace UPtel.Controllers
         }
 
         // GET: NetMovel
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.NetMovel.ToListAsync());
-        }
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.NetMovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
 
-        // GET: NetMovel/Details/5
-        public async Task<IActionResult> Details(int? id)
+            List<NetMovel> netmovel = await _context.NetMovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
+                .OrderBy(c => c.Numero)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                NetMovel = netmovel,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
+        }
+           
+            // GET: NetMovel/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -60,7 +79,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(netMovel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Net móvel adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(netMovel);
         }
@@ -111,7 +131,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Net móvel adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(netMovel);
         }
