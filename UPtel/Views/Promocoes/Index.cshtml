@@ -60,9 +60,7 @@
                                         @Html.DisplayFor(modelItem => item.Desconto)
                                     </td>
                                     <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.PromocaoId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PromocaoId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PromocaoId">Eliminar</a>
+                                        <a asp-action="Details" asp-route-id="@item.PromocaoId" class="btn btn-costum">Detalhes</a>
                                     </td>
                                 </tr>
                             }

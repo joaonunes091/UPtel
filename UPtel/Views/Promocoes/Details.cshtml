@@ -41,8 +41,9 @@
                     </dl>
                 </div>
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.PromocaoId">Editar</a> |
-                    <a asp-action="Index">Voltar</a>
+                    <a asp-action="Edit" asp-route-id="@Model.PromocaoId" class="btn btn-costum">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.PromocaoId" class="btn btn-danger">Eliminar</a>
+                    <a asp-action="Index" class="btn btn-outline-dark">Voltar</a>
                 </div>
             </div>
         </div>
