@@ -58,7 +58,7 @@
                                             @Html.DisplayFor(modelItem => funcionario.NomeFuncionario)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => funcionario.NomeCargo)
+                                            @Html.DisplayFor(modelItem => funcionario.Cargo.NomeCargo)
                                         </td>
                                         <td class="text-right">
                                             <a class="btn btn-costum" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
