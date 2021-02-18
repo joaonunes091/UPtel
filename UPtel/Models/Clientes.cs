@@ -85,6 +85,7 @@ namespace UPtel.Models
 
         [ForeignKey(nameof(TipoClienteId))]
         [InverseProperty(nameof(TipoClientes.Clientes))]
+        [Display(Name = "Tipo de Cliente")]
         public virtual TipoClientes TipoCliente { get; set; }
         [InverseProperty("Cliente")]
         public virtual ICollection<Contratos> Contratos { get; set; }
