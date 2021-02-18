@@ -7,20 +7,25 @@
     <div class="container">
         <div class="row justify-content-center text-left">
             <div class="col-xl-8">
-                <h2>Eliminar tipo de cliente</h2>
+                @*<h2>Eliminar tipo de cliente</h2>*@
 
                 <h3>Tem a certeza que pretende eliminar o tipo de cliente?</h3>
                 <div>
-                    <h4>Tipo de cliente</h4>
-                    <hr />
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Designacao)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Designacao)
-                        </dd>
-                    </dl>
+                 @*   <h4>Tipo de cliente</h4>*@
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <hr />
+                            <dl>
+                                <dt class="text-white">
+                                    @Html.DisplayNameFor(model => model.Designacao)
+                                </dt>
+                                <dd class="text-white">
+                                    @Html.DisplayFor(model => model.Designacao)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
 
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="TipoClienteId" />
