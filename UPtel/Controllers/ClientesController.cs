@@ -81,8 +81,16 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registo(RegistoClienteViewModel infoclientes)
         {
+            IdentityUser utilizador = new IdentityUser();
+            if (infoclientes.Email == null)
+            {
+                ModelState.AddModelError("Email", "Precisa de introduzir um email");
+            }
+            else
+            {
+                 utilizador= await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+            }
 
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
 
             if (utilizador != null)
             {
@@ -99,8 +107,17 @@ namespace UPtel.Controllers
                 }
             }
 
+            IdentityResult resultado = new IdentityResult();
+            if (infoclientes.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+            }
+            else
+            {
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            }
 
-            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            
             if (!resultado.Succeeded)
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
