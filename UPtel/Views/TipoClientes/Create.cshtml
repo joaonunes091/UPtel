@@ -9,14 +9,14 @@
             <div class="col-xl-8">
                 <h2>Criar tipo de cliente</h2>
 
-                <h4>Tipo de cliente</h4>
+                @*<h4>Tipo de cliente</h4>*@
                 <hr />
                 <div class="row">
                     <div class="col-md-4">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Designacao" class="control-label"></label>
+                                <label asp-for="Designacao" class="control-label text-white"></label>
                                 <input asp-for="Designacao" class="form-control" />
                                 <span asp-validation-for="Designacao" class="text-danger"></span>
                             </div>
