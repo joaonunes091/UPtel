@@ -20,22 +20,28 @@ namespace UPtel.Controllers
         }
 
         // GET: PacoteCanais
-        public async Task<IActionResult> Index(int pagina = 1)
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.PacoteCanais.CountAsync(),
+                TotalItems = await _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao).Where(p => nomePesquisar == null || p.Canais.NomeCanal.Contains(nomePesquisar) || p.Televisao.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
-            var UPtelContext = _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao);
-            List<PacoteCanais> pacoteCanais = await UPtelContext.ToListAsync();
+
+            List<PacoteCanais> pacoteCanais = await _context.PacoteCanais.Include(p => p.Canais).Include(p => p.Televisao).Where(p => nomePesquisar == null || p.Canais.NomeCanal.Contains(nomePesquisar) || p.Televisao.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Canais.NomeCanal)
+                .OrderBy(c => c.Televisao.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                PacoteCanais = pacoteCanais
+                PacoteCanais = pacoteCanais,
+                NomePesquisar = nomePesquisar
             };
-            
+
             return base.View(modelo);
         }
 
@@ -72,7 +78,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacoteCanalId,TelevisaoId,CanaisId")] PacoteCanais pacoteCanais)
+        public async Task<IActionResult> Create([Bind("PacoteCanalId,TelevisaoId,CanaisId,NomeCanal,NomeTelevisao")] PacoteCanais pacoteCanais)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +114,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PacoteCanalId,TelevisaoId,CanaisId")] PacoteCanais pacoteCanais)
+        public async Task<IActionResult> Edit(int id, [Bind("PacoteCanalId,TelevisaoId,CanaisId,NomeCanal,NomeTelevisao")] PacoteCanais pacoteCanais)
         {
             if (id != pacoteCanais.PacoteCanalId)
             {

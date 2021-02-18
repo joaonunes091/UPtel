@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210211161441_inicial2")]
-    partial class inicial2
+    [Migration("20210218102207_AtualizacaoPacotesCanais")]
+    partial class AtualizacaoPacotesCanais
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,10 +29,16 @@ namespace UPtel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("NomeCanal")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("PrecoCanais")
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("CanaisId");
 
@@ -74,7 +80,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("CodigoPostalExt")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -112,7 +117,8 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Telemovel")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
 
                     b.Property<int>("TipoClienteId")
                         .HasColumnType("int");
@@ -172,6 +178,9 @@ namespace UPtel.Migrations
                     b.Property<int>("PacoteId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("PrecoContrato")
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<int>("PromocaoId")
                         .HasColumnType("int");
 
@@ -212,7 +221,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("CodigoPostalExt")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -301,6 +309,9 @@ namespace UPtel.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("PrecoNetFixa")
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<string>("TipoConexao")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -333,6 +344,9 @@ namespace UPtel.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
+                    b.Property<decimal>("PrecoNetMovel")
+                        .HasColumnType("decimal(5,2)");
+
                     b.HasKey("NetMovelId");
 
                     b.ToTable("NetMovel");
@@ -347,6 +361,16 @@ namespace UPtel.Migrations
 
                     b.Property<int>("CanaisId")
                         .HasColumnType("int");
+
+                    b.Property<string>("NomeCanal")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("NomeTelevisao")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("TelevisaoId")
                         .HasColumnType("int");
@@ -379,8 +403,8 @@ namespace UPtel.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(6,2)");
+                    b.Property<decimal>("PrecoTotal")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int?>("TelefoneId")
                         .HasColumnType("int");
@@ -397,6 +421,8 @@ namespace UPtel.Migrations
 
                     b.HasIndex("NetMovelId");
 
+                    b.HasIndex("TelefoneId");
+
                     b.HasIndex("TelemovelId");
 
                     b.HasIndex("TelevisaoId");
@@ -411,6 +437,9 @@ namespace UPtel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Desconto")
+                        .HasColumnType("int");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -420,6 +449,9 @@ namespace UPtel.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("PromoCanais")
+                        .HasColumnType("int");
 
                     b.HasKey("PromocaoId");
 
@@ -446,6 +478,9 @@ namespace UPtel.Migrations
 
                     b.Property<decimal>("PrecoMinutoNacional")
                         .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("PrecoPacoteTelefone")
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("TelefoneId");
 
@@ -481,6 +516,9 @@ namespace UPtel.Migrations
                         .HasColumnType("decimal(4,2)")
                         .HasColumnName("PrecoMMS");
 
+                    b.Property<decimal>("PrecoPacoteTelemovel")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("PrecoSms")
                         .HasColumnType("decimal(4,2)")
                         .HasColumnName("PrecoSMS");
@@ -506,6 +544,9 @@ namespace UPtel.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<decimal>("PrecoPacoteTelevisao")
+                        .HasColumnType("decimal(5,2)");
+
                     b.HasKey("TelevisaoId");
 
                     b.ToTable("Televisao");
@@ -520,8 +561,8 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Designacao")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("TipoClienteId");
 
@@ -616,15 +657,15 @@ namespace UPtel.Migrations
                         .HasForeignKey("NetMovelId")
                         .HasConstraintName("FK_Pacotes_NetMovel");
 
-                    b.HasOne("UPtel.Models.Telefone", "Telemovel")
+                    b.HasOne("UPtel.Models.Telefone", "Telefone")
+                        .WithMany("Pacotes")
+                        .HasForeignKey("TelefoneId")
+                        .HasConstraintName("FK_Pacotes_Telemovel");
+
+                    b.HasOne("UPtel.Models.Telemovel", "Telemovel")
                         .WithMany("Pacotes")
                         .HasForeignKey("TelemovelId")
                         .HasConstraintName("FK_Pacotes_Telefone");
-
-                    b.HasOne("UPtel.Models.Telemovel", "TelemovelNavigation")
-                        .WithMany("Pacotes")
-                        .HasForeignKey("TelemovelId")
-                        .HasConstraintName("FK_Pacotes_Telemovel");
 
                     b.HasOne("UPtel.Models.Televisao", "Televisao")
                         .WithMany("Pacotes")
@@ -635,9 +676,9 @@ namespace UPtel.Migrations
 
                     b.Navigation("NetMovel");
 
-                    b.Navigation("Telemovel");
+                    b.Navigation("Telefone");
 
-                    b.Navigation("TelemovelNavigation");
+                    b.Navigation("Telemovel");
 
                     b.Navigation("Televisao");
                 });
