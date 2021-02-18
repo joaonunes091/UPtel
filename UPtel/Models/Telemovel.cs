@@ -61,6 +61,8 @@ namespace UPtel.Models
 
         [Display(Name = "Preço do pacote Telemóvel")]
         [Required(ErrorMessage = "Deve preencher o preço.")]
+        [Column(TypeName = "decimal(5, 2)")]
+        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
         public decimal PrecoPacoteTelemovel { get; set; }
 
         [InverseProperty("Telemovel")]
