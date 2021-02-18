@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AtualizacaoPacotesCanais : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,9 @@ namespace UPtel.Migrations
                 {
                     CanaisId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeCanal = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    NomeCanal = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PrecoCanais = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,6 +44,7 @@ namespace UPtel.Migrations
                     Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Velocidade = table.Column<int>(type: "int", nullable: false),
                     TipoConexao = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    PrecoNetFixa = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Notas = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -56,8 +59,9 @@ namespace UPtel.Migrations
                     NetMovelId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Notas = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Numero = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false)
+                    PrecoNetMovel = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Numero = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    Notas = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,7 +75,9 @@ namespace UPtel.Migrations
                     PromocaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomePromocao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PromoCanais = table.Column<int>(type: "int", nullable: false),
+                    Desconto = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,7 +93,8 @@ namespace UPtel.Migrations
                     Numero = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Limite = table.Column<int>(type: "int", nullable: false),
                     PrecoMinutoNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    PrecoMinutoInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false)
+                    PrecoMinutoInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    PrecoPacoteTelefone = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,7 +113,8 @@ namespace UPtel.Migrations
                     PrecoMinutoNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     PrecoMinutoInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     PrecoSMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    PrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false)
+                    PrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    PrecoPacoteTelemovel = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,7 +128,8 @@ namespace UPtel.Migrations
                     TelevisaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PrecoPacoteTelevisao = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,7 +142,7 @@ namespace UPtel.Migrations
                 {
                     TipoClienteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Designacao = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    Designacao = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,7 +168,7 @@ namespace UPtel.Migrations
                     IBAN = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     EstadoFuncionario = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
                     Fotografia = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
@@ -180,7 +189,9 @@ namespace UPtel.Migrations
                     PacoteCanalId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TelevisaoId = table.Column<int>(type: "int", nullable: false),
-                    CanaisId = table.Column<int>(type: "int", nullable: false)
+                    CanaisId = table.Column<int>(type: "int", nullable: false),
+                    NomeCanal = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    NomeTelevisao = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,7 +217,7 @@ namespace UPtel.Migrations
                     PacoteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomePacote = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Preco = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    PrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     TelevisaoId = table.Column<int>(type: "int", nullable: true),
                     TelemovelId = table.Column<int>(type: "int", nullable: true),
                     NetIFixaId = table.Column<int>(type: "int", nullable: true),
@@ -231,14 +242,14 @@ namespace UPtel.Migrations
                     table.ForeignKey(
                         name: "FK_Pacotes_Telefone",
                         column: x => x.TelemovelId,
-                        principalTable: "Telefone",
-                        principalColumn: "TelefoneId",
+                        principalTable: "Telemovel",
+                        principalColumn: "TelemovelId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Pacotes_Telemovel",
-                        column: x => x.TelemovelId,
-                        principalTable: "Telemovel",
-                        principalColumn: "TelemovelId",
+                        column: x => x.TelefoneId,
+                        principalTable: "Telefone",
+                        principalColumn: "TelefoneId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Pacotes_Televisao1",
@@ -261,11 +272,11 @@ namespace UPtel.Migrations
                     Morada = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     CodigoPostal = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
-                    Telemovel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telemovel = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     TipoClienteId = table.Column<int>(type: "int", nullable: false),
-                    CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false)
+                    CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -294,7 +305,8 @@ namespace UPtel.Migrations
                     NomeCliente = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     NomePacote = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     NomePromocao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NomeFuncionario = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
+                    NomeFuncionario = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -412,6 +424,11 @@ namespace UPtel.Migrations
                 column: "NetMovelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pacotes_TelefoneId",
+                table: "Pacotes",
+                column: "TelefoneId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Pacotes_TelemovelId",
                 table: "Pacotes",
                 column: "TelemovelId");
@@ -458,10 +475,10 @@ namespace UPtel.Migrations
                 name: "NetMovel");
 
             migrationBuilder.DropTable(
-                name: "Telefone");
+                name: "Telemovel");
 
             migrationBuilder.DropTable(
-                name: "Telemovel");
+                name: "Telefone");
 
             migrationBuilder.DropTable(
                 name: "Televisao");

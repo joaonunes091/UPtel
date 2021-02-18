@@ -24,6 +24,7 @@ namespace UPtel.Models
         [ForeignKey(nameof(CanaisId))]
         [InverseProperty("PacoteCanais")]
         public virtual Canais Canais { get; set; }
+
         [ForeignKey(nameof(TelevisaoId))]
         [InverseProperty("PacoteCanais")]
         public virtual Televisao Televisao { get; set; }

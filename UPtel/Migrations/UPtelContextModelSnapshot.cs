@@ -15,17 +15,17 @@ namespace UPtel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("UPtel.Models.Canais", b =>
                 {
                     b.Property<int>("CanaisId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
@@ -48,7 +48,7 @@ namespace UPtel.Migrations
                     b.Property<int>("CargoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("NomeCargo")
                         .IsRequired()
@@ -65,7 +65,7 @@ namespace UPtel.Migrations
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CartaoCidadao")
                         .IsRequired()
@@ -139,7 +139,7 @@ namespace UPtel.Migrations
                     b.Property<int>("ContratoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
@@ -203,7 +203,7 @@ namespace UPtel.Migrations
                     b.Property<int>("FuncionarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("CargoId")
                         .HasColumnType("int");
@@ -298,7 +298,7 @@ namespace UPtel.Migrations
                     b.Property<int>("NetFixaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
@@ -328,7 +328,7 @@ namespace UPtel.Migrations
                     b.Property<int>("NetMovelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
@@ -355,7 +355,7 @@ namespace UPtel.Migrations
                     b.Property<int>("PacoteCanalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("CanaisId")
                         .HasColumnType("int");
@@ -377,7 +377,7 @@ namespace UPtel.Migrations
                     b.Property<int>("PacoteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int?>("NetIfixaId")
                         .HasColumnType("int")
@@ -423,7 +423,7 @@ namespace UPtel.Migrations
                     b.Property<int>("PromocaoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("Desconto")
                         .HasColumnType("int");
@@ -451,7 +451,7 @@ namespace UPtel.Migrations
                     b.Property<int>("TelefoneId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("Limite")
                         .HasColumnType("int");
@@ -480,7 +480,7 @@ namespace UPtel.Migrations
                     b.Property<int>("TelemovelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<int>("LimiteMinutos")
                         .HasColumnType("int");
@@ -521,7 +521,7 @@ namespace UPtel.Migrations
                     b.Property<int>("TelevisaoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Descricao")
                         .HasMaxLength(100)
@@ -545,7 +545,7 @@ namespace UPtel.Migrations
                     b.Property<int>("TipoClienteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Designacao")
                         .IsRequired()
