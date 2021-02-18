@@ -25,10 +25,9 @@
 
                 <h1>Novo Contrato</h1>
 
-              
-                <hr />
                 <div class="row">
                     <div class="col-md-6">
+                        <hr />
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
@@ -63,45 +62,25 @@
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="NomeCliente" class="control-label"></label>
-                                <input asp-for="NomeCliente" class="form-control" />
-                                <span asp-validation-for="NomeCliente" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="NomePacote" class="control-label"></label>
-                                <input asp-for="NomePacote" class="form-control" />
-                                <span asp-validation-for="NomePacote" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="NomePromocao" class="control-label"></label>
-                                <input asp-for="NomePromocao" class="form-control" />
-                                <span asp-validation-for="NomePromocao" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="NomeFuncionario" class="control-label"></label>
-                                <input asp-for="NomeFuncionario" class="form-control" />
-                                <span asp-validation-for="NomeFuncionario" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="PrecoContrato" class="control-label"></label>
                                 <input asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
                             </div>
                         </form>
                     </div>
                 </div>
 
                 <div>
-                    <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+                    <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>
 
             </div>
         </div>
     </div>
 </section>
-                @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
