@@ -47,7 +47,7 @@
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => model.TempoPromocao)
                         </dd>
-                        <dt class="col-sm-2">
+                        @*<dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.NomeCliente)
                         </dt>
                         <dd class="col-sm-10">
@@ -70,7 +70,7 @@
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => model.NomeFuncionario)
-                        </dd>
+                        </dd>*@
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.PrecoContrato)
                         </dt>
@@ -81,13 +81,13 @@
                             @Html.DisplayNameFor(model => model.Cliente)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Cliente.CartaoCidadao)
+                            @Html.DisplayFor(model => model.Cliente.NomeCliente)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Funcionario)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Funcionario.CartaoCidadao)
+                            @Html.DisplayFor(model => model.Funcionario.NomeFuncionario)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Pacote)
