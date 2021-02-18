@@ -10,15 +10,19 @@
                 <h2>Detalhes do tipo de cliente</h2>
 
                 <div>
-                    <h4>Tipo de clientes</h4>
+                    @*<h4>Tipo de clientes</h4>*@
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.Designacao)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.Designacao)
-                        </dd>
+                        <div class="col-md-4">
+                            <dl>
+                                <dt class="text-white">
+                                    @Html.DisplayNameFor(model => model.Designacao)
+                                </dt>
+                                <dd class="text-white">
+                                    @Html.DisplayFor(model => model.Designacao)
+                                </dd>
+                            </dl>
+                        </div>
                     </dl>
                 </div>
                 <div>
