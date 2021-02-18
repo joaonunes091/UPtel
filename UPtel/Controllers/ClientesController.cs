@@ -97,7 +97,6 @@ namespace UPtel.Controllers
                     ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
                     return View(infoclientes);
                 }
-                return View(infoclientes);
             }
 
 
@@ -114,7 +113,7 @@ namespace UPtel.Controllers
             if (!ModelState.IsValid)
             {
 
-                return View(infoclientes);
+                return View("Sucesso"); //to do
             }
 
             
@@ -132,7 +131,8 @@ namespace UPtel.Controllers
                 Telemovel = infoclientes.Telemovel,
                 Email = infoclientes.Email,
                 Password = infoclientes.Password,
-                CodigoPostalExt = infoclientes.CodigoPostalExt
+                CodigoPostalExt = infoclientes.CodigoPostalExt,
+                TipoClienteId=infoclientes.TipoClienteId,
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
