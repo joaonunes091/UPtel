@@ -81,8 +81,13 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registo(RegistoClienteViewModel infoclientes)
         {
-
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+            //if (infoclientes.Email == null)
+            //{
+            //    ModelState.AddModelError("Email", "Precisa de introduzir um email");
+            //}
+            
+                IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+            
 
             if (utilizador != null)
             {
