@@ -65,7 +65,7 @@ namespace UPtel.Controllers
             _context.Add(cargos);
             await _context.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Canal adicionado com sucesso";
+            ViewBag.Mensagem = "Cargo adicionado com sucesso";
             return View("Sucesso");
 
         }
