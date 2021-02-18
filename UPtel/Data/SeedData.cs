@@ -339,7 +339,6 @@ namespace UPtel.Data
                 {
                     NomeFuncionario = "Funcionário " + i,
                     CargoId = 4,
-                    NomeCargo = "Operador",
                     DataNascimento = new DateTime(1911, 11, 11),
                     Contribuinte = Convert.ToString(123456700 + i),
                     Morada = "Sem Abrigo",

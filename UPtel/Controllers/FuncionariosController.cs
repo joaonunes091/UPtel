@@ -28,6 +28,7 @@ namespace UPtel.Controllers
             };
 
             List<Funcionarios> funcionarios = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar))
+                .Include(f => f.Cargo)
                 .OrderBy(f => f.NomeFuncionario)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
@@ -74,7 +75,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuncionarioId,NomeFuncionario,CargoId,NomeCargo,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
+        public async Task<IActionResult> Create([Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +112,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,NomeFuncionario,CargoId,NomeCargo,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
+        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
         {
             if (id != funcionarios.FuncionarioId)
             {

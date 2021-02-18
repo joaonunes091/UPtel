@@ -17,7 +17,6 @@ namespace UPtel.Data
                 {
                     NomeFuncionario = "José Ferreira Pinto",
                     CargoId=4,
-                    NomeCargo="Operador(a)",
                     DataNascimento=new DateTime(1990,05,25),
                     Contribuinte="264815975",
                     Morada="Rua do Arsenal nº24 ",
@@ -34,7 +33,6 @@ namespace UPtel.Data
                 {
                     NomeFuncionario = "Ana Gonçalves Gomes",
                     CargoId=5,
-                    NomeCargo="Operador(a)",
                     DataNascimento=new DateTime(1994,10,5),
                     Contribuinte="9759548",
                     Morada="Rua da Oliveira ao Carmo nº7, 2º Direito ",
@@ -51,7 +49,6 @@ namespace UPtel.Data
                 {
                     NomeFuncionario = "Mário Simão Pacheco",
                     CargoId=4,
-                    NomeCargo="Administrador(a)",
                     DataNascimento=new DateTime(1994,10,5),
                     Contribuinte="97595487",
                     Morada="Calçada do Poço dos Mouros nº18",
