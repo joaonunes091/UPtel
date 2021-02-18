@@ -25,7 +25,7 @@ namespace UPtel.Models
         public decimal Limite { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Velocidade de ligação")]
+        [Display(Name = "Velocidade de ligação em MB")]
         public int Velocidade { get; set; }
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
