@@ -29,11 +29,6 @@ namespace UPtel.Models
 
         public int CargoId { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
-        [Display(Name = "Cargo")]
-        public string NomeCargo { get; set; }
-
         [Column(TypeName = "date")]
         [Display(Name = "Data de nascimento")]
         [DataType(DataType.Date)]
