@@ -95,14 +95,14 @@ namespace UPtel
             if (env.IsDevelopment())
             {
 
-                SeedData.InsereDadosTesteTodos(Dbcontext);
-                SeedData.InsereRolesAsync(gestorRoles).Wait();
-                SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
-                SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
+                //SeedData.InsereDadosTeste(Dbcontext);
+                //SeedData.InsereDadosTestePaginacaoPesquisa(Dbcontext);
 
-                //SeedData.InsereDadosCargos(Dbcontext);
-                //SeedData.InsereDadosFuncionarios(Dbcontext);
-                //SeedData.InsereDadosNetFixa(Dbcontext);
+                //SeedData.InsereRolesAsync(gestorRoles).Wait();
+                //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
+                //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
+
+
             }
         }
     }

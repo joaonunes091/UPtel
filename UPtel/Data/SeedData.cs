@@ -19,41 +19,23 @@ namespace UPtel.Data
         private const string ROLE_OPERADOR = "Operador";
 
 
-        private static void InsereDadosTesteTelefone(UPtelContext DbContext)
-        {
-            if (DbContext.Telefone.Any()) return;
-            DbContext.Telefone.AddRange(new Telefone[] {
-            new Telefone
-            {
-                Numero = "220000000",
-                Limite = 3000,
-                PrecoMinutoNacional = 0,
-                PrecoMinutoInternacional = 0.1M
-            },
-            new Telefone
-            {
-                Numero = "200100000",
-                Limite = 44600,
-                PrecoMinutoNacional = 0,
-                PrecoMinutoInternacional = 0.1M
-            },
-            new Telefone
-            {
-                Numero = "290100000",
-                Limite = 44600,
-                PrecoMinutoNacional = 0,
-                PrecoMinutoInternacional = 0
-            }
-        });
-            DbContext.SaveChanges();
-        }
+        //-------------------------------------------------
+        //         TELEVISÃO
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        //-------------------------------------------------
+        //         TELEMOVEL
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
         private static void InsereDadosTesteTelemovel(UPtelContext DbContext)
         {
             if (DbContext.Telemovel.Any()) return;
             DbContext.Telemovel.AddRange(new Telemovel[] {
             new Telemovel
             {
-                Numero = "90010000",
+                Numero = "910010000",
                 LimiteMinutos = 3000,
                 LimiteSms = 3000,
                 PrecoMinutoNacional = 0,
@@ -63,7 +45,7 @@ namespace UPtel.Data
             },
             new Telemovel
             {
-                Numero = "90010001",
+                Numero = "960100010",
                 LimiteMinutos = 44600,
                 LimiteSms = 5000,
                 PrecoMinutoNacional = 0,
@@ -73,7 +55,7 @@ namespace UPtel.Data
             },
             new Telemovel
             {
-                Numero = "90010002",
+                Numero = "910100020",
                 LimiteMinutos = 44000,
                 LimiteSms = 5000,
                 PrecoMinutoNacional = 4,
@@ -84,6 +66,97 @@ namespace UPtel.Data
         });
             DbContext.SaveChanges();
         }
+        private static void InsereTeleMovelFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            if (DbContext.Telemovel.Any()) return;
+
+            for (int i = 0; i < 50; i++)
+
+            {
+                DbContext.Telemovel.Add(new Telemovel
+                {
+                    Numero = "910010000",
+                    LimiteMinutos = 3000,
+                    LimiteSms = 3000,
+                    PrecoMinutoNacional = 0,
+                    PrecoMinutoInternacional = 0.1M,
+                    PrecoSms = 0.05M,
+                    PrecoMms = 0.1M
+
+                });
+            }
+
+            DbContext.SaveChanges();
+        }
+
+
+        //-------------------------------------------------
+        //         TELEFONE
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        private static void InsereDadosTesteTelefone(UPtelContext DbContext)
+        {
+            if (DbContext.Telefone.Any()) return;
+            DbContext.Telefone.AddRange(new Telefone[] {
+            new Telefone
+            {
+                Numero = "910000000",
+                Limite = 3000,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0.1M,
+                PrecoPacoteTelefone = 15m
+
+            },
+            new Telefone
+            {
+                Numero = "910000000",
+                Limite = 44600,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0.1M,
+                PrecoPacoteTelefone = 15m
+
+            },
+            new Telefone
+            {
+                Numero = "910000000",
+                Limite = 44600,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0,
+                PrecoPacoteTelefone = 15m
+            }
+        });
+            DbContext.SaveChanges();
+        }
+        private static void InsereTelefoneFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            if (DbContext.Telefone.Any()) return;
+
+            for (int i = 0; i < 50; i++)
+
+            {
+                DbContext.Telefone.Add(new Telefone
+                {
+                    Numero = "910000000",
+                    Limite = 44600 + i,
+                    PrecoMinutoNacional = 0,
+                    PrecoMinutoInternacional = 0,
+                    PrecoPacoteTelefone = 15m
+
+                });
+            }
+
+            DbContext.SaveChanges();
+        }
+
+
+        //-------------------------------------------------
+        //         PROMOÇOES
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
 
         private static void InsereDadosTestePromocoes(UPtelContext DbContext)
         {
@@ -92,23 +165,54 @@ namespace UPtel.Data
             new Promocoes
             {
                 NomePromocao = "Extra Nacional",
-                Descricao = "Oferta de minutos nacionais"
+                Descricao = "Oferta de minutos nacionais",
+                PromoCanais= 3,
+                Desconto = 2 
             },
             new Promocoes
             {
                 NomePromocao = "Inter Extra",
-                Descricao = "Oferta de minutos internacionais"
-
+                Descricao = "Oferta de minutos internacionais",
+                PromoCanais= 3,
+                Desconto = 2
             },
             new Promocoes
             {
                 NomePromocao = "Up Top",
-                Descricao = "VIP only!... Comunicações grátis!"
+                Descricao = "VIP only!... Comunicações grátis!",
+                PromoCanais= 3,
+                Desconto = 2
 
             }
         });
             DbContext.SaveChanges();
         }
+
+        private static void InserePromocoesFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            if (DbContext.Promocoes.Any()) return;
+
+            for (int i = 0; i < 50; i++)
+
+            {
+                DbContext.Promocoes.Add(new Promocoes
+                {
+                    NomePromocao = "Up Top" + i,
+                    Descricao = "VIP only!... Comunicações grátis!",
+                    PromoCanais = 3,
+                    Desconto = 2
+
+                });
+            }
+
+            DbContext.SaveChanges();
+        }
+
+        //-------------------------------------------------
+        //         CARGOS
+        //     DADOS DE TESTE 
+        //-------------------------------------------------
 
         private static void InsereDadosTesteCargos(UPtelContext DbContext)
         {
@@ -125,7 +229,12 @@ namespace UPtel.Data
         });
             DbContext.SaveChanges();
         }
+   
 
+        //-------------------------------------------------
+        //         CANAIS 
+        // DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //--------------------------------------------------
 
         private static void InsereDadosTesteCanais(UPtelContext DbContext)
         {
@@ -151,56 +260,9 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
-
-
-        private static void InsereDadosTesteNetfixa(UPtelContext DbContext)
-        {
-            if (DbContext.NetFixa.Any()) return;
-            DbContext.NetFixa.AddRange(new NetFixa[] {
-            new NetFixa
-            {
-                Limite = 7.5m,
-                Velocidade=100,
-                TipoConexao="Fibra",
-                Notas="",
-            },
-            new NetFixa
-            {
-                Limite = 15,
-                Velocidade=200,
-                TipoConexao="Fibra",
-                Notas="",
-            },
-            new NetFixa
-            {
-                Limite = 30,
-                Velocidade=500,
-                TipoConexao="Fibra",
-                Notas="A internet mais rápida dos nossos serviços",
-            },
-        });
-            DbContext.SaveChanges();
-        }
-        private static void InsereDadosTesteNetmovel(UPtelContext DbContext)
-        {
-
-            for (int i = 1; i < 50; i++)
-            {
-
-                DbContext.NetMovel.Add(new NetMovel
-                {
-                    Limite = 2,
-                    PrecoNetMovel = 1,
-                    Numero = "910000000", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
-                    Notas = "teste" + i
-                });
-
-            }
-            DbContext.SaveChanges();
-        }
-
         private static void InsereCanaisFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
+            if (DbContext.Canais.Any()) return;
 
             for (int i = 0; i < 50; i++)
 
@@ -214,6 +276,12 @@ namespace UPtel.Data
 
             DbContext.SaveChanges();
         }
+
+        //-------------------------------------------------
+        //       TIPO CLIENTES
+        //       DADOS DE TESTE 
+        //-------------------------------------------------
+
 
         private static void InsereDadosTesteTipoClientes(UPtelContext DbContext)
         {
@@ -238,22 +306,98 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
+        //-------------------------------------------------
+        //       NET FIXA
+        //    DADOS DE TESTE  
+        //-------------------------------------------------
 
-        internal static void InsereDadosTesteTodos(UPtelContext DbContext)
+
+        private static void InsereDadosTesteNetfixa(UPtelContext DbContext)
+        {
+            if (DbContext.NetFixa.Any()) return;
+            DbContext.NetFixa.AddRange(new NetFixa[] {
+            new NetFixa
+            {
+                Limite = 7.5m,
+                Velocidade=100,
+                TipoConexao="Fibra",
+                PrecoNetFixa = 1m,
+                Notas="",
+            },
+            new NetFixa
+            {
+                Limite = 15,
+                Velocidade=200,
+                TipoConexao="Fibra",
+                PrecoNetFixa = 1m,
+                Notas="",
+            },
+            new NetFixa
+            {
+                Limite = 30,
+                Velocidade=500,
+                TipoConexao="Fibra",
+                PrecoNetFixa = 1m,
+                Notas="A internet mais rápida dos nossos serviços",
+            },
+        });
+            DbContext.SaveChanges();
+        }
+
+
+        //-------------------------------------------------
+        //       NET MOVEL
+        // DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        private static void InsereDadosTesteNetmovel(UPtelContext DbContext)
+        {
+            if (DbContext.NetMovel.Any()) return;
+            for (int i = 1; i < 50; i++)
+            {
+
+                DbContext.NetMovel.Add(new NetMovel
+                {
+                    Limite = 2,
+                    PrecoNetMovel = 1,
+                    Numero = "910000000", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
+                    Notas = "teste" + i
+                });
+
+            }
+            DbContext.SaveChanges();
+        }
+
+   
+
+
+
+        internal static void InsereDadosTeste(UPtelContext DbContext)
+        {
+            InsereDadosTesteNetmovel(DbContext);
+            InsereDadosTesteNetfixa(DbContext);
+            InsereDadosTesteTipoClientes(DbContext);
+            InsereDadosTesteCanais(DbContext);
+            InsereDadosTesteCargos(DbContext);
+            InsereDadosTestePromocoes(DbContext);
+            InsereDadosTesteTelefone(DbContext);
+            InsereDadosTesteTelemovel(DbContext);
+
+        }
+
+
+
+        internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
         {
 
-            //InsereCanaisFicticiosParaTestarPaginacao(DbContext);
-            //InsereDadosTesteCargos(DbContext);
-            //InsereDadosTesteCanais(DbContext);
-            //InsereDadosTesteNetfixa(DbContext);
-            //InsereDadosTesteTelevisao(DbContext);
-            //InsereDadosTesteTelefone(DbContext);
-            //InsereDadosTesteTelemovel(DbContext);
-            //InsereDadosTestePromocoes(DbContext);
-            InsereDadosTesteTipoClientes(DbContext);
+            InsereCanaisFicticiosParaTestarPaginacao(DbContext);
+            InserePromocoesFicticiosParaTestarPaginacao(DbContext);
+            InsereTelefoneFicticiosParaTestarPaginacao(DbContext);
+            InsereTeleMovelFicticiosParaTestarPaginacao(DbContext);
 
 
         }
+
 
         internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
         {
@@ -309,24 +453,7 @@ namespace UPtel.Data
             return utilizador;
         }
 
-        public static void InsereDadosCargos(UPtelContext DbContext)
-        {
-            if (DbContext.Cargos.Any()) return;
-            DbContext.Cargos.AddRange(new Cargos[] {
-            new Cargos
-            {
-                NomeCargo = "Administrador"
-
-            },
-            new Cargos
-            {
-                NomeCargo = "Operador"
-
-            },
-
-        });
-            DbContext.SaveChanges();
-        }
+ 
 
         public static void InsereDadosFuncionarios(UPtelContext DbContext)
         {
@@ -357,30 +484,7 @@ namespace UPtel.Data
             }
             DbContext.SaveChanges();
         }
-        public static void InsereDadosNetFixa(UPtelContext DbContext)
-        {
-            if (DbContext.NetFixa.Any()) return;
-            DbContext.NetFixa.AddRange(new NetFixa[] {
-            new NetFixa
-            {
-                Limite = 600.00M,
-                Velocidade = 30,
-                TipoConexao = "Fibra",
-                PrecoNetFixa = 30.99M
-
-            },
-            new NetFixa
-            {
-                Limite = 0M,
-                Velocidade = 500,
-                TipoConexao = "Fibra",
-                PrecoNetFixa = 34.99M
-
-            },
-
-        });
-            DbContext.SaveChanges();
-        }
+        
 
 
 
