@@ -27,13 +27,11 @@ namespace UPtel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UPtelContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("UPtelContext")));          
+             
             services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -43,8 +41,8 @@ namespace UPtel
                 // Password
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequiredUniqueChars = 6;
+                //options.Password.RequiredLength = 8;
+                //options.Password.RequiredUniqueChars = 6;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
 
@@ -53,11 +51,13 @@ namespace UPtel
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
             })
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-             .AddDefaultUI();
-
-
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+  
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            services.AddDbContext<UPtelContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("UPtelContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,9 +96,9 @@ namespace UPtel
             {
 
                 SeedData.InsereDadosTesteTodos(Dbcontext);
-                //SeedData.InsereRolesAsync(gestorRoles).Wait();
-                //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
-                //SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
+                SeedData.InsereRolesAsync(gestorRoles).Wait();
+                SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
+                SeedData.InsereUtilizadoresFicticiosAsync(gestorUtilizadores).Wait();
 
                 //SeedData.InsereDadosCargos(Dbcontext);
                 //SeedData.InsereDadosFuncionarios(Dbcontext);

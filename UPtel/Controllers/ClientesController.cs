@@ -79,7 +79,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registo([Bind("ClienteId,NomeCliente,DataNascimento,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Password,TipoClienteId,CodigoPostalExt")] RegistoClienteViewModel infoclientes)
+        public async Task<IActionResult> Registo(RegistoClienteViewModel infoclientes)
         {
 
             IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
@@ -92,9 +92,9 @@ namespace UPtel.Controllers
 
             if (ModelState.IsValid)
             {
-                if (infoclientes.DataNascimento < DateTime.Today)
+                if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
                 {
-                    ModelState.AddModelError("DataNascimento", "Este valor não é válido para a data");
+                    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
                     return View(infoclientes);
                 }
                 return View(infoclientes);
