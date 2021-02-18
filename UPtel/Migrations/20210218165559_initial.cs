@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class ModeloContratos : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,7 +157,6 @@ namespace UPtel.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeFuncionario = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     CargoId = table.Column<int>(type: "int", nullable: false),
-                    NomeCargo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "date", nullable: false),
                     Contribuinte = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Morada = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
