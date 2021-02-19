@@ -15,17 +15,17 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Limite" class="control-label text-white"></label>
+                                <label asp-for="Limite" class="control-label text-white">Limite *</label>
                                 <input asp-for="Limite" class="form-control" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoNetMovel" class="control-label text-white"></label>
+                                <label asp-for="PrecoNetMovel" class="control-label text-white">Preço do tarifário *</label>
                                 <input asp-for="PrecoNetMovel" class="form-control" />
                                 <span asp-validation-for="PrecoNetMovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Numero" class="control-label text-white"></label>
+                                <label asp-for="Numero" class="control-label text-white">Número de telemóvel *</label>
                                 <input asp-for="Numero" class="form-control" />
                                 <span asp-validation-for="Numero" class="text-danger"></span>
                             </div>
@@ -40,14 +40,17 @@
                         </form>
                     </div>
                 </div>
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
 
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
 
             </div>
         </div>

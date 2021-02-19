@@ -31,8 +31,8 @@ namespace UPtel.Models
         public decimal PrecoNetMovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Número")]
-        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
+        [Display(Name = "Número de telemóvel")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
         [StringLength(9, MinimumLength = 9)]
         public string Numero { get; set; }
 
