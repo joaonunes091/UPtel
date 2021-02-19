@@ -29,25 +29,6 @@ namespace UPtel.Models
         [Display(Name = "Período de promoção")]
         public int? TempoPromocao { get; set; }
 
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Nome do Cliente")]
-        //[StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
-        //public string NomeCliente { get; set; }
-
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Nome do pacote de serviços")]
-        //[StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
-        //public string NomePacote { get; set; }
-
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Nome da promoção")]
-        //[StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
-        //public string NomePromocao { get; set; }
-
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Nome do funcionário")]
-        //[StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
-        //public string NomeFuncionario { get; set; }
 
         [Display(Name = "Valor total do contrato")]
         [Required(ErrorMessage = "Deve preencher o preço.")]
@@ -73,3 +54,23 @@ namespace UPtel.Models
         public virtual Promocoes Promocao { get; set; }
     }
 }
+
+//[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+//[Display(Name = "Nome do Cliente")]
+//[StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
+//public string NomeCliente { get; set; }
+
+//[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+//[Display(Name = "Nome do pacote de serviços")]
+//[StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
+//public string NomePacote { get; set; }
+
+//[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+//[Display(Name = "Nome da promoção")]
+//[StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
+//public string NomePromocao { get; set; }
+
+//[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+//[Display(Name = "Nome do funcionário")]
+//[StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
+//public string NomeFuncionario { get; set; }

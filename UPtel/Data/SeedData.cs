@@ -19,6 +19,54 @@ namespace UPtel.Data
         private const string ROLE_OPERADOR = "Operador";
 
 
+
+
+
+
+        //-------------------------------------------------
+        //     FUNÇÕES COM DADOS FICTICIOS PARA 
+        //     TESTAR FUNCIONALIDADES, PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+
+        internal static void InsereDadosTeste(UPtelContext DbContext)
+        {
+            InsereDadosTesteNetMovel(DbContext);
+            InsereDadosTesteNetfixa(DbContext);
+            InsereDadosTesteTipoClientes(DbContext);
+            InsereDadosTesteCanais(DbContext);
+            InsereDadosTesteCargos(DbContext);
+            InsereDadosTestePromocoes(DbContext);
+            InsereDadosTesteTelefone(DbContext);
+            InsereDadosTesteTelemovel(DbContext);
+            InsereDadosTesteTelevisao(DbContext);
+            InsereDadosTestePacoteCanais(DbContext);
+            InsereDadosTestePacote(DbContext);
+            InsereDadosTesteClientes(DbContext);
+            InsereDadosTesteFuncionarios(DbContext);
+            InsereDadosTesteContratos(DbContext);
+
+
+
+        }
+
+        internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
+        {
+
+            InsereCanaisFicticiosParaTestarPaginacao(DbContext);
+            InserePromocoesFicticiosParaTestarPaginacao(DbContext);
+            InsereTelefoneFicticiosParaTestarPaginacao(DbContext);
+            InsereTeleMovelFicticiosParaTestarPaginacao(DbContext);
+            InsereTelevisaoFicticiosParaTestarPaginacao(DbContext);
+            InsereNetMovelFicticiosParaTestarPaginacao(DbContext);
+            InserePacoteFicticiosParaTestarPaginacao(DbContext);
+            InsereClientesFicticiosParaTestarPaginacao(DbContext);
+            InsereFuncionariosFicticiosParaTestarPaginacao(DbContext);
+
+        }
+
+
+
         //-------------------------------------------------
         //         TELEVISÃO
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
@@ -151,7 +199,7 @@ namespace UPtel.Data
             DbContext.Telefone.AddRange(new Telefone[] {
             new Telefone
             {
-                Numero = "910000000",
+                Numero = "275888888",
                 Limite = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
@@ -160,7 +208,7 @@ namespace UPtel.Data
             },
             new Telefone
             {
-                Numero = "910000000",
+                Numero = "275888888",
                 Limite = 44600,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
@@ -169,7 +217,7 @@ namespace UPtel.Data
             },
             new Telefone
             {
-                Numero = "910000000",
+                Numero = "224567891",
                 Limite = 44600,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0,
@@ -188,7 +236,7 @@ namespace UPtel.Data
             {
                 DbContext.Telefone.Add(new Telefone
                 {
-                    Numero = "910000000",
+                    Numero = "210000000",
                     Limite = 44600 + i,
                     PrecoMinutoNacional = 0,
                     PrecoMinutoInternacional = 0,
@@ -216,7 +264,7 @@ namespace UPtel.Data
                 NomePromocao = "Extra Nacional",
                 Descricao = "Oferta de minutos nacionais",
                 PromoCanais= 3,
-                Desconto = 2 
+                Desconto = 2
             },
             new Promocoes
             {
@@ -278,7 +326,7 @@ namespace UPtel.Data
         });
             DbContext.SaveChanges();
         }
-   
+
 
         //-------------------------------------------------
         //         CANAIS 
@@ -399,7 +447,36 @@ namespace UPtel.Data
         // DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         //-------------------------------------------------
 
-        private static void InsereDadosTesteNetmovel(UPtelContext DbContext)
+        private static void InsereDadosTesteNetMovel(UPtelContext DbContext)
+        {
+            if (DbContext.NetMovel.Any()) return;
+            DbContext.NetMovel.AddRange(new NetMovel[] {
+            new NetMovel
+            {
+                    Limite = 5,
+                    PrecoNetMovel = 1,
+                    Numero = "911234567",
+                    Notas = "teste 1"
+            },
+            new NetMovel
+            {
+                    Limite = 7,
+                    PrecoNetMovel = 1,
+                    Numero = "929876543",
+                    Notas = "teste 2"
+            },
+            new NetMovel
+            {
+                    Limite = 26,
+                    PrecoNetMovel = 5,
+                    Numero = "969513578",
+                    Notas = "teste 3"
+            },
+        });
+            DbContext.SaveChanges();
+        }
+
+        private static void InsereNetMovelFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
             if (DbContext.NetMovel.Any()) return;
             for (int i = 1; i < 50; i++)
@@ -422,35 +499,7 @@ namespace UPtel.Data
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         //-------------------------------------------------
 
-        private static void InsereCanaisFicticios(UPtelContext DbContext)
-        {
-            GaranteExistenciaCanais(DbContext, "RTP Africa");
-        }
-        private static void GaranteExistenciaCanais(UPtelContext DbContext, string nome)
-        {
-            Canais canais = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == nome);
-            if (canais == null)
-            {
-                canais = new Canais { NomeCanal = nome };
-                DbContext.Canais.Add(canais);
-                DbContext.SaveChanges();
-            }
-        }
-
-        private static void InsereTelevisaoFicticios(UPtelContext DbContext)
-        {
-            GaranteExistenciaTelevisao(DbContext, "Básico");
-        }
-        private static void GaranteExistenciaTelevisao(UPtelContext DbContext, string nome)
-        {
-            Televisao tv = DbContext.Televisao.FirstOrDefault(c => c.Nome == nome);
-            if (tv == null)
-            {
-                tv = new Televisao { Nome = nome };
-                DbContext.Televisao.Add(tv);
-                DbContext.SaveChanges();
-            }
-        }
+    
         private static void InsereDadosTestePacoteCanais(UPtelContext DbContext)
         {
             if (DbContext.PacoteCanais.Any()) return;
@@ -477,38 +526,354 @@ namespace UPtel.Data
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         //-------------------------------------------------
 
-
-        internal static void InsereDadosTeste(UPtelContext DbContext)
+        private static void InsereDadosTestePacote(UPtelContext DbContext)
         {
-            InsereDadosTesteNetmovel(DbContext);
-            InsereDadosTesteNetfixa(DbContext);
-            InsereDadosTesteTipoClientes(DbContext);
-            InsereDadosTesteCanais(DbContext);
-            InsereDadosTesteCargos(DbContext);
-            InsereDadosTestePromocoes(DbContext);
-            InsereDadosTesteTelefone(DbContext);
-            InsereDadosTesteTelemovel(DbContext);
-            InsereDadosTesteTelevisao(DbContext);
-            //InsereCanaisFicticios(DbContext);
-            //InsereTelevisaoFicticios(DbContext);
-            InsereDadosTestePacoteCanais(DbContext);
+            if (DbContext.Pacotes.Any()) return;
+
+            Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
+            Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Numero == "910100020");
+            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra");
+            Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Numero == "275888888");
+            NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Numero == "911234567");
 
 
+            DbContext.Pacotes.AddRange(new Pacotes[]
+               {
+                new Pacotes
+                {
+                    NomePacote = "Básico",
+                    PrecoTotal = 59m,
+                    Televisao = televisaoBasico,
+                    Telemovel = telemovel,
+                    NetIfixa = netFixa,
+                    Telefone = telefone,
+                    NetMovel = netMovel 
+
+                },
+                  new Pacotes
+                {
+                    NomePacote = "VIP",
+                    PrecoTotal = 54m,
+                    Televisao = televisaoBasico,
+                    Telemovel = telemovel,
+                    NetIfixa = netFixa,
+                    Telefone = telefone,
+                    NetMovel = netMovel
+
+                },
+                    new Pacotes
+                {
+                    NomePacote = "Premium",
+                    PrecoTotal = 34m,
+                    Televisao = televisaoBasico,
+                    Telemovel = telemovel,
+                    NetIfixa = netFixa,
+                    Telefone = telefone,
+                    NetMovel = netMovel
+
+                }
+
+                });
+
+            DbContext.SaveChanges();
+        }
+        public static void InserePacoteFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            for (int i = 10; i < 50; i++)
+
+            {
+                if (DbContext.Pacotes.Any()) return;
+
+                Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
+                Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Numero == "910100020");
+                NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra");
+                Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Numero == "275888888");
+                NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Numero == "911234567");
+
+                DbContext.Pacotes.Add(new Pacotes
+                {
+                    NomePacote = "Básico " + i,
+                    PrecoTotal = 34m,
+                    Televisao = televisaoBasico,
+                    Telemovel = telemovel,
+                    NetIfixa = netFixa,
+                    Telefone = telefone,
+                    NetMovel = netMovel
+
+                });
+
+            }
+            DbContext.SaveChanges();
+        }
+
+
+        //-------------------------------------------------
+        //         CLIENTES
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        private static void InsereDadosTesteClientes(UPtelContext DbContext)
+        {
+            if (DbContext.Clientes.Any()) return;
+
+            TipoClientes tipoCliente = DbContext.TipoClientes.FirstOrDefault(c => c.Designacao == "Empresa");
+
+
+            DbContext.Clientes.AddRange(new Clientes[]
+               {
+                new Clientes
+                {
+                    NomeCliente = "José Figueiras",
+                    DataNascimento = new DateTime(1969,12,18),
+                    CartaoCidadao = "15485963",
+                    Contribuinte = "154965739",
+                    Morada = "Rua Júlio Cesár Machado nº14",
+                    CodigoPostal = "1500",
+                    Telefone="231584687",
+                    Telemovel="961847659",
+                    Email="José.Ramos@gmail.com",
+                    TipoCliente = tipoCliente,
+                    Password="Ola123$",
+                    CodigoPostalExt="695",
+                },
+                new Clientes
+                {
+                    NomeCliente = "Rui Pedro Santos",
+                    DataNascimento=new DateTime(1990,8,8),
+                    CartaoCidadao="24045212",
+                    Contribuinte="157782731",
+                    Morada="Rua do Pinho Alto nº 25",
+                    CodigoPostal="2300",
+                    Telefone="271598874",
+                    Telemovel="927856988",
+                    Email="Rui.Pedro.Santos@gmail.com",
+                    TipoCliente = tipoCliente,
+                    Password="Ola123$",
+                    CodigoPostalExt="588",
+
+                },
+                new Clientes
+                {
+                    NomeCliente = "Mariana Rute Guedes",
+                    DataNascimento=new DateTime(1987,11,7),
+                    CartaoCidadao="15487986",
+                    Contribuinte="16687495",
+                    Morada="Rua do Comércio nº4",
+                    CodigoPostal="1700",
+                    Telefone="234598777",
+                    Telemovel="961155484",
+                    Email="Mariana.Rute.Guedes@gmail.com",
+                    TipoCliente = tipoCliente,
+                    Password="Ola123$",
+                    CodigoPostalExt="588",
+                },
+                new Clientes
+                {
+                    NomeCliente = "David Rui Pedroso",
+                    DataNascimento=new DateTime(1985,1,20),
+                    CartaoCidadao="34657986",
+                    Contribuinte="37655497",
+                    Morada="Rua de São Mamede nº10",
+                    CodigoPostal="4000",
+                    Telefone="236459557",
+                    Telemovel="915444789",
+                    Email="David.Rui.Pedroso@gmail.com",
+                    TipoCliente = tipoCliente,
+                    Password="Ola123$",
+                    CodigoPostalExt="588",
+                },
+                });
+
+            DbContext.SaveChanges();
+        }
+
+        public static void InsereClientesFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            for (int i = 10; i < 50; i++)
+
+            {
+                if (DbContext.Clientes.Any()) return;
+
+                TipoClientes tipoCliente = DbContext.TipoClientes.FirstOrDefault(c => c.Designacao == "Empresa");
+
+                DbContext.Clientes.Add(new Clientes
+                {
+                    NomeCliente = "José Figueiras " + i,
+                    DataNascimento = new DateTime(1969, 12, 18),
+                    CartaoCidadao = Convert.ToString(12345670 + i),
+                    Contribuinte = Convert.ToString(123456700 + i),
+                    Morada = "Rua Júlio Cesár Machado nº14",
+                    CodigoPostal = "1500",
+                    Telefone = Convert.ToString(247112500 + i),
+                    Telemovel = Convert.ToString(913456700 + i),
+                    Email = "José.Ramos@gmail.com " + i,
+                    TipoCliente = tipoCliente,
+                    Password = "Ola123$",
+                    CodigoPostalExt = "695",
+
+                });
+
+            }
+            DbContext.SaveChanges();
+        }
+
+        //-------------------------------------------------
+        //         FUNCIONARIOS
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        private static void InsereDadosTesteFuncionarios(UPtelContext DbContext)
+        {
+            if (DbContext.Funcionarios.Any()) return;
+
+            Cargos cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+
+
+            DbContext.Funcionarios.AddRange(new Funcionarios[]
+               {
+                new Funcionarios
+                {
+                    NomeFuncionario = "Mário",
+                    Cargo = cargos,
+                    DataNascimento = new DateTime(1982, 11, 11),
+                    Contribuinte = "123456700",
+                    Morada = "Sem Abrigo",
+                    CodigoPostal = "1234",
+                    Email = "a@b.com",
+                    Telemovel = "913456700",
+                    CartaoCidadao = "12345670",
+                    Iban = "1234567891234567891234567",
+                    Password = "Ola123$",
+                    CodigoPostalExt = "123",
+                    EstadoFuncionario = "ativo"
+                },
+                new Funcionarios
+                {
+                    NomeFuncionario = "Maria",
+                    Cargo = cargos,
+                    DataNascimento = new DateTime(1979, 11, 11),
+                    Contribuinte = "123456589",
+                    Morada = "Sem Abrigo",
+                    CodigoPostal = "1234",
+                    Email = "b@b.com",
+                    Telemovel = "913456150",
+                    CartaoCidadao = "12345678",
+                    Iban = "1234567891234567891234567",
+                    Password = "Ola123$",
+                    CodigoPostalExt = "123",
+                    EstadoFuncionario = "ativo"
+                },
+                new Funcionarios
+                {
+                    NomeFuncionario = "Manuel",
+                    Cargo = cargos,
+                    DataNascimento = new DateTime(1968, 11, 11),
+                    Contribuinte = "123456747",
+                    Morada = "Sem Abrigo",
+                    CodigoPostal = "1234",
+                    Email = "c@b.com",
+                    Telemovel = "913456747",
+                    CartaoCidadao = "12345474",
+                    Iban = "1234567891234567891234567",
+                    Password = "Ola123$",
+                    CodigoPostalExt = "123",
+                    EstadoFuncionario = "ativo"
+                },
+                 new Funcionarios
+                {
+                    NomeFuncionario = "Madalena",
+                    Cargo = cargos,
+                    DataNascimento = new DateTime(1995, 11, 11),
+                    Contribuinte = "123456774",
+                    Morada = "Sem Abrigo",
+                    CodigoPostal = "1234",
+                    Email = "d@b.com",
+                    Telemovel = "913456440",
+                    CartaoCidadao = "23456701",
+                    Iban = "1234567891234567891234567",
+                    Password = "Ola123$",
+                    CodigoPostalExt = "123",
+                    EstadoFuncionario = "ativo"
+                },
+                });
+
+            DbContext.SaveChanges();
+        }
+        public static void InsereFuncionariosFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            for (int i = 10; i < 50; i++)
+
+            {
+                if (DbContext.Funcionarios.Any()) return;
+
+                Cargos cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+
+                DbContext.Funcionarios.Add(new Funcionarios
+                {
+                    NomeFuncionario = "Funcionário " + i,
+                    Cargo = cargos,
+                    DataNascimento = new DateTime(1911, 11, 11),
+                    Contribuinte = Convert.ToString(123456700 + i),
+                    Morada = "Sem Abrigo",
+                    CodigoPostal = "1234",
+                    Email = "a" + i + "@b.com",
+                    Telemovel = Convert.ToString(913456700 + i),
+                    CartaoCidadao = Convert.ToString(12345670 + i),
+                    Iban = "1234567891234567891234567",
+                    Password = "Ola123$",
+                    CodigoPostalExt = "123",
+                    EstadoFuncionario = "ativo"
+
+                });
+
+            }
+            DbContext.SaveChanges();
+        }
+
+        //-------------------------------------------------
+        //         CONTRATOS
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
+
+        private static void InsereDadosTesteContratos(UPtelContext DbContext)
+        {
+            if (DbContext.Contratos.Any()) return;
+            
+            Clientes clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
+            Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
+            Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
+            Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
+
+
+            DbContext.Contratos.AddRange(new Contratos[]
+               {
+                new Contratos
+                {
+                    Cliente = clientes,
+                    Funcionario = funcionarios,
+                    Promocao = promocoes,
+                    Pacote = pacotes,
+                    DataInicio = new DateTime(1965,05,25),
+                    Fidelizacao = 5,
+                    TempoPromocao = 5,
+                    PrecoContrato = 59m,
+                },
+                 
+
+                });
+
+            DbContext.SaveChanges();
         }
 
 
 
-        internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
-        {
-
-            InsereCanaisFicticiosParaTestarPaginacao(DbContext);
-            InserePromocoesFicticiosParaTestarPaginacao(DbContext);
-            InsereTelefoneFicticiosParaTestarPaginacao(DbContext);
-            InsereTeleMovelFicticiosParaTestarPaginacao(DbContext);
-            InsereTelevisaoFicticiosParaTestarPaginacao(DbContext);
-
-        }
-
+        //-------------------------------------------------
+        //   CRIAÇÃO DE UTILIZADORES E ROLES
+        //   FICTICIOS E REAIS 
+        //-------------------------------------------------
 
         internal static async Task InsereUtilizadoresFicticiosAsync(UserManager<IdentityUser> gestorUtilizadores)
         {
@@ -564,37 +929,10 @@ namespace UPtel.Data
             return utilizador;
         }
 
- 
 
-        public static void InsereDadosFuncionarios(UPtelContext DbContext)
-        {
 
-            for (int i = 10; i < 50; i++)
 
-            {
-                if (DbContext.Funcionarios.Any()) return;
-                DbContext.Funcionarios.Add(new Funcionarios
-                {
-                    NomeFuncionario = "Funcionário " + i,
-                    CargoId = 4,
-                    DataNascimento = new DateTime(1911, 11, 11),
-                    Contribuinte = Convert.ToString(123456700 + i),
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "a" + i + "@b.com",
-                    Telemovel = Convert.ToString(913456700 + i),
-                    CartaoCidadao = Convert.ToString(12345670 + i),
-                    Iban = "1234567891234567891234567",
-                    Password = "password",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
 
-                });
-
-            }
-            DbContext.SaveChanges();
-        }
-        
 
 
 
