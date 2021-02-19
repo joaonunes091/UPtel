@@ -16,7 +16,7 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Designacao" class="control-label text-white"></label>
+                                <label asp-for="Designacao" class="control-label text-white">Designação *</label>
                                 <input asp-for="Designacao" class="form-control" />
                                 <span asp-validation-for="Designacao" class="text-danger"></span>
                             </div>
@@ -26,14 +26,16 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
             </div>
         </div>
     </div>

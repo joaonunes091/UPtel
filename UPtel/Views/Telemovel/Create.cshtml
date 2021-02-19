@@ -16,42 +16,42 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Numero" class="control-label"></label>
+                                <label asp-for="Numero" class="control-label">Número de telemóvel *</label>
                                 <input asp-for="Numero" class="form-control" />
                                 <span asp-validation-for="Numero" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="LimiteMinutos" class="control-label"></label>
+                                <label asp-for="LimiteMinutos" class="control-label">Limite de minutos *</label>
                                 <input asp-for="LimiteMinutos" class="form-control" />
                                 <span asp-validation-for="LimiteMinutos" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="LimiteSms" class="control-label"></label>
+                                <label asp-for="LimiteSms" class="control-label">Limite de SMS *</label>
                                 <input asp-for="LimiteSms" class="form-control" />
                                 <span asp-validation-for="LimiteSms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMinutoNacional" class="control-label"></label>
+                                <label asp-for="PrecoMinutoNacional" class="control-label">Preço por minuto de chamadas nacionais *</label>
                                 <input asp-for="PrecoMinutoNacional" class="form-control" />
                                 <span asp-validation-for="PrecoMinutoNacional" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMinutoInternacional" class="control-label"></label>
+                                <label asp-for="PrecoMinutoInternacional" class="control-label">Preço por minuto de chamadas internacionais *</label>
                                 <input asp-for="PrecoMinutoInternacional" class="form-control" />
                                 <span asp-validation-for="PrecoMinutoInternacional" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoSms" class="control-label"></label>
+                                <label asp-for="PrecoSms" class="control-label">Preço de SMS nacional *</label>
                                 <input asp-for="PrecoSms" class="form-control" />
                                 <span asp-validation-for="PrecoSms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMms" class="control-label"></label>
+                                <label asp-for="PrecoMms" class="control-label">Preço de MMS nacional *</label>
                                 <input asp-for="PrecoMms" class="form-control" />
                                 <span asp-validation-for="PrecoMms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoPacoteTelemovel" class="control-label"></label>
+                                <label asp-for="PrecoPacoteTelemovel" class="control-label">Preço do pacote de telemóvel *</label>
                                 <input asp-for="PrecoPacoteTelemovel" class="form-control" />
                                 <span asp-validation-for="PrecoPacoteTelemovel" class="text-danger"></span>
                             </div>
@@ -61,14 +61,16 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
             </div>
         </div>
     </div>

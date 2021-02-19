@@ -17,32 +17,32 @@
                         <form asp-action="Registo">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="NomeCliente" class="control-label"></label>
+                                <label asp-for="NomeCliente" class="control-label">Nome do Cliente *</label>
                                 <input asp-for="NomeCliente" class="form-control" />
                                 <span asp-validation-for="NomeCliente" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="DataNascimento" class="control-label"></label>
+                                <label asp-for="DataNascimento" class="control-label">Data de nascimento *</label>
                                 <input asp-for="DataNascimento" class="form-control" />
                                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CartaoCidadao" class="control-label"></label>
+                                <label asp-for="CartaoCidadao" class="control-label">Número do cartão de cidadão *</label>
                                 <input asp-for="CartaoCidadao" class="form-control" />
                                 <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Contribuinte" class="control-label"></label>
+                                <label asp-for="Contribuinte" class="control-label">Número de contribuinte *</label>
                                 <input asp-for="Contribuinte" class="form-control" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Morada" class="control-label"></label>
+                                <label asp-for="Morada" class="control-label">Morada *</label>
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
                             <div class="form-row">
-                                <label asp-for="CodigoPostal" class="control-label"></label>
+                                <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
                             </div>        
                             <div class="form-row">
                                 <div class="col-md-4">
@@ -55,34 +55,28 @@
                                     <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                @*<label asp-for="CodigoPostalExt" class="control-label"></label>*@
-                                @*<input asp-for="CodigoPostalExt" class="form-control" />
-                                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>*@
-                            </div>
                             <div class="form-group">
                                 <label asp-for="Telefone" class="control-label"></label>
                                 <input asp-for="Telefone" class="form-control" />
                                 <span asp-validation-for="Telefone" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Telemovel" class="control-label"></label>
+                                <label asp-for="Telemovel" class="control-label">Telemóvel *</label>
                                 <input asp-for="Telemovel" class="form-control" />
                                 <span asp-validation-for="Telemovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Email" class="control-label"></label>
+                                <label asp-for="Email" class="control-label">Email *</label>
                                 <input asp-for="Email" class="form-control" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Password" class="control-label"></label>
+                                <label asp-for="Password" class="control-label">Password*</label>
                                 <input asp-for="Password" class="form-control" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ConfirmePassword" class="control-label"></label>
+                                <label asp-for="ConfirmePassword" class="control-label">Confirme a sua password *</label>
                                 <input asp-for="ConfirmePassword" class="form-control" />
                                 <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
                             </div>

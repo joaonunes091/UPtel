@@ -16,12 +16,12 @@
                         <form asp-action="Create" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="NomeCanal" class="control-label text-white"></label>
+                                <label asp-for="NomeCanal" class="control-label text-white">Nome do canal *</label>
                                 <input asp-for="NomeCanal" class="form-control" />
                                 <span asp-validation-for="NomeCanal" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoCanais" class="control-label text-white"></label>
+                                <label asp-for="PrecoCanais" class="control-label text-white">Preço dos canais *</label>
                                 <input asp-for="PrecoCanais" class="form-control" />
                                 <span asp-validation-for="PrecoCanais" class="text-danger"></span>
                             </div>
@@ -35,7 +35,9 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>

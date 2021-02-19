@@ -47,7 +47,7 @@
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="DataInicio" class="control-label"></label>
+                                <label asp-for="DataInicio" class="control-label">Data de inicio de contrato *</label>
                                 <input asp-for="DataInicio" class="form-control" />
                                 <span asp-validation-for="DataInicio" class="text-danger"></span>
                             </div>
@@ -62,7 +62,7 @@
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoContrato" class="control-label"></label>
+                                <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
                                 <input asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
@@ -72,7 +72,9 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>
