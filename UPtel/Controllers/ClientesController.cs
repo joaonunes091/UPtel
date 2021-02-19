@@ -127,11 +127,11 @@ namespace UPtel.Controllers
                 await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
             }
 
-            if (!ModelState.IsValid)
-            {
+            //if (!ModelState.IsValid)
+            //{
 
-                return View("Sucesso"); //to do
-            }
+            //    return View("Sucesso"); //to do
+            //}
 
             
 
