@@ -84,7 +84,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(pacoteCanais);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de canais adicionado com sucesso";
+                return View("Sucesso");
             }
             ViewData["CanaisId"] = new SelectList(_context.Canais, "CanaisId", "NomeCanal", pacoteCanais.CanaisId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacoteCanais.TelevisaoId);
@@ -102,7 +103,8 @@ namespace UPtel.Controllers
             var pacoteCanais = await _context.PacoteCanais.FindAsync(id);
             if (pacoteCanais == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmenteo pacote de canais já foi eliminado.";
+                return View("Erro");
             }
             ViewData["CanaisId"] = new SelectList(_context.Canais, "CanaisId", "NomeCanal", pacoteCanais.CanaisId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacoteCanais.TelevisaoId);
@@ -139,7 +141,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de canais alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["CanaisId"] = new SelectList(_context.Canais, "CanaisId", "NomeCanal", pacoteCanais.CanaisId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacoteCanais.TelevisaoId);
@@ -160,7 +163,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.PacoteCanalId == id);
             if (pacoteCanais == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O pacote de canais já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(pacoteCanais);
@@ -174,7 +178,8 @@ namespace UPtel.Controllers
             var pacoteCanais = await _context.PacoteCanais.FindAsync(id);
             _context.PacoteCanais.Remove(pacoteCanais);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O pacote de canais foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool PacoteCanaisExists(int id)

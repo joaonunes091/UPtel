@@ -81,7 +81,8 @@ namespace UPtel.Controllers
             var cargos = await _context.Cargos.FindAsync(id);
             if (cargos == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cargo já foi eliminado.";
+                return View("Erro");
             }
             return View(cargos);
         }
@@ -116,7 +117,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Cargo alterado com sucesso";
+                return View("Sucesso");
             }
             return View(cargos);
         }
@@ -133,7 +135,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.CargoId == id);
             if (cargos == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O cargo já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(cargos);
@@ -147,7 +150,8 @@ namespace UPtel.Controllers
             var cargos = await _context.Cargos.FindAsync(id);
             _context.Cargos.Remove(cargos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O cargo foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool CargosExists(int id)

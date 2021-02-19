@@ -78,7 +78,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(telefone);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Telefone adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(telefone);
         }
@@ -94,7 +95,8 @@ namespace UPtel.Controllers
             var telefone = await _context.Telefone.FindAsync(id);
             if (telefone == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o telefone já foi eliminado.";
+                return View("Erro");
             }
             return View(telefone);
         }
@@ -129,7 +131,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Telefone alterado com sucesso";
+                return View("Sucesso");
             }
             return View(telefone);
         }
@@ -146,7 +149,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.TelefoneId == id);
             if (telefone == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O telefone já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(telefone);
@@ -160,7 +164,8 @@ namespace UPtel.Controllers
             var telefone = await _context.Telefone.FindAsync(id);
             _context.Telefone.Remove(telefone);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O telefone foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool TelefoneExists(int id)

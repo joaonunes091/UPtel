@@ -78,7 +78,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(promocoes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Promoção criada com sucesso";
+                return View("Sucesso");
             }
             return View(promocoes);
         }
@@ -94,7 +95,8 @@ namespace UPtel.Controllers
             var promocoes = await _context.Promocoes.FindAsync(id);
             if (promocoes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente a promoção já foi eliminada.";
+                return View("Erro");
             }
             return View(promocoes);
         }
@@ -129,7 +131,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Promoção criada com sucesso";
+                return View("Sucesso");
             }
             return View(promocoes);
         }
@@ -146,7 +149,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.PromocaoId == id);
             if (promocoes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "A promoção já foi eliminada por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(promocoes);
@@ -160,7 +164,8 @@ namespace UPtel.Controllers
             var promocoes = await _context.Promocoes.FindAsync(id);
             _context.Promocoes.Remove(promocoes);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A promoção foi eliminada com sucesso.";
+            return View("Sucesso");
         }
 
         private bool PromocoesExists(int id)
