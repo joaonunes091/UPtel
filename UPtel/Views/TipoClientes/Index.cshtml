@@ -10,7 +10,7 @@
                 <h2>Tipo de clientes</h2>
 
                 <p>
-                    <a asp-action="Create">Adicionar tipo de cliente</a>
+                    <a class="btn btn-costum" asp-action="Create">Adicionar tipo de cliente</a>
                 </p>
                 @if (Model.Count() == 0)
                 {
@@ -34,10 +34,10 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => tipo.Designacao)
                                     </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@tipo.TipoClienteId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@tipo.TipoClienteId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@tipo.TipoClienteId">Eliminar</a>
+                                    <td class="text-right">
+                                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@tipo.TipoClienteId">Editar</a> |
+                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@tipo.TipoClienteId">Detalhes</a> |
+                                        <a class="btn btn-costum" asp-action="Delete" asp-route-id="@tipo.TipoClienteId">Eliminar</a>
                                     </td>
                                 </tr>
                             }
