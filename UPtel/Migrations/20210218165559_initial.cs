@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class AtualizacaoPacotesCanais : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,7 +114,7 @@ namespace UPtel.Migrations
                     PrecoMinutoInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     PrecoSMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     PrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    PrecoPacoteTelemovel = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PrecoPacoteTelemovel = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,7 +157,6 @@ namespace UPtel.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeFuncionario = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     CargoId = table.Column<int>(type: "int", nullable: false),
-                    NomeCargo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "date", nullable: false),
                     Contribuinte = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Morada = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -189,9 +188,7 @@ namespace UPtel.Migrations
                     PacoteCanalId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TelevisaoId = table.Column<int>(type: "int", nullable: false),
-                    CanaisId = table.Column<int>(type: "int", nullable: false),
-                    NomeCanal = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    NomeTelevisao = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    CanaisId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -302,10 +299,6 @@ namespace UPtel.Migrations
                     DataInicio = table.Column<DateTime>(type: "date", nullable: false),
                     Fidelizacao = table.Column<int>(type: "int", nullable: true),
                     TempoPromocao = table.Column<int>(type: "int", nullable: true),
-                    NomeCliente = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
-                    NomePacote = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NomePromocao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NomeFuncionario = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>

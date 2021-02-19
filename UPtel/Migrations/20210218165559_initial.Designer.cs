@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210218102207_AtualizacaoPacotesCanais")]
-    partial class AtualizacaoPacotesCanais
+    [Migration("20210218165559_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,26 +155,6 @@ namespace UPtel.Migrations
                     b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeCliente")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("NomeFuncionario")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("NomePacote")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("NomePromocao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int>("PacoteId")
                         .HasColumnType("int");
 
@@ -255,11 +235,6 @@ namespace UPtel.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("NomeCargo")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("NomeFuncionario")
                         .IsRequired()
@@ -361,16 +336,6 @@ namespace UPtel.Migrations
 
                     b.Property<int>("CanaisId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NomeCanal")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("NomeTelevisao")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("TelevisaoId")
                         .HasColumnType("int");
@@ -517,7 +482,7 @@ namespace UPtel.Migrations
                         .HasColumnName("PrecoMMS");
 
                     b.Property<decimal>("PrecoPacoteTelemovel")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<decimal>("PrecoSms")
                         .HasColumnType("decimal(4,2)")
