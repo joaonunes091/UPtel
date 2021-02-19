@@ -153,7 +153,7 @@ namespace UPtel.Controllers
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Canal adicionado com sucesso";
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
 
 
