@@ -10,7 +10,6 @@
                 <h2>Detalhes do tipo de cliente</h2>
 
                 <div>
-                    @*<h4>Tipo de clientes</h4>*@
                     <hr />
                     <div class="row">
                         <div class="col-md-4">
@@ -27,6 +26,7 @@
                 </div>
                 <div>
                     <a asp-action="Edit" asp-route-id="@Model.TipoClienteId">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.TipoClienteId">Apagar</a> |
                     <a asp-action="Index">Voltar</a>
                 </div>
             </div>

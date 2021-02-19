@@ -56,13 +56,16 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TipoClienteId,Designacao")] TipoClientes tipoClientes)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(tipoClientes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(tipoClientes);
             }
-            return View(tipoClientes);
+            
+            _context.Add(tipoClientes);
+            await _context.SaveChangesAsync();
+            ViewBag.Mensagem = "Tipo de Cliente adicionado com sucesso";
+            return View("Sucesso");
+            //return RedirectToAction(nameof(Index));
         }
 
         // GET: TipoClientes/Edit/5

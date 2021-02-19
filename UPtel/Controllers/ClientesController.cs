@@ -127,11 +127,11 @@ namespace UPtel.Controllers
                 await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
             }
 
-            if (!ModelState.IsValid)
-            {
+            //if (!ModelState.IsValid)
+            //{
 
-                return View("Sucesso"); //to do
-            }
+            //    return View("Sucesso"); //to do
+            //}
 
             
 
@@ -153,7 +153,7 @@ namespace UPtel.Controllers
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Canal adicionado com sucesso";
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
 
 
