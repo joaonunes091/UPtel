@@ -13,8 +13,13 @@
                         <p >@ViewBag.Mensagem</p>
 
                         <div>
-                            <a class="btn btn-primary" asp-action="Index">
-                                Voltar
+                            <a class="btn btn-primary" asp-controller="Clientes" asp-action="Index">
+                                Ver lista de clientes
+                            </a>
+                        </div>
+                        <div>
+                            <a asp-area="Identity" asp-page="/Account/Login">
+                                Fazer o login
                             </a>
                         </div>
                     </div>

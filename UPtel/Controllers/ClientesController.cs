@@ -81,8 +81,16 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registo(RegistoClienteViewModel infoclientes)
         {
+            IdentityUser utilizador = new IdentityUser();
+            if (infoclientes.Email == null)
+            {
+                ModelState.AddModelError("Email", "Precisa de introduzir um email");
+            }
+            else
+            {
+                 utilizador= await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+            }
 
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
 
             if (utilizador != null)
             {
@@ -99,8 +107,17 @@ namespace UPtel.Controllers
                 }
             }
 
+            IdentityResult resultado = new IdentityResult();
+            if (infoclientes.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+            }
+            else
+            {
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            }
 
-            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+            
             if (!resultado.Succeeded)
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -110,11 +127,11 @@ namespace UPtel.Controllers
                 await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
             }
 
-            if (!ModelState.IsValid)
-            {
+            //if (!ModelState.IsValid)
+            //{
 
-                return View("Sucesso"); //to do
-            }
+            //    return View("Sucesso"); //to do
+            //}
 
             
 
@@ -136,7 +153,7 @@ namespace UPtel.Controllers
             };
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Canal adicionado com sucesso";
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
 
 
