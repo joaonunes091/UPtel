@@ -16,9 +16,10 @@
                                     <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Bem-vindo @User.Identity.Name!</a>
                                 </li>
                                 <li class="nav-item">
-                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                        <a>Logout</a>
-                                    </form>
+                                    <a class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        @*<button type="submit" class="nav-link btn btn-link ">Logout</button>*@Logout
+                                    </a>
+
                                 </li>
                             }
                             else
