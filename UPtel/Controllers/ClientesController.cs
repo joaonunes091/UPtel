@@ -152,10 +152,16 @@ namespace UPtel.Controllers
                 TipoClienteId=infoclientes.TipoClienteId,
             };
                 _context.Add(clientes);
+            if (infoclientes.NomeCliente == null || infoclientes.CartaoCidadao == null || infoclientes.Contribuinte == null || infoclientes.Morada == null || infoclientes.CodigoPostal == null || infoclientes.Telemovel == null || infoclientes.CodigoPostalExt == null)
+            {
+                return View(infoclientes);
+            }
+            else
+            {
                 await _context.SaveChangesAsync();
                 ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
-
+            }
 
             //return RedirectToAction(nameof(Details));
             //ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
