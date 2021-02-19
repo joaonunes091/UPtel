@@ -109,7 +109,8 @@ namespace UPtel.Controllers
             var contratos = await _context.Contratos.FindAsync(id);
             if (contratos == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
+                return View("Erro");
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);
@@ -148,7 +149,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Contrato alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);
@@ -173,7 +175,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
             if (contratos == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O contrato já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(contratos);
@@ -187,7 +190,8 @@ namespace UPtel.Controllers
             var contratos = await _context.Contratos.FindAsync(id);
             _context.Contratos.Remove(contratos);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O contrato foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool ContratosExists(int id)

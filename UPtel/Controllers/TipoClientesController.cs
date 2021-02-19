@@ -79,7 +79,8 @@ namespace UPtel.Controllers
             var tipoClientes = await _context.TipoClientes.FindAsync(id);
             if (tipoClientes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o tipo de cliente já foi eliminado.";
+                return View("Erro");
             }
             return View(tipoClientes);
         }
@@ -114,7 +115,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Tipo de cliente alterado com sucesso";
+                return View("Sucesso");
             }
             return View(tipoClientes);
         }
@@ -131,7 +133,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.TipoClienteId == id);
             if (tipoClientes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O tipo de cliente já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(tipoClientes);
@@ -145,7 +148,8 @@ namespace UPtel.Controllers
             var tipoClientes = await _context.TipoClientes.FindAsync(id);
             _context.TipoClientes.Remove(tipoClientes);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O tipo de cliente foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool TipoClientesExists(int id)

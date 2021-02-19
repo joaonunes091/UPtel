@@ -81,7 +81,8 @@ namespace UPtel.Controllers
             var netFixa = await _context.NetFixa.FindAsync(id);
             if (netFixa == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente a net fixa já foi eliminada.";
+                return View("Erro");
             }
             return View(netFixa);
         }
@@ -116,7 +117,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Net fixa alterada com sucesso";
+                return View("Sucesso");
             }
             return View(netFixa);
         }
@@ -133,7 +135,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.NetFixaId == id);
             if (netFixa == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "A netfixa já foi eliminada por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(netFixa);
@@ -147,7 +150,8 @@ namespace UPtel.Controllers
             var netFixa = await _context.NetFixa.FindAsync(id);
             _context.NetFixa.Remove(netFixa);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A net fixa foi eliminada com sucesso.";
+            return View("Sucesso");
         }
 
         private bool NetFixaExists(int id)

@@ -91,7 +91,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(pacotes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de serviços criado com sucesso";
+                return View("Sucesso");
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
@@ -152,7 +153,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de serviços alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);

@@ -178,7 +178,8 @@ namespace UPtel.Controllers
             var clientes = await _context.Clientes.FindAsync(id);
             if (clientes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
+                return View("Erro");
             }
             ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
             return View(clientes);
@@ -214,7 +215,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
             return View(clientes);
@@ -233,7 +235,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.ClienteId == id);
             if (clientes == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(clientes);
@@ -247,7 +250,8 @@ namespace UPtel.Controllers
             var clientes = await _context.Clientes.FindAsync(id);
             _context.Clientes.Remove(clientes);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O cliente foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool ClientesExists(int id)
