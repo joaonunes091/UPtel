@@ -244,7 +244,8 @@ namespace UPtel.Controllers
             var clientes = await _context.Clientes.FindAsync(id);
             _context.Clientes.Remove(clientes);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O cliente foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool ClientesExists(int id)

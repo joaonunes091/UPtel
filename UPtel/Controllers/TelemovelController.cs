@@ -96,7 +96,8 @@ namespace UPtel.Controllers
             var telemovel = await _context.Telemovel.FindAsync(id);
             if (telemovel == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o telemóvel já foi eliminado.";
+                return View("Erro");
             }
             return View(telemovel);
         }
@@ -149,7 +150,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.TelemovelId == id);
             if (telemovel == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O telemóvel já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(telemovel);
@@ -163,7 +165,8 @@ namespace UPtel.Controllers
             var telemovel = await _context.Telemovel.FindAsync(id);
             _context.Telemovel.Remove(telemovel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O telemóvel foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool TelemovelExists(int id)

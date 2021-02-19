@@ -131,7 +131,7 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                ViewBag.Mensagem = "Tevemóvel alterado com sucesso";
+                ViewBag.Mensagem = "Televisão alterada com sucesso";
                 return View("Sucesso");
             }
             return View(televisao);

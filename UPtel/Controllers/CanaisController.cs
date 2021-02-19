@@ -184,7 +184,8 @@ namespace UPtel.Controllers
             var canais = await _context.Canais.FindAsync(id);
             _context.Canais.Remove(canais);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O canal foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool CanaisExists(int id)

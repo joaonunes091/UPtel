@@ -79,7 +79,7 @@ namespace UPtel.Controllers
             {
                 _context.Add(netMovel);
                 await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Net móvel adicionado com sucesso";
+                ViewBag.Mensagem = "Net móvel adicionada com sucesso";
                 return View("Sucesso");
             }
             return View(netMovel);
@@ -96,7 +96,8 @@ namespace UPtel.Controllers
             var netMovel = await _context.NetMovel.FindAsync(id);
             if (netMovel == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente a net móvel já foi eliminada.";
+                return View("Erro");
             }
             return View(netMovel);
         }
@@ -149,7 +150,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.NetMovelId == id);
             if (netMovel == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "A net movel já foi eliminada por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(netMovel);
@@ -163,7 +165,8 @@ namespace UPtel.Controllers
             var netMovel = await _context.NetMovel.FindAsync(id);
             _context.NetMovel.Remove(netMovel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A net móvel foi eliminada com sucesso.";
+            return View("Sucesso");
         }
 
         private bool NetMovelExists(int id)

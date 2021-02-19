@@ -101,7 +101,8 @@ namespace UPtel.Controllers
             var funcionarios = await _context.Funcionarios.FindAsync(id);
             if (funcionarios == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o funcionário já foi eliminado.";
+                return View("Erro");
             }
             ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
             return View(funcionarios);
@@ -157,7 +158,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.FuncionarioId == id);
             if (funcionarios == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O funcionário já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(funcionarios);
@@ -171,7 +173,8 @@ namespace UPtel.Controllers
             var funcionarios = await _context.Funcionarios.FindAsync(id);
             _context.Funcionarios.Remove(funcionarios);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "O funcionário foi eliminado com sucesso.";
+            return View("Sucesso");
         }
 
         private bool FuncionariosExists(int id)
