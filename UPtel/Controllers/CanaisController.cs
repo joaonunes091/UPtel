@@ -114,7 +114,8 @@ namespace UPtel.Controllers
             var canais = await _context.Canais.FindAsync(id);
             if (canais == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o canal já foi eliminado.";
+                return View("Erro");
             }
             return View(canais);
         }
@@ -168,7 +169,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.CanaisId == id);
             if (canais == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O canal já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(canais);

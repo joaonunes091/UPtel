@@ -78,7 +78,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(televisao);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Televisão adicionada com sucesso";
+                return View("Sucesso");
             }
             return View(televisao);
         }
@@ -94,7 +95,8 @@ namespace UPtel.Controllers
             var televisao = await _context.Televisao.FindAsync(id);
             if (televisao == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente a televisão já foi eliminada.";
+                return View("Erro");
             }
             return View(televisao);
         }
@@ -129,7 +131,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Tevemóvel alterado com sucesso";
+                return View("Sucesso");
             }
             return View(televisao);
         }
@@ -146,7 +149,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.TelevisaoId == id);
             if (televisao == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "A televisão já foi eliminada por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(televisao);
@@ -160,7 +164,8 @@ namespace UPtel.Controllers
             var televisao = await _context.Televisao.FindAsync(id);
             _context.Televisao.Remove(televisao);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "A televisão foi eliminada com sucesso.";
+            return View("Sucesso");
         }
 
         private bool TelevisaoExists(int id)

@@ -79,7 +79,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(telemovel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Tevemóvel adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(telemovel);
         }
@@ -130,7 +131,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Tevemóvel alterado com sucesso";
+                return View("Sucesso");
             }
             return View(telemovel);
         }

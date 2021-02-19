@@ -78,7 +78,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(promocoes);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Promoção criada com sucesso";
+                return View("Sucesso");
             }
             return View(promocoes);
         }
@@ -129,7 +130,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Promoção criada com sucesso";
+                return View("Sucesso");
             }
             return View(promocoes);
         }

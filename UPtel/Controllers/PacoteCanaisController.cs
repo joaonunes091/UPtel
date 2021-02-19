@@ -84,7 +84,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(pacoteCanais);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de canais adicionado com sucesso";
+                return View("Sucesso");
             }
             ViewData["CanaisId"] = new SelectList(_context.Canais, "CanaisId", "NomeCanal", pacoteCanais.CanaisId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacoteCanais.TelevisaoId);
@@ -139,7 +140,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Pacote de canais alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["CanaisId"] = new SelectList(_context.Canais, "CanaisId", "NomeCanal", pacoteCanais.CanaisId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacoteCanais.TelevisaoId);

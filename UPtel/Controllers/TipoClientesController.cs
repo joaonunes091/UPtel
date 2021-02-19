@@ -114,7 +114,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Tipo de cliente alterado com sucesso";
+                return View("Sucesso");
             }
             return View(tipoClientes);
         }

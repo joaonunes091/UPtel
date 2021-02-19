@@ -148,7 +148,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Contrato alterado com sucesso";
+                return View("Sucesso");
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);

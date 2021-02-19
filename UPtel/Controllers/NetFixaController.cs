@@ -116,7 +116,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Net fixa alterada com sucesso";
+                return View("Sucesso");
             }
             return View(netFixa);
         }

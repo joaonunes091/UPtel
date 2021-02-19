@@ -78,7 +78,8 @@ namespace UPtel.Controllers
             {
                 _context.Add(telefone);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Telefone adicionado com sucesso";
+                return View("Sucesso");
             }
             return View(telefone);
         }
@@ -129,7 +130,8 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Telefone alterado com sucesso";
+                return View("Sucesso");
             }
             return View(telefone);
         }
