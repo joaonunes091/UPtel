@@ -24,6 +24,55 @@ namespace UPtel.Data
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         //-------------------------------------------------
 
+        private static void InsereDadosTesteTelevisao(UPtelContext DbContext)
+        {
+            if (DbContext.Televisao.Any()) return;
+            DbContext.Televisao.AddRange(new Televisao[] {
+            new Televisao
+            {
+                Nome = "Básico",
+                Descricao= "Teste",
+                PrecoPacoteTelevisao = 30m,
+
+            },
+            new Televisao
+            {
+                Nome = "Entretenimento",
+                Descricao= "Teste",
+                PrecoPacoteTelevisao = 30m,
+
+            },
+            new Televisao
+            {
+                Nome = "Premium",
+                Descricao= "Teste",
+                PrecoPacoteTelevisao = 30m,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+        private static void InsereTelevisaoFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        {
+
+            if (DbContext.Televisao.Any()) return;
+
+            for (int i = 0; i < 50; i++)
+
+            {
+                DbContext.Televisao.Add(new Televisao
+                {
+                    Nome = "Premium" + i,
+                    Descricao = "Teste",
+                    PrecoPacoteTelevisao = 30m,
+
+                });
+            }
+
+            DbContext.SaveChanges();
+        }
+
         //-------------------------------------------------
         //         TELEMOVEL
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
@@ -368,8 +417,65 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
-   
+        //-------------------------------------------------
+        //         PACOTES CANAIS
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
 
+        private static void InsereCanaisFicticios(UPtelContext DbContext)
+        {
+            GaranteExistenciaCanais(DbContext, "RTP Africa");
+        }
+        private static void GaranteExistenciaCanais(UPtelContext DbContext, string nome)
+        {
+            Canais canais = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == nome);
+            if (canais == null)
+            {
+                canais = new Canais { NomeCanal = nome };
+                DbContext.Canais.Add(canais);
+                DbContext.SaveChanges();
+            }
+        }
+
+        private static void InsereTelevisaoFicticios(UPtelContext DbContext)
+        {
+            GaranteExistenciaTelevisao(DbContext, "Básico");
+        }
+        private static void GaranteExistenciaTelevisao(UPtelContext DbContext, string nome)
+        {
+            Televisao tv = DbContext.Televisao.FirstOrDefault(c => c.Nome == nome);
+            if (tv == null)
+            {
+                tv = new Televisao { Nome = nome };
+                DbContext.Televisao.Add(tv);
+                DbContext.SaveChanges();
+            }
+        }
+        private static void InsereDadosTestePacoteCanais(UPtelContext DbContext)
+        {
+            if (DbContext.PacoteCanais.Any()) return;
+
+            Canais canaisRTP = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP Africa");
+            Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
+
+            DbContext.PacoteCanais.AddRange(new PacoteCanais[]
+               {
+                new PacoteCanais
+                {
+                    Televisao = televisaoBasico,
+                    Canais = canaisRTP
+                }
+
+                });
+
+            DbContext.SaveChanges();
+        }
+
+
+        //-------------------------------------------------
+        //         PACOTES
+        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        //-------------------------------------------------
 
 
         internal static void InsereDadosTeste(UPtelContext DbContext)
@@ -382,6 +488,11 @@ namespace UPtel.Data
             InsereDadosTestePromocoes(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
+            InsereDadosTesteTelevisao(DbContext);
+            //InsereCanaisFicticios(DbContext);
+            //InsereTelevisaoFicticios(DbContext);
+            InsereDadosTestePacoteCanais(DbContext);
+
 
         }
 
@@ -394,7 +505,7 @@ namespace UPtel.Data
             InserePromocoesFicticiosParaTestarPaginacao(DbContext);
             InsereTelefoneFicticiosParaTestarPaginacao(DbContext);
             InsereTeleMovelFicticiosParaTestarPaginacao(DbContext);
-
+            InsereTelevisaoFicticiosParaTestarPaginacao(DbContext);
 
         }
 
