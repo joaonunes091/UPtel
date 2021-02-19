@@ -30,6 +30,11 @@ namespace UPtel.Controllers
             //var UPtelContext = _context.Pacotes.Include(p => p.NetIfixa).Include(p => p.NetMovel).Include(p => p.Telefone).Include(p => p.Telemovel).Include(p => p.Televisao);
             
             List<Pacotes> pacotes = await _context.Pacotes.Where(p => nomePesquisar == null || p.NomePacote.Contains(nomePesquisar))
+                .Include(p => p.NetMovel)
+                .Include(p => p.Telefone)
+                .Include(p => p.Telemovel)
+                .Include(p => p.Televisao)
+                .Include(p => p.NetIfixa)
                 .OrderBy(c => c.NomePacote)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
