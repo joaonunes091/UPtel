@@ -18,7 +18,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="CargoId" />
                             <div class="form-group">
-                                <label asp-for="NomeCargo" class="control-label"></label>
+                                <label asp-for="NomeCargo" class="control-label">Nome do cargo *</label>
                                 <input asp-for="NomeCargo" class="form-control" />
                                 <span asp-validation-for="NomeCargo" class="text-danger"></span>
                             </div>
@@ -28,7 +28,9 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>
