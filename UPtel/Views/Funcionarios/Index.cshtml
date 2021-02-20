@@ -47,23 +47,32 @@
                                     <th>
                                         Cargo
                                     </th>
+                                    <th>
+                                        Fotografia
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var funcionario in Model.Funcionarios)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => funcionario.NomeFuncionario)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => funcionario.Cargo.NomeCargo)
-                                        </td>
-                                        <td class="text-right">
-                                            <a class="btn btn-costum" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => funcionario.NomeFuncionario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => funcionario.Cargo.NomeCargo)
+                                    </td>
+                                    <td style="width:50px;">
+                                        @if (funcionario.Fotografia != null)
+                                        {
+                                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(funcionario.Fotografia)" class="img-fluid" />
+                                        }
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

@@ -4,11 +4,11 @@
     border-color: #009961;
 }
 
-    .btn-costum:hover {
-        background-color: #009961;
-        color: white;
-        border-color: #009961;
-    }
+.btn-costum:hover {
+    background-color: #009961;
+    color: white;
+    border-color: #009961;
+}
 
 .page-item.active .page-link {
     z-index: 1;

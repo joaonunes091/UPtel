@@ -17,12 +17,12 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="CanaisId" />
                             <div class="form-group">
-                                <label asp-for="NomeCanal" class="control-label text-white"></label>
+                                <label asp-for="NomeCanal" class="control-label text-white">Nome do canal *</label>
                                 <input asp-for="NomeCanal" class="form-control" />
                                 <span asp-validation-for="NomeCanal" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoCanais" class="control-label text-white"></label>
+                                <label asp-for="PrecoCanais" class="control-label text-white">Preço dos canais *</label>
                                 <input asp-for="PrecoCanais" class="form-control" />
                                 <span asp-validation-for="PrecoCanais" class="text-danger"></span>
                             </div>
@@ -39,18 +39,20 @@
                     <div class="col-md-6">
                         @if (Model.Foto != null)
                         {
-                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid"  style="width:50px;"/>
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px;" />
                         }
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
 
             </div>
         </div>

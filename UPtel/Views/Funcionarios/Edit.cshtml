@@ -30,7 +30,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
-                        <form asp-action="Edit">
+                        <form asp-action="Edit" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="FuncionarioId" />
                             <div class="form-group">
@@ -58,10 +58,19 @@
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="CodigoPostal" class="control-label"></label>
-                                <input asp-for="CodigoPostal" class="form-control" />
-                                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                            <div class="form-row">
+                                <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostal" class="form-control" />
+                                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                </div>
+                                -
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostalExt" class="form-control" />
+                                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Email" class="control-label"></label>
@@ -94,22 +103,27 @@
                                 <span asp-validation-for="EstadoFuncionario" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                                <input asp-for="CodigoPostalExt" class="form-control" />
-                                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="Fotografia" class="control-label"></label>
                                 <input asp-for="Fotografia" class="form-control" />
                                 <span asp-validation-for="Fotografia" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label for="ficheiroFoto" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
+                                <input name="ficheiroFoto" class="form-control-file" type="file" />
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Fotografia" type="hidden" />
                                 <input type="submit" value="Guardar" class="btn btn-costum" />
                             </div>
                         </form>
                     </div>
+                    <div class="col-md-6">
+                        @if (Model.Fotografia != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:200px;"/>
+                        }
+                    </div>
                 </div>
-
                 <div>
                     <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>

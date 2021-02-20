@@ -30,7 +30,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
-                        <form asp-action="Create">
+                        <form asp-action="Create" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="NomeFuncionario" class="control-label">Nome do funcionário *</label>
@@ -56,10 +56,19 @@
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-row">
                                 <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
-                                <input asp-for="CodigoPostal" class="form-control" />
-                                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostal" class="form-control" />
+                                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                </div>
+                                -
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostalExt" class="form-control" />
+                                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Email" class="control-label">Email *</label>
@@ -92,14 +101,8 @@
                                 <span asp-validation-for="EstadoFuncionario" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                                <input asp-for="CodigoPostalExt" class="form-control" />
-                                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Fotografia" class="control-label"></label>
-                                <input asp-for="Fotografia" class="form-control" />
-                                <span asp-validation-for="Fotografia" class="text-danger"></span>
+                                <label for="ficheiroFoto" class="control-label">Fotografia</label>
+                                <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn btn-costum" />
@@ -110,7 +113,6 @@
                 <div>
                     <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
-
                 <div>
                     <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>

@@ -48,7 +48,7 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(9, MinimumLength = 9)]
-        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
+        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
         [Display(Name = "Número de telemóvel")]
         public string Telemovel { get; set; }
 
@@ -70,6 +70,7 @@ namespace UPtel.Models
         [Compare("Password",ErrorMessage ="A passord não coincide.")]
         public string ConfirmePassword { get; set; }
 
+        [Display(Name ="Tipo de cliente")]
         public int TipoClienteId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

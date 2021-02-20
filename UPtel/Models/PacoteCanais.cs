@@ -17,6 +17,7 @@ namespace UPtel.Models
         [Display(Name ="Pacote Televisão")]
         public int TelevisaoId { get; set; }
 
+
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Canal")]
         public int CanaisId { get; set; }

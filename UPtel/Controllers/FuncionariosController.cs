@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UPtel.Data;
 using UPtel.Models;
+using System.IO;
+
 
 namespace UPtel.Controllers
 {
@@ -75,14 +78,16 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
+        public async Task<IActionResult> Create([Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios, IFormFile ficheiroFoto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(funcionarios);
             }
             ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
-            
+
+            AtualizaFotofuncionario(funcionarios, ficheiroFoto);
+
             _context.Add(funcionarios);
             await _context.SaveChangesAsync();
 
@@ -90,6 +95,17 @@ namespace UPtel.Controllers
             return View("Sucesso");
         }
 
+        private static void AtualizaFotofuncionario(Funcionarios funcionarios, IFormFile ficheiroFoto)
+        {
+            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroFoto.CopyTo(ficheiroMemoria);
+                    funcionarios.Fotografia = ficheiroMemoria.ToArray();
+                }
+            }
+        }
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -113,7 +129,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios)
+        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios, IFormFile ficheiroFoto)
         {
             if (id != funcionarios.FuncionarioId)
             {
@@ -124,6 +140,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    AtualizaFotofuncionario(funcionarios, ficheiroFoto);
                     _context.Update(funcionarios);
                     await _context.SaveChangesAsync();
                 }

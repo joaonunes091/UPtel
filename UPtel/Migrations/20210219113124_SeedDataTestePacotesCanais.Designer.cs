@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210219113124_SeedDataTestePacotesCanais")]
+    partial class SeedDataTestePacotesCanais
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,14 +337,24 @@ namespace UPtel.Migrations
                     b.Property<int>("CanaisId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CanalCanaisId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TelevisaoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TelevisaoId1")
                         .HasColumnType("int");
 
                     b.HasKey("PacoteCanalId");
 
                     b.HasIndex("CanaisId");
 
+                    b.HasIndex("CanalCanaisId");
+
                     b.HasIndex("TelevisaoId");
+
+                    b.HasIndex("TelevisaoId1");
 
                     b.ToTable("PacoteCanais");
                 });
@@ -597,13 +609,25 @@ namespace UPtel.Migrations
                         .HasConstraintName("FK_PacoteCanais_Canais")
                         .IsRequired();
 
+                    b.HasOne("UPtel.Models.Canais", "Canal")
+                        .WithMany()
+                        .HasForeignKey("CanalCanaisId");
+
                     b.HasOne("UPtel.Models.Televisao", "Televisao")
                         .WithMany("PacoteCanais")
                         .HasForeignKey("TelevisaoId")
                         .HasConstraintName("FK_PacoteCanais_Televisao")
                         .IsRequired();
 
+                    b.HasOne("UPtel.Models.Televisao", "Telev")
+                        .WithMany()
+                        .HasForeignKey("TelevisaoId1");
+
                     b.Navigation("Canais");
+
+                    b.Navigation("Canal");
+
+                    b.Navigation("Telev");
 
                     b.Navigation("Televisao");
                 });
