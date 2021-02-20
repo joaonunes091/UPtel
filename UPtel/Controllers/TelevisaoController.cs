@@ -64,25 +64,63 @@ namespace UPtel.Controllers
         // GET: Televisao/Create
         public IActionResult Create()
         {
-            return View();
+            var canal = _context.Canais.ToList();
+            TelevisaoViewModel TVM = new TelevisaoViewModel();
+            TVM.ListaCanais= canal.Select(x => new CheckBox()
+            {
+                Id = x.CanaisId,
+                Nome = x.NomeCanal,
+                Selecionado = false
+            }).ToList(); ;
+
+            return View(TVM);
         }
 
         // POST: Televisao/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelevisaoId,Nome,Descricao,PrecoPacoteTelevisao")] Televisao televisao)
+        public IActionResult Create(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
         {
-            if (ModelState.IsValid)
+            List<PacoteCanais> listaCanais = new List<PacoteCanais>();
+            televisao.Nome = TVM.Nome;
+            televisao.Descricao = TVM.Descricao;
+            televisao.PrecoPacoteTelevisao = TVM.PrecoPacoteTelevisao;
+            _context.Televisao.Add(televisao);
+            _context.SaveChanges();
+            int televisaoId = televisao.TelevisaoId;
+
+            foreach(var item in TVM.ListaCanais)
             {
-                _context.Add(televisao);
-                await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Televisão adicionada com sucesso";
-                return View("Sucesso");
+                if(item.Selecionado == true)
+                {
+                    listaCanais.Add(new PacoteCanais() {TelevisaoId = televisaoId, CanaisId = item.Id });
+                }
             }
-            return View(televisao);
+            foreach(var item in listaCanais)
+            {
+                _context.PacoteCanais.Add(item);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Televisao");
         }
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("TelevisaoId,Nome,Descricao,PrecoPacoteTelevisao")] Televisao televisao)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(televisao);
+        //        await _context.SaveChangesAsync();
+        //        ViewBag.Mensagem = "Televisão adicionada com sucesso";
+        //        return View("Sucesso");
+        //    }
+        //    return View(televisao);
+        //}
 
         // GET: Televisao/Edit/5
         public async Task<IActionResult> Edit(int? id)
