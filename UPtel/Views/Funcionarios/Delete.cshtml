@@ -44,7 +44,8 @@
                             @Html.DisplayNameFor(model => model.CodigoPostal)
                         </dt>
                         <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.CodigoPostal)
+                            @Html.DisplayFor(model => model.CodigoPostal) @if (Model.CodigoPostalExt != null)
+                            {<span>-</span> @Html.DisplayFor(model => model.CodigoPostalExt)}
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Email)
@@ -81,12 +82,6 @@
                         </dt>
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => model.EstadoFuncionario)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.CodigoPostalExt)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.CodigoPostalExt)
                         </dd>
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Fotografia)
