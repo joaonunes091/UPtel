@@ -119,6 +119,50 @@ namespace UPtel.Controllers
             }
             utilizador = new IdentityUser(infoclientes.Email);
 
+            ////Verificador de números de contribuinte
+            //IdentityUser contribuinte = new IdentityUser();
+            //if (infoclientes.Contribuinte == null)
+            //{
+            //    ModelState.AddModelError("Contribuinte", "Precisa de introduzir um número de contribuinte");
+            //    ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+            //    return View(infoclientes);
+            //}
+            //else
+            //{
+            //    contribuinte = await _gestorUtilizadores.FindByNameAsync(infoclientes.Contribuinte);
+            //}
+
+
+            //if (contribuinte != null)
+            //{
+            //    ModelState.AddModelError("Contribuinte", "Já existe uma conta com este número de contribuinte");
+            //    ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+            //    return View(infoclientes);
+            //}
+            //contribuinte = new IdentityUser(infoclientes.Contribuinte);
+
+            ////Verificador do CC
+            //IdentityUser cc = new IdentityUser();
+            //if (infoclientes.CartaoCidadao == null)
+            //{
+            //    ModelState.AddModelError("CartaoCidadao", "Precisa de introduzir um número de contribuinte");
+            //    ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+            //    return View(infoclientes);
+            //}
+            //else
+            //{
+            //    cc = await _gestorUtilizadores.FindByNameAsync(infoclientes.Contribuinte);
+            //}
+
+
+            //if (cc != null)
+            //{
+            //    ModelState.AddModelError("CartaoCidadao", "Já existe uma conta com este número de contribuinte");
+            //    ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+            //    return View(infoclientes);
+            //}
+            //cc = new IdentityUser(infoclientes.CartaoCidadao);
+
 
             if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
             {

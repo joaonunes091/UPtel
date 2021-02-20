@@ -9,6 +9,12 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+    @***@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @***@
+
     <!-- Favicons -->
     <!--Para mudar o icon do Tab inicial-->
     <link href="~/bootstrap/assets/img/UPtel_logo.png" rel="icon">
@@ -37,6 +43,25 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#show_password').hover(function show() {
+                //Change the attribute to text
+                $('#Password').attr('type', 'text');
+                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            },
+                function () {
+                    //Change the attribute back to password
+                    $('#Password').attr('type', 'Password');
+                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                });
+            //CheckBox Show Password
+            $('#ShowPassword').click(function () {
+                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'Password');
+            });
+        });
+    </script>
 </head>
 
 <body>

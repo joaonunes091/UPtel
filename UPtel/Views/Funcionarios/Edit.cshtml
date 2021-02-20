@@ -34,7 +34,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="FuncionarioId" />
                             <div class="form-group">
-                                <label asp-for="NomeFuncionario" class="control-label"></label>
+                                <label asp-for="NomeFuncionario" class="control-label">Nome do funcionário *</label>
                                 <input asp-for="NomeFuncionario" class="form-control" />
                                 <span asp-validation-for="NomeFuncionario" class="text-danger"></span>
                             </div>
@@ -44,17 +44,17 @@
                                 <span asp-validation-for="CargoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="DataNascimento" class="control-label"></label>
+                                <label asp-for="DataNascimento" class="control-label">Data de nascimento *</label>
                                 <input asp-for="DataNascimento" class="form-control" />
                                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Contribuinte" class="control-label"></label>
+                                <label asp-for="Contribuinte" class="control-label">Número de contribuinte *</label>
                                 <input asp-for="Contribuinte" class="form-control" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Morada" class="control-label"></label>
+                                <label asp-for="Morada" class="control-label">Morada *</label>
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
@@ -73,32 +73,32 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Email" class="control-label"></label>
+                                <label asp-for="Email" class="control-label">Email *</label>
                                 <input asp-for="Email" class="form-control" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Telemovel" class="control-label"></label>
+                                <label asp-for="Telemovel" class="control-label">Número de telemóvel *</label>
                                 <input asp-for="Telemovel" class="form-control" />
                                 <span asp-validation-for="Telemovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CartaoCidadao" class="control-label"></label>
+                                <label asp-for="CartaoCidadao" class="control-label">Número do cartão de cidadão *</label>
                                 <input asp-for="CartaoCidadao" class="form-control" />
                                 <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Iban" class="control-label"></label>
+                                <label asp-for="Iban" class="control-label">IBAN *</label>
                                 <input asp-for="Iban" class="form-control" />
                                 <span asp-validation-for="Iban" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Password" class="control-label"></label>
+                                <label asp-for="Password" class="control-label">Password *</label>
                                 <input asp-for="Password" class="form-control" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="EstadoFuncionario" class="control-label"></label>
+                                <label asp-for="EstadoFuncionario" class="control-label">Estado do funcionário *</label>
                                 <input asp-for="EstadoFuncionario" class="form-control" />
                                 <span asp-validation-for="EstadoFuncionario" class="text-danger"></span>
                             </div>
@@ -120,17 +120,20 @@
                     <div class="col-md-6">
                         @if (Model.Fotografia != null)
                         {
-                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:200px;"/>
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:200px;" />
                         }
                     </div>
+                </div>
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
                 <div>
                     <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
             </div>
         </div>
     </div>
