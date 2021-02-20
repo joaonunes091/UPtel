@@ -98,14 +98,14 @@ namespace UPtel.Controllers
             }
             utilizador = new IdentityUser(infoclientes.Email);
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
                 {
                     ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
                     return View(infoclientes);
                 }
-            }
+            //}
 
             IdentityResult resultado = new IdentityResult();
             if (infoclientes.Password == null)
@@ -117,23 +117,26 @@ namespace UPtel.Controllers
                 resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
             }
 
-            
-            if (!resultado.Succeeded)
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            }
-            else
+
+            //if (!resultado.Succeeded)
+            //{
+            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            //}
+            //else
+            //{
+            //    await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
+            //}
+
+            if (ModelState.IsValid && resultado.Succeeded)
             {
                 await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
             }
+            else
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+                return View(infoclientes);
+            }
 
-            //if (!ModelState.IsValid)
-            //{
-
-            //    return View("Sucesso"); //to do
-            //}
-
-            
 
 
             Clientes clientes = new Clientes
