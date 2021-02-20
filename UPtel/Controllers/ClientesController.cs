@@ -103,7 +103,7 @@ namespace UPtel.Controllers
                 if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
                 {
                     ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                    return View(infoclientes);
+                    //return View(infoclientes);
                 }
             }
 
