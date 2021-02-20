@@ -67,14 +67,14 @@ namespace UPtel.Controllers
             return View(clientes);
         }
 
-        // GET: Clientes/Create
+        // GET: Clientes/Registo
         public IActionResult Registo()
         {
             ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao");
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Clientes/Registo
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -85,6 +85,7 @@ namespace UPtel.Controllers
             if (infoclientes.Email == null)
             {
                 ModelState.AddModelError("Email", "Precisa de introduzir um email");
+                return View(infoclientes);
             }
             else
             {
@@ -95,6 +96,7 @@ namespace UPtel.Controllers
             if (utilizador != null)
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
+                return View(infoclientes);
             }
             utilizador = new IdentityUser(infoclientes.Email);
 
@@ -103,7 +105,7 @@ namespace UPtel.Controllers
                 if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
                 {
                     ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                    //return View(infoclientes);
+                    return View(infoclientes);
                 }
             }
 
@@ -111,6 +113,7 @@ namespace UPtel.Controllers
             if (infoclientes.Password == null)
             {
                 ModelState.AddModelError("Password", "Precisa de colocar uma password");
+                return View(infoclientes);
             }
             else
             {
@@ -121,6 +124,7 @@ namespace UPtel.Controllers
             if (!resultado.Succeeded)
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+                return View(infoclientes);
             }
             else
             {
