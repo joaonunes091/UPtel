@@ -41,10 +41,19 @@
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="CodigoPostal" class="control-label"></label>
-                                <input asp-for="CodigoPostal" class="form-control" />
-                                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                            <div class="form-row">
+                                <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostal" class="form-control" />
+                                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                </div>
+                                -
+                                <div class="col-md-4">
+                                    <input asp-for="CodigoPostalExt" class="form-control" />
+                                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Telefone" class="control-label"></label>
@@ -70,11 +79,6 @@
                                 <label asp-for="TipoClienteId" class="control-label"></label>
                                 <select asp-for="TipoClienteId" class="form-control" asp-items="ViewBag.TipoClienteId"></select>
                                 <span asp-validation-for="TipoClienteId" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                                <input asp-for="CodigoPostalExt" class="form-control" />
-                                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" />
