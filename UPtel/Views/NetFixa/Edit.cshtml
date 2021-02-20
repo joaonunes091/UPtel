@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form asp-action="Edit">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger">Limite *</div>
                             <input type="hidden" asp-for="NetFixaId" />
                             <div class="form-group">
                                 <label asp-for="Limite" class="control-label"></label>
@@ -38,17 +38,17 @@
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Velocidade" class="control-label"></label>
+                                <label asp-for="Velocidade" class="control-label">Velocidade *</label>
                                 <input asp-for="Velocidade" class="form-control" />
                                 <span asp-validation-for="Velocidade" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="TipoConexao" class="control-label"></label>
+                                <label asp-for="TipoConexao" class="control-label">Tipo de conexão *</label>
                                 <input asp-for="TipoConexao" class="form-control" />
                                 <span asp-validation-for="TipoConexao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoNetFixa" class="control-label"></label>
+                                <label asp-for="PrecoNetFixa" class="control-label">Preço do tarifário *</label>
                                 <input asp-for="PrecoNetFixa" class="form-control" />
                                 <span asp-validation-for="PrecoNetFixa" class="text-danger"></span>
                             </div>
@@ -63,7 +63,9 @@
                         </form>
                     </div>
                 </div>
-
+                <div>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
                 <div>
                     <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
                 </div>

@@ -71,6 +71,7 @@ namespace UPtel.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
         public string Password { get; set; }
