@@ -73,10 +73,10 @@ namespace UPtel.Models
         [Display(Name ="Tipo de cliente")]
         public int TipoClienteId { get; set; }
 
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3, MinimumLength = 3)]
         [Display(Name = "Extensão do Código Postal")]
-        [RegularExpression(@"\d{3}")]
+        [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostalExt { get; set; }
     }
 }
