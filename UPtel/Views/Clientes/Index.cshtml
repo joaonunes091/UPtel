@@ -32,7 +32,7 @@
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table text-white">
                         <thead>
                             <tr>
                                 <th>
@@ -115,9 +115,9 @@
                     @Html.DisplayFor(modelItem => cliente.TipoCliente.Designacao)
                 </td>
                 <td>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@cliente.ClienteId">Editar</a> |
-                    <a class="btn btn-costum" asp-action="Details" asp-route-id="@cliente.ClienteId">Detalhes</a> |
-                    <a class="btn btn-costum" asp-action="Delete" asp-route-id="@cliente.ClienteId">Eliminar</a>
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@cliente.ClienteId">Editar</a> |
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@cliente.ClienteId">Detalhes</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@cliente.ClienteId">Eliminar</a>
                 </td>
                                 </tr>
                             }
