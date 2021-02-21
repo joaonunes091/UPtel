@@ -6,7 +6,7 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h1>Cargos</h1>
 
                 <p>
@@ -34,10 +34,10 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NomeCargo)
                                     </td>
-                                    <td>
-                                        <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.CargoId">Editar</a> |
-                                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.CargoId">Detalhes</a> |
-                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CargoId">Eliminar</a>
+                                    <td class="text-right">
+                                        @*<a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.CargoId">Editar</a> |*@
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.CargoId">Detalhes</a> 
+                                        @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CargoId">Eliminar</a>*@
                                     </td>
                                 </tr>
                             }
