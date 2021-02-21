@@ -1,7 +1,7 @@
 ﻿@model UPtel.Models.Clientes
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do cliente";
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
@@ -12,68 +12,72 @@
 
                 <div>
                     @*<h4>Cliente</h4>*@
-                    <br />
-                    <dl class="row text-white">
-                        <dt class="col-sm-5">
+
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.NomeCliente)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.NomeCliente)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.DataNascimento)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.DataNascimento)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.CartaoCidadao)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.CartaoCidadao)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Contribuinte)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Contribuinte)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Morada)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Morada)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.CodigoPostal)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
+
                             @Html.DisplayFor(model => model.CodigoPostal) @if (Model.CodigoPostalExt != null)
                             {<span>-</span> @Html.DisplayFor(model => model.CodigoPostalExt);
                         }
                         </dd>
-                        <dt class="col-sm-5">
+
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Telefone)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Telefone)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Telemovel)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Telemovel)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Email)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Email)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Password)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
+
                             @Html.DisplayFor(model => model.Password)
                             @*<asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
                             <div class="input-group-append">
@@ -88,10 +92,12 @@
                             <dd class = "col-sm-7">
                                 @Html.DisplayFor(model => model.CodigoPostalExt)
                             </dd>*@
-                        <dt class="col-sm-5">
+
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.TipoCliente)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-sm-10 text-white">
+
                             @Html.DisplayFor(model => model.TipoCliente.Designacao)
                         </dd>
                     </dl>
@@ -99,9 +105,11 @@
                 <br/>
                 <div class="text-center">
 
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.ClienteId">Editar</a> |
-                    <a class="btn btn-danger"asp-action="Delete" asp-route-id="@Model.ClienteId">Eliminar</a> |
-                    <a class="btn btn-info"asp-action="Index">Voltar</a>
+
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@Model.ClienteId">Editar</a> |
+                    <a class="btn btn-danger"asp-action="Delete" asp-route-id="@Model.ClienteId">Apagar</a> |
+                    <a class="btn btn-costum" asp-action="Index">Voltar</a>
+
                 </div>
             </div>
         </div>
