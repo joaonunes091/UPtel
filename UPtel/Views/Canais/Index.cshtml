@@ -24,23 +24,34 @@
 
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
-   <div class="row justify-content-center text-left">
+    <div class="container">
 
-        <div class="col-md-2">
+        <div class="row justify-content-center text-left">
+
+            @*<div class="col-md-2">
             <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%" />
 
-        </div>
-        <div class="col-md-8 d-flex justify-content-center" style="margin-top:5%">
-            <div class="justify-content-center">
+        </div>*@
+            <div class="col-xl-8">
                 <div>
                     <h2>Canais</h2>
-                    <form asp-action="Index" method="get" class="form ml-auto col-6">
-                        <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
-                        <button type="submit" class="btn btn-outline-light">Search</button>
-                        <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                    </form>
+                    <div class="col-md-6 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Pesquisa de Canais</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
+                                    <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <p>
-                        <a asp-action="Create">Novo Canal</a>
+                        <a class="btn btn-costum" asp-action="Create">Novo Canal</a>
                     </p>
                     @if (Model.Canais.Count() == 0)
                     {
@@ -80,9 +91,9 @@
                                             @Html.DisplayFor(modelItem => canais.PrecoCanais)
                                         </td>
                                         <td class="text-right">
-                                            <a asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |
-                                            <a asp-action="Details" asp-route-id="@canais.CanaisId">Detalhes</a> |
-                                            <a asp-action="Delete" asp-route-id="@canais.CanaisId">Eliminar</a>
+                                            <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |
+                                            <a class="btn btn-secondary" asp-action="Details" asp-route-id="@canais.CanaisId">Detalhes</a> |
+                                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@canais.CanaisId">Eliminar</a>
                                         </td>
                                     </tr>
                                 }
@@ -129,11 +140,12 @@
 
             </div>
         </div>
-        <div class="col-md-2">
-            <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
+            @*<div class="col-md-2">
+                    <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
 
+                </div>*@
         </div>
-    </div>
+
 </section>
 
 @*<li>
