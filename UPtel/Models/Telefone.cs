@@ -22,7 +22,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Número de telefone")]
         [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage ="Telefone Inválido")]
         public string Numero { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

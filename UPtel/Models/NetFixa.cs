@@ -30,7 +30,7 @@ namespace UPtel.Models
        
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display( Name ="Tipo de Conexão")]
-        [StringLength(30)]
+        [StringLength(30, ErrorMessage = "O limite de carateres(30) foi ultrapassado")]
         public string TipoConexao { get; set; }
 
         [Display(Name = "Preço do tarifário")]

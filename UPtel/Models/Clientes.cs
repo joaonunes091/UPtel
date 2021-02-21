@@ -54,13 +54,13 @@ namespace UPtel.Models
         [RegularExpression(@"([123456789]|1)\d{3}",ErrorMessage ="Valor inválido")]
         public string CodigoPostal { get; set; }
 
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage ="O número de telefone deve ter 9 dígitos")]
         [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
         [Display(Name = "Número de telefone")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "O número de telemóvel deve ter 9 dígitos")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
         [Display(Name = "Número de telemóvel")]
         public string Telemovel { get; set; }
@@ -75,6 +75,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(16)]
         public string Password { get; set; }
+
         [Display(Name = "Tipo de Cliente")]
         public int TipoClienteId { get; set; }
 
@@ -88,6 +89,7 @@ namespace UPtel.Models
         [InverseProperty(nameof(TipoClientes.Clientes))]
         [Display(Name = "Tipo de Cliente")]
         public virtual TipoClientes TipoCliente { get; set; }
+
         [InverseProperty("Cliente")]
         public virtual ICollection<Contratos> Contratos { get; set; }
     }
