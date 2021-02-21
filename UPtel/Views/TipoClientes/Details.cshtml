@@ -6,11 +6,11 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Detalhes do tipo de cliente</h2>
 
                 <div>
-                    <hr />
+                    <br/>
                     @* <div class="row">*@
                     @*<div class="col-md-4">*@
                     <dl class="row">
@@ -25,9 +25,9 @@
         </div>*@
                 </div>
                 <div>
-                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@Model.TipoClienteId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TipoClienteId">Apagar</a> |
-                    <a class="btn btn-costum" asp-action="Index">Voltar</a>
+                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TipoClienteId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TipoClienteId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
             </div>
         </div>
