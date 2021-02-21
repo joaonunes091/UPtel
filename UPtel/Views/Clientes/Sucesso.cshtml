@@ -10,17 +10,18 @@
                 <div class="text-success mb-3">
                     <div>
 
-                        <p >@ViewBag.Mensagem</p>
+                        <p class="text-white">@ViewBag.Mensagem</p>
 
                         <div>
                             <a class="btn btn-primary" asp-controller="Clientes" asp-action="Index">
                                 Ver lista de clientes
                             </a>
-                        </div>
-                        <div>
-                            <a asp-area="Identity" asp-page="/Account/Login">
+                            <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">
                                 Fazer o login
                             </a>
+                        </div>
+                        <div>
+                            
                         </div>
                     </div>
                 </div>
