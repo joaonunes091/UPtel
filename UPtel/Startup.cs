@@ -88,7 +88,7 @@ namespace UPtel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=TipoClientes}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
 
