@@ -673,7 +673,7 @@ namespace UPtel.Data
                     NomeCliente = "David Rui Pedroso",
                     DataNascimento=new DateTime(1985,1,20),
                     CartaoCidadao="34657986",
-                    Contribuinte="37655497",
+                    Contribuinte="376554971",
                     Morada="Rua de São Mamede nº10",
                     CodigoPostal="4000",
                     Telefone="236459557",

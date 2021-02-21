@@ -6,7 +6,7 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 @*<h2>Eliminar tipo de cliente</h2>*@
 
                 <h3>Tem a certeza que pretende eliminar o tipo de cliente?</h3>
@@ -15,7 +15,7 @@
                     
                     <div class="row">
                         <div class="col-md-4">
-                            <hr />
+                            <br />
                             <dl>
                                 <dt class="text-white">
                                     @Html.DisplayNameFor(model => model.Designacao)
@@ -30,7 +30,7 @@
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="TipoClienteId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-costum" asp-action="Index">Voltar</a>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
                     </form>
                 </div>
             </div>
