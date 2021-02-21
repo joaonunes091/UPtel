@@ -7,30 +7,31 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Detalhes dos pacotes de canais</h2>
 
                 <div>
-                    <h4>PacoteCanais</h4>
-                    <hr />
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    @*<h4>PacoteCanais</h4>*@
+                    <br />
+                    <dl class="row text-white>
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Canais)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Canais.NomeCanal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Televisao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Televisao.Nome)
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.PacoteCanalId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                <div class="text-center">
+                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.PacoteCanalId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.PacoteCanalId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
             </div>
         </div>

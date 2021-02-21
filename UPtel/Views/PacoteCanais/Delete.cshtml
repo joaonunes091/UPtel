@@ -7,25 +7,25 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Pacote de Canais</h2>
+            <div class="col-xl-8 text-white">
+                @*<h2>Pacote de Canais</h2>*@
 
                 <h3>Tem a certeza que pretende eliminar o pacote de canais?</h3>
                 <div>
-                    <h4>Eliminar</h4>
-                    <hr />
+                    @*<h4>Eliminar</h4>*@
+                    <br />
 
-                    <dl class="row">
-                        <dt class="col-sm-2">
+                    <dl class="row text-white">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Canais)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Canais.NomeCanal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Televisao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Televisao.Nome)
                         </dd>
                     </dl>
@@ -33,7 +33,7 @@
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="PacoteCanalId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a asp-action="Index">Voltar</a>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
                     </form>
                 </div>
             </div>
