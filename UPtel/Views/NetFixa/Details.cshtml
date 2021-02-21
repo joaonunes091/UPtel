@@ -21,49 +21,50 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
-                <h1>Detalhes</h1>
+                <h2>Detalhes Net Fixa</h2>
 
                 <div>
-                    <h4>Net Fixa</h4>
-                    <hr />
+                    @*<h4>Net Fixa</h4>*@
+                    <br />
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Limite)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Limite)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Velocidade)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Velocidade)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.TipoConexao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.TipoConexao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.PrecoNetFixa)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoNetFixa)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Notas)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Notas)
                         </dd>
                     </dl>
                 </div>
                 <div>
                     <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetFixaId">Editar</a> |
-                    <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetFixaId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
             </div>
         </div>
