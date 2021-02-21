@@ -6,38 +6,45 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h1>Cargos</h1>
 
                 <p>
-                    <a asp-action="Create">Criar novo</a>
+                    <a class="btn btn-costum" asp-action="Create">Adicionar cargo</a>
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NomeCargo)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model.Count() == 0)
+                {
+                    <p>Não existem dados para mostrar</p>
+                }
+                else
+                {
+                    <table class="table text-white">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NomeCargo)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.CargoId">Editar</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CargoId">Detalhes</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CargoId">Eliminar</a>
-                                </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NomeCargo)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NomeCargo)
+                                    </td>
+                                    <td class="text-right">
+                                        @*<a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.CargoId">Editar</a> |*@
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.CargoId">Detalhes</a> 
+                                        @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.CargoId">Eliminar</a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                </div>
         </div>
     </div>
 </section>

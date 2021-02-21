@@ -1,16 +1,16 @@
 ﻿@model UPtel.Models.Canais
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Canal";
 }
 
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Criar Canal</h2>
-                <hr />
+                <br />
                 <div class="row">
                     <div class="col-md-4">
                         <form asp-action="Create" enctype="multipart/form-data">
@@ -30,21 +30,20 @@
                                 <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Criar" class="btn btn-primary" />
+                                <input type="submit" value="Criar" class="btn btn-costum" />
+                                <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div>
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
-                <div>
-                    <a asp-action="Index">Voltar</a>
+                <div class="text-white">
+                    <p>* - Campos de preenchimento obrigatório</p>
                 </div>
 
+
                 @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
 
             </div>
         </div>
