@@ -35,7 +35,7 @@ namespace UPtel.Models
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage ="O cartão de contribuinte deve ter 9 dígitos")]
         [RegularExpression(@"\d{9}", ErrorMessage = "Este valor é inválido")]
         [Display(Name = "Número de contribuinte")]
         public string Contribuinte { get; set; }

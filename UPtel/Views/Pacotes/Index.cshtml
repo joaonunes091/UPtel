@@ -7,23 +7,35 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Pacotes de serviços</h2>
+                <br />
+
+                <div class="col-md-6 border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisar Pacotes de serviços</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <p>
-                    <a asp-action="Create">Criar novo pacote</a>
+                    <a class="btn btn-costum" asp-action="Create">Criar novo pacote de serviços</a>
                 </p>
-                <form asp-action="Index" method="get" class="form ml-auto col-6">
-                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
-                    <button type="submit" class="btn btn-outline-light">Procurar</button>
-                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                </form>
+   
                 @if (Model.Pacotes.Count() == 0)
                 {
                     <p>Não existem pacotes de serviços a mostrar</p>
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table text-white">
                         <thead>
                             <tr>
                                 <th>
@@ -75,10 +87,10 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Televisao.Nome)
                                     </td>
-                                    <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.PacoteId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PacoteId">Eliminar</a>
+                                    <td>
+                                        
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PacoteId">Detalhes</a> 
+                                
                                     </td>
                                 </tr>
                             }
@@ -88,14 +100,12 @@
                         <ul class="pagination pagination-sm justify-content-end">
                             @{
                                 int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
                                 if (paginaInicial < 1)
                                 {
                                     paginaInicial = 1;
                                 }
 
                                 int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
                                 if (paginaFinal > Model.Paginacao.TotalPaginas)
                                 {
                                     paginaFinal = Model.Paginacao.TotalPaginas;

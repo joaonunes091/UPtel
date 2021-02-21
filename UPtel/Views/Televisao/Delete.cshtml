@@ -6,30 +6,30 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Eliminar serviço de televisão</h2>
+            <div class="col-xl-8 text-white">
+
+       
 
                 <h3>Tem a certeza que pretende eliminar o serviço de televisão?</h3>
                 <div>
-                    <h4>Televisão</h4>
-                    <hr />
+
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Descricao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.PrecoPacoteTelevisao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.PrecoPacoteTelevisao)
                         </dd>
                     </dl>
@@ -37,7 +37,7 @@
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="TelevisaoId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a asp-action="Index">Voltar</a>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
                     </form>
                 </div>
             </div>

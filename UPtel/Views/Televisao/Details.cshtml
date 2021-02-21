@@ -6,36 +6,37 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Detalhes do serviço da televisão</h2>
+            <div class="col-xl-8 text-white">
+
+                <h1>Detalhes do serviço da televisão</h1>
 
                 <div>
-                    <h4>Televisao</h4>
-                    <hr />
+                    <br />
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Descricao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.PrecoPacoteTelevisao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.PrecoPacoteTelevisao)
                         </dd>
                     </dl>
                 </div>
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.TelevisaoId">Editar</a> |
-                    <a asp-action="Index">Voltar</a>
+                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelevisaoId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelevisaoId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
             </div>
         </div>
