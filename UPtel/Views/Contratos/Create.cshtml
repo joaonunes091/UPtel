@@ -1,10 +1,10 @@
 ﻿@model UPtel.Models.Contratos
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar contrato";
 }
 
-<style>
+@*<style>
     .btn-costum {
         background-color: #00b371;
         color: white;
@@ -16,27 +16,27 @@
             color: white;
             border-color: #009961;
         }
-</style>
+</style>*@
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
-                <h1>Novo Contrato</h1>
+                <h2>Novo Contrato</h2>
+                <br />
 
                 <div class="row">
                     <div class="col-md-6">
-                        <hr />
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="ClienteId" class="control-label"></label>
-                                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId">*</select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="FuncionarioId" class="control-label"></label>
-                                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+                                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId">*</select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PromocaoId" class="control-label"></label>
@@ -67,16 +67,14 @@
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" value="Guardar" class="btn btn-primary" />|
+                                <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div>
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
-                <div>
-                    <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
+                <div class="text-white">
+                    <p>* - Campos de preenchimento obrigatório</p>
                 </div>
 
             </div>

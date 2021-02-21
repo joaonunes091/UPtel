@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<style>
+@*<style>
     .btn-costum {
         background-color: #00b371;
         color: white;
@@ -15,19 +15,18 @@
             color: white;
             border-color: #009961;
         }
-</style>
+</style>*@
  
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
-                <h1>Editar</h1>
+                <h2>Editar contratos</h2>
 
-                <h4>Contratos</h4>
-                <hr />
+                <br />
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-white">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="ContratoId" />
@@ -66,26 +65,6 @@
                                 <input asp-for="TempoPromocao" class="form-control" />
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
-                            @*<div class="form-group">
-                        <label asp-for="NomeCliente" class="control-label"></label>
-                        <input asp-for="NomeCliente" class="form-control" />
-                        <span asp-validation-for="NomeCliente" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NomePacote" class="control-label"></label>
-                        <input asp-for="NomePacote" class="form-control" />
-                        <span asp-validation-for="NomePacote" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NomePromocao" class="control-label"></label>
-                        <input asp-for="NomePromocao" class="form-control" />
-                        <span asp-validation-for="NomePromocao" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NomeFuncionario" class="control-label"></label>
-                        <input asp-for="NomeFuncionario" class="form-control" />
-                        <span asp-validation-for="NomeFuncionario" class="text-danger"></span>
-                    </div>*@
                             <div class="form-group">
                                 <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
                                 <input asp-for="PrecoContrato" class="form-control" />
@@ -97,11 +76,12 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                <div class="text-white">
+                    <p>* - Campos de preenchimento obrigatório</p>
                 </div>
+
                 <div>
-                    <a class="btn btn-outline-dark" asp-action="Index">Voltar</a>
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
 
             </div>

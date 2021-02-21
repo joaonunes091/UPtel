@@ -4,138 +4,138 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    .btn-costum {
-        background-color: #00b371;
-        color: white;
-        border-color: #009961;
-    }
-
-        .btn-costum:hover {
-            background-color: #009961;
+@*<style>
+        .btn-costum {
+            background-color: #00b371;
             color: white;
             border-color: #009961;
         }
 
-    .page-item.active .page-link {
-        z-index: 1;
-        color: #fff;
-        background-color: #00b371;
-        border-color: #009961;
-    }
+            .btn-costum:hover {
+                background-color: #009961;
+                color: white;
+                border-color: #009961;
+            }
 
-    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-        background-color: #009961;
-        border-color: #009961;
-    }
-</style>
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #fff;
+            background-color: #00b371;
+            border-color: #009961;
+        }
+
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+            background-color: #009961;
+            border-color: #009961;
+        }
+    </style>*@
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
             <div class="col-xl-8">
-
-                <div class="border-info mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Pesquisar Funcionários</h5>
-                        <form asp-action="Index" method="get">
-                            <div class="form-group">
-                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
-                                <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <h1>Contratos</h1>
-
-                <p>
-                    <a class="btn btn-costum" asp-action="Create">Novo Contrato</a>
-                </p>
-
                 <div>
-                    @if (Model.Contratos.Count() == 0)
-                    {
-                        <p>Não existem contratos para mostrar</p>
-                    }
-                    else
-                    {
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Nome do Cliente
-                                    </th>
-                                    <th>
-                                        Data de Início
-                                    </th>
-                                    <th>
-                                       Fidelização
-                                    </th>
+                    <h2>Contratos</h2>
+                    <div class="col-md-6 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Pesquisar contratos através do cliente</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
+                                    <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var contratos in Model.Contratos)
-                                {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => contratos.Cliente.NomeCliente)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => contratos.DataInicio)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => contratos.Fidelizacao)
-                                    </td>
-                                    <td class="text-right">
-                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
-                                    </td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+                    <p>
+                        <a class="btn btn-costum" asp-action="Create">Novo Contrato</a>
+                    </p>
 
-                        <nav>
-                            <ul class="pagination pagination-sm justify-content-end">
-                                @{
-                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                    if (paginaInicial < 1)
+                    <div>
+                        @if (Model.Contratos.Count() == 0)
+                        {
+                            <p>Não existem contratos para mostrar</p>
+                        }
+                        else
+                        {
+                            <table class="table text-white">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Nome do Cliente
+                                        </th>
+                                        <th>
+                                            Data de Início
+                                        </th>
+                                        <th>
+                                            Fidelização
+                                        </th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contratos in Model.Contratos)
                                     {
-                                        paginaInicial = 1;
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.Cliente.NomeCliente)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.DataInicio)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                            </td>
+                                            <td class="text-right">
+                                                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <nav>
+                                <ul class="pagination pagination-sm justify-content-end">
+                                    @{
+                                        int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        if (paginaInicial < 1)
+                                        {
+                                            paginaInicial = 1;
+                                        }
+
+                                        int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                        {
+                                            paginaFinal = Model.Paginacao.TotalPaginas;
+                                        }
                                     }
 
-                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                    {
-                                        paginaFinal = Model.Paginacao.TotalPaginas;
-                                    }
-                                }
-
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                                </li>
-
-                                @for (int i = paginaInicial; i <= paginaFinal; i++)
-                                {
-                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
                                     </li>
-                                }
 
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                                </li>
-                            </ul>
-                        </nav>
+                                    @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                    {
+                                        <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                            <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                        </li>
+                                    }
 
-                    }
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        }
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
