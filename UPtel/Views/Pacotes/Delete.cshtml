@@ -7,54 +7,53 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Eliminar o pacote de serviços</h2>
+            <div class="col-xl-8 text-white">
+
 
                 <h3>Tem a certeza que pretende eliminar o pacote de serviços?</h3>
                 <div>
-                    <h4>Pacotes</h4>
-                    <hr />
+                   
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.NomePacote)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.NomePacote)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.PrecoTotal)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.PrecoTotal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.NetIfixa)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.NetIfixa.TipoConexao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.NetMovel)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.NetMovel.Numero)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Telemovel)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Telemovel.Numero)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Telefone)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Telefone.Numero)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-2 text-white">
                             @Html.DisplayNameFor(model => model.Televisao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-10 text-white">
                             @Html.DisplayFor(model => model.Televisao.Nome)
                         </dd>
                     </dl>
@@ -62,7 +61,7 @@
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="PacoteId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a asp-action="Index">Voltar</a>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
                     </form>
                 </div>
             </div>

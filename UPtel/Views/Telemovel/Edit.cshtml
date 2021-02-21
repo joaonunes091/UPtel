@@ -6,13 +6,14 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
-                <h2>Editar dados do telemóvel</h2>
+            <div class="col-xl-8 text-white">
 
-                <h4>Telemóvel</h4>
+                <h1>Editar dados do telemóvel</h1>
+
+          
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-white">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="TelemovelId" />
@@ -57,16 +58,14 @@
                                 <span asp-validation-for="PrecoPacoteTelemovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div>
+                <div class="text-white">
                     <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
-                <div>
-                    <a asp-action="Index">Voltar</a>
                 </div>
 
                 @*@section Scripts {

@@ -8,9 +8,12 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
-                <div class="border-info mb-4">
+                <h2>Funcionários</h2>
+                <br />
+
+                <div class="col-md-6 border-info mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Pesquisar Funcionários</h5>
                         <form asp-action="Index" method="get">
@@ -18,15 +21,12 @@
                                 <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Pesquisar" class="btn btn-outline-dark" />
-                                <a asp-action="Index" class="btn btn-outline-dark">Limpar</a>
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <h1>Funcionários</h1>
-
                 <p>
                     <a class="btn btn-costum" asp-action="Create">Novo Funcionário</a>
                 </p>
@@ -38,7 +38,7 @@
                     }
                     else
                     {
-                        <table class="table">
+                        <table class="table text-white">
                             <thead>
                                 <tr>
                                     <th>
@@ -69,8 +69,8 @@
                                             <img src="data:image/jpeg;base64, @Convert.ToBase64String(funcionario.Fotografia)" class="img-fluid" />
                                         }
                                     </td>
-                                    <td class="text-right">
-                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
+                                    <td>
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@funcionario.FuncionarioId">Detalhes</a>
                                     </td>
                                 </tr>
                                 }
