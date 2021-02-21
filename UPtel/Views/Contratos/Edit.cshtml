@@ -31,22 +31,22 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="ContratoId" />
                             <div class="form-group">
-                                <label asp-for="ClienteId" class="control-label"></label>
+                                <label asp-for="ClienteId" class="control-label">Cliente *</label>
                                 <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
                                 <span asp-validation-for="ClienteId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="FuncionarioId" class="control-label"></label>
+                                <label asp-for="FuncionarioId" class="control-label">Funcionário *</label>
                                 <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
                                 <span asp-validation-for="FuncionarioId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PromocaoId" class="control-label"></label>
+                                <label asp-for="PromocaoId" class="control-label">Promoção</label>
                                 <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
                                 <span asp-validation-for="PromocaoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PacoteId" class="control-label"></label>
+                                <label asp-for="PacoteId" class="control-label">Pacote de serviços *</label>
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
                                 <span asp-validation-for="PacoteId" class="text-danger"></span>
                             </div>
@@ -56,12 +56,12 @@
                                 <span asp-validation-for="DataInicio" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Fidelizacao" class="control-label"></label>
+                                <label asp-for="Fidelizacao" class="control-label">Fidelização</label>
                                 <input asp-for="Fidelizacao" class="form-control" />
                                 <span asp-validation-for="Fidelizacao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="TempoPromocao" class="control-label"></label>
+                                <label asp-for="TempoPromocao" class="control-label">Período de promoção</label>
                                 <input asp-for="TempoPromocao" class="form-control" />
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
