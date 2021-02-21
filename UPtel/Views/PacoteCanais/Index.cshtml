@@ -7,24 +7,34 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Pacotes de Canais</h2>
+                <br />
+                <div class="col-md-6 border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisa de Clientes</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <p>
-                    <a asp-action="Create">Criar novo pacote de canais</a>
+                    <a class="btn btn-costum" asp-action="Create">Criar novo pacote de canais</a>
                 </p>
-                <form asp-action="Index" method="get" class="form ml-auto col-6">
-                    <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
-                    <button type="submit" class="btn btn-outline-light">Procurar</button>
-                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                </form>
-
+                <br />
                 @if (Model.PacoteCanais.Count() == 0)
                 {
                     <p>Não existem pacotes de canais a mostrar</p>
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table text-white">
                         <thead>
                             <tr>
                                 <th>
@@ -47,9 +57,9 @@
                                         @Html.DisplayFor(modelItem => item.Televisao.Nome)
                                     </td>
                                     <td class="text-right">
-                                        <a asp-action="Edit" asp-route-id="@item.PacoteCanalId">Editar</a> |
-                                        <a asp-action="Details" asp-route-id="@item.PacoteCanalId">Detalhes</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.PacoteCanalId">Eliminar</a>
+                                        @*<a asp-action="Edit" asp-route-id="@item.PacoteCanalId">Editar</a> |*@
+                                        <a class="btn btn-info"  asp-action="Details" asp-route-id="@item.PacoteCanalId">Detalhes</a> 
+                                        @*<a asp-action="Delete" asp-route-id="@item.PacoteCanalId">Eliminar</a>*@
                                     </td>
                                 </tr>
                             }
