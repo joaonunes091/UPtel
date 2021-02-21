@@ -10,22 +10,15 @@
                 <div class="text-white mb-3">
                     <div>
 
-
-                        <p class="text-white">@ViewBag.Mensagem</p>
-
-
+                        <h1>@ViewBag.Mensagem</h1>
+                        <br />
                         <div>
                             <a class="btn btn-info" asp-controller="Clientes" asp-action="Index">
                                 Ver lista de clientes
-
-                            </a>
-                            <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">
-
+                            </a> |
+                            <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Login">
                                 Fazer o login
                             </a>
-                        </div>
-                        <div>
-                            
                         </div>
                     </div>
                 </div>

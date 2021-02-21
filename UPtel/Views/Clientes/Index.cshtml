@@ -41,35 +41,35 @@
                                     @Html.DisplayNameFor(model => model.Clientes[0].NomeCliente)
                                 </th>
                                 @*<th>
-                            @Html.DisplayNameFor(model => model.DataNascimento)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CartaoCidadao)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Contribuinte)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Morada)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CodigoPostal)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Telefone)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Telemovel)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Password)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CodigoPostalExt)
-                        </th>*@
+                                        @Html.DisplayNameFor(model => model.DataNascimento)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CartaoCidadao)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Contribuinte)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Morada)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CodigoPostal)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Telefone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Telemovel)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Password)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CodigoPostalExt)
+                                    </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Clientes[0].TipoCliente)
                                 </th>
@@ -83,46 +83,44 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => cliente.NomeCliente)
                                     </td>
-
-                @*<td>
-            @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CartaoCidadao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contribuinte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Morada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoPostal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telemovel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoPostalExt)
-        </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => cliente.TipoCliente.Designacao)
-                </td>
-                <td>
-                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@cliente.ClienteId">Editar</a> |
-                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@cliente.ClienteId">Detalhes</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@cliente.ClienteId">Eliminar</a>
-                </td>
-
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.DataNascimento)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CartaoCidadao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Contribuinte)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Morada)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CodigoPostal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Telefone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Telemovel)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Password)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CodigoPostalExt)
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => cliente.TipoCliente.Designacao)
+                                    </td>
+                                    <td>
+                                        @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@cliente.ClienteId">Editar</a> |*@
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@cliente.ClienteId">Detalhes</a>
+                                        @*<a class="btn btn-costum" asp-action="Delete" asp-route-id="@cliente.ClienteId">Eliminar</a>*@
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -164,8 +162,8 @@
 
 
             </div>
-        </div>    
-    </div>    
+        </div>
+    </div>
 </section>
 
 
