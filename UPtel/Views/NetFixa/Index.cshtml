@@ -21,59 +21,48 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
                 <h1>Net Fixa</h1>
-
+                <br />
                 <p>
                     <a class="btn btn-costum" asp-action="Create">Criar Novo</a>
                 </p>
-                <table class="table">
+                <br />
+                <table class="table text-white">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Limite)
+                                @Html.DisplayNameFor(model => model.TipoConexao)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Velocidade)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.TipoConexao)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.PrecoNetFixa)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Notas)
-                            </th>
-                           <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Limite)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Velocidade)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TipoConexao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoNetFixa)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Notas)
-                                </td>
-                                <td>
-                                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a> 
-                                    <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a> 
-                                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoConexao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Velocidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecoNetFixa)
+                            </td>
+                            <td>
+                                @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a>*@
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a>
+                                @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>*@
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
