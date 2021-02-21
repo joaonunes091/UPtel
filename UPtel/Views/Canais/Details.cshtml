@@ -1,18 +1,18 @@
 ﻿@model UPtel.Models.Canais
 
 @{
-    ViewData["Title"] = "Detalhes dos Canais";
+    ViewData["Title"] = "Detalhes dos canais";
 }
 
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center text-left text-white">
             <div class="col-xl-8">
                 <h2>Detalhes dos canais</h2>
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <dl>
                             <dt class="text-white">
                                 @Html.DisplayNameFor(model => model.NomeCanal)
@@ -29,7 +29,7 @@
                         </dl>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         @if (Model.Foto != null)
                         {
                             <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px;" />
