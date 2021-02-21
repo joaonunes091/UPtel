@@ -7,14 +7,12 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-
-            <div class="col-xl-8">
-                @*<h2>Editar Clientes</h2>
-        <h4>Clientes</h4>*@
-                <hr />
-                <div class="row">
-                    <div class="col-md-4 text-white">
-
+            <div class="col-xl-8 text-white">
+                <h2>Editar Clientes</h2>
+                @*<h4>Clientes</h4>*@
+                <br />
+                <div class="row text-white">
+                    <div class="col-md-6">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="ClienteId" />
@@ -88,22 +86,14 @@
                                 <select asp-for="TipoClienteId" class="form-control" asp-items="ViewBag.TipoClienteId"></select>
                                 <span asp-validation-for="TipoClienteId" class="text-danger"></span>
                             </div>
-                            <br/>
+                            <br />
                             <div class="form-group">
-
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                <a class="btn btn-costum" asp-action="Index">Voltar</a>
-
+                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
+                                <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <div>
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
-
-
             </div>
         </div>
     </div>
@@ -115,5 +105,5 @@
 
 
 @*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
