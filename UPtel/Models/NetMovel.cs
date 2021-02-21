@@ -33,18 +33,12 @@ namespace UPtel.Models
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Número de telemóvel")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage ="O número deve ter 9 dígitos")]
         public string Numero { get; set; }
 
         [StringLength(100)]
         public string Notas { get; set; }
         
-        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        //[Display(Name = "Número")]
-        //[RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
-        //[StringLength(9, MinimumLength = 9)]
-        //public string Numero { get; set; }
-
         [InverseProperty("NetMovel")]
         public virtual ICollection<Pacotes> Pacotes { get; set; }
     }

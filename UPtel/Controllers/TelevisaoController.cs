@@ -81,14 +81,14 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
-        public IActionResult Create(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
+        public async Task<IActionResult> Create(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
         {
             List<PacoteCanais> listaCanais = new List<PacoteCanais>();
             televisao.Nome = TVM.Nome;
             televisao.Descricao = TVM.Descricao;
             televisao.PrecoPacoteTelevisao = TVM.PrecoPacoteTelevisao;
             _context.Televisao.Add(televisao);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             int televisaoId = televisao.TelevisaoId;
 
             foreach(var item in TVM.ListaCanais)
@@ -102,7 +102,7 @@ namespace UPtel.Controllers
             {
                 _context.PacoteCanais.Add(item);
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Televisao");
         }
 
