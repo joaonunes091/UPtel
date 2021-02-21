@@ -6,12 +6,13 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
                 <h2>Tipo de clientes</h2>
-
+                <br />
                 <p>
                     <a class="btn btn-costum" asp-action="Create">Adicionar tipo de cliente</a>
                 </p>
+                <br />
                 @if (Model.Count() == 0)
                 {
                     <p>Não existem dados para mostrar</p>
@@ -35,9 +36,9 @@
                                         @Html.DisplayFor(modelItem => tipo.Designacao)
                                     </td>
                                     <td class="text-right">
-                                        <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@tipo.TipoClienteId">Editar</a> |
-                                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@tipo.TipoClienteId">Detalhes</a> |
-                                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@tipo.TipoClienteId">Eliminar</a>
+                                        @*<a class="btn btn-info" asp-action="Edit" asp-route-id="@tipo.TipoClienteId">Editar</a> |*@
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@tipo.TipoClienteId">Detalhes</a>
+                                        @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@tipo.TipoClienteId">Eliminar</a>*@
                                     </td>
                                 </tr>
                             }
