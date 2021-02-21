@@ -9,25 +9,27 @@
         <div class="row justify-content-center text-left">
             <div class="col-xl-8">
 
-                <h1>Eliminar</h1>
+                @*<h1>Eliminar</h1>*@
 
-                <h3>Tem a certeza que quer eliminar?</h3>
+                <h3>Tem a certeza que quer eliminar o cargo?</h3>
                 <div>
-                    <h4>Cargos</h4>
+                    @*<h4>Cargos</h4>*@
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.NomeCargo)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.NomeCargo)
-                        </dd>
+                        <div class="col-md-4">
+                            <dt class="text-white">
+                                @Html.DisplayNameFor(model => model.NomeCargo)
+                            </dt>
+                            <dd class="text-white">
+                                @Html.DisplayFor(model => model.NomeCargo)
+                            </dd>
+                        </div>
                     </dl>
 
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="CargoId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a asp-action="Index">Voltar</a>
+                        <a class="btn btn-costum" asp-action="Index">Voltar</a>
                     </form>
                 </div>
             </div>
