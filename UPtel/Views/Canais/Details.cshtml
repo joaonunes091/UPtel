@@ -1,7 +1,7 @@
 ﻿@model UPtel.Models.Canais
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes dos Canais";
 }
 
 
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-center text-left">
             <div class="col-xl-8">
-                <h2>Detalhe Canais</h2>
+                <h2>Detalhes dos canais</h2>
                 <hr />
                 <div class="row">
                     <div class="col-md-4">
@@ -36,9 +36,10 @@
                         }
                     </div>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.CanaisId" class="btn btn-primary">Editar</a> |
-                    <a asp-action="Index">Voltar</a>
+                <div class="text-center">
+                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.CanaisId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.CanaisId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>
 
             </div>
