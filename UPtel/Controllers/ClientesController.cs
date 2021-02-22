@@ -285,7 +285,7 @@ namespace UPtel.Controllers
             if (clientes == null)
             {
                 ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
-                return View("Sucesso");
+                return View("SucessoEliminar");
             }
 
             return View(clientes);
@@ -300,7 +300,7 @@ namespace UPtel.Controllers
             _context.Clientes.Remove(clientes);
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "O cliente foi eliminado com sucesso.";
-            return View("Sucesso");
+            return View("SucessoEliminar");
         }
 
         private bool ClientesExists(int id)
