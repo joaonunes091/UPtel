@@ -32,7 +32,7 @@ namespace UPtel.Data
         public virtual DbSet<Telemovel> Telemovel { get; set; }
         public virtual DbSet<Televisao> Televisao { get; set; }
         public virtual DbSet<TipoClientes> TipoClientes { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");

@@ -108,20 +108,6 @@ namespace UPtel.Controllers
 
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("TelevisaoId,Nome,Descricao,PrecoPacoteTelevisao")] Televisao televisao)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(televisao);
-        //        await _context.SaveChangesAsync();
-        //        ViewBag.Mensagem = "Televisão adicionada com sucesso";
-        //        return View("Sucesso");
-        //    }
-        //    return View(televisao);
-        //}
-
         // GET: Televisao/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -130,13 +116,29 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var televisao = await _context.Televisao.FindAsync(id);
+            var televisao = await _context.Televisao.Include(p => p.PacoteCanais)
+                        .SingleOrDefaultAsync(p => p.TelevisaoId == id);
+
+            var canal = _context.Canais.ToList();
+           
+            TelevisaoViewModel TVM = new TelevisaoViewModel();
+            TVM.Nome = televisao.Nome;
+            TVM.Descricao = televisao.Descricao;
+            TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
+            TVM.ListaCanais = canal.Select(x => new CheckBox()
+            {
+                Id = x.CanaisId,
+                Nome = x.NomeCanal,
+                Selecionado = false
+            }).ToList(); ;
+
+
             if (televisao == null)
             {
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente a televisão já foi eliminada.";
                 return View("Erro");
             }
-            return View(televisao);
+            return View(TVM);
         }
 
         // POST: Televisao/Edit/5
@@ -155,6 +157,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+
                     _context.Update(televisao);
                     await _context.SaveChangesAsync();
                 }
