@@ -11,10 +11,16 @@ namespace UPtel.Models
     public partial class Contratos
     {
         [Key]
+        [Display(Name ="Nome de contrato")]
         public int ContratoId { get; set; }
+
+        [Display(Name ="Nome de cliente")]
         public int ClienteId { get; set; }
+        [Display(Name ="Nome de funcionário")]
         public int FuncionarioId { get; set; }
+        [Display(Name ="Nome da promoção")]
         public int PromocaoId { get; set; }
+        [Display(Name ="Nome do pacote")]
         public int PacoteId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
