@@ -95,8 +95,8 @@ namespace UPtel
             if (env.IsDevelopment())
             {
 
-                //SeedData.InsereDadosTeste(Dbcontext);
-                //SeedData.InsereDadosTestePaginacaoPesquisa(Dbcontext);
+                SeedData.InsereDadosTeste(Dbcontext);
+                SeedData.InsereDadosTestePaginacaoPesquisa(Dbcontext);
 
                 //SeedData.InsereRolesAsync(gestorRoles).Wait();
                 //SeedData.InsereAdministradorPadraoAsync(gestorUtilizadores).Wait();
