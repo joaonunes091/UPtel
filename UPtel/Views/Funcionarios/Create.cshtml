@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Funcionarios
+﻿@model CriarFuncionarioViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -85,6 +85,11 @@
                                     </button>
                                 </div>
                                 <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ConfirmePassword" class="control-label">Confirme a palavra-passe *</label>
+                                <input asp-for="ConfirmePassword" class="form-control" />
+                                <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="EstadoFuncionario" class="control-label">Estado do funcionário *</label>

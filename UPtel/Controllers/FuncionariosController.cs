@@ -9,17 +9,20 @@ using Microsoft.EntityFrameworkCore;
 using UPtel.Data;
 using UPtel.Models;
 using System.IO;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UPtel.Controllers
 {
     public class FuncionariosController : Controller
     {
         private readonly UPtelContext _context;
+        private readonly UserManager<IdentityUser> _gestorUtilizadores;
 
-        public FuncionariosController(UPtelContext context)
+        public FuncionariosController(UPtelContext context, UserManager<IdentityUser> gestorUtilizadores)
         {
             _context = context;
+            _gestorUtilizadores = gestorUtilizadores;
         }
 
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
@@ -78,15 +81,39 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FuncionarioId,NomeFuncionario,CargoId,DataNascimento,Contribuinte,Morada,CodigoPostal,Email,Telemovel,CartaoCidadao,Iban,Password,EstadoFuncionario,CodigoPostalExt,Fotografia")] Funcionarios funcionarios, IFormFile ficheiroFoto)
+        public async Task<IActionResult> Create(CriarFuncionarioViewModel infofuncionario)
         {
+            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infofuncionario.Email);
+
+            if (utilizador != null)
+            {
+                ModelState.AddModelError("Email", "Já existe um funcionário com o email que especificou.");
+            }
+
             if (!ModelState.IsValid)
             {
-                return View(funcionarios);
+                return View(infofuncionario);
             }
+
+            Funcionarios funcionarios = new Funcionarios
+            {
+                NomeFuncionario = infofuncionario.NomeFuncionario,
+                Email = infofuncionario.Email,
+                DataNascimento = infofuncionario.DataNascimento,
+                Contribuinte = infofuncionario.Contribuinte,
+                Morada = infofuncionario.Morada,
+                CodigoPostal=infofuncionario.CodigoPostal,
+                CodigoPostalExt=infofuncionario.CodigoPostalExt,
+                Telemovel=infofuncionario.Telemovel,
+                CartaoCidadao=infofuncionario.CartaoCidadao,
+                Iban=infofuncionario.Iban,
+                Password=infofuncionario.Password,
+                EstadoFuncionario=infofuncionario.EstadoFuncionario,
+                Fotografia=infofuncionario.Fotografia,
+            };
             ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
 
-            AtualizaFotofuncionario(funcionarios, ficheiroFoto);
+            //AtualizaFotofuncionario(funcionarios, ficheiroFoto); PUS EM COMENTÁRIO PORQUE ESTAVA A DAR ERRO
 
             _context.Add(funcionarios);
             await _context.SaveChangesAsync();
