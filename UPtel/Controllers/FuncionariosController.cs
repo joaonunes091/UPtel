@@ -89,6 +89,16 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Já existe um funcionário com o email que especificou.");
             }
+            utilizador = new IdentityUser(infofuncionario.Email);
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infofuncionario.Password);
+            if (!resultado.Succeeded)
+            {
+                ModelState.AddModelError("", "Não foi possível fazer o registo. Por favor tente mais tarde novamente e se o problema persistir contacte a assistência.");
+            }
+            else
+            {
+                //await _gestorUtilizadores.AddToRoleAsync(utilizador, ""); PARA COLOCAR ROLE APÓS REGISTO DE FUNCIONÁRIO
+            }
 
             if (!ModelState.IsValid)
             {
