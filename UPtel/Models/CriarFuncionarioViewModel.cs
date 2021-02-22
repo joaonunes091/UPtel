@@ -17,6 +17,7 @@ namespace UPtel.Models
         [Display(Name = "Nome de funcionário")]
         public string NomeFuncionario { get; set; }
 
+        [Display(Name = "Cargo")]
         public int CargoId { get; set; }
 
         [Column(TypeName = "date")]

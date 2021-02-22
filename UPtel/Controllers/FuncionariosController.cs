@@ -81,30 +81,8 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CriarFuncionarioViewModel infofuncionario)
+        public async Task<IActionResult> Create(CriarFuncionarioViewModel infofuncionario, IFormFile ficheiroFoto )
         {
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infofuncionario.Email);
-
-            if (utilizador != null)
-            {
-                ModelState.AddModelError("Email", "Já existe um funcionário com o email que especificou.");
-            }
-            utilizador = new IdentityUser(infofuncionario.Email);
-            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infofuncionario.Password);
-            if (!resultado.Succeeded)
-            {
-                ModelState.AddModelError("", "Não foi possível fazer o registo. Por favor tente mais tarde novamente e se o problema persistir contacte a assistência.");
-            }
-            else
-            {
-                //await _gestorUtilizadores.AddToRoleAsync(utilizador, ""); PARA COLOCAR ROLE APÓS REGISTO DE FUNCIONÁRIO
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View(infofuncionario);
-            }
-
             Funcionarios funcionarios = new Funcionarios
             {
                 NomeFuncionario = infofuncionario.NomeFuncionario,
@@ -112,24 +90,66 @@ namespace UPtel.Controllers
                 DataNascimento = infofuncionario.DataNascimento,
                 Contribuinte = infofuncionario.Contribuinte,
                 Morada = infofuncionario.Morada,
-                CodigoPostal=infofuncionario.CodigoPostal,
-                CodigoPostalExt=infofuncionario.CodigoPostalExt,
-                Telemovel=infofuncionario.Telemovel,
-                CartaoCidadao=infofuncionario.CartaoCidadao,
-                Iban=infofuncionario.Iban,
-                Password=infofuncionario.Password,
-                EstadoFuncionario=infofuncionario.EstadoFuncionario,
-                Fotografia=infofuncionario.Fotografia,
+                CodigoPostal = infofuncionario.CodigoPostal,
+                CodigoPostalExt = infofuncionario.CodigoPostalExt,
+                Telemovel = infofuncionario.Telemovel,
+                CartaoCidadao = infofuncionario.CartaoCidadao,
+                Iban = infofuncionario.Iban,
+                Password = infofuncionario.Password,
+                EstadoFuncionario = infofuncionario.EstadoFuncionario,
+                Fotografia = infofuncionario.Fotografia,
+                Cargo = infofuncionario.Cargo,
             };
-            ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
 
-            //AtualizaFotofuncionario(funcionarios, ficheiroFoto); PUS EM COMENTÁRIO PORQUE ESTAVA A DAR ERRO
+            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infofuncionario.Email);
+
+            if (utilizador != null)
+            {
+                ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
+                ModelState.AddModelError("Email", "Já existe um funcionário com o email que especificou.");
+            }
+
+            utilizador = new IdentityUser(infofuncionario.Email);
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infofuncionario.Password);
+            if (ModelState.IsValid && resultado.Succeeded)
+            {
+                await _gestorUtilizadores.AddToRoleAsync(utilizador, "Operador"); /*PARA COLOCAR ROLE APÓS REGISTO DE FUNCIONÁRIO*/
+            }
+            else
+            {
+                ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
+                ModelState.AddModelError("", "Não foi possível fazer o registo. Por favor tente mais tarde novamente e se o problema persistir contacte a assistência.");
+                return View(infofuncionario);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
+                return View(infofuncionario);
+            }
+
+       
+            //ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
+
+            AtualizaFotofuncionario(funcionarios, ficheiroFoto); 
 
             _context.Add(funcionarios);
-            await _context.SaveChangesAsync();
 
-            ViewBag.Mensagem = "Funcionário adicionado com sucesso";
-            return View("Sucesso");
+
+            if (infofuncionario.NomeFuncionario == null || infofuncionario.Contribuinte == null || infofuncionario.Morada == null ||
+                infofuncionario.CodigoPostal == null || infofuncionario.CodigoPostalExt == null || infofuncionario.Telemovel == null || infofuncionario.CartaoCidadao == null ||
+                infofuncionario.Iban == null || infofuncionario.EstadoFuncionario == null)
+            {
+                return View(infofuncionario);
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
+                return View("Sucesso");
+            }
+
+         
         }
 
         private static void AtualizaFotofuncionario(Funcionarios funcionarios, IFormFile ficheiroFoto)
