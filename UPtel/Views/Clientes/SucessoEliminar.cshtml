@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Sucesso";
+﻿
+@{
+    ViewData["Title"] = "Sucesso Eliminar";
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
@@ -9,13 +10,12 @@
                 <div class="text-white mb-3">
                     <div>
 
-                        <h1 >@ViewBag.Mensagem</h1>
+                        <h1>@ViewBag.Mensagem</h1>
                         <br />
-
                         <div>
-                            <a class="btn btn-info" asp-action="Index">
-                                Ver lista de funcionários
-                            </a>
+                            <a class="btn btn-info" asp-controller="Clientes" asp-action="Index">
+                                Ver lista de clientes
+                            </a> 
                         </div>
                     </div>
                 </div>

@@ -83,7 +83,7 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(10, ErrorMessage = "O limite de caracteres(10) foi ultrapassado")]
-        [Display(Name = "Estado do funcionário(ativo/inativo)")]
+        [Display(Name = "Estado do funcionário (ativo/inativo)")]
         public string EstadoFuncionario { get; set; }
 
         //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
