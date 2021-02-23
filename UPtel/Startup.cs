@@ -88,14 +88,14 @@ namespace UPtel
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Users}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
 
             if (env.IsDevelopment())
             {
 
-                //SeedData.InsereDadosTeste(Dbcontext);
+                SeedData.InsereDadosTeste(Dbcontext);
                 //SeedData.InsereDadosTestePaginacaoPesquisa(Dbcontext);
 
                 //SeedData.InsereRolesAsync(gestorRoles).Wait();
