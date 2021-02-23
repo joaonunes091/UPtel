@@ -29,13 +29,14 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<Funcionarios> funcionarios = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar))
+            List<Funcionarios> funcionarios = await _context.Funcionarios.Where(p => nomePesquisar == null || p.NomeFuncionario.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar))
                 .Include(f => f.Cargo)
                 .OrderBy(f => f.NomeFuncionario)
+                .OrderBy(f => f.Contribuinte)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
                 .ToListAsync();
