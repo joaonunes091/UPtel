@@ -24,12 +24,12 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.NomeCliente.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<Contratos> contratos = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.NomeCliente.Contains(nomePesquisar))
-                .OrderBy(c => c.Cliente.NomeCliente)
+            List<Contratos> contratos = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Cliente.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
                 .ToListAsync();
@@ -69,8 +69,8 @@ namespace UPtel.Controllers
         // GET: Contratos/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente");
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario");
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao");
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
             return View();
@@ -90,8 +90,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato adicionado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
 
@@ -113,8 +113,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
@@ -153,8 +153,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "NomeCliente", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionarios, "FuncionarioId", "NomeFuncionario", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);

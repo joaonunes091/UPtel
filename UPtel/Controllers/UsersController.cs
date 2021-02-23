@@ -12,11 +12,11 @@ using UPtel.Models;
 
 namespace UPtel.Controllers
 {
-    public class ClientesController : Controller
+    public class UsersController : Controller
     {
         private readonly UPtelContext _context;
         private readonly UserManager<IdentityUser> _gestorUtilizadores;
-        public ClientesController(UPtelContext context, UserManager<IdentityUser> gestorUtilizadores)
+        public UsersController(UPtelContext context, UserManager<IdentityUser> gestorUtilizadores)
         {
             _context = context;
             _gestorUtilizadores = gestorUtilizadores;
@@ -28,12 +28,12 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Clientes.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Users.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
-            List<Clientes> clientes = await _context.Clientes.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar))
-                    .Include(t => t.TipoCliente)
-                    .OrderBy(c => c.NomeCliente)
+            List<Users> clientes = await _context.Users.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar))
+                    .Include(t => t.Tipo)
+                    .OrderBy(c => c.Nome)
                     .OrderBy(c => c.Contribuinte)
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
@@ -49,7 +49,7 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
 
-        // GET: Clientes/Details/5
+        // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -57,36 +57,36 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes
-                .Include(c => c.TipoCliente)
-                .FirstOrDefaultAsync(m => m.ClienteId == id);
-            if (clientes == null)
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
             {
                 return NotFound();
             }
 
-            return View(clientes);
+            return View(users);
         }
 
-        // GET: Clientes/Registo
+        // GET: User/Registo
         public IActionResult Registo()
         {
-            ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao");
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
-        // POST: Clientes/Registo
+        // POST: User/Registo
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registo(RegistoClienteViewModel infoclientes)
+        public async Task<IActionResult> Registo(RegistoUserViewModel infoclientes)
         {
 
-            Clientes clientes = new Clientes
+            Users clientes = new Users
             {
-                NomeCliente = infoclientes.NomeCliente,
-                DataNascimento = infoclientes.DataNascimento,
+                Nome = infoclientes.Nome,
+                Data = infoclientes.Data,
                 CartaoCidadao = infoclientes.CartaoCidadao,
                 Contribuinte = infoclientes.Contribuinte,
                 Morada = infoclientes.Morada,
@@ -94,16 +94,16 @@ namespace UPtel.Controllers
                 Telefone = infoclientes.Telefone,
                 Telemovel = infoclientes.Telemovel,
                 Email = infoclientes.Email,
-                Password = infoclientes.Password,
+                //Password = infoclientes.Password,
                 CodigoPostalExt = infoclientes.CodigoPostalExt,
-                TipoClienteId = infoclientes.TipoClienteId,
+                TipoId = infoclientes.TipoId,
             };
 
             IdentityUser utilizador = new IdentityUser();
             if (infoclientes.Email == null)
             {
                 ModelState.AddModelError("Email", "Precisa de introduzir um email");
-                ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
                 return View(infoclientes);
             }
             else
@@ -115,7 +115,7 @@ namespace UPtel.Controllers
             if (utilizador != null)
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
                 return View(infoclientes);
             }
             utilizador = new IdentityUser(infoclientes.Email);
@@ -165,10 +165,10 @@ namespace UPtel.Controllers
             //cc = new IdentityUser(infoclientes.CartaoCidadao);
 
 
-            if (infoclientes.DataNascimento > DateTime.Today.AddYears(-18))
+            if (infoclientes.Data > DateTime.Today.AddYears(-18))
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
                 return View(infoclientes);
             }
 
@@ -177,7 +177,7 @@ namespace UPtel.Controllers
             if (infoclientes.Password == null)
             {
                 ModelState.AddModelError("Password", "Precisa de colocar uma password");
-                ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
                 return View(infoclientes);
             }
             else
@@ -193,7 +193,7 @@ namespace UPtel.Controllers
             else
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-                ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
                 return View(infoclientes);
             }
 
@@ -201,7 +201,7 @@ namespace UPtel.Controllers
 
 
 
-            if (infoclientes.NomeCliente == null || infoclientes.CartaoCidadao == null || infoclientes.Contribuinte == null || infoclientes.Morada == null || infoclientes.CodigoPostal == null || infoclientes.Telemovel == null || infoclientes.CodigoPostalExt == null)
+            if (infoclientes.Nome == null || infoclientes.Contribuinte == null || infoclientes.Morada == null || infoclientes.CodigoPostal == null || infoclientes.Telemovel == null || infoclientes.CodigoPostalExt == null)
             {
                 return View(infoclientes);
             }
@@ -213,11 +213,11 @@ namespace UPtel.Controllers
             }
 
             //return RedirectToAction(nameof(Details));
-            //ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
+            //ViewData["TipoClienteId"] = new SelectList(_context.UserType, "Tipo", users.TipoId);
 
         }
 
-        // GET: Clientes/Edit/5
+        // GET: User/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -225,14 +225,14 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes.FindAsync(id);
-            if (clientes == null)
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
             {
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
-            return View(clientes);
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
         }
 
         // POST: Clientes/Edit/5
@@ -240,9 +240,9 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,NomeCliente,DataNascimento,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Password,TipoClienteId,CodigoPostalExt")] Clientes clientes)
+        public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
-            if (id != clientes.ClienteId)
+            if (id != users.UsersId)
             {
                 return NotFound();
             }
@@ -251,12 +251,12 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    _context.Update(clientes);
+                    _context.Update(users);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientesExists(clientes.ClienteId))
+                    if (!UsersExists(users.UsersId))
                     {
                         return NotFound();
                     }
@@ -268,8 +268,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoClienteId"] = new SelectList(_context.TipoClientes, "TipoClienteId", "Designacao", clientes.TipoClienteId);
-            return View(clientes);
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
         }
 
         // GET: Clientes/Delete/5
@@ -280,16 +280,16 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var clientes = await _context.Clientes
-                .Include(c => c.TipoCliente)
-                .FirstOrDefaultAsync(m => m.ClienteId == id);
-            if (clientes == null)
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
             {
                 ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
                 return View("SucessoEliminar");
             }
 
-            return View(clientes);
+            return View(users);
         }
 
         // POST: Clientes/Delete/5
@@ -297,16 +297,16 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clientes = await _context.Clientes.FindAsync(id);
-            _context.Clientes.Remove(clientes);
+            var users = await _context.Users.FindAsync(id);
+            _context.Users.Remove(users);
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "O cliente foi eliminado com sucesso.";
             return View("SucessoEliminar");
         }
 
-        private bool ClientesExists(int id)
+        private bool UsersExists(int id)
         {
-            return _context.Clientes.Any(e => e.ClienteId == id);
+            return _context.Users.Any(e => e.UsersId == id);
         }
     }
 }

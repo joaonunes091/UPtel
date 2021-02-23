@@ -33,7 +33,7 @@ namespace UPtel.Data
         {
             //InsereDadosTesteNetMovel(DbContext);
             //InsereDadosTesteNetfixa(DbContext);
-            InsereDadosTesteTipoClientes(DbContext);
+            //InsereDadosTesteTipoClientes(DbContext);
             //InsereDadosTesteCanais(DbContext);
             InsereDadosTesteCargos(DbContext);
             InsereDadosTestePromocoes(DbContext);
@@ -60,8 +60,8 @@ namespace UPtel.Data
             InsereTelevisaoFicticiosParaTestarPaginacao(DbContext);
             InsereNetMovelFicticiosParaTestarPaginacao(DbContext);
             InserePacoteFicticiosParaTestarPaginacao(DbContext);
-            InsereClientesFicticiosParaTestarPaginacao(DbContext);
-            InsereFuncionariosFicticiosParaTestarPaginacao(DbContext);
+            //InsereClientesFicticiosParaTestarPaginacao(DbContext);
+            //InsereFuncionariosFicticiosParaTestarPaginacao(DbContext);
 
         }
 
@@ -313,15 +313,15 @@ namespace UPtel.Data
 
         private static void InsereDadosTesteCargos(UPtelContext DbContext)
         {
-            if (DbContext.Cargos.Any()) return;
-            DbContext.Cargos.AddRange(new Cargos[] {
-            new Cargos
+            if (DbContext.UserType.Any()) return;
+            DbContext.UserType.AddRange(new UserType[] {
+            new UserType
             {
-                NomeCargo = "Administrador(a)",
+                Tipo = "Administrador(a)",
             },
-            new Cargos
+            new UserType
             {
-                NomeCargo = "Operador(a)",
+                Tipo = "Operador(a)",
             }
         });
             DbContext.SaveChanges();
@@ -380,28 +380,28 @@ namespace UPtel.Data
         //-------------------------------------------------
 
 
-        private static void InsereDadosTesteTipoClientes(UPtelContext DbContext)
-        {
-            if (DbContext.TipoClientes.Any()) return;
-            DbContext.TipoClientes.AddRange(new TipoClientes[] {
-            new TipoClientes
-            {
-                Designacao = "Particular",
-            },
-            new TipoClientes
-            {
-                Designacao = "Empresa",
-            },new TipoClientes
-            {
-                Designacao = "Grandes",
-            },
-            new TipoClientes
-            {
-                Designacao = "Estatal",
-            }
-        });
-            DbContext.SaveChanges();
-        }
+        //private static void InsereDadosTesteTipoClientes(UPtelContext DbContext)
+        //{
+        //    if (DbContext.TipoUtilizador.Any()) return;
+        //    DbContext.TipoUtilizador.AddRange(new UserType[] {
+        //    new UserType
+        //    {
+        //        Designacao = "Particular",
+        //    },
+        //    new UserType
+        //    {
+        //        Designacao = "Empresa",
+        //    },new UserType
+        //    {
+        //        Designacao = "Grandes",
+        //    },
+        //    new UserType
+        //    {
+        //        Designacao = "Estatal",
+        //    }
+        //});
+        //    DbContext.SaveChanges();
+        //}
 
         //-------------------------------------------------
         //       NET FIXA
@@ -613,260 +613,260 @@ namespace UPtel.Data
         //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         //-------------------------------------------------
 
-        private static void InsereDadosTesteClientes(UPtelContext DbContext)
-        {
-            if (DbContext.Clientes.Any()) return;
+        //private static void InsereDadosTesteClientes(UPtelContext DbContext)
+        //{
+        //    if (DbContext.Clientes.Any()) return;
 
-            TipoClientes tipoCliente = DbContext.TipoClientes.FirstOrDefault(c => c.Designacao == "Empresa");
-
-
-            DbContext.Clientes.AddRange(new Clientes[]
-               {
-                new Clientes
-                {
-                    NomeCliente = "José Figueiras",
-                    DataNascimento = new DateTime(1969,12,18),
-                    CartaoCidadao = "15485963",
-                    Contribuinte = "154965739",
-                    Morada = "Rua Júlio Cesár Machado nº14",
-                    CodigoPostal = "1500",
-                    Telefone="231584687",
-                    Telemovel="961847659",
-                    Email="José.Ramos@gmail.com",
-                    TipoCliente = tipoCliente,
-                    Password="Ola123$",
-                    CodigoPostalExt="695",
-                },
-                new Clientes
-                {
-                    NomeCliente = "Rui Pedro Santos",
-                    DataNascimento=new DateTime(1990,8,8),
-                    CartaoCidadao="24045212",
-                    Contribuinte="157782731",
-                    Morada="Rua do Pinho Alto nº 25",
-                    CodigoPostal="2300",
-                    Telefone="271598874",
-                    Telemovel="927856988",
-                    Email="Rui.Pedro.Santos@gmail.com",
-                    TipoCliente = tipoCliente,
-                    Password="Ola123$",
-                    CodigoPostalExt="588",
-
-                },
-                new Clientes
-                {
-                    NomeCliente = "Mariana Rute Guedes",
-                    DataNascimento=new DateTime(1987,11,7),
-                    CartaoCidadao="15487986",
-                    Contribuinte="16687495",
-                    Morada="Rua do Comércio nº4",
-                    CodigoPostal="1700",
-                    Telefone="234598777",
-                    Telemovel="961155484",
-                    Email="Mariana.Rute.Guedes@gmail.com",
-                    TipoCliente = tipoCliente,
-                    Password="Ola123$",
-                    CodigoPostalExt="588",
-                },
-                new Clientes
-                {
-                    NomeCliente = "David Rui Pedroso",
-                    DataNascimento=new DateTime(1985,1,20),
-                    CartaoCidadao="34657986",
-                    Contribuinte="376554971",
-                    Morada="Rua de São Mamede nº10",
-                    CodigoPostal="4000",
-                    Telefone="236459557",
-                    Telemovel="915444789",
-                    Email="David.Rui.Pedroso@gmail.com",
-                    TipoCliente = tipoCliente,
-                    Password="Ola123$",
-                    CodigoPostalExt="588",
-                },
-                });
-
-            DbContext.SaveChanges();
-        }
-
-        public static void InsereClientesFicticiosParaTestarPaginacao(UPtelContext DbContext)
-        {
-
-            for (int i = 10; i < 50; i++)
-
-            {
-                if (DbContext.Clientes.Any()) return;
-
-                TipoClientes tipoCliente = DbContext.TipoClientes.FirstOrDefault(c => c.Designacao == "Empresa");
-
-                DbContext.Clientes.Add(new Clientes
-                {
-                    NomeCliente = "José Figueiras " + i,
-                    DataNascimento = new DateTime(1969, 12, 18),
-                    CartaoCidadao = Convert.ToString(12345670 + i),
-                    Contribuinte = Convert.ToString(123456700 + i),
-                    Morada = "Rua Júlio Cesár Machado nº14",
-                    CodigoPostal = "1500",
-                    Telefone = Convert.ToString(247112500 + i),
-                    Telemovel = Convert.ToString(913456700 + i),
-                    Email = "José.Ramos@gmail.com " + i,
-                    TipoCliente = tipoCliente,
-                    Password = "Ola123$",
-                    CodigoPostalExt = "695",
-
-                });
-
-            }
-            DbContext.SaveChanges();
-        }
-
-        //-------------------------------------------------
-        //         FUNCIONARIOS
-        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
-        //-------------------------------------------------
-
-        private static void InsereDadosTesteFuncionarios(UPtelContext DbContext)
-        {
-            if (DbContext.Funcionarios.Any()) return;
-
-            Cargos cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+        //    UserType tipoCliente = DbContext.TipoUtilizador.FirstOrDefault(c => c.Tipo == "Operador(a)");
 
 
-            DbContext.Funcionarios.AddRange(new Funcionarios[]
-               {
-                new Funcionarios
-                {
-                    NomeFuncionario = "Mário",
-                    Cargo = cargos,
-                    DataNascimento = new DateTime(1982, 11, 11),
-                    Contribuinte = "123456700",
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "a@b.com",
-                    Telemovel = "913456700",
-                    CartaoCidadao = "12345670",
-                    Iban = "1234567891234567891234567",
-                    Password = "Ola123$",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
-                },
-                new Funcionarios
-                {
-                    NomeFuncionario = "Maria",
-                    Cargo = cargos,
-                    DataNascimento = new DateTime(1979, 11, 11),
-                    Contribuinte = "123456589",
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "b@b.com",
-                    Telemovel = "913456150",
-                    CartaoCidadao = "12345678",
-                    Iban = "1234567891234567891234567",
-                    Password = "Ola123$",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
-                },
-                new Funcionarios
-                {
-                    NomeFuncionario = "Manuel",
-                    Cargo = cargos,
-                    DataNascimento = new DateTime(1968, 11, 11),
-                    Contribuinte = "123456747",
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "c@b.com",
-                    Telemovel = "913456747",
-                    CartaoCidadao = "12345474",
-                    Iban = "1234567891234567891234567",
-                    Password = "Ola123$",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
-                },
-                 new Funcionarios
-                {
-                    NomeFuncionario = "Madalena",
-                    Cargo = cargos,
-                    DataNascimento = new DateTime(1995, 11, 11),
-                    Contribuinte = "123456774",
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "d@b.com",
-                    Telemovel = "913456440",
-                    CartaoCidadao = "23456701",
-                    Iban = "1234567891234567891234567",
-                    Password = "Ola123$",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
-                },
-                });
+        //    DbContext.Clientes.AddRange(new Users[]
+        //       {
+        //        new Users
+        //        {
+        //            Nome = "José Figueiras",
+        //            Data = new DateTime(1969,12,18),
+        //            CartaoCidadao = "15485963",
+        //            Contribuinte = "154965739",
+        //            Morada = "Rua Júlio Cesár Machado nº14",
+        //            CodigoPostal = "1500",
+        //            Telefone="231584687",
+        //            Telemovel="961847659",
+        //            Email="José.Ramos@gmail.com",
+        //            Tipo = tipoCliente,
+        //            //Password="Ola123$",
+        //            CodigoPostalExt="695",
+        //        },
+        //        new Users
+        //        {
+        //            NomeCliente = "Rui Pedro Santos",
+        //            DataNascimento=new DateTime(1990,8,8),
+        //            CartaoCidadao="24045212",
+        //            Contribuinte="157782731",
+        //            Morada="Rua do Pinho Alto nº 25",
+        //            CodigoPostal="2300",
+        //            Telefone="271598874",
+        //            Telemovel="927856988",
+        //            Email="Rui.Pedro.Santos@gmail.com",
+        //            TipoCliente = tipoCliente,
+        //            Password="Ola123$",
+        //            CodigoPostalExt="588",
 
-            DbContext.SaveChanges();
-        }
-        public static void InsereFuncionariosFicticiosParaTestarPaginacao(UPtelContext DbContext)
-        {
+        //        },
+        //        new Users
+        //        {
+        //            NomeCliente = "Mariana Rute Guedes",
+        //            DataNascimento=new DateTime(1987,11,7),
+        //            CartaoCidadao="15487986",
+        //            Contribuinte="16687495",
+        //            Morada="Rua do Comércio nº4",
+        //            CodigoPostal="1700",
+        //            Telefone="234598777",
+        //            Telemovel="961155484",
+        //            Email="Mariana.Rute.Guedes@gmail.com",
+        //            TipoCliente = tipoCliente,
+        //            Password="Ola123$",
+        //            CodigoPostalExt="588",
+        //        },
+        //        new Users
+        //        {
+        //            NomeCliente = "David Rui Pedroso",
+        //            DataNascimento=new DateTime(1985,1,20),
+        //            CartaoCidadao="34657986",
+        //            Contribuinte="376554971",
+        //            Morada="Rua de São Mamede nº10",
+        //            CodigoPostal="4000",
+        //            Telefone="236459557",
+        //            Telemovel="915444789",
+        //            Email="David.Rui.Pedroso@gmail.com",
+        //            TipoCliente = tipoCliente,
+        //            Password="Ola123$",
+        //            CodigoPostalExt="588",
+        //        },
+        //        });
 
-            for (int i = 10; i < 50; i++)
+        //    DbContext.SaveChanges();
+        //}
 
-            {
-                if (DbContext.Funcionarios.Any()) return;
+        //public static void InsereClientesFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        //{
 
-                Cargos cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+        //    for (int i = 10; i < 50; i++)
 
-                DbContext.Funcionarios.Add(new Funcionarios
-                {
-                    NomeFuncionario = "Funcionário " + i,
-                    Cargo = cargos,
-                    DataNascimento = new DateTime(1911, 11, 11),
-                    Contribuinte = Convert.ToString(123456700 + i),
-                    Morada = "Sem Abrigo",
-                    CodigoPostal = "1234",
-                    Email = "a" + i + "@b.com",
-                    Telemovel = Convert.ToString(913456700 + i),
-                    CartaoCidadao = Convert.ToString(12345670 + i),
-                    Iban = "1234567891234567891234567",
-                    Password = "Ola123$",
-                    CodigoPostalExt = "123",
-                    EstadoFuncionario = "ativo"
+        //    {
+        //        if (DbContext.Clientes.Any()) return;
 
-                });
+        //        UserType tipoCliente = DbContext.TipoClientes.FirstOrDefault(c => c.Designacao == "Empresa");
 
-            }
-            DbContext.SaveChanges();
-        }
+        //        DbContext.Clientes.Add(new Users
+        //        {
+        //            NomeCliente = "José Figueiras " + i,
+        //            DataNascimento = new DateTime(1969, 12, 18),
+        //            CartaoCidadao = Convert.ToString(12345670 + i),
+        //            Contribuinte = Convert.ToString(123456700 + i),
+        //            Morada = "Rua Júlio Cesár Machado nº14",
+        //            CodigoPostal = "1500",
+        //            Telefone = Convert.ToString(247112500 + i),
+        //            Telemovel = Convert.ToString(913456700 + i),
+        //            Email = "José.Ramos@gmail.com " + i,
+        //            TipoCliente = tipoCliente,
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "695",
 
-        //-------------------------------------------------
-        //         CONTRATOS
-        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
-        //-------------------------------------------------
+        //        });
 
-        private static void InsereDadosTesteContratos(UPtelContext DbContext)
-        {
-            if (DbContext.Contratos.Any()) return;
+        //    }
+        //    DbContext.SaveChanges();
+        //}
+
+        ////-------------------------------------------------
+        ////         FUNCIONARIOS
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        //private static void InsereDadosTesteFuncionarios(UPtelContext DbContext)
+        //{
+        //    if (DbContext.Funcionarios.Any()) return;
+
+        //    TipoUsers cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+
+
+        //    DbContext.Funcionarios.AddRange(new Funcionarios[]
+        //       {
+        //        new Funcionarios
+        //        {
+        //            NomeFuncionario = "Mário",
+        //            Cargo = cargos,
+        //            DataNascimento = new DateTime(1982, 11, 11),
+        //            Contribuinte = "123456700",
+        //            Morada = "Sem Abrigo",
+        //            CodigoPostal = "1234",
+        //            Email = "a@b.com",
+        //            Telemovel = "913456700",
+        //            CartaoCidadao = "12345670",
+        //            Iban = "1234567891234567891234567",
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "123",
+        //            EstadoFuncionario = "ativo"
+        //        },
+        //        new Funcionarios
+        //        {
+        //            NomeFuncionario = "Maria",
+        //            Cargo = cargos,
+        //            DataNascimento = new DateTime(1979, 11, 11),
+        //            Contribuinte = "123456589",
+        //            Morada = "Sem Abrigo",
+        //            CodigoPostal = "1234",
+        //            Email = "b@b.com",
+        //            Telemovel = "913456150",
+        //            CartaoCidadao = "12345678",
+        //            Iban = "1234567891234567891234567",
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "123",
+        //            EstadoFuncionario = "ativo"
+        //        },
+        //        new Funcionarios
+        //        {
+        //            NomeFuncionario = "Manuel",
+        //            Cargo = cargos,
+        //            DataNascimento = new DateTime(1968, 11, 11),
+        //            Contribuinte = "123456747",
+        //            Morada = "Sem Abrigo",
+        //            CodigoPostal = "1234",
+        //            Email = "c@b.com",
+        //            Telemovel = "913456747",
+        //            CartaoCidadao = "12345474",
+        //            Iban = "1234567891234567891234567",
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "123",
+        //            EstadoFuncionario = "ativo"
+        //        },
+        //         new Funcionarios
+        //        {
+        //            NomeFuncionario = "Madalena",
+        //            Cargo = cargos,
+        //            DataNascimento = new DateTime(1995, 11, 11),
+        //            Contribuinte = "123456774",
+        //            Morada = "Sem Abrigo",
+        //            CodigoPostal = "1234",
+        //            Email = "d@b.com",
+        //            Telemovel = "913456440",
+        //            CartaoCidadao = "23456701",
+        //            Iban = "1234567891234567891234567",
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "123",
+        //            EstadoFuncionario = "ativo"
+        //        },
+        //        });
+
+        //    DbContext.SaveChanges();
+        //}
+        //public static void InsereFuncionariosFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        //{
+
+        //    for (int i = 10; i < 50; i++)
+
+        //    {
+        //        if (DbContext.Funcionarios.Any()) return;
+
+        //        TipoUsers cargos = DbContext.Cargos.FirstOrDefault(c => c.NomeCargo == "Operador(a)");
+
+        //        DbContext.Funcionarios.Add(new Funcionarios
+        //        {
+        //            NomeFuncionario = "Funcionário " + i,
+        //            Cargo = cargos,
+        //            DataNascimento = new DateTime(1911, 11, 11),
+        //            Contribuinte = Convert.ToString(123456700 + i),
+        //            Morada = "Sem Abrigo",
+        //            CodigoPostal = "1234",
+        //            Email = "a" + i + "@b.com",
+        //            Telemovel = Convert.ToString(913456700 + i),
+        //            CartaoCidadao = Convert.ToString(12345670 + i),
+        //            Iban = "1234567891234567891234567",
+        //            Password = "Ola123$",
+        //            CodigoPostalExt = "123",
+        //            EstadoFuncionario = "ativo"
+
+        //        });
+
+        //    }
+        //    DbContext.SaveChanges();
+        //}
+
+        ////-------------------------------------------------
+        ////         CONTRATOS
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        //private static void InsereDadosTesteContratos(UPtelContext DbContext)
+        //{
+        //    if (DbContext.Contratos.Any()) return;
             
-            Clientes clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
-            Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
-            Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
-            Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
+        //    Users clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
+        //    Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
+        //    Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
+        //    Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 
 
-            DbContext.Contratos.AddRange(new Contratos[]
-               {
-                new Contratos
-                {
-                    Cliente = clientes,
-                    Funcionario = funcionarios,
-                    Promocao = promocoes,
-                    Pacote = pacotes,
-                    DataInicio = new DateTime(1965,05,25),
-                    Fidelizacao = 5,
-                    TempoPromocao = 5,
-                    PrecoContrato = 59m,
-                },
+        //    DbContext.Contratos.AddRange(new Contratos[]
+        //       {
+        //        new Contratos
+        //        {
+        //            Cliente = clientes,
+        //            Funcionario = funcionarios,
+        //            Promocao = promocoes,
+        //            Pacote = pacotes,
+        //            DataInicio = new DateTime(1965,05,25),
+        //            Fidelizacao = 5,
+        //            TempoPromocao = 5,
+        //            PrecoContrato = 59m,
+        //        },
                  
 
-                });
+        //        });
 
-            DbContext.SaveChanges();
-        }
+        //    DbContext.SaveChanges();
+        //}
 
 
 

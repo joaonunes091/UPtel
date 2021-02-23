@@ -6,6 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Cargos\**" />
+    <Compile Remove="Views\Clientes\**" />
+    <Compile Remove="Views\Funcionarios\**" />
+    <Compile Remove="Views\TipoClientes\**" />
+    <Content Remove="Views\Cargos\**" />
+    <Content Remove="Views\Clientes\**" />
+    <Content Remove="Views\Funcionarios\**" />
+    <Content Remove="Views\TipoClientes\**" />
+    <EmbeddedResource Remove="Views\Cargos\**" />
+    <EmbeddedResource Remove="Views\Clientes\**" />
+    <EmbeddedResource Remove="Views\Funcionarios\**" />
+    <EmbeddedResource Remove="Views\TipoClientes\**" />
+    <None Remove="Views\Cargos\**" />
+    <None Remove="Views\Clientes\**" />
+    <None Remove="Views\Funcionarios\**" />
+    <None Remove="Views\TipoClientes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.3" />

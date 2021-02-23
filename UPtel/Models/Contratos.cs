@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UPtel.Models
 {
+    [Index(nameof(ClienteId), Name = "IX_Contratos_ClienteId")]
+    [Index(nameof(FuncionarioId), Name = "IX_Contratos_FuncionarioId")]
+    [Index(nameof(PacoteId), Name = "IX_Contratos_PacoteId")]
+    [Index(nameof(PromocaoId), Name = "IX_Contratos_PromocaoId")]
     public partial class Contratos
     {
         [Key]
@@ -44,12 +48,12 @@ namespace UPtel.Models
 
 
         [ForeignKey(nameof(ClienteId))]
-        [InverseProperty(nameof(Clientes.Contratos))]
-        public virtual Clientes Cliente { get; set; }
+        [InverseProperty(nameof(Users.ContratosCliente))]
+        public virtual Users Cliente { get; set; }
 
         [ForeignKey(nameof(FuncionarioId))]
-        [InverseProperty(nameof(Funcionarios.Contratos))]
-        public virtual Funcionarios Funcionario { get; set; }
+        [InverseProperty(nameof(Users.ContratosFuncionario))]
+        public virtual Users Funcionario { get; set; }
 
         [ForeignKey(nameof(PacoteId))]
         [InverseProperty(nameof(Pacotes.Contratos))]

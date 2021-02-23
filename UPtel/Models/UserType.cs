@@ -8,22 +8,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UPtel.Models
 {
-    public partial class TipoClientes
+    public partial class UserType
     {
-        public TipoClientes()
+        public UserType()
         {
-            Clientes = new HashSet<Clientes>();
+            Users = new HashSet<Users>();
         }
 
         [Key]
-        public int TipoClienteId { get; set; }
-       
+        public int TipoId { get; set; }
+
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(15, ErrorMessage = "O limite de carateres(15) foi ultrapassado")]
-        [Display(Name = "Designação")]
-        public string Designacao { get; set; }
+        public string Tipo { get; set; }
 
-        [InverseProperty("TipoCliente")]
-        public virtual ICollection<Clientes> Clientes { get; set; }
+        [InverseProperty("Tipo")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }
