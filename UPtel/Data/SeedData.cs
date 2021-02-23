@@ -705,8 +705,8 @@ namespace UPtel.Data
         {
             if (DbContext.Contratos.Any()) return;
 
-            Users clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
-            Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
+            Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "José Figueiras");
+            Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mário");
             Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 

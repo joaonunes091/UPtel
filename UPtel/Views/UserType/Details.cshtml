@@ -4,21 +4,31 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left text-white">
+            <div class="col-xl-8">
 
-<div>
-    <h4>UserType</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tipo)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.TipoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                <h1>Detalhes dos user types</h1>
+                <br />
+                <div>
+                    
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Tipo)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Tipo)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TipoId">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TipoId">Eliminar</a> |
+                    <a class="btn btn-info" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

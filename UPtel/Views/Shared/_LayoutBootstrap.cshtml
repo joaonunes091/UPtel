@@ -72,57 +72,63 @@
 
             <div class="row justify-content-center">
                 <div class="col-xl-9 d-flex align-items-center justify-content-between">
-                    <a asp-controller="Home" asp-action="Index">
-                        <img class="logo" src="~/bootstrap/assets/img/UPtel_capa1.png" alt="UPtel" />
-                     </a>
-                    <nav class="nav-menu d-none d-lg-block">
-                        <ul>
-                            <li class="drop-down">
-                                <a href="">Clientes</a>
+                    
+                        <a asp-controller="Home" asp-action="Index">
+                            <img class="logo" src="~/bootstrap/assets/img/UPtel_capa1.png" alt="UPtel" />
+                        </a>
+                        
+                            <nav class="nav-menu d-none d-lg-block">
+                                
                                 <ul>
-                                    <li><a asp-action="Index" asp-controller="Clientes">Clientes</a></li>
-                                    <li><a asp-action="Index" asp-controller="TipoClientes">Tipo de Clientes</a></li>
-                                    <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-down">
-                                <a href="">Funcionários</a>
-                                <ul>
-                                    <li><a asp-action="Index" asp-controller="Funcionarios">Lista de Funcionários</a></li>
-                                    <li><a asp-action="Index" asp-controller="Cargos">Cargos</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-down">
-                                <a href="">Serviços</a>
-                                <ul>
+
                                     <li class="drop-down">
-                                        <a href="#">Pacotes de Internet</a>
+                                        <a href="">Users</a>
                                         <ul>
-                                            <li><a asp-action="Index" asp-controller="NetMovel">Net Móvel</a></li>
-                                            <li><a asp-action="Index" asp-controller="NetFixa">Net Fixa</a></li>
+                                            <li><a asp-action="Index" asp-controller="Users">Users</a></li>
+                                            <li><a asp-action="Index" asp-controller="UserType">User Types</a></li>
+                                            <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
                                         </ul>
                                     </li>
-                                    <li class="drop-down">
-                                        <a href="#">Televisão</a>
-                                        <ul>
-                                            <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
-                                            <li><a asp-action="Index" asp-controller="Canais">Canais</a></li>
-                                            <li><a asp-action="Index" asp-controller="PacoteCanais">Pacotes de canais</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
-                                    <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
+                        
+                                @*<li class="drop-down">
+            <a href="">Funcionários</a>
+            <ul>
+                <li><a asp-action="Index" asp-controller="Funcionarios">Lista de Funcionários</a></li>
+                <li><a asp-action="Index" asp-controller="Cargos">Cargos</a></li>
+            </ul>
+        </li>*@
+                            
+                                <li class="drop-down">
+                                    <a href="">Serviços</a>
+                                    <ul>
+                                        <li class="drop-down">
+                                            <a href="#">Pacotes de Internet</a>
+                                            <ul>
+                                                <li><a asp-action="Index" asp-controller="NetMovel">Net Móvel</a></li>
+                                                <li><a asp-action="Index" asp-controller="NetFixa">Net Fixa</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="drop-down">
+                                            <a href="#">Televisão</a>
+                                            <ul>
+                                                <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
+                                                <li><a asp-action="Index" asp-controller="Canais">Canais</a></li>
+                                                <li><a asp-action="Index" asp-controller="PacoteCanais">Pacotes de canais</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
+                                        <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
+                                <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
+                       
+                                <partial name="_LoginPartial" />
+                            
                                 </ul>
-                            </li>
-
-                            <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
-                            <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
-
-                            <partial name="_LoginPartial" />
-
-                          
-                        </ul>
-                    </nav>
+                            
+                            </nav>
                 </div>
             </div>
 
