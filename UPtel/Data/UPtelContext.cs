@@ -19,10 +19,10 @@ namespace UPtel.Data
         }
 
         public virtual DbSet<Canais> Canais { get; set; }
-        public virtual DbSet<Cargos> Cargos { get; set; }
-        public virtual DbSet<Clientes> Clientes { get; set; }
+        //public virtual DbSet<UserType> Tipo { get; set; } 
+        //public virtual DbSet<Users> Clientes { get; set; }
+        //public virtual DbSet<Users> Funcionarios { get; set; }
         public virtual DbSet<Contratos> Contratos { get; set; }
-        public virtual DbSet<Funcionarios> Funcionarios { get; set; }
         public virtual DbSet<NetFixa> NetFixa { get; set; }
         public virtual DbSet<NetMovel> NetMovel { get; set; }
         public virtual DbSet<PacoteCanais> PacoteCanais { get; set; }
@@ -31,34 +31,35 @@ namespace UPtel.Data
         public virtual DbSet<Telefone> Telefone { get; set; }
         public virtual DbSet<Telemovel> Telemovel { get; set; }
         public virtual DbSet<Televisao> Televisao { get; set; }
-        public virtual DbSet<TipoClientes> TipoClientes { get; set; }
-        
+        public virtual DbSet<UserType> UserType { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Clientes>(entity =>
+            /*modelBuilder.Entity<Users>(entity =>
             {
-                entity.HasOne(d => d.TipoCliente)
-                    .WithMany(p => p.Clientes)
-                    .HasForeignKey(d => d.TipoClienteId)
+                entity.HasOne(d => d.TipoUtilizador)
+                    .WithMany(p => p.TipoUtilizador)
+                    .HasForeignKey(d => d.TipoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Clientes_TipoClientes");
-            });
+                    .HasConstraintName("FK_Users_Tipo");
+            });*/
 
             modelBuilder.Entity<Contratos>(entity =>
             {
                 entity.HasOne(d => d.Cliente)
-                    .WithMany(p => p.Contratos)
+                    .WithMany(p => p.ContratosCliente)
                     .HasForeignKey(d => d.ClienteId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contratos_Clientes");
+                    .HasConstraintName("FK_Cliente_Users");
 
                 entity.HasOne(d => d.Funcionario)
-                    .WithMany(p => p.Contratos)
+                    .WithMany(p => p.ContratosFuncionario)
                     .HasForeignKey(d => d.FuncionarioId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contratos_Funcionarios");
+                    .HasConstraintName("FK_Funcionarios_Users");
 
                 entity.HasOne(d => d.Pacote)
                     .WithMany(p => p.Contratos)
@@ -73,14 +74,14 @@ namespace UPtel.Data
                     .HasConstraintName("FK_Contratos_Promocoes");
             });
 
-            modelBuilder.Entity<Funcionarios>(entity =>
+            /*modelBuilder.Entity<Users>(entity =>
             {
-                entity.HasOne(d => d.Cargo)
-                    .WithMany(p => p.Funcionarios)
-                    .HasForeignKey(d => d.CargoId)
+                entity.HasOne(d => d.TipoUtilizador)
+                    .WithMany(p => p.TipoUtilizador)
+                    .HasForeignKey(d => d.TipoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Funcionarios_Cargos");
-            });
+            });*/
 
             modelBuilder.Entity<PacoteCanais>(entity =>
             {
@@ -123,6 +124,23 @@ namespace UPtel.Data
                     .WithMany(p => p.Pacotes)
                     .HasForeignKey(d => d.TelevisaoId)
                     .HasConstraintName("FK_Pacotes_Televisao1");
+            });
+
+            modelBuilder.Entity<UserType>(entity =>
+            {
+                entity.HasKey(e => e.TipoId)
+                    .HasName("PK_TipoClientes");
+            });
+
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.Property(e => e.CodigoPostalExt).HasDefaultValueSql("(N'')");
+
+                entity.HasOne(d => d.Tipo)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.TipoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_UserType");
             });
 
             OnModelCreatingPartial(modelBuilder);
