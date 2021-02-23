@@ -701,35 +701,35 @@ namespace UPtel.Data
         ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         ////-------------------------------------------------
 
-        private static void InsereDadosTesteContratos(UPtelContext DbContext)
-        {
-            if (DbContext.Contratos.Any()) return;
+        //private static void InsereDadosTesteContratos(UPtelContext DbContext)
+        //{
+        //    if (DbContext.Contratos.Any()) return;
 
-            Users clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
-            Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
-            Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
-            Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
-
-
-            DbContext.Contratos.AddRange(new Contratos[]
-               {
-                new Contratos
-                {
-                    Cliente = clientes,
-                    Funcionario = funcionarios,
-                    Promocao = promocoes,
-                    Pacote = pacotes,
-                    DataInicio = new DateTime(1965,05,25),
-                    Fidelizacao = 5,
-                    TempoPromocao = 5,
-                    PrecoContrato = 59m,
-                },
+        //    Users clientes = DbContext.Clientes.FirstOrDefault(t => t.NomeCliente == "José Figueiras");
+        //    Funcionarios funcionarios = DbContext.Funcionarios.FirstOrDefault(t => t.NomeFuncionario == "Mário");
+        //    Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
+        //    Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 
 
-                });
+        //    DbContext.Contratos.AddRange(new Contratos[]
+        //       {
+        //        new Contratos
+        //        {
+        //            Cliente = clientes,
+        //            Funcionario = funcionarios,
+        //            Promocao = promocoes,
+        //            Pacote = pacotes,
+        //            DataInicio = new DateTime(1965,05,25),
+        //            Fidelizacao = 5,
+        //            TempoPromocao = 5,
+        //            PrecoContrato = 59m,
+        //        },
 
-            DbContext.SaveChanges();
-        }
+
+        //        });
+
+        //    DbContext.SaveChanges();
+        //}
 
 
 
