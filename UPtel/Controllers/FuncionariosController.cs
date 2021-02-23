@@ -128,7 +128,25 @@ namespace UPtel.Controllers
                 return View(infofuncionario);
             }
 
-       
+            if (infofuncionario.DataNascimento > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+                ViewData["TipoClienteId"] = new SelectList(_context.Cargos, "CargoId", "Designacao", funcionarios.CargoId);
+                return View(infofuncionario);
+            }
+
+            IdentityResult confirm = new IdentityResult();
+            if (infofuncionario.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+                ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "Designacao", funcionarios.CargoId);
+                return View(infofuncionario);
+            }
+            else
+            {
+                confirm = await _gestorUtilizadores.CreateAsync(utilizador, infofuncionario.Password);
+            }
+
             //ViewData["CargoId"] = new SelectList(_context.Cargos, "CargoId", "NomeCargo", funcionarios.CargoId);
 
             AtualizaFotofuncionario(funcionarios, ficheiroFoto); 
