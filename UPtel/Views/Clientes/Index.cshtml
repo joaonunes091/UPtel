@@ -45,11 +45,11 @@
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.CartaoCidadao)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Contribuinte)
-                                    </th>
-                                    <th>
+                                    </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Clientes[0].Contribuinte)
+                                </th>
+                                @*<th>
                                         @Html.DisplayNameFor(model => model.Morada)
                                     </th>
                                     <th>
@@ -88,11 +88,11 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.CartaoCidadao)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Contribuinte)
-                                        </td>
-                                        <td>
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => cliente.Contribuinte)
+                                    </td>
+                                    @*<td>
                                             @Html.DisplayFor(modelItem => item.Morada)
                                         </td>
                                         <td>

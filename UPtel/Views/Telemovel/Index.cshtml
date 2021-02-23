@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-center text-left">
             <div class="col-xl-8 text-white">
-
+                <br />
                 <h3>Telemóvel</h3>
                 <br />
 
@@ -30,7 +30,7 @@
                 <p>
                     <a class="btn btn-costum" asp-action="Create">Inserir telemóvel</a>
                 </p>
- 
+
                 @if (Model.Telemovel.Count() == 0)
                 {
                     <p>Não existem pacotes de serviços a mostrar</p>
@@ -96,7 +96,7 @@
                                         @Html.DisplayFor(modelItem => item.PrecoPacoteTelemovel)
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a> 
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TelemovelId">Detalhes</a>
                                     </td>
                                 </tr>
                             }
