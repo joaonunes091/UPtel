@@ -701,6 +701,7 @@ namespace UPtel.Data
         ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
         ////-------------------------------------------------
 
+
         private static void InsereDadosTesteContratos(UPtelContext DbContext)
         {
             if (DbContext.Contratos.Any()) return;
@@ -730,6 +731,7 @@ namespace UPtel.Data
 
             DbContext.SaveChanges();
         }
+
 
 
 
