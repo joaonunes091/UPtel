@@ -31,7 +31,7 @@ namespace UPtel.Controllers
                 TotalItems = await _context.Users.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
-            List<Users> clientes = await _context.Users.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar))
+            List<Users> users = await _context.Users.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar))
                     .Include(t => t.Tipo)
                     .OrderBy(c => c.Nome)
                     .OrderBy(c => c.Contribuinte)
@@ -42,7 +42,7 @@ namespace UPtel.Controllers
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
-                Clientes = clientes,
+                Users = users,
                 NomePesquisar = nomePesquisar
             };
 
@@ -83,7 +83,7 @@ namespace UPtel.Controllers
         public async Task<IActionResult> Registo(RegistoUserViewModel infoclientes)
         {
 
-            Users clientes = new Users
+            Users users = new Users
             {
                 Nome = infoclientes.Nome,
                 Data = infoclientes.Data,
@@ -103,7 +103,7 @@ namespace UPtel.Controllers
             if (infoclientes.Email == null)
             {
                 ModelState.AddModelError("Email", "Precisa de introduzir um email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoclientes);
             }
             else
@@ -115,7 +115,7 @@ namespace UPtel.Controllers
             if (utilizador != null)
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoclientes);
             }
             utilizador = new IdentityUser(infoclientes.Email);
@@ -168,7 +168,7 @@ namespace UPtel.Controllers
             if (infoclientes.Data > DateTime.Today.AddYears(-18))
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoclientes);
             }
 
@@ -177,7 +177,7 @@ namespace UPtel.Controllers
             if (infoclientes.Password == null)
             {
                 ModelState.AddModelError("Password", "Precisa de colocar uma password");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoclientes);
             }
             else
@@ -193,11 +193,11 @@ namespace UPtel.Controllers
             else
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", clientes.TipoId);
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoclientes);
             }
 
-            _context.Add(clientes);
+            _context.Add(users);
 
 
 

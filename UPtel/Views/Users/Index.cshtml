@@ -1,0 +1,114 @@
+﻿@model ListaCanaisViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].CartaoCidadao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Contribuinte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].CodigoPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Iban)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].CodigoPostalExt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users[0].Tipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CartaoCidadao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contribuinte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Morada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoPostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telemovel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Iban)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoPostalExt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fotografia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo.Tipo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UsersId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.UsersId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UsersId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
