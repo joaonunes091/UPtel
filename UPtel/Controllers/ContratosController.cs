@@ -69,8 +69,8 @@ namespace UPtel.Controllers
         // GET: Contratos/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao");
-            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao");
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome");
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
             return View();
@@ -90,8 +90,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato adicionado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
 
@@ -113,8 +113,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
@@ -153,8 +153,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CartaoCidadao", contratos.FuncionarioId);
+            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
