@@ -42,6 +42,7 @@ namespace UPtel.Data
             InsereDadosTestePacote(DbContext);
             InsereDadosTesteUserTypes(DbContext);
             InsereDadosTesteUsers(DbContext);
+            InsereDadosTesteContratos(DbContext);
         }
 
         internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
@@ -707,7 +708,7 @@ namespace UPtel.Data
             if (DbContext.Contratos.Any()) return;
 
             Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "José Figueiras");
-            Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mário");
+            Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Rui Pedro Santos");
             Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 
