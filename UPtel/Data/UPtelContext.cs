@@ -94,7 +94,7 @@ namespace UPtel.Data
                 entity.HasOne(d => d.Televisao)
                     .WithMany(p => p.PacoteCanais)
                     .HasForeignKey(d => d.TelevisaoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_PacoteCanais_Televisao");
             });
 

@@ -111,33 +111,23 @@ namespace UPtel.Controllers
         // GET: Televisao/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var televisao = await _context.Televisao.Include(p => p.PacoteCanais)
-                        .SingleOrDefaultAsync(p => p.TelevisaoId == id);
-
-            var canal = _context.Canais.ToList();
-           
             TelevisaoViewModel TVM = new TelevisaoViewModel();
-            TVM.Nome = televisao.Nome;
-            TVM.Descricao = televisao.Descricao;
-            TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
-            TVM.ListaCanais = canal.Select(x => new CheckBox()
+            var televisao = await _context.Televisao.Include(p => p.PacoteCanais)
+                .ThenInclude(c => c.Canais)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.TelevisaoId == id);
+
+            var listaCanais = _context.Canais.Select(x => new CheckBox()
             {
                 Id = x.CanaisId,
                 Nome = x.NomeCanal,
-                Selecionado = false
-            }).ToList(); ;
+                Selecionado = x.PacoteCanais.Any(x => x.TelevisaoId == televisao.TelevisaoId) ? true : false
+            }).ToList();
 
-
-            if (televisao == null)
-            {
-                ViewBag.Mensagem = "Ocorreu um erro, possivelmente a televisão já foi eliminada.";
-                return View("Erro");
-            }
+            TVM.Nome = televisao.Nome;
+            TVM.Descricao = televisao.Descricao;
+            TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
+            TVM.ListaCanais = listaCanais;
             return View(TVM);
         }
 
@@ -146,36 +136,41 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelevisaoId,Nome,Descricao,PrecoPacoteTelevisao")] Televisao televisao)
+        public async Task<IActionResult> Edit(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
         {
-            if (id != televisao.TelevisaoId)
+            List<PacoteCanais> listaCanais = new List<PacoteCanais>();
+            televisao.Nome = TVM.Nome;
+            televisao.Descricao = TVM.Descricao;
+            televisao.PrecoPacoteTelevisao = TVM.PrecoPacoteTelevisao;
+            _context.Televisao.Update(televisao);
+            await _context.SaveChangesAsync();
+            int televisaoId = televisao.TelevisaoId;
+
+            foreach (var canal in TVM.ListaCanais)
             {
-                return NotFound();
+                if (canal.Selecionado == true)
+                {
+                    listaCanais.Add(new PacoteCanais() { TelevisaoId = televisao.TelevisaoId, CanaisId = canal.Id });
+                }
             }
 
-            if (ModelState.IsValid)
+            var ListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == televisaoId).ToList();
+            var resultado = ListaPacoteCanais.Except(listaCanais).ToList();
+            foreach (var pacoteCanal in resultado)
             {
-                try
+                _context.PacoteCanais.Remove(pacoteCanal);
+                await _context.SaveChangesAsync();
+            }
+            var novaListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == televisaoId).ToList();
+            foreach (var canal in listaCanais)
+            {
+                if (!novaListaPacoteCanais.Contains(canal))
                 {
-
-                    _context.Update(televisao);
+                    _context.PacoteCanais.Add(canal);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TelevisaoExists(televisao.TelevisaoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                ViewBag.Mensagem = "Televisão alterada com sucesso";
-                return View("Sucesso");
             }
-            return View(televisao);
+            return RedirectToAction("Index", "Televisao");
         }
 
         // GET: Televisao/Delete/5
