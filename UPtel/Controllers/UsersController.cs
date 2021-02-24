@@ -68,17 +68,36 @@ namespace UPtel.Controllers
             return View(users);
         }
 
+
         //GET : User/PreRegisto
-        public IActionResult PreRegisto()
-        {
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
-            return View();
-        }
+        //public IActionResult PreRegisto()
+        //{
+        //    ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+        //    return View();
+        //}
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> PreRegisto(RegistoUserViewModel infoclientes)
+        //public async Task<IActionResult> PreRegisto(PreRegistoViewModel preUsers)
         //{
-        //    await 
+        //    IdentityUser preUser = new IdentityUser();
+        //    Users users = new Users
+        //    {
+        //        TipoId=preUsers.TipoId,
+        //    };
+        //    await _context.SaveChangesAsync();
+            //if (preUsers.TipoId == )
+            //{
+            //    return View("RegistoCliente");
+            //}
+            //else if(preUsers.TipoId == )
+            //{
+            //    return View("RegistoOperador");
+            //}
+            //else if()
+            //{
+            //    return View("RegistoFuncionario");
+            //}
+        //    return View();
         //}
 
 
@@ -94,35 +113,35 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoCliente(RegistoUserViewModel infoclientes)
+        public async Task<IActionResult> RegistoCliente(RegistoUserViewModel infoUsers)
         {
 
             Users users = new Users
             {
-                Nome = infoclientes.Nome,
-                Data = infoclientes.Data,
-                CartaoCidadao = infoclientes.CartaoCidadao,
-                Contribuinte = infoclientes.Contribuinte,
-                Morada = infoclientes.Morada,
-                CodigoPostal = infoclientes.CodigoPostal,
-                Telefone = infoclientes.Telefone,
-                Telemovel = infoclientes.Telemovel,
-                Email = infoclientes.Email,
-                //Password = infoclientes.Password,
-                CodigoPostalExt = infoclientes.CodigoPostalExt,
-                TipoId = infoclientes.TipoId,
+                Nome = infoUsers.Nome,
+                Data = infoUsers.Data,
+                CartaoCidadao = infoUsers.CartaoCidadao,
+                Contribuinte = infoUsers.Contribuinte,
+                Morada = infoUsers.Morada,
+                CodigoPostal = infoUsers.CodigoPostal,
+                Telefone = infoUsers.Telefone,
+                Telemovel = infoUsers.Telemovel,
+                Email = infoUsers.Email,
+                //Password = infoUsers.Password,
+                CodigoPostalExt = infoUsers.CodigoPostalExt,
+                TipoId = infoUsers.TipoId,
             };
 
             IdentityUser utilizador = new IdentityUser();
-            if (infoclientes.Email == null)
+            if (infoUsers.Email == null)
             {
                 ModelState.AddModelError("Email", "Precisa de introduzir um email");
                 ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoclientes);
+                return View(infoUsers);
             }
             else
             {
-                utilizador = await _gestorUtilizadores.FindByNameAsync(infoclientes.Email);
+                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
             }
 
 
@@ -130,10 +149,12 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
                 ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoclientes);
+                return View(infoUsers);
             }
-            utilizador = new IdentityUser(infoclientes.Email);
+            utilizador = new IdentityUser(infoUsers.Email);
 
+            
+            //Alterar infocliente para infoUsers caso se retire de comentário
             ////Verificador de números de contribuinte
             //IdentityUser contribuinte = new IdentityUser();
             //if (infoclientes.Contribuinte == null)
@@ -179,45 +200,45 @@ namespace UPtel.Controllers
             //cc = new IdentityUser(infoclientes.CartaoCidadao);
 
 
-            if (infoclientes.Data > DateTime.Today.AddYears(-18))
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
                 ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoclientes);
+                return View(infoUsers);
             }
 
 
             IdentityResult resultado = new IdentityResult();
-            if (infoclientes.Password == null)
+            if (infoUsers.Password == null)
             {
                 ModelState.AddModelError("Password", "Precisa de colocar uma password");
                 ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoclientes);
+                return View(infoUsers);
             }
             else
             {
-                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoclientes.Password);
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
             }
 
 
-            if (ModelState.IsValid && resultado.Succeeded)
-            {
-                await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoclientes);
-            }
+            //if (ModelState.IsValid && resultado.Succeeded)
+            //{
+            //    await _gestorUtilizadores.AddToRoleAsync(utilizador, "Cliente");
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            //    ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //    return View(infoUsers);
+            //}
 
             _context.Add(users);
 
 
 
-            if (infoclientes.Nome == null || infoclientes.Contribuinte == null || infoclientes.Morada == null || infoclientes.CodigoPostal == null || infoclientes.Telemovel == null || infoclientes.CodigoPostalExt == null)
+            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
             {
-                return View(infoclientes);
+                return View(infoUsers);
             }
             else
             {
