@@ -1,7 +1,7 @@
 ﻿@model UPtel.Models.Contratos
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar dados do contrato";
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
@@ -59,17 +59,17 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.ContratoId">Voltar</a>
+
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="text-white">
-                    <p>* - Campos de preenchimento obrigatório</p>
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
 
-                <div>
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.ContratoId">Voltar</a>
-                </div>
+                
 
             </div>
         </div>
