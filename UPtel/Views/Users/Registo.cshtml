@@ -1,22 +1,21 @@
 ﻿@model UPtel.Models.Users
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
             <div class="col-xl-8 text-white">
 
-                <h1>Editar user</h1>
+                <h2>Registar user</h2>
 
-               
+                
                 <hr />
                 <div class="row">
-                    <div class="col-md-4 text-white">
-                        <form asp-action="Edit">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="UsersId" />
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label"></label>
                                 <input asp-for="Nome" class="form-control" />
@@ -70,12 +69,6 @@
                             <div class="form-group">
                                 <label asp-for="TipoId" class="control-label"></label>
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
-                                <span asp-validation-for="TipoId" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                                <input asp-for="CodigoPostalExt" class="form-control" />
-                                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Estado" class="control-label"></label>
@@ -88,7 +81,7 @@
                                 <span asp-validation-for="Fotografia" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <input type="submit" value="Registar" class="btn btn-costum" />
                                 <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>
