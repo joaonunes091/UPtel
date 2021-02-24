@@ -68,52 +68,102 @@ namespace UPtel.Controllers
             return View(users);
         }
 
+        public IActionResult RegistoAdministrador()
+        {
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers)
+        {
+            Users users = new Users
+            {
+                Nome = infoUsers.Nome,
+                Data = infoUsers.Data,
+                CartaoCidadao = infoUsers.CartaoCidadao,
+                Contribuinte = infoUsers.Contribuinte,
+                Morada = infoUsers.Morada,
+                CodigoPostal = infoUsers.CodigoPostal,
+                Telefone = infoUsers.Telefone,
+                Telemovel = infoUsers.Telemovel,
+                Email = infoUsers.Email,
+                CodigoPostalExt = infoUsers.CodigoPostalExt,
+                Iban = infoUsers.Iban,
+                //TipoId = infoUsers.TipoId,
+            };
+            IdentityUser utilizador = new IdentityUser();
+            if (infoUsers.Email == null)
+            {
+                ModelState.AddModelError("Email", "Precisa de introduzir um email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+            }
 
-        //GET : User/PreRegisto
-        //public IActionResult PreRegisto()
-        //{
-        //    ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> PreRegisto(PreRegistoViewModel preUsers)
-        //{
-        //    IdentityUser preUser = new IdentityUser();
-        //    Users users = new Users
-        //    {
-        //        TipoId=preUsers.TipoId,
-        //    };
-        //    await _context.SaveChangesAsync();
-            //if (preUsers.TipoId == )
-            //{
-            //    return View("RegistoCliente");
-            //}
-            //else if(preUsers.TipoId == )
-            //{
-            //    return View("RegistoOperador");
-            //}
-            //else if()
-            //{
-            //    return View("RegistoFuncionario");
-            //}
-        //    return View();
-        //}
+
+            if (utilizador != null)
+            {
+                ModelState.AddModelError("Email", "Já existe uma conta com este email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            utilizador = new IdentityUser(infoUsers.Email);
+
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
 
 
-        // GET: User/Registo
-        public IActionResult RegistoCliente()
+            IdentityResult resultado = new IdentityResult();
+            if (infoUsers.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
+            }
+
+            _context.Add(users);
+
+
+
+            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
+            {
+                return View(infoUsers);
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
+                return View("Sucesso");
+            }
+
+
+        }
+
+        // GET: User/RegistoClienteParticular
+        public IActionResult RegistoClienteParticular()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
-        // POST: User/Registo
+        // POST: User/RegistoClienteParticular
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoCliente(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
         {
 
             Users users = new Users
@@ -129,7 +179,7 @@ namespace UPtel.Controllers
                 Email = infoUsers.Email,
                 //Password = infoUsers.Password,
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
-                TipoId = infoUsers.TipoId,
+                //TipoId = infoUsers.TipoId,
             };
 
             IdentityUser utilizador = new IdentityUser();
