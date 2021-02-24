@@ -25,92 +25,95 @@
                         </form>
                     </div>
                 </div>
-                <p>
-                    <a class="btn btn-costum" asp-action="Create">Criar nova promoção</a>
-                </p>
-
-                @if (Model.Promocoes.Count() == 0)
+                @if (User.IsInRole("Administrador"))// restringe o botão a administradores
                 {
-                    <p>Não existem pacotes de serviços a mostrar</p>
+                    <p>
+                        <a class="btn btn-costum" asp-action="Create">Criar nova promoção</a>
+                    </p>
                 }
-                else
-                {
 
-                    <table class="table text-white">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Promocoes[0].NomePromocao)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Promocoes[0].Descricao)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Promocoes[0].PromoCanais)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Promocoes[0].Desconto)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Promocoes)
-                            {
+                    @if (Model.Promocoes.Count() == 0)
+                    {
+                        <p>Não existem promoções a mostrar</p>
+                    }
+                    else
+                    {
+
+                        <table class="table text-white">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NomePromocao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PromoCanais)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Desconto)
-                                    </td>
-                                    <td >
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PromocaoId">Detalhes</a>
-                                    </td>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Promocoes[0].NomePromocao)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Promocoes[0].Descricao)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Promocoes[0].PromoCanais)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Promocoes[0].Desconto)
+                                    </th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <nav>
-                        <ul class="pagination pagination-sm justify-content-end">
-                            @{
-                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaInicial < 1)
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Promocoes)
                                 {
-                                    paginaInicial = 1;
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NomePromocao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PromoCanais)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Desconto)
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PromocaoId">Detalhes</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                @{
+                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaInicial < 1)
+                                    {
+                                        paginaInicial = 1;
+                                    }
+
+                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                    {
+                                        paginaFinal = Model.Paginacao.TotalPaginas;
+                                    }
                                 }
 
-                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                {
-                                    paginaFinal = Model.Paginacao.TotalPaginas;
-                                }
-                            }
-
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                            </li>
-
-                            @for (int i = paginaInicial; i <= paginaFinal; i++)
-                            {
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
                                 </li>
-                            }
 
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                            </li>
-                        </ul>
-                    </nav>
-                }
-            </div>
+                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                {
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    }
+                </div>
         </div>
     </div>
 </section>
