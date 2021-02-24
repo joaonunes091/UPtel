@@ -23,7 +23,7 @@
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="TipoId" />
                         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.TipoId">Voltar</a>
                     </form>
                 </div>
             </div>
