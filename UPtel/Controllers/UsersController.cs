@@ -68,8 +68,22 @@ namespace UPtel.Controllers
             return View(users);
         }
 
+        //GET : User/PreRegisto
+        public IActionResult PreRegisto()
+        {
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            return View();
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> PreRegisto(RegistoUserViewModel infoclientes)
+        //{
+        //    await 
+        //}
+
+
         // GET: User/Registo
-        public IActionResult Registo()
+        public IActionResult RegistoCliente()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
@@ -80,7 +94,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registo(RegistoUserViewModel infoclientes)
+        public async Task<IActionResult> RegistoCliente(RegistoUserViewModel infoclientes)
         {
 
             Users users = new Users
