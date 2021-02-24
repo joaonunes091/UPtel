@@ -1,10 +1,8 @@
 ﻿@model ListaCanaisViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Contratos";
 }
-
-
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
@@ -15,7 +13,7 @@
                     <br />
                     <div class="col-md-8 border-info mb-6">
                         <div class="card-body">
-                            <h5 class="card-title">Pesquisar contratos através do cliente</h5>
+                            <h5 class="card-title">Pesquisar contratos (Por Nome/NIF)</h5>
                             <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
@@ -46,6 +44,9 @@
                                             Nome do Cliente
                                         </th>
                                         <th>
+                                            NIF
+                                        </th>
+                                        <th>
                                             Data de Início
                                         </th>
                                         <th>
@@ -58,20 +59,23 @@
                                 <tbody>
                                     @foreach (var contratos in Model.Contratos)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => contratos.DataInicio)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => contratos.Fidelizacao)
-                                            </td>
-                                            <td class="text-right">
-                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Cliente.Contribuinte)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.DataInicio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                        </td>
+                                        <td class="text-right">
+                                            <a class="btn btn-info" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
