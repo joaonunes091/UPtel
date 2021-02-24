@@ -136,15 +136,19 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
+        public async Task<IActionResult> Edit(int? id, TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
         {
             List<PacoteCanais> listaCanais = new List<PacoteCanais>();
+           
             televisao.Nome = TVM.Nome;
             televisao.Descricao = TVM.Descricao;
             televisao.PrecoPacoteTelevisao = TVM.PrecoPacoteTelevisao;
+           
             _context.Televisao.Update(televisao);
             await _context.SaveChangesAsync();
+     
             int televisaoId = televisao.TelevisaoId;
+
 
             foreach (var canal in TVM.ListaCanais)
             {
@@ -154,14 +158,14 @@ namespace UPtel.Controllers
                 }
             }
 
-            var ListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == televisaoId).ToList();
+            var ListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == id).ToList();
             var resultado = ListaPacoteCanais.Except(listaCanais).ToList();
             foreach (var pacoteCanal in resultado)
             {
                 _context.PacoteCanais.Remove(pacoteCanal);
                 await _context.SaveChangesAsync();
             }
-            var novaListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == televisaoId).ToList();
+            var novaListaPacoteCanais = _context.PacoteCanais.Where(p => p.TelevisaoId == id).ToList();
             foreach (var canal in listaCanais)
             {
                 if (!novaListaPacoteCanais.Contains(canal))
@@ -170,6 +174,7 @@ namespace UPtel.Controllers
                     await _context.SaveChangesAsync();
                 }
             }
+
             return RedirectToAction("Index", "Televisao");
         }
 

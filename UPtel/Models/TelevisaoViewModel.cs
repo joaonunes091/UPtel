@@ -8,7 +8,9 @@ namespace UPtel.Models
 {
     public class TelevisaoViewModel
     {
-        
+
+
+        [Key]
         public int TelevisaoId { get; set; }
 
 
@@ -21,5 +23,7 @@ namespace UPtel.Models
         public decimal PrecoPacoteTelevisao { get; set; }
 
         public List<CheckBox> ListaCanais { get; set; }
+
+
     }
 }
