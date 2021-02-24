@@ -127,9 +127,20 @@
                                     <li class="drop-down">
                                         <a href="#">Registar</a>
                                         <ul>
-                                            <li><a asp-action="RegistoCliente" asp-controller="Users">Cliente</a></li>
-                                            <li><a asp-action="RegistoOperador" asp-controller="Users">Operador</a></li>
-                                            <li><a asp-action="RegistoAdmin" asp-controller="Users">Administrador</a></li>
+                                            <li class="drop-down">
+                                                <a href="#">Clientes</a>
+                                                <ul>
+                                                    <li><a asp-action="RegistoClienteParticular" asp-controller="Users">Cliente</a></li>
+                                                    <li><a asp-action="RegistoClienteEmpresa" asp-controller="Users">Empresa</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="drop-down">
+                                                <a href="#">Funcionários</a>
+                                                <ul>
+                                                    <li><a asp-action="RegistoOperador" asp-controller="Users">Operador</a></li>
+                                                    <li><a asp-action="RegistoAdministrador" asp-controller="Users">Administrador</a></li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </li>
 
