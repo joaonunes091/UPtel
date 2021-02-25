@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Users
+﻿@model RegistoUserViewModel
 
 @{
     ViewData["Title"] = "Registo";
@@ -71,12 +71,22 @@
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ConfirmePassword" class="control-label"></label>
+                                <input asp-for="ConfirmePassword" class="form-control" />
+                                <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="TipoId" class="control-label"></label>
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
                             </div>
                             <div class="form-group">
                                 <label for="Fotografia" class="control-label"></label>
-                                <input name="Fotografia" class="from-control-file" type="file"/>
+                                <input name="Fotografia" class="from-control-file" type="file" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Registar" class="btn btn-primary" />
