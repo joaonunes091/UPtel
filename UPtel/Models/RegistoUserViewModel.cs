@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.ComponentModel.DataAnnotations.RegularExpressionAttribute;
 
 namespace UPtel.Models
 {
@@ -80,7 +81,7 @@ namespace UPtel.Models
         [Column("IBAN")]
         [StringLength(25, ErrorMessage = "O limite de caracteres(25) foi ultrapassado", MinimumLength = 25)]
         [Display(Name = "IBAN")]
-        [RegularExpression(@"")]
+        //[RegularExpression(@"")]
         public string Iban { get; set; }
 
         public byte[] Fotografia { get; set; }
