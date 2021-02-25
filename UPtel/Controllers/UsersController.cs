@@ -94,7 +94,7 @@ namespace UPtel.Controllers
                 Email = infoUsers.Email,
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
                 Iban = infoUsers.Iban,
-                //TipoId = infoUsers.TipoId,
+                TipoId = infoUsers.TipoId,
             };
             IdentityUser utilizador = new IdentityUser();
             if (infoUsers.Email == null)
@@ -269,7 +269,7 @@ namespace UPtel.Controllers
                 Email = infoUsers.Email,
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
                 Iban = infoUsers.Iban,
-                //TipoId = infoUsers.TipoId,
+                TipoId = infoUsers.TipoId,
             };
             IdentityUser utilizador = new IdentityUser();
             if (infoUsers.Email == null)
@@ -358,7 +358,7 @@ namespace UPtel.Controllers
                 Email = infoUsers.Email,
                 //Password = infoUsers.Password,
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
-                //TipoId = infoUsers.TipoId,
+                TipoId = infoUsers.TipoId,
             };
 
             IdentityUser utilizador = new IdentityUser();
