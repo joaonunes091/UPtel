@@ -85,7 +85,7 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var pacoteid = _context.Pacotes.SingleOrDefault(e => e.PacoteId == contratos.PacoteId);
+                //Pacotes pacoteid = _context.Pacotes.SingleOrDefault(e => e.PacoteId == contratos.PacoteId);
                 //contratos.PrecoContrato = pacoteid.PrecoTotal;
 
                 _context.Add(contratos);
