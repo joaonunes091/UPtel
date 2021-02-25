@@ -1,7 +1,7 @@
 ﻿@model ListaCanaisViewModel
 
 @{
-    ViewData["Title"] = "Telemóvel";
+    ViewData["Title"] = "Users";
 }
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
@@ -28,7 +28,10 @@
                 </div>
 
                 <p>
-                    <a class="btn btn-costum" asp-action="Registo">Registar user</a>
+                    <a class="btn btn-costum" asp-action="RegistoClienteParticular">Registar cliente particular</a>
+                    <a class="btn btn-costum" asp-action="RegistoClienteEmpresa">Registar empresa</a>
+                    <a class="btn btn-costum" asp-action="RegistoOperador">Registar operador</a>
+                    <a class="btn btn-costum" asp-action="RegistoAdministrador">Registar admin</a>
                 </p>
 
                 @if (Model.Users.Count() == 0)

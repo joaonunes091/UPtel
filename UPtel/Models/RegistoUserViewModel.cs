@@ -80,6 +80,7 @@ namespace UPtel.Models
         [Column("IBAN")]
         [StringLength(25, ErrorMessage = "O limite de caracteres(25) foi ultrapassado", MinimumLength = 25)]
         [Display(Name = "IBAN")]
+        [RegularExpression(@"")]
         public string Iban { get; set; }
 
         public byte[] Fotografia { get; set; }

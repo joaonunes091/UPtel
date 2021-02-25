@@ -249,6 +249,9 @@ namespace UPtel.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
         // POST : User/RegistoClienteEmpresa
 
         public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
