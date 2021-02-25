@@ -83,26 +83,18 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
-         
-
-            
-            //Código que vai buscar o preço do pacote
+            decimal precoContrato, desconto, total;
+            var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
-            contratos.PrecoContrato = pacote.PrecoTotal;
 
-            //Código que vai buscar o desconto da promoção
-            var promocaopacoteid = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
-            var promocaoid = _context.Promocoes.SingleOrDefault(p => p.PromocaoId == promocaopacoteid.PromocaoId);
-            contratos.PromocaoId = promocaoid.PromocaoId;
+            precoContrato = pacote.PrecoTotal;
+            desconto = promocoes.Desconto;
+            total = precoContrato - (precoContrato * (desconto / 100));
+            contratos.PrecoContrato = total;
 
-            //Cálculo do PrecoFinal
-            contratos.PrecoContrato -= (contratos.PrecoContrato * (promocaoid.Desconto / 100));
-
-            _context.Add(contratos);
+            _context.Contratos.Add(contratos);
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato adicionado com sucesso";
-           
-            
 
             ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
             ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
@@ -110,6 +102,31 @@ namespace UPtel.Controllers
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
 
             return View("Sucesso");
+
+            ////Código que vai buscar o preço do pacote
+            //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+            //contratos.PrecoContrato = pacote.PrecoTotal;
+
+            ////Código que vai buscar o desconto da promoção
+            //var promocaopacoteid = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+            //var promocaoid = _context.Promocoes.SingleOrDefault(p => p.PromocaoId == promocaopacoteid.PromocaoId);
+            //contratos.PromocaoId = promocaoid.PromocaoId;
+
+            ////Cálculo do PrecoFinal
+            //contratos.PrecoContrato -= (contratos.PrecoContrato * (promocaoid.Desconto / 100));
+
+            //_context.Add(contratos);
+            //await _context.SaveChangesAsync();
+            //ViewBag.Mensagem = "Contrato adicionado com sucesso";
+
+
+
+            //ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
+            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
+            //ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
+            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+
+            //return View("Sucesso");
 
         }
 
