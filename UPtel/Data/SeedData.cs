@@ -315,18 +315,22 @@ namespace UPtel.Data
             new Canais
             {
                 NomeCanal = "RTP 1",
+                Foto = null
             },
             new Canais
             {
                 NomeCanal = "RTP 2",
+                Foto = null
             },
             new Canais
             {
                 NomeCanal = "RTP 3",
+                Foto = null
             },
             new Canais
             {
                 NomeCanal = "RTP Africa",
+                Foto = null
             }
         });
             DbContext.SaveChanges();
