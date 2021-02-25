@@ -136,17 +136,22 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
+        public async Task<IActionResult> Edit(int? id, TelevisaoViewModel TVM/*, Televisao televisao*//*, PacoteCanais pacoteCanais*/)
         {
             List<PacoteCanais> listaCanais = new List<PacoteCanais>();
-           
+
+            Televisao televisao = await _context.Televisao.Include(p => p.PacoteCanais)
+                .ThenInclude(c => c.Canais)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.TelevisaoId == id);
+
             televisao.Nome = TVM.Nome;
             televisao.Descricao = TVM.Descricao;
             televisao.PrecoPacoteTelevisao = TVM.PrecoPacoteTelevisao;
-           
+
             _context.Televisao.Update(televisao);
             await _context.SaveChangesAsync();
-     
+
             int televisaoId = televisao.TelevisaoId;
 
 
