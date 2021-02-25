@@ -70,9 +70,6 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
                                     </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Canais[0].PrecoCanais)
-                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -88,9 +85,6 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => canais.NomeCanal)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => canais.PrecoCanais)
                                         </td>
                                         <td class="text-right">
                                             @*<a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@canais.CanaisId">Editar</a> |*@

@@ -23,12 +23,6 @@ namespace UPtel.Models
         [Display(Name = "Nome do canal")]
         public string NomeCanal { get; set; }
 
-        [Display(Name = "Preço do Canal")]
-        [Required(ErrorMessage = "Deve preencher o preço.")]
-        [Column(TypeName = "decimal(5, 2)")]
-        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
-        public decimal PrecoCanais { get; set; }
-
         public byte[] Foto { get; set; }
 
         [InverseProperty("Canais")]
