@@ -68,11 +68,15 @@ namespace UPtel.Controllers
             return View(users);
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // GET : User/RegistoAdministrador
         public IActionResult RegistoAdministrador()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
+        // POST : User/RegistoAdministrador
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers)
@@ -147,9 +151,181 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
             }
-
-
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //GET : User/RegistoOperador
+        public IActionResult RegistoOperador()
+        {
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            return View();
+        }
+
+        // POST : User/RegistoOperador
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
+        {
+            Users users = new Users
+            {
+                Nome = infoUsers.Nome,
+                Data = infoUsers.Data,
+                CartaoCidadao = infoUsers.CartaoCidadao,
+                Contribuinte = infoUsers.Contribuinte,
+                Morada = infoUsers.Morada,
+                CodigoPostal = infoUsers.CodigoPostal,
+                Telefone = infoUsers.Telefone,
+                Telemovel = infoUsers.Telemovel,
+                Email = infoUsers.Email,
+                CodigoPostalExt = infoUsers.CodigoPostalExt,
+                Iban = infoUsers.Iban,
+                //TipoId = infoUsers.TipoId,
+            };
+            IdentityUser utilizador = new IdentityUser();
+            if (infoUsers.Email == null)
+            {
+                ModelState.AddModelError("Email", "Precisa de introduzir um email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+            }
+
+
+            if (utilizador != null)
+            {
+                ModelState.AddModelError("Email", "Já existe uma conta com este email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            utilizador = new IdentityUser(infoUsers.Email);
+
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+
+
+            IdentityResult resultado = new IdentityResult();
+            if (infoUsers.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
+            }
+
+            _context.Add(users);
+
+
+
+            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
+            {
+                return View(infoUsers);
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
+                return View("Sucesso");
+            }
+        }
+
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //GET : User/RegistoClienteEmpresa
+        public IActionResult RegistoClienteEmpresa()
+        {
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            return View();
+        }
+
+        // POST : User/RegistoClienteEmpresa
+
+        public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
+        {
+            Users users = new Users
+            {
+                Nome = infoUsers.Nome,
+                Data = infoUsers.Data,
+                CartaoCidadao = infoUsers.CartaoCidadao,
+                Contribuinte = infoUsers.Contribuinte,
+                Morada = infoUsers.Morada,
+                CodigoPostal = infoUsers.CodigoPostal,
+                Telefone = infoUsers.Telefone,
+                Telemovel = infoUsers.Telemovel,
+                Email = infoUsers.Email,
+                CodigoPostalExt = infoUsers.CodigoPostalExt,
+                Iban = infoUsers.Iban,
+                //TipoId = infoUsers.TipoId,
+            };
+            IdentityUser utilizador = new IdentityUser();
+            if (infoUsers.Email == null)
+            {
+                ModelState.AddModelError("Email", "Precisa de introduzir um email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+            }
+
+
+            if (utilizador != null)
+            {
+                ModelState.AddModelError("Email", "Já existe uma conta com este email");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            utilizador = new IdentityUser(infoUsers.Email);
+
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+
+
+            IdentityResult resultado = new IdentityResult();
+            if (infoUsers.Password == null)
+            {
+                ModelState.AddModelError("Password", "Precisa de colocar uma password");
+                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                return View(infoUsers);
+            }
+            else
+            {
+                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
+            }
+
+            _context.Add(users);
+
+
+
+            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
+            {
+                return View(infoUsers);
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
+                ViewBag.Mensagem = "Cliente adicionado com sucesso";
+                return View("Sucesso");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // GET: User/RegistoClienteParticular
         public IActionResult RegistoClienteParticular()
