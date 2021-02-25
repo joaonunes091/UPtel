@@ -85,6 +85,9 @@ namespace UPtel.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Pacotes pacoteid = _context.Pacotes.SingleOrDefault(e => e.PacoteId == contratos.PacoteId);
+                //contratos.PrecoContrato = pacoteid.PrecoTotal;
+
                 _context.Add(contratos);
                 await _context.SaveChangesAsync();
                 ViewBag.Mensagem = "Contrato adicionado com sucesso";

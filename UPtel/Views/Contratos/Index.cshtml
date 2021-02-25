@@ -52,6 +52,9 @@
                                         <th>
                                             Fidelização
                                         </th>
+                                        <th>
+                                            Preço
+                                        </th>
 
                                         <th></th>
                                     </tr>
@@ -71,6 +74,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.PrecoContrato)
                                         </td>
                                         <td class="text-right">
                                             <a class="btn btn-info" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
