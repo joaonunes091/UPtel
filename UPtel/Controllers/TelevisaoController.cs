@@ -51,14 +51,30 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var televisao = await _context.Televisao
-                .FirstOrDefaultAsync(m => m.TelevisaoId == id);
+            TelevisaoViewModel TVM = new TelevisaoViewModel();
+            var televisao = await _context.Televisao.Include(p => p.PacoteCanais)
+                .ThenInclude(c => c.Canais)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.TelevisaoId == id);
+
+            var listaCanais = _context.Canais.Select(x => new CheckBox()
+            {
+                Id = x.CanaisId,
+                Nome = x.NomeCanal,
+                Selecionado = x.PacoteCanais.Any(x => x.TelevisaoId == televisao.TelevisaoId) ? true : false
+            }).ToList();
+
+            TVM.Nome = televisao.Nome;
+            TVM.Descricao = televisao.Descricao;
+            TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
+            TVM.ListaCanais = listaCanais;
+            
             if (televisao == null)
             {
                 return NotFound();
             }
 
-            return View(televisao);
+            return View(TVM);
         }
 
         // GET: Televisao/Create

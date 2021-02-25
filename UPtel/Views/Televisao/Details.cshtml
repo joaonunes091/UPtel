@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Televisao
+﻿@model UPtel.Models.TelevisaoViewModel
 
 @{
     ViewData["Title"] = "Detalhes do serviço da televisão";
@@ -31,7 +31,20 @@
                         <dd class="col-sm-7 text-white">
                             @Html.DisplayFor(model => model.PrecoPacoteTelevisao)
                         </dd>
-                    </dl>
+                        <dt class="col-sm-5 text-white">
+                            Canais
+                        </dt>
+                        <dd class="col-sm-7 text-white">
+                            @for (int i = 0; i < Model.ListaCanais.Count; i++)
+                            {
+                                @if (Model.ListaCanais[i].Selecionado == true)
+                                { 
+                                    @Html.DisplayFor(z => Model.ListaCanais[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        </dl>
                 </div>
                 <div>
                     <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelevisaoId">Editar</a> |
