@@ -35,13 +35,13 @@ namespace UPtel.Models
 
         [StringLength(8, MinimumLength = 8,ErrorMessage ="Este valor é inválido")]
         [RegularExpression(@"\d{8}",ErrorMessage ="Este valor não é válido")]
-        [Display(Name = "Número do Cartão de Cidadão")]
+        [Display(Name = "Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(9, MinimumLength = 9,ErrorMessage ="Este valor é inválido")]
         [RegularExpression(@"\d{9}",ErrorMessage ="Este valor é inválido")]
-        [Display(Name = "Número de Contribuinte")]
+        [Display(Name = "Contribuinte")]
         public string Contribuinte { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
@@ -57,13 +57,13 @@ namespace UPtel.Models
 
         [StringLength(9, MinimumLength = 9, ErrorMessage ="O número de telefone deve ter 9 dígitos")]
         [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
-        [Display(Name = "Número de telefone")]
+        [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "O número de telemóvel deve ter 9 dígitos")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telefone Inválido")]
-        [Display(Name = "Número de telemóvel")]
+        [Display(Name = "Telemóvel")]
         public string Telemovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

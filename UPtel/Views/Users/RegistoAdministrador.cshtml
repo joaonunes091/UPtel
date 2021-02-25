@@ -26,6 +26,11 @@
                                 <span asp-validation-for="Data" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="CartaoCidadao" class="control-label"></label>
+                                <input asp-for="CartaoCidadao" class="form-control" />
+                                <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="Contribuinte" class="control-label">Contribuinte *</label>
                                 <input asp-for="Contribuinte" class="form-control" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
@@ -35,18 +40,19 @@
                                 <input asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
-                            <div class="form-row">
+                            <div class="form-group">
                                 <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <input asp-for="CodigoPostal" class="form-control" />
-                                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
-                                </div>
-                                -
-                                <div class="col-md-3">
-                                    <input asp-for="CodigoPostalExt" class="form-control" />
-                                    <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <input asp-for="CodigoPostal" class="form-control" />
+                                        <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                    </div>
+                                    -
+                                    <div class="col-md-3">
+                                        <input asp-for="CodigoPostalExt" class="form-control" />
+                                        <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -60,7 +66,7 @@
                                 <span asp-validation-for="Telemovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Email" class="control-label"></label>
+                                <label asp-for="Email" class="control-label">E-mail *</label>
                                 <input asp-for="Email" class="form-control" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
@@ -74,9 +80,8 @@
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Fotografia" class="control-label"></label>
-                                <input asp-for="Fotografia" class="form-control" />
-                                <span asp-validation-for="Fotografia" class="text-danger"></span>
+                                <label for="Fotografia" class="control-label"></label>
+                                <input name="Fotografia" class="from-control-file" type="file" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Registar" class="btn btn-primary" />
