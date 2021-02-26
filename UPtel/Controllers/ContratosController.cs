@@ -70,7 +70,6 @@ namespace UPtel.Controllers
         public IActionResult Create()
         {
             ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome");
-            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
             return View();
@@ -94,7 +93,6 @@ namespace UPtel.Controllers
 
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
-            //var funcionarioEmail = _context.Users.SingleOrDefault(d => d.Email == funcionario.Email);
             contratos.FuncionarioId = funcionario.UsersId;
 
             _context.Contratos.Add(contratos);
@@ -102,37 +100,10 @@ namespace UPtel.Controllers
             ViewBag.Mensagem = "Contrato adicionado com sucesso";
 
             ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
-            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
 
             return View("Sucesso");
-
-            ////Código que vai buscar o preço do pacote
-            //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
-            //contratos.PrecoContrato = pacote.PrecoTotal;
-
-            ////Código que vai buscar o desconto da promoção
-            //var promocaopacoteid = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
-            //var promocaoid = _context.Promocoes.SingleOrDefault(p => p.PromocaoId == promocaopacoteid.PromocaoId);
-            //contratos.PromocaoId = promocaoid.PromocaoId;
-
-            ////Cálculo do PrecoFinal
-            //contratos.PrecoContrato -= (contratos.PrecoContrato * (promocaoid.Desconto / 100));
-
-            //_context.Add(contratos);
-            //await _context.SaveChangesAsync();
-            //ViewBag.Mensagem = "Contrato adicionado com sucesso";
-
-
-
-            //ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
-            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
-            //ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
-
-            //return View("Sucesso");
-
         }
 
         // GET: Contratos/Edit/5
@@ -150,7 +121,6 @@ namespace UPtel.Controllers
                 return View("Erro");
             }
             ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
-            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
@@ -190,7 +160,6 @@ namespace UPtel.Controllers
                 return View("Sucesso");
             }
             ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.ClienteId);
-            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "Nome", contratos.FuncionarioId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
