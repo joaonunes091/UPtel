@@ -201,7 +201,8 @@ namespace UPtel.Controllers
             }
 
             //return RedirectToAction("Index", "Televisao");
-            return RedirectToAction("Details", "Televisao");
+            //return RedirectToAction("Details", "Televisao");
+            return View(TVM.TelevisaoId);
         }
 
         // GET: Televisao/Delete/5
