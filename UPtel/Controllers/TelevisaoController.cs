@@ -68,7 +68,9 @@ namespace UPtel.Controllers
             TVM.Descricao = televisao.Descricao;
             TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
             TVM.ListaCanais = listaCanais;
-            
+            TVM.TelevisaoId = (int)id;
+
+
             if (televisao == null)
             {
                 return NotFound();
@@ -87,7 +89,7 @@ namespace UPtel.Controllers
                 Id = x.CanaisId,
                 Nome = x.NomeCanal,
                 Selecionado = false
-            }).ToList(); ;
+            }).ToList();
 
             return View(TVM);
         }
@@ -144,6 +146,8 @@ namespace UPtel.Controllers
             TVM.Descricao = televisao.Descricao;
             TVM.PrecoPacoteTelevisao = televisao.PrecoPacoteTelevisao;
             TVM.ListaCanais = listaCanais;
+            TVM.TelevisaoId = (int)id;
+
             return View(TVM);
         }
 
@@ -196,7 +200,8 @@ namespace UPtel.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Televisao");
+            //return RedirectToAction("Index", "Televisao");
+            return RedirectToAction("Details", "Televisao");
         }
 
         // GET: Televisao/Delete/5

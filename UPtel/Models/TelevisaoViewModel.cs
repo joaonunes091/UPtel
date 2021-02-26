@@ -9,8 +9,6 @@ namespace UPtel.Models
     public class TelevisaoViewModel
     {
 
-
-        [Key]
         public int TelevisaoId { get; set; }
 
 
