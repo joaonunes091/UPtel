@@ -70,18 +70,6 @@
                             @Html.DisplayFor(model => model.Email)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                            @Html.DisplayNameFor(model => model.Iban)
-                        </dt>
-                        <dd class="col-sm-7 text-white">
-                            @Html.DisplayFor(model => model.Iban)
-                        </dd>
-                        @*<dt class="col-sm-5 text-white">
-                            @Html.DisplayNameFor(model => model.CodigoPostalExt)
-                        </dt>
-                        <dd class="col-sm-7 text-white">
-                            @Html.DisplayFor(model => model.CodigoPostalExt)
-                        </dd>*@
-                        <dt class="col-sm-5 text-white">
                             @Html.DisplayNameFor(model => model.Estado)
                         </dt>
                         <dd class="col-sm-7 text-white">
@@ -102,7 +90,7 @@
                     </dl>
                 </div>
                 <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.UsersId">Editar</a> |
+                    <a class="btn btn-costum" asp-action="EditCliente" asp-route-id="@Model.UsersId">Editar</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.UsersId">Eliminar</a> |
                     <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>

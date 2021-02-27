@@ -8,7 +8,7 @@
         <div class="row justify-content-center text-left">
             <div class="col-xl-8 text-white">
 
-                <h1>Detalhes user</h1>
+                <h1>Detalhes Cliente</h1>
 
                 <div>
                     <br />
@@ -20,16 +20,10 @@
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                            Data de Nascimento
+                            Data de Fundação
                         </dt>
                         <dd class="col-sm-7 text-white">
                             @Html.DisplayFor(model => model.Data)
-                        </dd>
-                        <dt class="col-sm-5 text-white">
-                            @Html.DisplayNameFor(model => model.CartaoCidadao)
-                        </dt>
-                        <dd class="col-sm-7 text-white">
-                            @Html.DisplayFor(model => model.CartaoCidadao)
                         </dd>
                         <dt class="col-sm-5 text-white">
                             @Html.DisplayNameFor(model => model.Contribuinte)
@@ -70,18 +64,6 @@
                             @Html.DisplayFor(model => model.Email)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                            @Html.DisplayNameFor(model => model.Iban)
-                        </dt>
-                        <dd class="col-sm-7 text-white">
-                            @Html.DisplayFor(model => model.Iban)
-                        </dd>
-                        @*<dt class="col-sm-5 text-white">
-                            @Html.DisplayNameFor(model => model.CodigoPostalExt)
-                        </dt>
-                        <dd class="col-sm-7 text-white">
-                            @Html.DisplayFor(model => model.CodigoPostalExt)
-                        </dd>*@
-                        <dt class="col-sm-5 text-white">
                             @Html.DisplayNameFor(model => model.Estado)
                         </dt>
                         <dd class="col-sm-7 text-white">
@@ -102,7 +84,7 @@
                     </dl>
                 </div>
                 <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.UsersId">Editar</a> |
+                    <a class="btn btn-costum" asp-action="EditEmpresa" asp-route-id="@Model.UsersId">Editar</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.UsersId">Eliminar</a> |
                     <a class="btn btn-info" asp-action="Index">Voltar</a>
                 </div>

@@ -624,7 +624,10 @@ namespace UPtel.Data
                 Tipo = "Operador",
             },new UserType
             {
-                Tipo = "Cliente",
+                Tipo = "Cliente Empresarial",
+            }, new UserType
+            {
+                Tipo = "Cliente Particular",
             },
         });
             DbContext.SaveChanges();
@@ -641,7 +644,11 @@ namespace UPtel.Data
         {
             if (DbContext.Users.Any()) return;
 
-            UserType tipoUser = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Operador");
+            UserType tipoUserEmpresa = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Cliente Empresarial");
+            UserType tipoUserParticular = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Cliente Particular");
+            UserType tipoUserOperador = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Operador");
+            UserType tipoUserAdministrador = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Administrador");
+
 
 
             DbContext.Users.AddRange(new Users[]
@@ -659,7 +666,7 @@ namespace UPtel.Data
                     Telemovel="961847659",
                     Email="José.Ramos@gmail.com",
                     Iban = "1234567891234567891234567",
-                    Tipo = tipoUser,
+                    Tipo = tipoUserEmpresa,
                     CodigoPostalExt = "695",
 
 
@@ -676,7 +683,7 @@ namespace UPtel.Data
                     Telemovel="927856988",
                     Email="Rui.Pedro.Santos@gmail.com",
                     Iban = "1234567891234567891234567",
-                    Tipo = tipoUser,
+                    Tipo = tipoUserParticular,
                     CodigoPostalExt="588",
 
                 },
@@ -692,7 +699,7 @@ namespace UPtel.Data
                     Telemovel="961155484",
                     Email="Mariana.Rute.Guedes@gmail.com",
                     Iban = "1234567891234567891234567",
-                    Tipo = tipoUser,
+                    Tipo = tipoUserOperador,
                     CodigoPostalExt="588",
                 },
                 new Users
@@ -707,7 +714,7 @@ namespace UPtel.Data
                     Telemovel="915444789",
                     Email="David.Rui.Pedroso@gmail.com",
                     Iban = "1234567891234567891234567",
-                    Tipo = tipoUser,
+                    Tipo = tipoUserAdministrador,
                     CodigoPostalExt="588",
                 },
                 });

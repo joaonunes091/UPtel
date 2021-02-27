@@ -73,11 +73,11 @@
                                         @{
                                             if (item.Tipo.Tipo.Contains("Cliente Particular"))
                                             {
-                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.UsersId">Detalhes</a>
+                                                <a class="btn btn-info" asp-action="DetailsCliente" asp-route-id="@item.UsersId">Detalhes</a>
                                             }
                                             else if (item.Tipo.Tipo.Contains("Cliente Empresarial"))
                                             {
-                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.UsersId">Detalhes</a>
+                                                <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@item.UsersId">Detalhes</a>
                                             }
                                             else
                                             {
