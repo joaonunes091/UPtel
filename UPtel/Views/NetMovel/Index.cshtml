@@ -44,16 +44,16 @@
                                     <thead>
                                         <tr>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.NetMovel[0].Numero)
+                                            </th>
+                                            @*<th>
                                                 @Html.DisplayNameFor(model => model.NetMovel[0].Limite)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].Numero)
-                                            </th>
-                                            <th>
                                                 @Html.DisplayNameFor(model => model.NetMovel[0].Notas)
+                                            </th>*@
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
                                             </th>
                                             <th></th>
                                         </tr>
@@ -61,25 +61,25 @@
                                     <tbody>
                                         @foreach (var item in Model.NetMovel)
                                         {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Limite)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.PrecoNetMovel)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Numero)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Notas)
-                                                </td>
-                                                <td>
-                                          
-                                                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetMovelId">Detalhes</a> 
-                  
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Numero)
+                                            </td>
+                                            @*<td>
+                                                @Html.DisplayFor(modelItem => item.Limite)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Notas)
+                                            </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PrecoNetMovel)
+                                            </td>
+                                            <td>
+
+                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetMovelId">Detalhes</a>
+
+                                            </td>
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>
