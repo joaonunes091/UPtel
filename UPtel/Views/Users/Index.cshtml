@@ -48,40 +48,7 @@
                                     @Html.DisplayNameFor(model => model.Users[0].Nome)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Data)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].CartaoCidadao)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.Users[0].Contribuinte)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Morada)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].CodigoPostal)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Telefone)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Telemovel)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Email)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Iban)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].CodigoPostalExt)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Estado)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Fotografia)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Users[0].Tipo)
@@ -97,46 +64,26 @@
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Data)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CartaoCidadao)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.Contribuinte)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Morada)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CodigoPostal)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Telefone)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Telemovel)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Iban)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CodigoPostalExt)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Estado)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Fotografia)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Tipo.Tipo)
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.UsersId">Detalhes</a>
+                                        @{
+                                            if (item.Tipo.Tipo.Contains("Cliente Particular"))
+                                            {
+                                                <a class="btn btn-info" asp-action="DetailsCliente" asp-route-id="@item.UsersId">Detalhes</a>
+                                            }
+                                            else if (item.Tipo.Tipo.Contains("Cliente Empresarial"))
+                                            {
+                                                <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@item.UsersId">Detalhes</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.UsersId">Detalhes</a>
+                                            }
+                                        }
                                     </td>
                                 </tr>
                             }

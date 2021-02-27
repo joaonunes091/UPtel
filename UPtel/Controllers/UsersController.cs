@@ -67,6 +67,40 @@ namespace UPtel.Controllers
 
             return View(users);
         }
+        public async Task<IActionResult> DetailsCliente(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return View(users);
+        }
+        public async Task<IActionResult> DetailsEmpresa(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return View(users);
+        }
 
         //função de registo base
 
@@ -501,7 +535,114 @@ namespace UPtel.Controllers
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
+        // GET: User/Edit/5
+        public async Task<IActionResult> EditCliente(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
+                return View("Erro");
+            }
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
+        }
+
+        // POST: Clientes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        {
+            if (id != users.UsersId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UsersId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                return View("Sucesso");
+            }
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return RedirectToAction("DetailsCliente", "Users");
+        }
+        // GET: User/Edit/5
+        public async Task<IActionResult> EditEmpresa(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
+                return View("Erro");
+            }
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
+        }
+
+        // POST: Clientes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        {
+            if (id != users.UsersId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UsersId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                return View("Sucesso");
+            }
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return RedirectToAction("DetailsEmpresa", "Users");
+        }
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

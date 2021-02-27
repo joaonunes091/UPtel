@@ -28,11 +28,6 @@
                                 <span asp-validation-for="Data" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CartaoCidadao" class="control-label"></label>
-                                <input asp-for="CartaoCidadao" class="form-control" />
-                                <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="Contribuinte" class="control-label"></label>
                                 <input asp-for="Contribuinte" class="form-control" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
@@ -73,11 +68,6 @@
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Iban" class="control-label"></label>
-                                <input asp-for="Iban" class="form-control" />
-                                <span asp-validation-for="Iban" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="TipoId" class="control-label"></label>
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
                                 <span asp-validation-for="TipoId" class="text-danger"></span>
@@ -94,7 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn btn-costum" />
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.UsersId">Voltar</a>
+                                <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@Model.UsersId">Voltar</a>
                             </div>
                         </form>
                     </div>
