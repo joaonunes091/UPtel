@@ -92,19 +92,38 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PacoteId,NomePacote,PrecoTotal,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
         {
-            if (ModelState.IsValid)
-            {
+
+          
+                decimal precoNetFixa, precoNetMovel, precoTelemovel, precoTelefone, precoTelevisao, total;
+
+                var netFixa = _context.NetFixa.SingleOrDefault(n => n.NetFixaId == pacotes.NetIfixaId);
+                var netMovel = _context.NetMovel.SingleOrDefault(n => n.NetMovelId == pacotes.NetMovelId);
+                var telemovel = _context.Telemovel.SingleOrDefault(t => t.TelemovelId == pacotes.TelemovelId);
+                var telefone = _context.Telefone.SingleOrDefault(t => t.TelefoneId == pacotes.TelefoneId);
+                var televisao  = _context.Televisao.SingleOrDefault(t => t.TelevisaoId== pacotes.TelevisaoId);
+
+
+                precoNetFixa = netFixa.PrecoNetFixa;
+                precoNetMovel = netMovel.PrecoNetMovel;    
+                precoTelemovel = telemovel.PrecoPacoteTelemovel;
+                precoTelefone = telefone.PrecoPacoteTelefone;
+                precoTelevisao = televisao.PrecoPacoteTelevisao;
+
+                total = precoNetFixa + precoNetMovel + precoTelemovel + precoTelefone + precoTelevisao;
+                pacotes.PrecoTotal = total;
+
                 _context.Add(pacotes);
                 await _context.SaveChangesAsync();
                 ViewBag.Mensagem = "Pacote de serviços criado com sucesso";
-                return View("Sucesso");
-            }
+               
+
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "TipoConexao", pacotes.NetIfixaId);
             ViewData["NetMovelId"] = new SelectList(_context.NetMovel, "NetMovelId", "Numero", pacotes.NetMovelId);
             ViewData["TelefoneId"] = new SelectList(_context.Telefone, "TelefoneId", "Numero", pacotes.TelefoneId);
             ViewData["TelemovelId"] = new SelectList(_context.Telemovel, "TelemovelId", "Numero", pacotes.TelemovelId);
             ViewData["TelevisaoId"] = new SelectList(_context.Televisao, "TelevisaoId", "Nome", pacotes.TelevisaoId);
-            return View(pacotes);
+            return View("Sucesso");
+            //return View(pacotes);
         }
 
         // GET: Pacotes/Edit/5
