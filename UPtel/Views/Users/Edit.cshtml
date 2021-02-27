@@ -13,7 +13,7 @@
                
                 <hr />
                 <div class="row">
-                    <div class="col-md-4 text-white">
+                    <div class="col-md-6">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="UsersId" />
@@ -43,9 +43,19 @@
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CodigoPostal" class="control-label"></label>
-                                <input asp-for="CodigoPostal" class="form-control" />
-                                <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                <label asp-for="CodigoPostal" class="control-label">Código Postal *</label>
+
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <input asp-for="CodigoPostal" class="form-control" />
+                                        <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                    </div>
+                                    -
+                                    <div class="col-md-3">
+                                        <input asp-for="CodigoPostalExt" class="form-control" />
+                                        <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Telefone" class="control-label"></label>
@@ -71,11 +81,6 @@
                                 <label asp-for="TipoId" class="control-label"></label>
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
                                 <span asp-validation-for="TipoId" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="CodigoPostalExt" class="control-label"></label>
-                                <input asp-for="CodigoPostalExt" class="form-control" />
-                                <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Estado" class="control-label"></label>

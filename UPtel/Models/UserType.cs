@@ -19,7 +19,7 @@ namespace UPtel.Models
         public int TipoId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(15, ErrorMessage = "O limite de carateres(15) foi ultrapassado")]
+        [StringLength(30, ErrorMessage = "O limite de carateres(30) foi ultrapassado")]
         public string Tipo { get; set; }
 
         [InverseProperty("Tipo")]
