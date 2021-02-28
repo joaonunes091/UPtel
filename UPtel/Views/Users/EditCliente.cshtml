@@ -89,7 +89,14 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn btn-costum" />
-                                <a class="btn btn-info" asp-action="DetailsCliente" asp-route-id="@Model.UsersId">Voltar</a>
+                                @if (User.IsInRole("Administrador"))
+                                { 
+                                    <a class="btn btn-info" asp-action="DetailsCliente" asp-route-id="@Model.UsersId">Voltar</a>
+                                }
+                                @if (User.IsInRole("Cliente"))
+                                {
+                                    <a class="btn btn-info" asp-action="Index" asp-controller="ClientesViewModel" asp-route-id="@Model.UsersId">Voltar</a>
+                                }
                             </div>
                         </form>
                     </div>
