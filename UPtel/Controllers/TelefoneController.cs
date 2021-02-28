@@ -24,11 +24,11 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Telefone.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Telefone.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
-            List<Telefone> telefone = await _context.Telefone.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
-                .OrderBy(c => c.Numero)
+            List<Telefone> telefone = await _context.Telefone.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
                 .ToListAsync();
@@ -72,7 +72,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
+        public async Task<IActionResult> Create([Bind("TelefoneId,Nome,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelefoneId,Numero,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
+        public async Task<IActionResult> Edit(int id, [Bind("TelefoneId,Nome,Limite,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoPacoteTelefone")] Telefone telefone)
         {
             if (id != telefone.TelefoneId)
             {

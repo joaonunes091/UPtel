@@ -18,6 +18,11 @@ namespace UPtel.Models
         [Key]
         public int NetFixaId { get; set; }
 
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Display(Name = "Tarifário")]
+        [StringLength(45, ErrorMessage = "O limite de caracteres(45) foi ultrapassado")]
+        public string Nome { get; set; }
+
         [Display(Name = "Limite de plafond")]
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Column(TypeName = "decimal(5, 2)")]

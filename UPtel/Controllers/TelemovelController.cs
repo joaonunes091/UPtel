@@ -24,11 +24,11 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Telemovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Telemovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
-        List<Telemovel> telemovel = await _context.Telemovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
-            .OrderBy(c => c.Numero)
+        List<Telemovel> telemovel = await _context.Telemovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+            .OrderBy(c => c.Nome)
             .Skip(paginacao.ItemsPorPagina * (pagina - 1))
             .Take(paginacao.ItemsPorPagina)
             .ToListAsync();
@@ -73,7 +73,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
+        public async Task<IActionResult> Create([Bind("TelemovelId,Nome,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Numero,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
+        public async Task<IActionResult> Edit(int id, [Bind("TelemovelId,Nome,LimiteMinutos,LimiteSms,PrecoMinutoNacional,PrecoMinutoInternacional,PrecoSms,PrecoMms,PrecoPacoteTelemovel")] Telemovel telemovel)
         {
             if (id != telemovel.TelemovelId)
             {
