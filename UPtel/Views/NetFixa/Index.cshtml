@@ -20,11 +20,12 @@
                 <table class="table text-white">
                     <thead>
                         <tr>
+
                             <th>
-                                @Html.DisplayNameFor(model => model.TipoConexao)
+                                @Html.DisplayNameFor(model => model.Nome)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Velocidade)
+                                @Html.DisplayNameFor(model => model.TipoConexao)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.PrecoNetFixa)
@@ -37,10 +38,10 @@
                         {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TipoConexao)
+                                @Html.DisplayFor(modelItem => item.Nome)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Velocidade)
+                                @Html.DisplayFor(modelItem => item.TipoConexao)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PrecoNetFixa)

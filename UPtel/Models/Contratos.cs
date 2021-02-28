@@ -27,6 +27,10 @@ namespace UPtel.Models
         [Display(Name ="Nome do pacote")]
         public int PacoteId { get; set; }
 
+        [StringLength(300, ErrorMessage = "O limite de caracteres(300) foi ultrapassado")]
+        [Display(Name = "Números associados")]
+        public string Numeros { get; set; }
+
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Data de início do contrato")]
         [Column(TypeName = "date")]

@@ -6,13 +6,19 @@
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="row justify-content-center text-left">
-            <div class="col-xl-8">
+            <div class="col-xl-8 text-white">
 
                 <h3>Tem a certeza que quer apagar a net móvel?</h3>
                
-                    <div>
+                    <div class="text-white">
                         <hr />
                         <dl class="row">
+                            <dt class="col-sm-5 text-white">
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </dt>
+                            <dd class="col-sm-7 text-white">
+                                @Html.DisplayFor(model => model.Nome)
+                            </dd>
                             <dt class="col-sm-5 text-white">
                                 @Html.DisplayNameFor(model => model.Limite)
                             </dt>
@@ -24,12 +30,6 @@
                             </dt>
                             <dd class="col-sm-7 text-white">
                                 @Html.DisplayFor(model => model.PrecoNetMovel)
-                            </dd>
-                            <dt class="col-sm-5 text-white">
-                                @Html.DisplayNameFor(model => model.Numero)
-                            </dt>
-                            <dd class="col-sm-7 text-white">
-                                @Html.DisplayFor(model => model.Numero)
                             </dd>
                             <dt class="col-sm-5 text-white">
                                 @Html.DisplayNameFor(model => model.Notas)

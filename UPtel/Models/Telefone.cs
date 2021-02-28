@@ -20,10 +20,11 @@ namespace UPtel.Models
         public int TelefoneId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Número de telefone")]
-        [RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
-        [StringLength(9, MinimumLength = 9, ErrorMessage ="Telefone Inválido")]
-        public string Numero { get; set; }
+        [Display(Name = "Tarifário")]
+        [StringLength(45, ErrorMessage = "O limite de caracteres(45) foi ultrapassado")]
+        //[RegularExpression(@"(2|1\d)\d{8}", ErrorMessage = "Telefone Inválido")]
+        //[StringLength(9, MinimumLength = 9, ErrorMessage ="Telefone Inválido")]
+        public string Nome { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [Display(Name = "Limite de minutos")]

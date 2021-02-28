@@ -39,10 +39,10 @@ namespace UPtel.Data
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTesteTelevisao(DbContext);
             InsereDadosTestePacoteCanais(DbContext);
-            //InsereDadosTestePacote(DbContext);
+            InsereDadosTestePacote(DbContext);
             InsereDadosTesteUserTypes(DbContext);
             InsereDadosTesteUsers(DbContext);
-            //InsereDadosTesteContratos(DbContext);
+            InsereDadosTesteContratos(DbContext);
         }
 
         internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
@@ -135,7 +135,7 @@ namespace UPtel.Data
             DbContext.Telemovel.AddRange(new Telemovel[] {
             new Telemovel
             {
-                Numero = "910000000",
+                Nome = "Novo",
                 LimiteMinutos = 3000,
                 LimiteSms = 3000,
                 PrecoMinutoNacional = 0,
@@ -146,7 +146,7 @@ namespace UPtel.Data
             },
                new Telemovel
             {
-                Numero = "910000001",
+                Nome = "Básico",
                 LimiteMinutos = 3000,
                 LimiteSms = 3000,
                 PrecoMinutoNacional = 0,
@@ -190,7 +190,7 @@ namespace UPtel.Data
             {
                 DbContext.Telemovel.Add(new Telemovel
                 {
-                    Numero = "910010000",
+                    Nome = "910010000",
                     LimiteMinutos = 3000,
                     LimiteSms = 3000,
                     PrecoMinutoNacional = 0,
@@ -216,7 +216,7 @@ namespace UPtel.Data
             DbContext.Telefone.AddRange(new Telefone[] {
             new Telefone
             {
-                Numero = "275888888",
+                Nome = "Teste",
                 Limite = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
@@ -225,7 +225,7 @@ namespace UPtel.Data
             },
              new Telefone
             {
-                Numero = "275000000",
+                Nome = "Básico",
                 Limite = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
@@ -262,7 +262,7 @@ namespace UPtel.Data
             {
                 DbContext.Telefone.Add(new Telefone
                 {
-                    Numero = "210000000",
+                    Nome = "Básico",
                     Limite = 44600 + i,
                     PrecoMinutoNacional = 0,
                     PrecoMinutoInternacional = 0,
@@ -398,6 +398,7 @@ namespace UPtel.Data
             DbContext.NetFixa.AddRange(new NetFixa[] {
                new NetFixa
             {
+                Nome = "Básico",
                 Limite = 7.5m,
                 Velocidade=100,
                 TipoConexao="Sem conexão",
@@ -406,6 +407,7 @@ namespace UPtel.Data
             },
                 new NetFixa
             {
+                Nome = "Premium",
                 Limite = 7.5m,
                 Velocidade=100,
                 TipoConexao="Fibra 1",
@@ -446,14 +448,14 @@ namespace UPtel.Data
             {
                     Limite = 5,
                     PrecoNetMovel = 0m,
-                    Numero = "910000000",
+                    Nome = "Básico",
                     Notas = "teste 1"
             },
                 new NetMovel
             {
                     Limite = 5,
                     PrecoNetMovel = 15m,
-                    Numero = "911234567",
+                    Nome = "Premium",
                     Notas = "teste 1"
             },
             //new NetMovel
@@ -484,7 +486,7 @@ namespace UPtel.Data
                 {
                     Limite = 2,
                     PrecoNetMovel = 1,
-                    Numero = "910000000", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
+                    Nome = "Básico", //que número se deve colocar aqui? no dicionário diz que é o número de telemovel
                     Notas = "teste" + i
                 });
 
@@ -529,10 +531,10 @@ namespace UPtel.Data
             if (DbContext.Pacotes.Any()) return;
 
             Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
-            Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Numero == "910100020");
-            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra");
-            Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Numero == "275888888");
-            NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Numero == "911234567");
+            Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Nome == "Básico");
+            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra 1");
+            Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Nome == "Básico");
+            NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Nome == "Básico");
 
 
             DbContext.Pacotes.AddRange(new Pacotes[]
@@ -584,10 +586,10 @@ namespace UPtel.Data
                 if (DbContext.Pacotes.Any()) return;
 
                 Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
-                Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Numero == "910100020");
+                Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Nome == "910100020");
                 NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra");
-                Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Numero == "275888888");
-                NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Numero == "911234567");
+                Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Nome == "275888888");
+                NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Nome == "911234567");
 
                 DbContext.Pacotes.Add(new Pacotes
                 {
@@ -664,7 +666,7 @@ namespace UPtel.Data
                     CodigoPostal = "1500",
                     Telefone="231584687",
                     Telemovel="961847659",
-                    Email="José.Ramos@gmail.com",
+                    Email="Jose.Ramos@gmail.com",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserEmpresa,
                     CodigoPostalExt = "695",
@@ -778,6 +780,7 @@ namespace UPtel.Data
                     Funcionario = funcionarios,
                     Promocao = promocoes,
                     Pacote = pacotes,
+                    Numeros = null,
                     DataInicio = new DateTime(1965,05,25),
                     Fidelizacao = 5,
                     TempoPromocao = 5,

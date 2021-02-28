@@ -17,9 +17,9 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Numero" class="control-label">Número de telemóvel *</label>
-                                <input asp-for="Numero" class="form-control" />
-                                <span asp-validation-for="Numero" class="text-danger"></span>
+                                <label asp-for="Nome" class="control-label">Tarifário *</label>
+                                <input asp-for="Nome" class="form-control" />
+                                <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="LimiteMinutos" class="control-label">Limite de minutos *</label>
@@ -57,7 +57,7 @@
                                 <span asp-validation-for="PrecoPacoteTelemovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Adicionar" class="btn btn-costum" />
+                                <input type="submit" value="Adicionar" class="btn btn-costum" /> |
                                 <a class="btn btn-info" asp-action="Index">Voltar</a>
                             </div>
                         </form>

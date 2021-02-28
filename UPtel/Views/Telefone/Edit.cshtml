@@ -17,9 +17,9 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="TelefoneId" />
                             <div class="form-group">
-                                <label asp-for="Numero" class="control-label">Número de telefone *</label>
-                                <input asp-for="Numero" class="form-control" />
-                                <span asp-validation-for="Numero" class="text-danger"></span>
+                                <label asp-for="Nome" class="control-label">Tarifário *</label>
+                                <input asp-for="Nome" class="form-control" />
+                                <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Limite" class="control-label">Limite *</label>
@@ -42,7 +42,7 @@
                                 <span asp-validation-for="PrecoPacoteTelefone" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
                                 <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.TelefoneId">Voltar</a>
                             </div>
                         </form>

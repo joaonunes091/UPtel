@@ -24,12 +24,12 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.NetMovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.NetMovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<NetMovel> netmovel = await _context.NetMovel.Where(p => nomePesquisar == null || p.Numero.Contains(nomePesquisar))
-                .OrderBy(c => c.Numero)
+            List<NetMovel> netmovel = await _context.NetMovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
                 .ToListAsync();
@@ -73,7 +73,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NetMovelId,Limite,PrecoNetMovel,Numero,Notas")] NetMovel netMovel)
+        public async Task<IActionResult> Create([Bind("NetMovelId,Limite,PrecoNetMovel,Nome,Notas")] NetMovel netMovel)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NetMovelId,Limite,PrecoNetMovel,Numero,Notas")] NetMovel netMovel)
+        public async Task<IActionResult> Edit(int id, [Bind("NetMovelId,Limite,PrecoNetMovel,Nome,Notas")] NetMovel netMovel)
         {
             if (id != netMovel.NetMovelId)
             {

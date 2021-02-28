@@ -21,9 +21,9 @@
                                 <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
                             </div>
                             @*<div class="form-group">
-                                <label asp-for="FuncionarioId" class="control-label">Nome do funcionário *</label>
-                                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
-                            </div>*@
+            <label asp-for="FuncionarioId" class="control-label">Nome do funcionário *</label>
+            <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
+        </div>*@
                             <div class="form-group">
                                 <label asp-for="PromocaoId" class="control-label">Nome da promoção *</label>
                                 <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
@@ -31,6 +31,11 @@
                             <div class="form-group">
                                 <label asp-for="PacoteId" class="control-label">Nome do pacote *</label>
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Numeros" class="control-label">Números associados ao Contrato</label>
+                                <input asp-for="Numeros" class="form-control" />
+                                <span asp-validation-for="Numeros" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DataInicio" class="control-label">Data de inicio de contrato *</label>
@@ -48,10 +53,10 @@
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             @*<div class="form-group">
-                                <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
-                                <input asp-for="PrecoContrato" class="form-control" />
-                                <span asp-validation-for="PrecoContrato" class="text-danger"></span>
-                            </div>*@
+            <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
+            <input asp-for="PrecoContrato" class="form-control" />
+            <span asp-validation-for="PrecoContrato" class="text-danger"></span>
+        </div>*@
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />|
                                 <a class="btn btn-info" asp-action="Index">Voltar</a>

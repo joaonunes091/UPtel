@@ -31,10 +31,11 @@ namespace UPtel.Models
         public decimal PrecoNetMovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [Display(Name = "Número de telemóvel")]
-        [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
-        [StringLength(9, MinimumLength = 9, ErrorMessage ="O número deve ter 9 dígitos")]
-        public string Numero { get; set; }
+        [Display(Name = "Tarifário")]
+        [StringLength(45, ErrorMessage = "O limite de caracteres(45) foi ultrapassado")]
+        //[RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
+        //[StringLength(9, MinimumLength = 9, ErrorMessage ="O número deve ter 9 dígitos")]
+        public string Nome { get; set; }
 
         [StringLength(100)]
         public string Notas { get; set; }
