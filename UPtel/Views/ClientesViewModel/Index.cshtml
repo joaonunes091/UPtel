@@ -1,0 +1,82 @@
+﻿@model UPtel.Models.ClientesViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left text-white">
+            <div class="col-xl-8">
+
+                <h1>Dados Pessoais</h1>
+
+                <dl class="row">
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.NomeCliente)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.NomeCliente)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.DataNascimento)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.DataNascimento)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.CartaoCidadao)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.CartaoCidadao)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.NumeroContribuinte)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Morada)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Morada)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.CodiogoPostal)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.CodiogoPostal) - @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Telefone)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Telefone)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Telemovel)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Telemovel)
+                    </dd>
+
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Email)
+                    </dd>
+                </dl>
+                <a class="btn btn-info" asp-action="EditCliente" asp-controller="Users" asp-route-id="@Model.Id">Editar</a>
+            </div>  
+        </div>
+    </div>
+</section>
