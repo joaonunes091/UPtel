@@ -223,11 +223,42 @@ namespace UPtel.Controllers
                 Iban = infoUsers.Iban,
                 TipoId = infoUsers.TipoId,
             };
+
+            string nif = users.Contribuinte;
+            char firstChar = nif[0];
+            if (firstChar.Equals('1')
+                || firstChar.Equals('2')
+                || firstChar.Equals('3')
+                || firstChar.Equals('5')
+                || firstChar.Equals('6')
+                || firstChar.Equals('8')
+                || firstChar.Equals('9'))
+            {
+                int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
+                for (int i = 2; i <= 8; ++i)
+                {
+                    checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
+                }
+
+                checkDigit = 11 - (checkDigit % 11);
+                if (checkDigit >= 10)
+                {
+                    checkDigit = 0;
+                }
+
+                if (checkDigit.ToString() != nif[8].ToString())
+                {
+                    ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
+                    ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                    return View(infoUsers);
+                }
+            };
+
             IdentityUser utilizador = new IdentityUser();
             if (infoUsers.Email == null)
             {
                 ModelState.AddModelError("Email", "Precisa de introduzir um email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
             else
@@ -239,15 +270,15 @@ namespace UPtel.Controllers
             if (utilizador != null)
             {
                 ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
             utilizador = new IdentityUser(infoUsers.Email);
 
             if (infoUsers.Data > DateTime.Today.AddYears(-18))
             {
-                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                ModelState.AddModelError("Data", "Para se registar tem que ter mais de 18 anos");
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
 
@@ -256,7 +287,7 @@ namespace UPtel.Controllers
             if (infoUsers.Password == null)
             {
                 ModelState.AddModelError("Password", "Precisa de colocar uma password");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
             else
@@ -264,16 +295,16 @@ namespace UPtel.Controllers
                 resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
             }
 
-            _context.Add(users);
-
-
-
+            
             if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
             {
+                ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
             else
             {
+                _context.Add(users);
                 await _context.SaveChangesAsync();
                 ViewBag.Mensagem = "Cliente adicionado com sucesso";
                 return View("Sucesso");
