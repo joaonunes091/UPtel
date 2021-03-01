@@ -114,37 +114,37 @@ namespace UPtel.Controllers
 
         //função de registo base
 
-        private async void RegistoBase(TipoDeUtilizador t, RegistoUserViewModel infoUsers)
-        {
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+        //private async void RegistoBase(TipoDeUtilizador t, RegistoUserViewModel infoUsers)
+        //{
+        //    IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
 
-            if (utilizador != null)
-            {
-                ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                return;
-            }
-            utilizador = new IdentityUser(infoUsers.Email);
-            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
+        //    if (utilizador != null)
+        //    {
+        //        ModelState.AddModelError("Email", "Já existe uma conta com este email");
+        //        return;
+        //    }
+        //    utilizador = new IdentityUser(infoUsers.Email);
+        //    IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
 
-            Users users = new Users
-            {
-                Nome = infoUsers.Nome,
-                Data = infoUsers.Data,
-                CartaoCidadao = infoUsers.CartaoCidadao,
-                Contribuinte = infoUsers.Contribuinte,
-                Morada = infoUsers.Morada,
-                CodigoPostal = infoUsers.CodigoPostal,
-                Telefone = infoUsers.Telefone,
-                Telemovel = infoUsers.Telemovel,
-                Email = infoUsers.Email,
-                CodigoPostalExt = infoUsers.CodigoPostalExt,
-                Iban = infoUsers.Iban,
-                TipoId = (int)infoUsers.TipoId,
-            };
+        //    Users users = new Users
+        //    {
+        //        Nome = infoUsers.Nome,
+        //        Data = infoUsers.Data,
+        //        CartaoCidadao = infoUsers.CartaoCidadao,
+        //        Contribuinte = infoUsers.Contribuinte,
+        //        Morada = infoUsers.Morada,
+        //        CodigoPostal = infoUsers.CodigoPostal,
+        //        Telefone = infoUsers.Telefone,
+        //        Telemovel = infoUsers.Telemovel,
+        //        Email = infoUsers.Email,
+        //        CodigoPostalExt = infoUsers.CodigoPostalExt,
+        //        Iban = infoUsers.Iban,
+        //        TipoId = (int)infoUsers.TipoId,
+        //    };
 
-            _context.Add(users);
-            await _context.SaveChangesAsync();
-        }
+        //    _context.Add(users);
+        //    await _context.SaveChangesAsync();
+        //}
 
 
 
@@ -165,17 +165,24 @@ namespace UPtel.Controllers
             {
                 return View(infoUsers);
             }
-
-            RegistoBase(TipoDeUtilizador.Administrador, infoUsers);
-
-            if (!ModelState.IsValid)
+            if (await VerificaEmailAsync(infoUsers))
             {
-                return View(infoUsers);
+                ModelState.AddModelError("Email", "Este email já existe");
             }
-
             if (infoUsers.Data > DateTime.Today.AddYears(-18))
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            }
+            if (!await CriaUtilizadorAsync(infoUsers, "Administrador"))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!ModelState.IsValid)
+            {
                 return View(infoUsers);
             }
 
@@ -197,107 +204,62 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
         {
-            Users users = new Users
+            if (!ModelState.IsValid)
             {
-                Nome = infoUsers.Nome,
-                Data = infoUsers.Data,
-                CartaoCidadao = infoUsers.CartaoCidadao,
-                Contribuinte = infoUsers.Contribuinte,
-                Morada = infoUsers.Morada,
-                CodigoPostal = infoUsers.CodigoPostal,
-                Telefone = infoUsers.Telefone,
-                Telemovel = infoUsers.Telemovel,
-                Email = infoUsers.Email,
-                CodigoPostalExt = infoUsers.CodigoPostalExt,
-                Iban = infoUsers.Iban,
-                TipoId = infoUsers.TipoId,
-            };
-
-            string nif = users.Contribuinte;
-            char firstChar = nif[0];
-            if (firstChar.Equals('1')
-                || firstChar.Equals('2')
-                || firstChar.Equals('3')
-                || firstChar.Equals('5')
-                || firstChar.Equals('6')
-                || firstChar.Equals('8')
-                || firstChar.Equals('9'))
-            {
-                int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
-                for (int i = 2; i <= 8; ++i)
-                {
-                    checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
-                }
-
-                checkDigit = 11 - (checkDigit % 11);
-                if (checkDigit >= 10)
-                {
-                    checkDigit = 0;
-                }
-
-                if (checkDigit.ToString() != nif[8].ToString())
-                {
-                    ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
-                    ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                    return View(infoUsers);
-                }
-            };
-
-            IdentityUser utilizador = new IdentityUser();
-            if (infoUsers.Email == null)
-            {
-                ModelState.AddModelError("Email", "Precisa de introduzir um email");
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
                 return View(infoUsers);
             }
-            else
+            if (await VerificaEmailAsync(infoUsers))
             {
-                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+                ModelState.AddModelError("Email", "Este email já existe");
             }
-
-
-            if (utilizador != null)
-            {
-                ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            utilizador = new IdentityUser(infoUsers.Email);
-
             if (infoUsers.Data > DateTime.Today.AddYears(-18))
             {
-                ModelState.AddModelError("Data", "Para se registar tem que ter mais de 18 anos");
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            }
+            if (!await CriaUtilizadorAsync(infoUsers, "Operador"))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!ModelState.IsValid)
+            {
                 return View(infoUsers);
             }
 
+            ViewBag.Mensagem = "Cliente adicionado com sucesso";
+            return View("Sucesso");
+            //string nif = users.Contribuinte;
+            //char firstChar = nif[0];
+            //if (firstChar.Equals('1')
+            //    || firstChar.Equals('2')
+            //    || firstChar.Equals('3')
+            //    || firstChar.Equals('5')
+            //    || firstChar.Equals('6')
+            //    || firstChar.Equals('8')
+            //    || firstChar.Equals('9'))
+            //{
+            //    int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
+            //    for (int i = 2; i <= 8; ++i)
+            //    {
+            //        checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
+            //    }
 
-            IdentityResult resultado = new IdentityResult();
-            if (infoUsers.Password == null)
-            {
-                ModelState.AddModelError("Password", "Precisa de colocar uma password");
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            else
-            {
-                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
-            }
+            //    checkDigit = 11 - (checkDigit % 11);
+            //    if (checkDigit >= 10)
+            //    {
+            //        checkDigit = 0;
+            //    }
 
-
-            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
-            {
-                ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            else
-            {
-                _context.Add(users);
-                await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Cliente adicionado com sucesso";
-                return View("Sucesso");
-            }
+            //    if (checkDigit.ToString() != nif[8].ToString())
+            //    {
+            //        ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
+            //        ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //        return View(infoUsers);
+            //    }
+            //};
         }
 
 
@@ -317,76 +279,33 @@ namespace UPtel.Controllers
 
         public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
         {
-            Users users = new Users
-            {
-                Nome = infoUsers.Nome,
-                Data = infoUsers.Data,
-                CartaoCidadao = infoUsers.CartaoCidadao,
-                Contribuinte = infoUsers.Contribuinte,
-                Morada = infoUsers.Morada,
-                CodigoPostal = infoUsers.CodigoPostal,
-                Telefone = infoUsers.Telefone,
-                Telemovel = infoUsers.Telemovel,
-                Email = infoUsers.Email,
-                CodigoPostalExt = infoUsers.CodigoPostalExt,
-                Iban = infoUsers.Iban,
-                TipoId = infoUsers.TipoId,
-            };
-            IdentityUser utilizador = new IdentityUser();
-            if (infoUsers.Email == null)
-            {
-                ModelState.AddModelError("Email", "Precisa de introduzir um email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            else
-            {
-                utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
-            }
-
-
-            if (utilizador != null)
-            {
-                ModelState.AddModelError("Email", "Já existe uma conta com este email");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            utilizador = new IdentityUser(infoUsers.Email);
-
-            if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            {
-                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-
-
-            IdentityResult resultado = new IdentityResult();
-            if (infoUsers.Password == null)
-            {
-                ModelState.AddModelError("Password", "Precisa de colocar uma password");
-                ViewData["TipoClienteId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-                return View(infoUsers);
-            }
-            else
-            {
-                resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
-            }
-
-            _context.Add(users);
-
-
-
-            if (infoUsers.Nome == null || infoUsers.Contribuinte == null || infoUsers.Morada == null || infoUsers.CodigoPostal == null || infoUsers.Telemovel == null || infoUsers.CodigoPostalExt == null)
+            if (!ModelState.IsValid)
             {
                 return View(infoUsers);
             }
-            else
+            if (await VerificaEmailAsync(infoUsers))
             {
-                await _context.SaveChangesAsync();
-                ViewBag.Mensagem = "Cliente adicionado com sucesso";
-                return View("Sucesso");
+                ModelState.AddModelError("Email", "Este email já existe");
             }
+            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            //{
+            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            //}
+            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(infoUsers);
+            }
+
+            ViewBag.Mensagem = "Cliente adicionado com sucesso";
+            return View("Sucesso");
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
