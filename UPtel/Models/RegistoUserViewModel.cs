@@ -46,14 +46,14 @@ namespace UPtel.Models
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(9, MinimumLength = 9)]
+        [StringLength(9, MinimumLength = 9,ErrorMessage ="Este número não é válido")]
         [RegularExpression(@"(9[1236]|2\d)\d{7}", ErrorMessage = "Telemóvel Inválido")]
         [Display(Name = "Número de telemóvel")]
         public string Telemovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [EmailAddress]
-        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
+        [StringLength(255, ErrorMessage = "O limite de caracteres(255) foi ultrapassado")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
