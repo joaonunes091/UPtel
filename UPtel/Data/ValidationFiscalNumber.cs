@@ -5,8 +5,16 @@ using System.Threading.Tasks;
 
 namespace UPtel.Data
 {
+    /// <summary>
+    /// Validation for the fiscal number
+    /// </summary>
     public class ValidationFiscalNumber
     {
+        /// <summary>
+        /// Method for the validation of the fiscal number
+        /// </summary>
+        /// <param name="nif"></param>
+        /// <returns>The fiscal number</returns>
         public static bool ValidateFiscalNumber(string nif)
         {
             
