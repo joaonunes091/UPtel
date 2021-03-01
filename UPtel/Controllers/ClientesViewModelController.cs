@@ -23,16 +23,44 @@ namespace UPtel.Controllers
         }
 
         // GET: ClientesViewModel
-        public async Task<IActionResult> Index(int? id,ClientesViewModel cliente)
+        public async Task<IActionResult> Index(int? id, ClientesViewModel cliente)
         {
-
+            //Vai buscar email do utilizador com log in
             var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
 
+            //Vai buscar os dados pessoais do utilizador
             Users infoCliente = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
-            //Contratos infoContartos = _context.Contratos.SingleOrDefault(x => x.ClienteId == infoCliente.UsersId);
+
+            //Vai buscar as informações dos contratos
+            Contratos infoContartos =await _context.Contratos.SingleOrDefaultAsync(x => x.ClienteId == infoCliente.UsersId);
+
+            var funcionario = await _context.Users.SingleOrDefaultAsync(x => x.UsersId == infoContartos.FuncionarioId);
+            var nomeFuncionario = funcionario.Nome;
+
+            //Vai buscar as informações dos pacotes
+            Pacotes infoPacotes = await _context.Pacotes.SingleOrDefaultAsync(x => x.PacoteId == infoContartos.PacoteId);
+
+            var netFixaPacotes = await _context.NetFixa.SingleOrDefaultAsync(x => x.NetFixaId == infoPacotes.NetIfixaId);
+            var nomeNetFixa = netFixaPacotes.Nome;
+
+            var netMovelPacotes = await _context.NetMovel.SingleOrDefaultAsync(x => x.NetMovelId == infoPacotes.NetMovelId);
+            var nomeNetMovel = netMovelPacotes.Nome;
+
+            var telemovelPacotes = await _context.Telemovel.SingleOrDefaultAsync(x => x.TelemovelId == infoPacotes.TelemovelId);
+            var nomeTelemovel = telemovelPacotes.Nome;
+
+            var telefonePacotes = await _context.Telefone.SingleOrDefaultAsync(x => x.TelefoneId == infoPacotes.TelefoneId);
+            var nomeTelefone = telefonePacotes.Nome;
+
+            var televisaoPacotes = await _context.Televisao.SingleOrDefaultAsync(x => x.TelevisaoId == infoPacotes.TelevisaoId);
+            var nomeTelevisao = televisaoPacotes.Nome;
+
+            //Vai buscar as informações das promoções
+            Promocoes infoPromocoes = await _context.Promocoes.SingleOrDefaultAsync(x => x.PromocaoId == infoContartos.PromocaoId);
 
             cliente = new ClientesViewModel
             {
+                //Dados Pessoais
                 Id = infoCliente.UsersId,
                 NomeCliente = infoCliente.Nome,
                 DataNascimento = infoCliente.Data,
@@ -43,136 +71,32 @@ namespace UPtel.Controllers
                 ExtensaoCodigoPostal = infoCliente.CodigoPostalExt,
                 Telefone = infoCliente.Telefone,
                 Telemovel = infoCliente.Telemovel,
-                Email = infoCliente.Email,               
+                Email = infoCliente.Email,
+                //Contrato
+                NomeFuncionario = nomeFuncionario,
+                DataInicio = infoContartos.DataInicio,
+                NumerosAssociados = infoContartos.Numeros,
+                Fidelizacao = infoContartos.Fidelizacao,
+                TempoPromocao = infoContartos.TempoPromocao,
+                PrecoContrato = infoContartos.PrecoContrato,
+                //Pacotes
+                NomePacote = infoPacotes.NomePacote,
+                NetFixaPacote = nomeNetFixa,
+                NetMovelPacote = nomeNetMovel,
+                TelemovelPacote = nomeTelemovel,
+                TelefonePacote = nomeTelefone,
+                TelevisaoPacote = nomeTelevisao,
+                PrecoPacote = infoPacotes.PrecoTotal,
+                //Promoções
+                NomePromocao = infoPromocoes.NomePromocao,
+                DescricaoPromocao = infoPromocoes.Descricao,
+                PromocaoCanais = infoPromocoes.PromoCanais,
+                Desconto = infoPromocoes.Desconto
             };
 
             return View(cliente);
 
         }
 
-        // GET: ClientesViewModel/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var clientesViewModel = await _context.ClientesViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (clientesViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(clientesViewModel);
-        }
-
-        // GET: ClientesViewModel/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ClientesViewModel/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NomeCliente,DataNascimento,CartaoCidadao,NumeroContribuinte,Morada,CodiogoPostal,ExtensaoCodigoPostal,Telefone,Telemovel,Email")] ClientesViewModel clientesViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(clientesViewModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(clientesViewModel);
-        }
-
-        // GET: ClientesViewModel/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var clientesViewModel = await _context.ClientesViewModel.FindAsync(id);
-            if (clientesViewModel == null)
-            {
-                return NotFound();
-            }
-            return View(clientesViewModel);
-        }
-
-        // POST: ClientesViewModel/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeCliente,DataNascimento,CartaoCidadao,NumeroContribuinte,Morada,CodiogoPostal,ExtensaoCodigoPostal,Telefone,Telemovel,Email")] ClientesViewModel clientesViewModel)
-        {
-            if (id != clientesViewModel.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(clientesViewModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClientesViewModelExists(clientesViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(clientesViewModel);
-        }
-
-        // GET: ClientesViewModel/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var clientesViewModel = await _context.ClientesViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (clientesViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(clientesViewModel);
-        }
-
-        // POST: ClientesViewModel/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var clientesViewModel = await _context.ClientesViewModel.FindAsync(id);
-            _context.ClientesViewModel.Remove(clientesViewModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ClientesViewModelExists(int id)
-        {
-            return _context.ClientesViewModel.Any(e => e.Id == id);
-        }
     }
 }
