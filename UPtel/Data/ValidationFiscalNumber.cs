@@ -7,7 +7,7 @@ namespace UPtel.Data
 {
     public class ValidationFiscalNumber
     {
-        private bool ValidateFicalNumber(string nif)
+        public bool ValidateFicalNumber(string nif)
         {
             
             char firstChar = nif[0];
