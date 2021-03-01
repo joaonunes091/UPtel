@@ -675,7 +675,7 @@ namespace UPtel.Data
                 },
                 new Users
                 {
-                    Nome = "Rui Pedro Santos",
+                    Nome = "João Santos",
                     Data = new DateTime(1990,8,8),
                     CartaoCidadao="24045212",
                     Contribuinte="157782731",
@@ -683,7 +683,7 @@ namespace UPtel.Data
                     CodigoPostal="2300",
                     Telefone="271598874",
                     Telemovel="927856988",
-                    Email="Rui.Pedro.Santos@gmail.com",
+                    Email="joao@ipg.pt",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserParticular,
                     CodigoPostalExt="588",
@@ -767,7 +767,7 @@ namespace UPtel.Data
             if (DbContext.Contratos.Any()) return;
 
             Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "José Figueiras");
-            Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Rui Pedro Santos");
+            Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mariana Rute Guedes");
             Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 
