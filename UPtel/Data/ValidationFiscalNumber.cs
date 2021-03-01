@@ -7,7 +7,7 @@ namespace UPtel.Data
 {
     public class ValidationFiscalNumber
     {
-        public bool ValidateFicalNumber(string nif)
+        public static bool ValidateFiscalNumber(string nif)
         {
             
             char firstChar = nif[0];
@@ -40,3 +40,4 @@ namespace UPtel.Data
         }
     }
 }
+// (!ValidationFiscalNumber.ValidateFiscalNumber(infoUsers.Contribuinte))//chamada do método
