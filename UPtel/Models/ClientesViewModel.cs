@@ -31,16 +31,44 @@ namespace UPtel.Models
 
         public string Email { get; set; }
 
-        //Informação contrato
+        //Informação Contrato
 
-        //public string NomeFuncionario { get; set; }
+        public string NomeFuncionario { get; set; }
 
-        //public DateTime DataInicio { get; set; }
+        public DateTime DataInicio { get; set; }
 
-        //public int? Fidelizacao { get; set; }
+        public int? Fidelizacao { get; set; }
 
-        //public int? TempoPromocao { get; set; }
+        public int? TempoPromocao { get; set; }
 
-        //public decimal PrecoContrato { get; set; }
+        public decimal PrecoContrato { get; set; }
+
+        public string NumerosAssociados { get; set; }
+
+        //Informacao Pacote
+
+        public string NomePacote { get; set; }
+
+        public string NetFixaPacote { get; set; }
+
+        public string NetMovelPacote { get; set; }
+
+        public string TelemovelPacote { get; set; }
+
+        public string TelefonePacote { get; set; }
+
+        public string TelevisaoPacote { get; set; }
+
+        public decimal PrecoPacote { get; set; }
+
+        //Informação Promoções
+
+        public string NomePromocao { get; set; }
+
+        public string DescricaoPromocao { get; set; }
+
+        public int PromocaoCanais { get; set; }
+
+        public int Desconto { get; set; }
     }
 }
