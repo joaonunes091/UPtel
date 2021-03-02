@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,7 +41,8 @@ namespace UPtel.Models
         public int? Fidelizacao { get; set; }
 
         public int? TempoPromocao { get; set; }
-
+        
+        [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContrato { get; set; }
 
         public string NumerosAssociados { get; set; }
@@ -58,7 +60,8 @@ namespace UPtel.Models
         public string TelefonePacote { get; set; }
 
         public string TelevisaoPacote { get; set; }
-
+       
+        [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoPacote { get; set; }
 
         //Informação Promoções

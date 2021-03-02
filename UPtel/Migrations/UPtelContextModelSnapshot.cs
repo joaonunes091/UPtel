@@ -40,6 +40,99 @@ namespace UPtel.Migrations
                     b.ToTable("Canais");
                 });
 
+            modelBuilder.Entity("UPtel.Models.ClientesViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CartaoCidadao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodiogoPostal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Desconto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DescricaoPromocao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExtensaoCodigoPostal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Fidelizacao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Morada")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NetFixaPacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NetMovelPacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeFuncionario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomePacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomePromocao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroContribuinte")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumerosAssociados")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PrecoContrato")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("PrecoPacote")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<int>("PromocaoCanais")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelefonePacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telemovel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelemovelPacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelevisaoPacote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TempoPromocao")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClientesViewModel");
+                });
+
             modelBuilder.Entity("UPtel.Models.Contratos", b =>
                 {
                     b.Property<int>("ContratoId")
