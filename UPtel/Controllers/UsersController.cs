@@ -171,7 +171,7 @@ namespace UPtel.Controllers
         // POST : User/RegistoOperador
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
             {
@@ -185,7 +185,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-         
+            CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -354,7 +354,8 @@ namespace UPtel.Controllers
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
-        // GET: User/Edit/5
+
+        // GET: Clientes/Edit/5
         public async Task<IActionResult> EditCliente(int? id)
         {
             if (id == null)
@@ -408,8 +409,8 @@ namespace UPtel.Controllers
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
-       
-        // GET: User/Edit/5
+
+        // GET: ClientesEmp/Edit/5
         public async Task<IActionResult> EditEmpresa(int? id)
         {
             if (id == null)
@@ -427,7 +428,7 @@ namespace UPtel.Controllers
             return View(users);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: ClientesEmp/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -463,6 +464,7 @@ namespace UPtel.Controllers
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsEmpresa", "Users");
         }
+      
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
