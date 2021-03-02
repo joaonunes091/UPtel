@@ -47,6 +47,8 @@ namespace UPtel.Models
 
         public string NumerosAssociados { get; set; }
 
+        public List<Contratos> ListaContratos { get; set; }
+
         //Informacao Pacote
 
         public string NomePacote { get; set; }

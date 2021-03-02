@@ -9,8 +9,8 @@
         <div class="row justify-content-center text-left text-white">
             <div class="col-xl-8">
 
-                <h1>Dados Pessoais</h1>
-
+                <h1>Dados Pessoais de @Model.NomeCliente</h1>
+                <br />
                 <dl class="row">
                     <dt class="col-sm-5">
                         @Html.DisplayNameFor(model => model.NomeCliente)
@@ -77,119 +77,162 @@
                 </dl>
 
                 <a class="btn btn-info" asp-action="EditCliente" asp-controller="Users" asp-route-id="@Model.Id">Editar</a>
-                
-                <h1>Contratos</h1>
-                <dl class="row">
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NomeFuncionario)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NomeFuncionario)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.DataInicio)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.DataInicio)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NumerosAssociados)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NumerosAssociados)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.Fidelizacao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Fidelizacao)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.TempoPromocao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.TempoPromocao)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.PrecoContrato)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.PrecoContrato)
-                    </dd>
-                </dl>
-                <h1>Pacotes</h1>
-                <dl class="row">
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NomePacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NomePacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NetFixaPacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NetFixaPacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NetMovelPacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NetMovelPacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.TelemovelPacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.TelemovelPacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.TelefonePacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.TelefonePacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.TelevisaoPacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.TelevisaoPacote)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.PrecoPacote)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.PrecoPacote)
-                    </dd>
-                </dl>
+                <br />
+                <br />
 
-                <h1>Promoções</h1>
-                <dl class="row">
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.NomePromocao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => modelItem.NomePromocao)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.DescricaoPromocao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => modelItem.DescricaoPromocao)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.PromocaoCanais)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => modelItem.PromocaoCanais)
-                    </dd>
-                    <dt class="col-sm-5">
-                        @Html.DisplayNameFor(model => model.Desconto)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => modelItem.Desconto)
-                    </dd>
-                </dl>
+                <h1>Contratos de @Model.NomeCliente</h1>
+                <br />
+
+                @if (Model.ListaContratos.Count() == 0)
+                {
+                    <p>Não existem contratos para mostrar</p>
+                }
+                else
+                {
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nome do Pacote
+                                </th>
+                                <th>
+                                    Preço
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var contrato in Model.ListaContratos)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => contrato.Pacote.NomePacote)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => contrato.PrecoContrato)
+                                    </td>
+
+                                    <td class="text-right">
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@contrato.PacoteId">Detalhes</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+                @*<h1>Contratos</h1>*@
+                @*<dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NomeFuncionario)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.NomeFuncionario)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.DataInicio)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NumerosAssociados)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.NumerosAssociados)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Fidelizacao)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.Fidelizacao)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.TempoPromocao)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.TempoPromocao)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.PrecoContrato)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.PrecoContrato)
+            </dd>
+        </dl>
+        <h1>Pacotes</h1>
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NomePacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.NomePacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NetFixaPacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.NetFixaPacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NetMovelPacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.NetMovelPacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.TelemovelPacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.TelemovelPacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.TelefonePacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.TelefonePacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.TelevisaoPacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.TelevisaoPacote)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.PrecoPacote)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => Model.PrecoPacote)
+            </dd>
+        </dl>
+
+        <h1>Promoções</h1>
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NomePromocao)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => modelItem.NomePromocao)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.DescricaoPromocao)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => modelItem.DescricaoPromocao)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.PromocaoCanais)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => modelItem.PromocaoCanais)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Desconto)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => modelItem.Desconto)
+            </dd>
+        </dl>*@
             </div>  
         </div>
     </div>
