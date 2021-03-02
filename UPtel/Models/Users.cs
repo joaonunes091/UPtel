@@ -69,7 +69,7 @@ namespace UPtel.Models
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [EmailAddress]
-        [StringLength(50, ErrorMessage = "O limite de caracteres(50) foi ultrapassado")]
+        [StringLength(255, ErrorMessage = "O limite de caracteres(255) foi ultrapassado")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
