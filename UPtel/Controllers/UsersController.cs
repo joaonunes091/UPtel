@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UPtel.Data;
 using UPtel.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace UPtel.Controllers
 {
@@ -112,42 +114,7 @@ namespace UPtel.Controllers
             return View(users);
         }
 
-        //função de registo base
-
-        //private async void RegistoBase(TipoDeUtilizador t, RegistoUserViewModel infoUsers)
-        //{
-        //    IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
-
-        //    if (utilizador != null)
-        //    {
-        //        ModelState.AddModelError("Email", "Já existe uma conta com este email");
-        //        return;
-        //    }
-        //    utilizador = new IdentityUser(infoUsers.Email);
-        //    IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
-
-        //    Users users = new Users
-        //    {
-        //        Nome = infoUsers.Nome,
-        //        Data = infoUsers.Data,
-        //        CartaoCidadao = infoUsers.CartaoCidadao,
-        //        Contribuinte = infoUsers.Contribuinte,
-        //        Morada = infoUsers.Morada,
-        //        CodigoPostal = infoUsers.CodigoPostal,
-        //        Telefone = infoUsers.Telefone,
-        //        Telemovel = infoUsers.Telemovel,
-        //        Email = infoUsers.Email,
-        //        CodigoPostalExt = infoUsers.CodigoPostalExt,
-        //        Iban = infoUsers.Iban,
-        //        TipoId = (int)infoUsers.TipoId,
-        //    };
-
-        //    _context.Add(users);
-        //    await _context.SaveChangesAsync();
-        //}
-
-
-
+       
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //GET : User/RegistoAdministrador
@@ -159,7 +126,7 @@ namespace UPtel.Controllers
         // POST : User/RegistoAdministrador
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
             {
@@ -173,20 +140,22 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (!await CriaUtilizadorAsync(infoUsers, "Administrador"))
+            CriaFotoUser(infoUsers, ficheiroFoto);
+            if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!VerificaNIF(infoUsers))
+            if (!await CriaUtilizadorAsync(infoUsers, "Administrador"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
             if (!ModelState.IsValid)
             {
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
-            ViewBag.Mensagem = "Cliente adicionado com sucesso";
+            ViewBag.Mensagem = "Administrador adicionado com sucesso";
             return View("Sucesso");
         }
 
@@ -216,52 +185,26 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (!await CriaUtilizadorAsync(infoUsers, "Operador"))
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            }
+         
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
+            if (!await CriaUtilizadorAsync(infoUsers, "Operador"))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+           
             if (!ModelState.IsValid)
             {
+                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
-            ViewBag.Mensagem = "Cliente adicionado com sucesso";
+            ViewBag.Mensagem = "Operador adicionado com sucesso";
             return View("Sucesso");
-            //string nif = users.Contribuinte;
-            //char firstChar = nif[0];
-            //if (firstChar.Equals('1')
-            //    || firstChar.Equals('2')
-            //    || firstChar.Equals('3')
-            //    || firstChar.Equals('5')
-            //    || firstChar.Equals('6')
-            //    || firstChar.Equals('8')
-            //    || firstChar.Equals('9'))
-            //{
-            //    int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
-            //    for (int i = 2; i <= 8; ++i)
-            //    {
-            //        checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
-            //    }
-
-            //    checkDigit = 11 - (checkDigit % 11);
-            //    if (checkDigit >= 10)
-            //    {
-            //        checkDigit = 0;
-            //    }
-
-            //    if (checkDigit.ToString() != nif[8].ToString())
-            //    {
-            //        ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
-            //        ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-            //        return View(infoUsers);
-            //    }
-            //};
+           
         }
-
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -336,14 +279,15 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            }
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
+            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+          
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -354,90 +298,8 @@ namespace UPtel.Controllers
         }
 
 
-        private async Task<bool> VerificaEmailAsync(RegistoUserViewModel infoUsers)
-        {
-            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
 
-            if (utilizador != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool VerificaNIF(RegistoUserViewModel infoUsers)
-        {
-            string nif = infoUsers.Contribuinte;
-            char firstChar = nif[0];
-            if (firstChar.Equals('1')
-                || firstChar.Equals('2')
-                || firstChar.Equals('3')
-                || firstChar.Equals('5')
-                || firstChar.Equals('6')
-                || firstChar.Equals('8')
-                || firstChar.Equals('9'))
-            {
-                int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
-                for (int i = 2; i <= 8; ++i)
-                {
-                    checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
-                }
-
-                checkDigit = 11 - (checkDigit % 11);
-                if (checkDigit >= 10)
-                {
-                    checkDigit = 0;
-                }
-
-                if (checkDigit.ToString() != nif[8].ToString())
-                {
-                    ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
-        private async Task<bool> CriaUtilizadorAsync(RegistoUserViewModel infoUsers, string role)
-        {
-            var utilizador = new IdentityUser(infoUsers.Email);
-
-            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
-            if (resultado.Succeeded)
-            {
-                await _gestorUtilizadores.AddToRoleAsync(utilizador, role);
-            }
-            else
-            {
-                return false;
-            }
-
-            Users users = new Users
-            {
-                Nome = infoUsers.Nome,
-                Data = infoUsers.Data,
-                CartaoCidadao = infoUsers.CartaoCidadao,
-                Contribuinte = infoUsers.Contribuinte,
-                Morada = infoUsers.Morada,
-                CodigoPostal = infoUsers.CodigoPostal,
-                Telefone = infoUsers.Telefone,
-                Telemovel = infoUsers.Telemovel,
-                Email = infoUsers.Email,
-                CodigoPostalExt = infoUsers.CodigoPostalExt,
-                TipoId = infoUsers.TipoId,
-            };
-
-            _context.Add(users);
-            await _context.SaveChangesAsync();
-
-            return true;
-        }
-
-        // GET: User/Edit/5
+        // GET: Funcionários/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -455,12 +317,12 @@ namespace UPtel.Controllers
             return View(users);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Funcionários/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
             if (id != users.UsersId)
             {
@@ -471,6 +333,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    AtualizaFotoUser(users, ficheiroFoto);
                     _context.Update(users);
                     await _context.SaveChangesAsync();
                 }
@@ -545,6 +408,7 @@ namespace UPtel.Controllers
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
+       
         // GET: User/Edit/5
         public async Task<IActionResult> EditEmpresa(int? id)
         {
@@ -635,5 +499,118 @@ namespace UPtel.Controllers
         {
             return _context.Users.Any(e => e.UsersId == id);
         }
+
+
+
+        //---------------VALIDAÇÕES--------------------
+
+        private static void CriaFotoUser(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
+        {
+            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroFoto.CopyTo(ficheiroMemoria);
+                    infoUsers.Fotografia = ficheiroMemoria.ToArray();
+                }
+            }
+        }
+
+        private static void AtualizaFotoUser(Users users, IFormFile ficheiroFoto)
+        {
+            if (ficheiroFoto != null && ficheiroFoto.Length > 0)
+            {
+                using (var ficheiroMemoria = new MemoryStream())
+                {
+                    ficheiroFoto.CopyTo(ficheiroMemoria);
+                    users.Fotografia = ficheiroMemoria.ToArray();
+                }
+            }
+        }
+
+        private async Task<bool> VerificaEmailAsync(RegistoUserViewModel infoUsers)
+        {
+            IdentityUser utilizador = await _gestorUtilizadores.FindByNameAsync(infoUsers.Email);
+
+            if (utilizador != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool VerificaNIF(RegistoUserViewModel infoUsers)
+        {
+            string nif = infoUsers.Contribuinte;
+            char firstChar = nif[0];
+            if (firstChar.Equals('1')
+                || firstChar.Equals('2')
+                || firstChar.Equals('3')
+                || firstChar.Equals('5')
+                || firstChar.Equals('6')
+                || firstChar.Equals('8')
+                || firstChar.Equals('9'))
+            {
+                int checkDigit = (Convert.ToInt32(firstChar.ToString()) * 9);
+                for (int i = 2; i <= 8; ++i)
+                {
+                    checkDigit += Convert.ToInt32(nif[i - 1].ToString()) * (10 - i);
+                }
+
+                checkDigit = 11 - (checkDigit % 11);
+                if (checkDigit >= 10)
+                {
+                    checkDigit = 0;
+                }
+
+                if (checkDigit.ToString() != nif[8].ToString())
+                {
+                    ModelState.AddModelError("Contribuinte", "Contribuinte Inválido, coloque novamente");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        private async Task<bool> CriaUtilizadorAsync(RegistoUserViewModel infoUsers, string role)
+        {
+            var utilizador = new IdentityUser(infoUsers.Email);
+
+            IdentityResult resultado = await _gestorUtilizadores.CreateAsync(utilizador, infoUsers.Password);
+            if (resultado.Succeeded)
+            {
+                await _gestorUtilizadores.AddToRoleAsync(utilizador, role);
+            }
+            else
+            {
+                return false;
+            }
+
+            Users users = new Users
+            {
+                Nome = infoUsers.Nome,
+                Data = infoUsers.Data,
+                CartaoCidadao = infoUsers.CartaoCidadao,
+                Contribuinte = infoUsers.Contribuinte,
+                Morada = infoUsers.Morada,
+                CodigoPostal = infoUsers.CodigoPostal,
+                Telefone = infoUsers.Telefone,
+                Telemovel = infoUsers.Telemovel,
+                Email = infoUsers.Email,
+                CodigoPostalExt = infoUsers.CodigoPostalExt,
+                TipoId = infoUsers.TipoId,
+                Fotografia = infoUsers.Fotografia,
+            };
+
+            _context.Add(users);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        //------------------------------------------------------------------------------//
     }
 }
