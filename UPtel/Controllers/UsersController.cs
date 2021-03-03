@@ -40,7 +40,7 @@ namespace UPtel.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         //public async Task<IActionResult>MudarPassword(MudarPasswordViewModel model)
         //{
         //    if(ModelState.IsValid)
