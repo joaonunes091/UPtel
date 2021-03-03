@@ -34,6 +34,37 @@ namespace UPtel.Controllers
             _gestorUtilizadores = gestorUtilizadores;
         }
 
+        [HttpGet]
+        public IActionResult MudarPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        //public async Task<IActionResult>MudarPassword(MudarPasswordViewModel model)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        var user = await _gestorUtilizadores.GetUserAsync(User);
+        //        if (user == null)
+        //        {
+        //            return RedirectToAction("Login");
+        //        }
+        //        var result = await _gestorUtilizadores.ChangePasswordAsync(user, model.PasswordAtual, model.PasswordNova);
+        //        if(!result.Succeeded)
+        //        {
+        //            foreach(var error in result.Errors)
+        //            {
+        //                ModelState.AddModelError(string.Empty, error.Description);
+        //            }
+        //            return View();
+        //        }
+        //        await _gestorUtilizadores.RefreshSignInAsync(user);
+        //        return View("MudarPasswordSucesso")
+        //    }
+        //    return View(model);
+        //}
+
         // GET: Clientes
         //[Authorize(Roles = "Administrador")] IMPORTANTE RETIRAR DE COMENTÁRIO QUANDO OS ROLES ESTIVEREM ATIVOS
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
