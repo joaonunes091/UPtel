@@ -18,22 +18,22 @@ namespace UPtel.Models
         [Key]
         public int NetFixaId { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o nome do tarifário")]
         [Display(Name = "Tarifário")]
         [StringLength(45, ErrorMessage = "O limite de caracteres(45) foi ultrapassado")]
         public string Nome { get; set; }
 
         [Display(Name = "Limite de plafond")]
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o limite")]
         [Column(TypeName = "decimal(5, 2)")]
         [Range(1,999,ErrorMessage ="Valor inválido")]
         public decimal Limite { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar a velocidade")]
         [Display(Name = "Velocidade de ligação em MB")]
         public int Velocidade { get; set; }
        
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o tipo de conexão")]
         [Display( Name ="Tipo de Conexão")]
         [StringLength(30, ErrorMessage = "O limite de carateres(30) foi ultrapassado")]
         public string TipoConexao { get; set; }

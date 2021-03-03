@@ -29,23 +29,23 @@ namespace UPtel.Models
         [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar uma data")]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
-        [StringLength(8, MinimumLength = 8,ErrorMessage ="Este valor é inválido")]
+        [StringLength(8, MinimumLength = 8,ErrorMessage ="É necessário colocar o cartão de cidadão")]
         [RegularExpression(@"\d{8}",ErrorMessage ="Este valor não é válido")]
         [Display(Name = "Cartão de Cidadão")]
         public string CartaoCidadao { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar um número de contribuinte")]
         [StringLength(9, MinimumLength = 9,ErrorMessage ="Este valor é inválido")]
         [RegularExpression(@"\d{9}",ErrorMessage ="Este valor é inválido")]
         [Display(Name = "Contribuinte")]
         public string Contribuinte { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar a morada")]
         [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         [Display(Name ="Morada")]
         public string Morada { get; set; }
