@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -159,6 +159,9 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -182,7 +185,7 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
+                //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
@@ -202,8 +205,11 @@ namespace UPtel.Controllers
         // POST : User/RegistoOperador
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
+        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -216,7 +222,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            CriaFotoUser(infoUsers, ficheiroFoto);
+         
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -251,8 +257,11 @@ namespace UPtel.Controllers
 
         // POST : User/RegistoClienteEmpresa
 
-        public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
+        public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -265,12 +274,11 @@ namespace UPtel.Controllers
             //{
             //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             //}
-            CriaFotoUser(infoUsers, ficheiroFoto);
-            if (!VerificaNIF(infoUsers))
+            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
+            if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
@@ -297,8 +305,11 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
+        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -307,17 +318,14 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
-            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            //{
-            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-            //}
-
-            CriaFotoUser(infoUsers, ficheiroFoto);
-            
-            //if (!VerificaNIF(infoUsers))
-            //{
-            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            //}
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            {
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            }
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -348,7 +356,7 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -359,6 +367,8 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
+            users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -386,12 +396,12 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
-        // GET: ClientesEmp/Edit/5
-        public async Task<IActionResult> EditEmpresa(int? id)
+        // GET: operador/Edit/5
+        public async Task<IActionResult> EditOperador(int? id)
         {
             if (id == null)
             {
@@ -404,17 +414,19 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
-        // POST: ClientesEmp/Edit/5
+        // POST: operador/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> EditOperador(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
+            users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -442,11 +454,13 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
-            return RedirectToAction("DetailsEmpresa", "Users");
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
         }
 
-        // GET: Clientes/Edit/5
+
+
+        // GET: User/Edit/5
         public async Task<IActionResult> EditCliente(int? id)
         {
             if (id == null)
@@ -460,7 +474,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -469,8 +482,11 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
+            users.TipoId = tipo.TipoId;
+
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -480,7 +496,6 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    AtualizaFotoUser(users, ficheiroFoto);
                     _context.Update(users);
                     await _context.SaveChangesAsync();
                 }
@@ -498,11 +513,63 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
-
        
+        // GET: User/Edit/5
+        public async Task<IActionResult> EditEmpresa(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
+                return View("Erro");
+            }
+            return View(users);
+        }
+
+        // POST: Clientes/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
+            users.TipoId = tipo.TipoId;
+            if (id != users.UsersId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UsersId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                return View("Sucesso");
+            }
+            return RedirectToAction("DetailsEmpresa", "Users");
+        }
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

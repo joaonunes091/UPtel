@@ -101,8 +101,18 @@
                         </dl>
                     </div>
                     <div>
-                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.UsersId">Editar</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.UsersId">Eliminar</a> |
+                        @{
+                            if (Model.Tipo.Tipo.Contains("Operador"))
+                            {
+                                <a class="btn btn-costum" asp-action="EditOperador" asp-route-id="@Model.UsersId">Editar</a>
+                            }
+                            else
+                            {
+                            <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.UsersId">Editar</a>
+
+                            }
+                        }
+                        | <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.UsersId">Eliminar</a> |
                         <a class="btn btn-info" asp-action="Index">Voltar</a>
                     </div>
                 </div>

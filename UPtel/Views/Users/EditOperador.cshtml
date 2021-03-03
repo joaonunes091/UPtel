@@ -14,7 +14,7 @@
                 <br />
                 <div class="row">
                     <div class="col-md-6">
-                        <form asp-action="EditEmpresa" enctype="multipart/form-data">
+                        <form asp-action="EditOperador" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="UsersId" />
                             <div class="form-group">
@@ -26,6 +26,11 @@
                                 <label asp-for="Data" class="control-label"></label>
                                 <input asp-for="Data" class="form-control" />
                                 <span asp-validation-for="Data" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CartaoCidadao" class="control-label"></label>
+                                <input asp-for="CartaoCidadao" class="form-control" />
+                                <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Contribuinte" class="control-label"></label>
@@ -68,6 +73,12 @@
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Iban" class="control-label"></label>
+                                <input asp-for="Iban" class="form-control" />
+                                <span asp-validation-for="Iban" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
                                 <label asp-for="Estado" class="control-label"></label>
                                 <input asp-for="Estado" class="form-control" />
                                 <span asp-validation-for="Estado" class="text-danger"></span>
@@ -79,11 +90,11 @@
                             <div class="form-group">
                                 <input asp-for="Fotografia" type="hidden" />
                                 <input type="submit" value="Guardar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@Model.UsersId">Voltar</a>
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.UsersId">Voltar</a>
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-3" style="width:50px;">
+                    <div class="col-md-6">
                         @if (Model.Fotografia != null)
                         {
                             <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" />
