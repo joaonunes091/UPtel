@@ -266,10 +266,10 @@ namespace UPtel.Controllers
             //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             //}
             CriaFotoUser(infoUsers, ficheiroFoto);
-            //if (!VerificaNIF(infoUsers))
-            //{
-            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            //}
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -297,7 +297,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
             {
@@ -307,14 +307,17 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
-            if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            {
-                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-            }
-            if (!VerificaNIF(infoUsers))
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            }
+            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            //{
+            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            //}
+
+            CriaFotoUser(infoUsers, ficheiroFoto);
+            
+            //if (!VerificaNIF(infoUsers))
+            //{
+            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            //}
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
