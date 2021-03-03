@@ -28,6 +28,7 @@ namespace UPtel.Models
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Este valor é inválido")]
         [RegularExpression(@"\d{9}", ErrorMessage = "Este valor é inválido")]
         [Display(Name = "Número de Contribuinte")]
+        
         public string Contribuinte { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]

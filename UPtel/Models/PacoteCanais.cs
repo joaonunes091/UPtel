@@ -13,12 +13,12 @@ namespace UPtel.Models
         [Key]
         public int PacoteCanalId { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o nome do pacote de televisão")]
         [Display(Name ="Pacote Televisão")]
         public int TelevisaoId { get; set; }
 
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o nome do canal")]
         [Display(Name = "Canal")]
         public int CanaisId { get; set; }
 
