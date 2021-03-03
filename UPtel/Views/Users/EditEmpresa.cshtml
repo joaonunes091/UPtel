@@ -11,10 +11,10 @@
                 <h1>Editar user</h1>
 
                
-                <hr />
+                <br />
                 <div class="row">
                     <div class="col-md-6">
-                        <form asp-action="EditEmpresa">
+                        <form asp-action="EditEmpresa" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="UsersId" />
                             <div class="form-group">
@@ -78,15 +78,21 @@
                                 <span asp-validation-for="Estado" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Fotografia" class="control-label"></label>
-                                <input asp-for="Fotografia" class="form-control" />
-                                <span asp-validation-for="Fotografia" class="text-danger"></span>
+                                <label for="ficheiroFoto" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
+                                <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <input asp-for="Fotografia" type="hidden" />
+                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
                                 <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@Model.UsersId">Voltar</a>
                             </div>
                         </form>
+                    </div>
+                    <div class="col-md-3" style="width:50px;">
+                        @if (Model.Fotografia != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" />
+                        }
                     </div>
                 </div>
             </div>

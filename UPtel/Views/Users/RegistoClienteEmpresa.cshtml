@@ -13,7 +13,7 @@
                 <br />
                 <div class="row">
                     <div class="col-md-6">
-                        <form asp-action="RegistoClienteEmpresa">
+                        <form asp-action="RegistoClienteEmpresa" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label">Nome da Empresa *</label>
@@ -86,8 +86,8 @@
                                 <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
                             </div>
                             <div class="form-group">
-                                <label for="Fotografia" class="control-label"></label>
-                                <input name="Fotografia" class="from-control-file" type="file" />
+                                <label for="ficheiroFoto" class="control-label">Fotografia</label>
+                                <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Registar" class="btn btn-primary" />
