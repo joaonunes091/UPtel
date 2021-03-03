@@ -31,7 +31,7 @@ namespace UPtel.Models
         [Display(Name = "Números associados")]
         public string Numeros { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar uma data para o início de contrato")]
         [Display(Name = "Data de início do contrato")]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
@@ -45,7 +45,7 @@ namespace UPtel.Models
 
 
         [Display(Name = "Valor total do contrato")]
-        [Required(ErrorMessage = "Deve preencher o preço.")]
+        [Required(ErrorMessage = "É necessário preencher o preço.")]
         [Column(TypeName = "decimal(5, 2)")]
         [Range(1, 9999, ErrorMessage = "O valor não é válido")]
         public decimal PrecoContrato { get; set; }

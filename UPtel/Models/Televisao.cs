@@ -19,7 +19,7 @@ namespace UPtel.Models
         [Key]
         public int TelevisaoId { get; set; }
        
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [Required(ErrorMessage = "É necessário colocar o nome do pacote de canais")]
         [Display(Name = "Nome pacote de canais")]
         [StringLength(20, ErrorMessage = "O limite de carateres(20) foi ultrapassado")]
         public string Nome { get; set; }
