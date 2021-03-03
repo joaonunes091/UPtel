@@ -14,7 +14,7 @@ namespace UPtel.Data
         /// Method for the validation of the fiscal number
         /// </summary>
         /// <param name="nif"></param>
-        /// <returns>The fiscal number</returns>
+        /// <returns>True if is valid</returns>
         public static bool ValidateFiscalNumber(string nif)
         {
             
