@@ -82,6 +82,7 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
+          
             decimal precoContrato, desconto, total;
             var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
@@ -94,6 +95,15 @@ namespace UPtel.Controllers
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             contratos.FuncionarioId = funcionario.UsersId;
+           
+            if (contratos.DataInicio > DateTime.Today || contratos.DataInicio > DateTime.Today.AddDays(-90))
+            {
+                ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(contratos);
+            }
 
             _context.Contratos.Add(contratos);
             await _context.SaveChangesAsync();
@@ -133,6 +143,7 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
+
             if (id != contratos.ContratoId)
             {
                 return NotFound();
