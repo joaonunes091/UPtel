@@ -159,6 +159,9 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -182,7 +185,7 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
+                //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
@@ -204,6 +207,9 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -253,6 +259,9 @@ namespace UPtel.Controllers
 
         public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -298,6 +307,9 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
+            infoUsers.TipoId = tipo.TipoId;
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -344,7 +356,7 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -355,6 +367,8 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
+            users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -382,9 +396,70 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
+
+        // GET: operador/Edit/5
+        public async Task<IActionResult> EditOperador(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
+                return View("Erro");
+            }
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
+        }
+
+        // POST: operador/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditOperador(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
+            users.TipoId = tipo.TipoId;
+            if (id != users.UsersId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    AtualizaFotoUser(users, ficheiroFoto);
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsersExists(users.UsersId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                return View("Sucesso");
+            }
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            return View(users);
+        }
+
+
+
         // GET: User/Edit/5
         public async Task<IActionResult> EditCliente(int? id)
         {
@@ -399,7 +474,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -410,6 +484,9 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
+            users.TipoId = tipo.TipoId;
+
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -436,7 +513,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
        
@@ -454,7 +530,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -465,6 +540,8 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
+            var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
+            users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -491,7 +568,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsEmpresa", "Users");
         }
         // GET: Clientes/Delete/5
