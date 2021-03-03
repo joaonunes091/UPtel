@@ -38,20 +38,29 @@
                             @for (int i = 0; i < Model.ListaCanais.Count; i++)
                             {
                                 @if (Model.ListaCanais[i].Selecionado == true)
-                                { 
+                                {
                                     @Html.DisplayFor(z => Model.ListaCanais[i].Nome)
                                     <br />
                                 }
                             }
                         </dd>
-                        </dl>
+                    </dl>
                 </div>
-                <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelevisaoId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelevisaoId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <div>
+                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelevisaoId">Editar</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelevisaoId">Eliminar</a> |
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
                 </div>
-            </div>
         </div>
     </div>
 </section>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Televisao/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             var canal = _context.Canais.ToList();
@@ -99,6 +101,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(TelevisaoViewModel TVM, Televisao televisao, PacoteCanais pacoteCanais)
         {
             List<PacoteCanais> listaCanais = new List<PacoteCanais>();
@@ -127,6 +130,7 @@ namespace UPtel.Controllers
 
 
         // GET: Televisao/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             TelevisaoViewModel TVM = new TelevisaoViewModel();
@@ -156,6 +160,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id, TelevisaoViewModel TVM/*, Televisao televisao*//*, PacoteCanais pacoteCanais*/)
         {
             List<PacoteCanais> listaCanais = new List<PacoteCanais>();
@@ -205,6 +210,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Televisao/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -226,6 +232,7 @@ namespace UPtel.Controllers
         // POST: Televisao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var televisao = await _context.Televisao.FindAsync(id);

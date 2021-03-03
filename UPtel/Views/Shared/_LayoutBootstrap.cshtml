@@ -80,14 +80,16 @@
                             <nav class="nav-menu d-none d-lg-block">
                                 
                                 <ul>
-
-                                    <li class="drop-down">
-                                        <a href="">Users</a>
-                                        <ul>
-                                            <li><a asp-action="Index" asp-controller="Users">Users</a></li>
-                                            <li><a asp-action="Index" asp-controller="UserType">User Types</a></li>
-                                        </ul>
-                                    </li>
+                                    @if (User.IsInRole("Administrador"))
+                                    {
+                                        <li class="drop-down">
+                                            <a href="">Users</a>
+                                            <ul>
+                                                <li><a asp-action="Index" asp-controller="Users">Users</a></li>
+                                                <li><a asp-action="Index" asp-controller="UserType">User Types</a></li>
+                                            </ul>
+                                        </li>
+                                    }
 
                                     <li class="drop-down">
                                         <a href="">Serviços</a>
@@ -99,26 +101,39 @@
                                                     <li><a asp-action="Index" asp-controller="NetFixa">Net Fixa</a></li>
                                                 </ul>
                                             </li>
+
                                             <li class="drop-down">
-                                                <a href="#">Televisão</a>
-                                                <ul>
-                                                    <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
-                                                    <li><a asp-action="Index" asp-controller="Canais">Canais</a></li>
-                                                    <li><a asp-action="Index" asp-controller="PacoteCanais">Pacotes de canais</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
-                                            <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
+                                                @if (User.IsInRole("Administrador"))
+                                                {
+                                                    <a href="#">Televisão</a>
+                                                    <ul>
+                                                        <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
+                                                        <li><a asp-action="Index" asp-controller="Canais">Canais</a></li>
+                                                        <li><a asp-action="Index" asp-controller="PacoteCanais">Pacotes de canais</a></li>
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
+                                                }
+
+                                                <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
+                                                <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
+                                            
                                         </ul>
                                     </li>
-                                    <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
-                                    <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
-                                    <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
-
-                                    @if (User.IsInRole("Cliente"))
+                                    @if (User.IsInRole("Operador"))
                                     {
-                                        <li><a asp-action="Index" asp-controller="ClientesViewModel">Area do Cliente</a></li>
+                                        <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
                                     }
+                                        <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
+                                  
+                                        <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
+
+                                        @if (User.IsInRole("Cliente"))
+                                        {
+                                            <li><a asp-action="Index" asp-controller="ClientesViewModel">Area do Cliente</a></li>
+                                        }
                                         @if (User.IsInRole("Administrador"))
                                         {
                                             <li class="drop-down">

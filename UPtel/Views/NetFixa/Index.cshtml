@@ -13,49 +13,52 @@
 
                 <h1>Internet Fixa</h1>
                 <br />
-                <p>
-                    <a class="btn btn-costum" asp-action="Create">Criar Novo</a>
-                </p>
-                <br />
-                <table class="table text-white">
-                    <thead>
-                        <tr>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <p>
+                        <a class="btn btn-costum" asp-action="Create">Criar Novo</a>
+                    </p>
+                }
+                    <br />
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.Nome)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TipoConexao)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoNetFixa)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TipoConexao)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PrecoNetFixa)
-                            </td>
-                            <td>
-                                @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a>*@
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a>
-                                @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>*@
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TipoConexao)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PrecoNetFixa)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TipoConexao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PrecoNetFixa)
+                                    </td>
+                                    <td>
+                                        @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a>*@
+                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a>
+                                        @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
 </section>

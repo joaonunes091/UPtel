@@ -11,7 +11,7 @@
                 <h1>Detalhes do telefone</h1>
 
                 <div>
-                    
+
                     <br />
                     <dl class="row">
                         <dt class="col-sm-5 text-white">
@@ -46,12 +46,20 @@
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelefoneId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelefoneId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
-               
-                </div>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <div>
+                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelefoneId">Editar</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelefoneId">Eliminar</a> |
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

@@ -54,11 +54,20 @@
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetFixaId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetFixaId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
-                </div>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <div>
+                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetFixaId">Editar</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetFixaId">Eliminar</a> |
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

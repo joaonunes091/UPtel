@@ -14,7 +14,7 @@
                 <h1>Detalhe Pacote Internet Móvel</h1>
                 <hr />
                 <div>
-                    
+
                     <dl class="row">
                         <dt class="col-sm-5 text-white">
                             @Html.DisplayNameFor(model => model.Nome)
@@ -41,14 +41,21 @@
                             @Html.DisplayFor(model => model.Notas)
                         </dd>
                     </dl>
-                 
-                    <div>
-                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetMovelId">Editar</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetMovelId">Eliminar</a> |
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <div>
+                            <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetMovelId">Editar</a> |
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetMovelId">Eliminar</a> |
+                            <a class="btn btn-info" asp-action="Index">Voltar</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <a class="btn btn-info" asp-action="Index">Voltar</a>
+                        </div>
+                    }
                     </div>
-
-                </div>
             </div>
         </div>
     </div>

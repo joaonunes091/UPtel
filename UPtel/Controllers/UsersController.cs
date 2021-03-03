@@ -66,7 +66,7 @@ namespace UPtel.Controllers
         //}
 
         // GET: Clientes
-        //[Authorize(Roles = "Administrador")] IMPORTANTE RETIRAR DE COMENTÁRIO QUANDO OS ROLES ESTIVEREM ATIVOS
+        [Authorize(Roles = "Administrador")] 
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
@@ -93,6 +93,7 @@ namespace UPtel.Controllers
         }
 
         // GET: User/Details/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -110,6 +111,7 @@ namespace UPtel.Controllers
 
             return View(users);
         }
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DetailsCliente(int? id)
         {
             if (id == null)
@@ -127,6 +129,7 @@ namespace UPtel.Controllers
 
             return View(users);
         }
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DetailsEmpresa(int? id)
         {
             if (id == null)
@@ -145,10 +148,11 @@ namespace UPtel.Controllers
             return View(users);
         }
 
-       
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //GET : User/RegistoAdministrador
+        [Authorize(Roles = "Administrador")]
         public IActionResult RegistoAdministrador()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
@@ -157,6 +161,7 @@ namespace UPtel.Controllers
         // POST : User/RegistoAdministrador
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             if (!ModelState.IsValid)
@@ -193,6 +198,7 @@ namespace UPtel.Controllers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //GET : User/RegistoOperador
+        [Authorize(Roles = "Administrador")]
         public IActionResult RegistoOperador()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
@@ -202,6 +208,7 @@ namespace UPtel.Controllers
         // POST : User/RegistoOperador
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
         {
             if (!ModelState.IsValid)
@@ -240,6 +247,7 @@ namespace UPtel.Controllers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //GET : User/RegistoClienteEmpresa
+        [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteEmpresa()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
@@ -250,7 +258,7 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
 
         // POST : User/RegistoClienteEmpresa
-
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
         {
             if (!ModelState.IsValid)
@@ -285,6 +293,7 @@ namespace UPtel.Controllers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // GET: User/RegistoClienteParticular
+        [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteParticular()
         {
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
@@ -296,6 +305,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
         {
             if (!ModelState.IsValid)
@@ -331,6 +341,7 @@ namespace UPtel.Controllers
 
 
         // GET: Funcionários/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -353,6 +364,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
             if (id != users.UsersId)
@@ -386,6 +398,7 @@ namespace UPtel.Controllers
             return View(users);
         }
         // GET: User/Edit/5
+        [Authorize(Roles = "Administrador,Cliente")]
         public async Task<IActionResult> EditCliente(int? id)
         {
             if (id == null)
@@ -408,6 +421,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador,Cliente")]
         public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
             if (id != users.UsersId)
@@ -433,14 +447,23 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
+                if(User.IsInRole("Administrador"))
+                { 
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
+                }
+                if (User.IsInRole("Cliente"))
+                {
+                    ViewBag.Mensagem = "Dados Pessoais alterados com sucesso";
+                    return RedirectToAction("Sucesso", "ClientesViewModel", users.UsersId);
+                }
             }
             ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
-       
+
         // GET: User/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> EditEmpresa(int? id)
         {
             if (id == null)
@@ -463,6 +486,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
         {
             if (id != users.UsersId)
@@ -495,6 +519,7 @@ namespace UPtel.Controllers
             return RedirectToAction("DetailsEmpresa", "Users");
         }
         // GET: Clientes/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -517,6 +542,7 @@ namespace UPtel.Controllers
         // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var users = await _context.Users.FindAsync(id);

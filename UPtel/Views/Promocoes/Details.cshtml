@@ -33,18 +33,27 @@
                             @Html.DisplayFor(model => model.PromoCanais)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                           Desconto em %
+                            Desconto em %
                         </dt>
                         <dd class="col-sm-7 text-white">
                             @Html.DisplayFor(model => model.Desconto)
                         </dd>
                     </dl>
                 </div>
+                @if (User.IsInRole("Administrador"))
+                {
                 <div>
                     <a asp-action="Edit" asp-route-id="@Model.PromocaoId" class="btn btn-costum">Editar</a> |
                     <a asp-action="Delete" asp-route-id="@Model.PromocaoId" class="btn btn-danger">Eliminar</a> |
                     <a asp-action="Index" class="btn btn-info">Voltar</a>
                 </div>
+                }
+                else
+                {
+                <div>
+                    <a asp-action="Index" class="btn btn-info">Voltar</a>
+                </div>
+                }
             </div>
         </div>
     </div>
