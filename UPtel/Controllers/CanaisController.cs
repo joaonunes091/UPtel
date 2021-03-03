@@ -9,9 +9,11 @@ using UPtel.Data;
 using UPtel.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UPtel.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CanaisController : Controller
     {
         private readonly UPtelContext _context;

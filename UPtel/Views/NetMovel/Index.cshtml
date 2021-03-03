@@ -19,7 +19,7 @@
                     <div class="col-md-6 border-info mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Pesquisar Internet móvel</h5>
-                            <form asp-action="Index" method="get" >
+                            <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control mr-sm-2" type="search" value="@Model.NomePesquisar" />
                                 </div>
@@ -30,47 +30,49 @@
                             </form>
                         </div>
                     </div>
-
-                            <p>
-                                <a class="btn btn-costum" asp-action="Create">Novo Pacote</a>
-                            </p>  
-                            @if (Model.NetMovel.Count() == 0)
-                            {
-                                <p>Não existem canais para mostrar</p>
-                            }
-                            else
-                            {
-                                <table class="table text-white">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].Nome)
-                                            </th>
-                                            @*<th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].Limite)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].Notas)
-                                            </th>*@
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
-                                            </th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.NetMovel)
-                                        {
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <p>
+                            <a class="btn btn-costum" asp-action="Create">Novo Pacote</a>
+                        </p>
+                    }
+                        @if (Model.NetMovel.Count() == 0)
+                        {
+                            <p>Não existem canais para mostrar</p>
+                        }
+                        else
+                        {
+                            <table class="table text-white">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.NetMovel[0].Nome)
+                                        </th>
+                                        @*<th>
+                                @Html.DisplayNameFor(model => model.NetMovel[0].Limite)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NetMovel[0].Notas)
+                            </th>*@
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.NetMovel)
+                                    {
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Nome)
                                             </td>
                                             @*<td>
-                                                @Html.DisplayFor(modelItem => item.Limite)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Notas)
-                                            </td>*@
+                                    @Html.DisplayFor(modelItem => item.Limite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Notas)
+                                </td>*@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.PrecoNetMovel)
                                             </td>
@@ -80,46 +82,46 @@
 
                                             </td>
                                         </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                                <nav>
-                                    <ul class="pagination pagination-sm justify-content-end">
-                                        @{
-                                            int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                            //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
-                                            if (paginaInicial < 1)
-                                            {
-                                                paginaInicial = 1;
-                                            }
-
-                                            int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                            //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
-                                            if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                            {
-                                                paginaFinal = Model.Paginacao.TotalPaginas;
-                                            }
-                                        }
-
-                                        <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                            <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                                        </li>
-
-                                        @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                    }
+                                </tbody>
+                            </table>
+                            <nav>
+                                <ul class="pagination pagination-sm justify-content-end">
+                                    @{
+                                        int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        //int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS / 2;
+                                        if (paginaInicial < 1)
                                         {
-                                            <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                                <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
-                                            </li>
+                                            paginaInicial = 1;
                                         }
 
-                                        <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                            <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                        int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        //int paginaFinal = paginaInicial + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS - 1;
+                                        if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                        {
+                                            paginaFinal = Model.Paginacao.TotalPaginas;
+                                        }
+                                    }
 
-                            }
-                        </div>
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                                    </li>
+
+                                    @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                    {
+                                        <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                            <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                        </li>
+                                    }
+
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        }
+                    </div>
 
                     </div>
 

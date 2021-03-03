@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +76,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Pacotes/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             ViewData["NetIfixaId"] = new SelectList(_context.NetFixa, "NetFixaId", "Nome");
@@ -127,6 +129,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Pacotes/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -152,6 +155,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("PacoteId,NomePacote,PrecoTotal,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
         {
             if (id != pacotes.PacoteId)
@@ -189,6 +193,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Pacotes/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -214,6 +219,7 @@ namespace UPtel.Controllers
         // POST: Pacotes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pacotes = await _context.Pacotes.FindAsync(id);

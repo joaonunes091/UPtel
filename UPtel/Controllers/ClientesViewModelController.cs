@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using UPtel.Models;
 
 namespace UPtel.Controllers
 {
+    [Authorize(Roles = "Cliente")]
     public class ClientesViewModelController : Controller
     {
         private readonly UPtelContext _context;
@@ -41,33 +43,6 @@ namespace UPtel.Controllers
             }
 
 
-            //Vai buscar as informações dos contratos
-            //Contratos infoContartos =await _context.Contratos.SingleOrDefaultAsync(x => x.ClienteId == infoCliente.UsersId);
-
-            //var funcionario = await _context.Users.SingleOrDefaultAsync(x => x.UsersId == infoContartos.FuncionarioId);
-            //var nomeFuncionario = funcionario.Nome;
-
-            ////Vai buscar as informações dos pacotes
-            //Pacotes infoPacotes = await _context.Pacotes.SingleOrDefaultAsync(x => x.PacoteId == infoContartos.PacoteId);
-
-            //var netFixaPacotes = await _context.NetFixa.SingleOrDefaultAsync(x => x.NetFixaId == infoPacotes.NetIfixaId);
-            //var nomeNetFixa = netFixaPacotes.Nome;
-
-            //var netMovelPacotes = await _context.NetMovel.SingleOrDefaultAsync(x => x.NetMovelId == infoPacotes.NetMovelId);
-            //var nomeNetMovel = netMovelPacotes.Nome;
-
-            //var telemovelPacotes = await _context.Telemovel.SingleOrDefaultAsync(x => x.TelemovelId == infoPacotes.TelemovelId);
-            //var nomeTelemovel = telemovelPacotes.Nome;
-
-            //var telefonePacotes = await _context.Telefone.SingleOrDefaultAsync(x => x.TelefoneId == infoPacotes.TelefoneId);
-            //var nomeTelefone = telefonePacotes.Nome;
-
-            //var televisaoPacotes = await _context.Televisao.SingleOrDefaultAsync(x => x.TelevisaoId == infoPacotes.TelevisaoId);
-            //var nomeTelevisao = televisaoPacotes.Nome;
-
-            ////Vai buscar as informações das promoções
-            //Promocoes infoPromocoes = await _context.Promocoes.SingleOrDefaultAsync(x => x.PromocaoId == infoContartos.PromocaoId);
-
             cliente = new ClientesViewModel
             {
                 //Dados Pessoais
@@ -83,26 +58,6 @@ namespace UPtel.Controllers
                 Telemovel = infoCliente.Telemovel,
                 Email = infoCliente.Email,
                 ListaContratos = listaContratos
-                //Contrato
-                //NomeFuncionario = nomeFuncionario,
-                //DataInicio = infoContartos.DataInicio,
-                //NumerosAssociados = infoContartos.Numeros,
-                //Fidelizacao = infoContartos.Fidelizacao,
-                //TempoPromocao = infoContartos.TempoPromocao,
-                //PrecoContrato = infoContartos.PrecoContrato,
-                ////Pacotes
-                //NomePacote = infoPacotes.NomePacote,
-                //NetFixaPacote = nomeNetFixa,
-                //NetMovelPacote = nomeNetMovel,
-                //TelemovelPacote = nomeTelemovel,
-                //TelefonePacote = nomeTelefone,
-                //TelevisaoPacote = nomeTelevisao,
-                //PrecoPacote = infoPacotes.PrecoTotal,
-                ////Promoções
-                //NomePromocao = infoPromocoes.NomePromocao,
-                //DescricaoPromocao = infoPromocoes.Descricao,
-                //PromocaoCanais = infoPromocoes.PromoCanais,
-                //Desconto = infoPromocoes.Desconto
             };
 
             return View(cliente);
@@ -173,11 +128,14 @@ namespace UPtel.Controllers
                 //Promoções
                 NomePromocao = infoPromocoes.NomePromocao,
                 DescricaoPromocao = infoPromocoes.Descricao,
-                PromocaoCanais = infoPromocoes.PromoCanais,
                 Desconto = infoPromocoes.Desconto
             };
 
             return View(cliente);
+        }
+        public IActionResult Sucesso()
+        {
+            return View();
         }
     }
 }

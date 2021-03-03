@@ -11,7 +11,7 @@
                 <h2>Detalhes dos pacotes de serviços</h2>
 
                 <div>
-                   
+
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-5 text-white">
@@ -27,7 +27,7 @@
                             @Html.DisplayFor(model => model.PrecoTotal)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                           Net Fixa
+                            Net Fixa
                         </dt>
                         <dd class="col-sm-7 text-white">
                             @Html.DisplayFor(model => model.NetIfixa.Nome)
@@ -39,7 +39,7 @@
                             @Html.DisplayFor(model => model.NetMovel.Nome)
                         </dd>
                         <dt class="col-sm-5 text-white">
-                           Telemóvel
+                            Telemóvel
                         </dt>
                         <dd class="col-sm-7 text-white">
                             @Html.DisplayFor(model => model.Telemovel.Nome)
@@ -58,12 +58,21 @@
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.PacoteId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.PacoteId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <div>
+                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.PacoteId">Editar</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.PacoteId">Eliminar</a> |
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    </div>
+                }
                 </div>
-            </div>
         </div>
     </div>
 </section>
