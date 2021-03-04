@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace UPtel.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class CanaisController : Controller
     {
         private readonly UPtelContext _context;
