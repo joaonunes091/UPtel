@@ -1,4 +1,16 @@
-﻿@model UPtel.Models.Canais
+﻿
+<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            color: #000;
+            content: "";
+        }
+</style>
+
+@model UPtel.Models.Canais
 
 @{
     ViewData["Title"] = "Criar Canal";

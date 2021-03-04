@@ -35,19 +35,19 @@
                         @Html.DisplayNameFor(model => model.Fidelizacao)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Fidelizacao)
+                        @Html.DisplayFor(modelItem => Model.Fidelizacao) meses
                     </dd>
                     <dt class="col-sm-5">
                         @Html.DisplayNameFor(model => model.TempoPromocao)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.TempoPromocao)
+                        @Html.DisplayFor(modelItem => Model.TempoPromocao) meses
                     </dd>
                     <dt class="col-sm-5">
                         @Html.DisplayNameFor(model => model.PrecoContrato)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.PrecoContrato)
+                        @Html.DisplayFor(modelItem => Model.PrecoContrato) €
                     </dd>
                 </dl>
                 <h1>Pacotes</h1>
@@ -92,7 +92,7 @@
                         @Html.DisplayNameFor(model => model.PrecoPacote)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.PrecoPacote)
+                        @Html.DisplayFor(modelItem => Model.PrecoPacote) €
                     </dd>
                 </dl>
 
@@ -114,7 +114,7 @@
                         @Html.DisplayNameFor(model => model.Desconto)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => modelItem.Desconto)
+                        @Html.DisplayFor(modelItem => modelItem.Desconto) %
                     </dd>
                 </dl>
                 <a class="btn btn-info" asp-action="Index">Voltar</a>
