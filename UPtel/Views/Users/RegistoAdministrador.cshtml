@@ -48,11 +48,6 @@
                                 <input asp-for="Contribuinte" class="form-control" placeholder="ex: 123456789" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
                             </div>
-                            <div class="col-10 form-group">
-                                <label asp-for="Morada" class="form-label">Morada *</label>
-                                <input asp-for="Morada" class="form-control" placeholder="ex: Rua blá, n.34" />
-                                <span asp-validation-for="Morada" class="text-danger"></span>
-                            </div>
                             <div class="col-md-5 form-group">
                                 <label asp-for="Telefone" class="form-label"></label>
                                 <input asp-for="Telefone" class="form-control" placeholder="ex: 2xxxxxxxx" />
@@ -68,10 +63,10 @@
                                 <input asp-for="Iban" class="form-control" placeholder="ex: PT00000000000000000000000" />
                                 <span asp-validation-for="Iban" class="text-danger"></span>
                             </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Email" class="form-label">E-mail *</label>
-                                <input asp-for="Email" class="form-control" placeholder="ex: teste@qq.ff" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                            <div class="col-10 form-group">
+                                <label asp-for="Morada" class="form-label">Morada *</label>
+                                <input asp-for="Morada" class="form-control" placeholder="ex: Rua blá, n.34" />
+                                <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
                                 <label asp-for="CodigoPostal" class="form-label">Código Postal *</label>
@@ -86,6 +81,11 @@
                                         <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label asp-for="Email" class="form-label">E-mail *</label>
+                                <input asp-for="Email" class="form-control" placeholder="ex: teste@qq.ff" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
                                 <label asp-for="Password" class="form-label">Password *</label>
