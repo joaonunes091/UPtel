@@ -155,7 +155,7 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoAdministrador()
         {
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
         // POST : User/RegistoAdministrador
@@ -204,7 +204,7 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoOperador()
         {
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
@@ -241,7 +241,7 @@ namespace UPtel.Controllers
            
             if (!ModelState.IsValid)
             {
-                ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
+                //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
@@ -256,7 +256,7 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteEmpresa()
         {
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
@@ -305,7 +305,7 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteParticular()
         {
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
