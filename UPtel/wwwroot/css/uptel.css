@@ -1,4 +1,6 @@
-﻿.btn-costum {
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+.btn-costum {
     background-color: #00b371;
     color: white;
     border-color: #009961;
@@ -20,4 +22,32 @@
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
     background-color: #009961;
     border-color: #009961;
+}
+
+i {
+    color:darkgray;
+    transition: ease-in,0.5s;
+}
+
+i:hover {
+    color: #009961;
+    transform:scale(1.5);
+}
+.imgEliminar:hover {
+    color: #dc0303;
+}
+
+.font {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    color: darkgray;
+}
+
+.titulo {
+    color: #009961;
+    font-weight: bold;
 }
