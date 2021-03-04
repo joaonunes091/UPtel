@@ -212,7 +212,7 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoOperador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
             infoUsers.TipoId = tipo.TipoId;
@@ -229,7 +229,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-         
+            CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -265,7 +265,7 @@ namespace UPtel.Controllers
 
         // POST : User/RegistoClienteEmpresa
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoClienteEmpresa(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
             infoUsers.TipoId = tipo.TipoId;
@@ -282,11 +282,12 @@ namespace UPtel.Controllers
             //{
             //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             //}
-            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
+            CriaFotoUser(infoUsers, ficheiroFoto);
+            if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!VerificaNIF(infoUsers))
+            if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
@@ -315,7 +316,7 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers)
+        public async Task<IActionResult> RegistoClienteParticular(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
             infoUsers.TipoId = tipo.TipoId;
@@ -328,10 +329,13 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
-            if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            {
-                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-            }
+            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
+            //{
+            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
+            //}
+
+            CriaFotoUser(infoUsers, ficheiroFoto);
+
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -496,7 +500,7 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador,Cliente")]
-        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
             users.TipoId = tipo.TipoId;
@@ -510,6 +514,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    AtualizaFotoUser(users, ficheiroFoto);
                     _context.Update(users);
                     await _context.SaveChangesAsync();
                 }
@@ -535,6 +540,7 @@ namespace UPtel.Controllers
                     return RedirectToAction("Sucesso", "ClientesViewModel", users.UsersId);
                 }
             }
+            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
 
