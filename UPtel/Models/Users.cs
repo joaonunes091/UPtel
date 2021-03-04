@@ -103,12 +103,12 @@ namespace UPtel.Models
         public virtual ICollection<Contratos> ContratosFuncionario { get; set; }
     }
 
-//    public class RestrictedDate : ValidationAttribute
-//    {
-//        public override bool IsValid(object DataNascimento)
-//        {
-//            DateTime DataNascimento = (DateTime)DataNascimento;
-//            return DataNascimento < DateTime.Now;
-//        }
-//    }
+    //    public class RestrictedDate : ValidationAttribute
+    //    {
+    //        public override bool IsValid(object DataNascimento)
+    //        {
+    //            DateTime DataNascimento = (DateTime)DataNascimento;
+    //            return DataNascimento < DateTime.Now;
+    //        }
+    //    }
 }
