@@ -11,7 +11,7 @@ using UPtel.Models;
 
 namespace UPtel.Controllers
 {
-    [Authorize(Roles = "Operador")]
+    //[Authorize(Roles = "Operador")]
     public class ContratosController : Controller
     {
         private readonly UPtelContext _context;
@@ -45,6 +45,23 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
+        public async Task<IActionResult> SelectUser(string nomePesquisar)
+        {
+
+            List<Users> users = await _context.Users.Where(p => p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar))
+                    .Include(t => t.Tipo)
+                    .OrderBy(c => c.Nome)
+                    .OrderBy(c => c.Contribuinte)
+                    .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Users = users,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
+        }
 
         // GET: Contratos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -68,10 +85,11 @@ namespace UPtel.Controllers
             return View(contratos);
         }
 
+
         // GET: Contratos/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte");
+            //ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
             return View();
@@ -82,7 +100,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
+        public async Task<IActionResult> Create(int? id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
           
             decimal precoContrato, desconto, total;
@@ -97,13 +115,20 @@ namespace UPtel.Controllers
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             contratos.FuncionarioId = funcionario.UsersId;
-           
-            if (contratos.DataInicio > DateTime.Today || contratos.DataInicio > DateTime.Today.AddDays(-90))
+
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == id);
+            contratos.ClienteId = cliente.UsersId;
+
+            if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
             {
                 ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
             }
+
             if (!ModelState.IsValid)
             {
+                ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
+                ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
                 return View(contratos);
             }
 
@@ -111,7 +136,6 @@ namespace UPtel.Controllers
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato adicionado com sucesso";
 
-            ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
 
@@ -132,7 +156,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
                 return View("Erro");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte", contratos.ClienteId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);
@@ -143,8 +166,15 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
+        public async Task<IActionResult> Edit(int id, int x, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
+            //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
+            var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+            contratos.FuncionarioId = funcionario.UsersId;
+
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Contratos.SingleOrDefault(m => m.ClienteId == x);
+            contratos.ClienteId = cliente.ClienteId;
 
             if (id != contratos.ContratoId)
             {
@@ -172,7 +202,7 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
                 return View("Sucesso");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte", contratos.ClienteId);
+            //ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte", contratos.ClienteId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);

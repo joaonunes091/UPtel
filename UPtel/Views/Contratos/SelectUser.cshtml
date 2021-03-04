@@ -9,12 +9,12 @@
         <div class="row justify-content-center text-left">
             <div class="col-xl-8 text-white">
                 <div>
-                    <h2>Contratos</h2>
+                    <h2>Procurar Utilizador</h2>
                     <br />
                     <div class="col-md-8 border-info mb-6">
                         <div class="card-body">
                             <h5 class="card-title">Pesquisar contratos (Por Nome/NIF)</h5>
-                            <form asp-action="Index" method="get">
+                            <form asp-action="SelectUser" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
                                 </div>
@@ -26,14 +26,9 @@
                         </div>
                     </div>
 
-                    <p>
-                        <a class="btn btn-costum" asp-action="SelectUser">Novo Contrato</a>
-                    </p>
-
-                    <div>
-                        @if (Model.Contratos.Count() == 0)
+                        @if (Model.Users.Count() == 0)
                         {
-                            <p>Não existem contratos para mostrar</p>
+                            <p>Por favor pesquise um utilizador</p>
                         }
                         else
                         {
@@ -46,47 +41,30 @@
                                         <th>
                                             NIF
                                         </th>
-                                        <th>
-                                            Data de Início
-                                        </th>
-                                        <th>
-                                            Fidelização
-                                        </th>
-                                        <th>
-                                            Preço
-                                        </th>
-
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var contratos in Model.Contratos)
+                                    @foreach (var contratos in Model.Users)
                                     {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
+                                            @Html.DisplayFor(modelItem => contratos.Nome)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => contratos.Cliente.Contribuinte)
+                                            @Html.DisplayFor(modelItem => contratos.Contribuinte)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => contratos.DataInicio)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Fidelizacao)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.PrecoContrato)
-                                        </td>
-                                        <td class="text-right">
-                                            <a class="btn btn-info" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
+                                            <p>
+                                                <a class="btn btn-costum" asp-action="Create" asp-route-id="@contratos.UsersId">Novo Contrato</a>
+                                            </p>
                                         </td>
                                     </tr>
                                     }
                                 </tbody>
                             </table>
 
-                            <nav>
+                            @*<nav>
                                 <ul class="pagination pagination-sm justify-content-end">
                                     @{
                                         int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
@@ -117,7 +95,7 @@
                                         <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
                                     </li>
                                 </ul>
-                            </nav>
+                            </nav>*@
 
                         }
                     </div>
