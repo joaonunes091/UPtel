@@ -184,13 +184,20 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
+            if (!await VerificaContribuinteAsync(infoUsers))
+            {
+                ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(infoUsers);
+            }
             if (!await CriaUtilizadorAsync(infoUsers, "Administrador"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
             if (!ModelState.IsValid)
             {
-                //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
@@ -233,6 +240,14 @@ namespace UPtel.Controllers
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+            if (!await VerificaContribuinteAsync(infoUsers))
+            {
+                ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Operador"))
             {
@@ -287,6 +302,14 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
+            if (!await VerificaContribuinteAsync(infoUsers))
+            {
+                ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(infoUsers);
+            }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -339,6 +362,14 @@ namespace UPtel.Controllers
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
+                        if (!await VerificaContribuinteAsync(infoUsers))
+            {
+                ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
             {
@@ -680,6 +711,34 @@ namespace UPtel.Controllers
                 return false;
             }
         }
+
+        private async Task<bool> VerificaContribuinteAsync(RegistoUserViewModel infoUsers)
+        {
+            IdentityUser contribuinte = await _gestorUtilizadores.FindByIdAsync(infoUsers.Contribuinte);
+
+            if (contribuinte != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //private async Task<bool> VerificaCCAsync(RegistoUserViewModel infoUsers)
+        //{
+        //    IdentityUser cc = await _gestorUtilizadores.FindByIdAsync(infoUsers.CartaoCidadao);
+
+        //    if (cc != null)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         private bool VerificaNIF(RegistoUserViewModel infoUsers)
         {
