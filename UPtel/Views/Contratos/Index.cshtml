@@ -4,16 +4,19 @@
     ViewData["Title"] = "Contratos";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center ">
             <div class="col-xl-8 text-white">
                 <div>
-                    <h2>Contratos</h2>
+                    <h2 class="font">Contratos</h2>
                     <br />
-                    <div class="col-md-8 border-info mb-6">
+                    <div class="col-md-10 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Pesquisar contratos (Por Nome/NIF)</h5>
+                            <h5 class="card-title" style="color:darkgrey">Pesquisar contratos (Por Nome/NIF)</h5>
                             <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
@@ -27,7 +30,7 @@
                     </div>
 
                     <p>
-                        <a class="btn btn-costum" asp-action="SelectUser">Novo Contrato</a>
+                        <a asp-action="SelectUser"><i class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
 
                     <div>
@@ -37,57 +40,56 @@
                         }
                         else
                         {
-                            <table class="table text-white">
+                            <table class="table table-borderless text-white">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th class="text-center titulo">
                                             Nome do Cliente
                                         </th>
-                                        <th>
+                                        <th class="text-center titulo">
                                             NIF
                                         </th>
-                                        <th>
+                                        <th class="text-center titulo">
                                             Data de Início
                                         </th>
-                                        <th>
+                                        <th class="text-center titulo">
                                             Fidelização
                                         </th>
-                                        <th>
+                                        <th class="text-center titulo">
                                             Preço
                                         </th>
-
-                                        <th></th>
+                                        <th class="text-center"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var contratos in Model.Contratos)
                                     {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Cliente.Contribuinte)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.DataInicio)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Fidelizacao)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.PrecoContrato)
-                                        </td>
-                                        <td class="text-right">
-                                            <a class="btn btn-info" asp-action="Details" asp-route-id="@contratos.ContratoId">Detalhes</a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => contratos.Cliente.Contribuinte)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => contratos.DataInicio)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => contratos.PrecoContrato)
+                                            </td>
+                                            <td class="text-center">
+                                                <a asp-action="Details" asp-route-id="@contratos.ContratoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
 
                             <nav>
-                                <ul class="pagination pagination-sm justify-content-end">
+                                <ul class="pagination justify-content-end">
                                     @{
                                         int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
                                         if (paginaInicial < 1)
