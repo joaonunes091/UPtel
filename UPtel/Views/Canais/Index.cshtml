@@ -5,20 +5,28 @@
 }
 
 
-<section id="secondhero"> @*class="d-flex flex-column justify-content-center"*@
+<section id="secondhero">
+    @*class="d-flex flex-column justify-content-center"*@
+    <div class="leftPanel">
+        <img src="~/bootstrap/assets/img/BannerTeste.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
+    </div>
+    <div class="rightPanel">
+        <img src="~/bootstrap/assets/img/BannerTeste.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
+    </div>
     <div class="container">
 
-        <div class="row justify-content-center "> @*text-left*@
+        <div class="row justify-content-center ">
+            @*text-left*@
 
             @*<div class="col-md-2">
-            <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%" />
+                    <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%" />
 
-        </div>*@
+                </div>*@
             <div class="col-xl-8 text-white">
                 <h2 class="font">Canais</h2>
                 <div>
                     <br />
-                    <div class="col-md-10 border-info mb-4">
+                    <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
                             <h5 class="card-title" style="color:darkgray">Pesquisa de Canais</h5>
                             <form asp-action="Index" method="get">
@@ -34,7 +42,7 @@
                     </div>
 
                     <p>
-                        <a asp-action="Create"><i class="fas fa-folder-plus fa-3x"></i></a>
+                        <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
                     @if (Model.Canais.Count() == 0)
                     {
@@ -61,20 +69,19 @@
                                         <td class="text-center">
                                             @if (canais.Foto != null)
                                             {
-                                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid"  style="width:50px"/>
+                                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(canais.Foto)" class="img-fluid" style="width:50px" />
                                             }
                                         </td>
                                         <td class="text-center">
                                             @Html.DisplayFor(modelItem => canais.NomeCanal)
                                         </td>
                                         <td>
-                                            <a asp-action="Details" asp-route-id="@canais.CanaisId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                            <a asp-action="Details" asp-route-id="@canais.CanaisId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
-
                         <nav>
                             <ul class="pagination justify-content-end">
                                 @{
@@ -107,12 +114,11 @@
                                 </li>
                             </ul>
                         </nav>
-
                     }
                 </div>
-
             </div>
         </div>
+
         @*<div class="col-md-2">
                 <img src="~/bootstrap/assets/img/UPtel_logo.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
 

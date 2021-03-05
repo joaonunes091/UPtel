@@ -1,4 +1,15 @@
-﻿@model UPtel.Models.NetFixa
+﻿<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            color: #000;
+            content: "";
+        }
+</style>
+
+@model UPtel.Models.NetFixa
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,64 +17,64 @@
 
 
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2>Editar Net Fixa</h2>
+                <h2 class="font">Editar Internet Fixa</h2>
 
                 @*<h4>Net Fixa</h4>*@
                 <br />
-                <div class="row text-white">
-                    <div class="col-md-6">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 text-white">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger">Limite *</div>
                             <input type="hidden" asp-for="NetFixaId" />
                             <div class="form-group">
-                                <label asp-for="Nome" class="control-label"></label>
-                                <input asp-for="Nome" class="form-control" />
+                                <label asp-for="Nome" class="control-label" style="color:darkgray"></label>
+                                <input asp-for="Nome" class="form-control" placeholder="Ex: Básico"/>
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Limite" class="control-label"></label>
-                                <input asp-for="Limite" class="form-control" />
+                                <label asp-for="Limite" class="control-label" style="color:darkgray"></label>
+                                <input asp-for="Limite" class="form-control" placeholder="Ex: Ilimitado"/>
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Velocidade" class="control-label">Velocidade *</label>
-                                <input asp-for="Velocidade" class="form-control" />
+                                <label asp-for="Velocidade" class="control-label" style="color:darkgray">Velocidade *</label>
+                                <input asp-for="Velocidade" class="form-control" placeholder="Ex: 30 MB"/>
                                 <span asp-validation-for="Velocidade" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="TipoConexao" class="control-label">Tipo de conexão *</label>
-                                <input asp-for="TipoConexao" class="form-control" />
+                                <label asp-for="TipoConexao" class="control-label" style="color:darkgray">Tipo de conexão *</label>
+                                <input asp-for="TipoConexao" class="form-control" placeholder="Ex: Fibra"/>
                                 <span asp-validation-for="TipoConexao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoNetFixa" class="control-label">Preço do tarifário *</label>
-                                <input asp-for="PrecoNetFixa" class="form-control" />
+                                <label asp-for="PrecoNetFixa" class="control-label" style="color:darkgray">Preço do tarifário *</label>
+                                <input asp-for="PrecoNetFixa" class="form-control" placeholder="Ex: 21"/>
                                 <span asp-validation-for="PrecoNetFixa" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Notas" class="control-label"></label>
-                                <input asp-for="Notas" class="form-control" />
+                                <label asp-for="Notas" class="control-label" style="color:darkgray"></label>
+                                <textarea rows="3" asp-for="Notas" placeholder="Notas" class="form-control" ></textarea>
                                 <span asp-validation-for="Notas" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.NetFixaId">Voltar</a>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Details" asp-route-id="@Model.NetFixaId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="text-white">
+                <div style="color:darkgray">
                     <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-                @*@section Scripts {
+                @section Scripts {
                         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
+                    }
