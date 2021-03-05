@@ -3,39 +3,39 @@
 @{
     ViewData["Title"] = "Eliminar canais";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
-
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2>Tem a certeza que quer apagar o canal?</h2>
+                <h2 class="font">Tem a certeza que quer eliminar o canal?</h2>
+                <br />
                 <div>
                     <div>
-                        <br />
-                        <dl class="row">
-                            <dt class="col-sm-5">
+
+                        <dl class="row justify-content-center text-white">
+                            <dt class="col-4 titulo">
                                 @Html.DisplayNameFor(model => model.NomeCanal)
                             </dt>
-                            <dd class="col-sm-7">
+                            <dd class="col-4">
                                 @Html.DisplayFor(model => model.NomeCanal)
+                            </dd>
+                            <dd class="col-4">
+                                @if (Model.Foto != null)
+                                {
+                                    <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px;" />
+                                }
                             </dd>
                         </dl>
                     </div>
-                    <div class="col-md-6">
-                        @if (Model.Foto != null)
-                        {
-                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px;" />
-                        }
-                    </div>
-
-                    <form class="text-center" asp-action="Delete">
-                        <input type="hidden" asp-for="CanaisId" />
-                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.CanaisId">Voltar</a>
-                    </form>
                 </div>
-
+                <br /><br />
+                <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
+                    <input type="hidden" asp-for="CanaisId" />
+                    <button type="submit" class="btn btn-default btn-sm "><i class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+                    <a asp-action="Details" asp-route-id="@Model.CanaisId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                </form>
             </div>
         </div>
     </div>
