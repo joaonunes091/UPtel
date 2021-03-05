@@ -9,7 +9,7 @@
 
 <section id="secondhero" @*class="d-flex flex-column justify-content-center"*@>
     <div class="container">
-        <div class="row justify-content-center  text-white">  @*text-left*@
+        <div class="row justify-content-center text-white">  @*text-left*@
             <div @*class="col-xl-8"*@>
                 <h2 class="font">Detalhes do canal</h2>
                 <br /><br />
@@ -38,9 +38,9 @@
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.CanaisId">Eliminar</a> |
                 <a class="btn btn-info" asp-action="Index">Voltar</a>*@
 
-                    <a asp-action="Edit" asp-route-id="@Model.CanaisId"><i class="far fa-edit fa-2x"> &nbsp </i></a>
-                    <a asp-action="Delete" asp-route-id="@Model.CanaisId"><i class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
-                    <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                    <a asp-action="Edit" asp-route-id="@Model.CanaisId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.CanaisId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
 
             </div>

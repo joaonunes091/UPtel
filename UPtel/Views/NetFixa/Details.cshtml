@@ -5,48 +5,45 @@
 }
 
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
-    <div class="container">
-        <div class="row justify-content-center text-left">
+<section id="secondhero">
+    <div class="container ">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-
-                <h2>Detalhes Net Fixa</h2>
-
+                <h2 class="font">Detalhes Net Fixa</h2>
+                <br /><br />
                 <div>
-                    @*<h4>Net Fixa</h4>*@
-                    <br />
                     <dl class="row">
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Limite)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Limite)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Velocidade)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Velocidade)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.TipoConexao)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.TipoConexao)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoNetFixa)
                         </dt>
                         <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.PrecoNetFixa)
+                            @Html.DisplayFor(model => model.PrecoNetFixa) €
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Notas)
                         </dt>
                         <dd class="col-sm-7">
@@ -54,18 +51,19 @@
                         </dd>
                     </dl>
                 </div>
+                <br />
                 @if (User.IsInRole("Administrador"))
                 {
-                    <div>
-                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.NetFixaId">Editar</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.NetFixaId">Eliminar</a> |
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    <div class="float-right">
+                        <a asp-action="Edit" asp-route-id="@Model.NetFixaId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                        <a asp-action="Delete" asp-route-id="@Model.NetFixaId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                     </div>
                 }
                 else
                 {
-                    <div>
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    <div class="float-right">
+                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </div>
                 }
             </div>
