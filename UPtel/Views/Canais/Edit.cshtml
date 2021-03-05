@@ -1,53 +1,71 @@
-﻿@model UPtel.Models.Canais
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+
+<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            color: #000;
+            content: "";
+        }
+</style>
+
+@model UPtel.Models.Canais
 
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero"> 
     <div class="container">
-        <div class="row justify-content-center text-left text-white">
-            <div class="col-xl-8">
-                <h2>Editar canais</h2>
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Editar Canal</h2>
                 <br />
-                <div class="row">
-                    <div class="col-md-4 text-white">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 text-white">
+                        <div class="d-flex justify-content-end">
+                            @if (Model.Foto != null)
+                            {
+                                <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px; height:30px" />
+                            }
+                        </div>
+
                         <form asp-action="Edit" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="CanaisId" />
+                            <br />
                             <div class="form-group">
-                                <label asp-for="NomeCanal" class="control-label text-white">Nome do canal *</label>
+                                <label asp-for="NomeCanal" class="control-label" style="color:darkgray">Nome do canal *</label>
                                 <input asp-for="NomeCanal" class="form-control" />
                                 <span asp-validation-for="NomeCanal" class="text-danger"></span>
                             </div>
+                            <br />
                             <div class="form-group">
-                                <label for="ficheiroFoto" class="control-label">Fotografia (especifique apenas caso queira alterar)</label>
+                                <label for="ficheiroFoto" class="control-label" style="color:darkgray">Fotografia (especifique apenas caso queira alterar)</label>
                                 <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
-                            <div class="form-group">
+                            <br />
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <input asp-for="Foto" type="hidden" />
-                                <input type="submit" value="Guardar" class="btn btn-costum" />
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
-                    </div>
-                    <div class="col-md-6">
-                        @if (Model.Foto != null)
-                        {
-                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Foto)" class="img-fluid" style="width:50px;" />
-                        }
+                        <br />
+                        <div style="color:darkgray">
+                            <p>* - Campos de preenchimento obrigatório</p>
+                        </div>
                     </div>
                 </div>
-                <div class="text-white">
-                    <p>* - Campos de preenchimento obrigatório</p>
-                </div>
-                <div>
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.CanaisId">Voltar</a>
-                </div>
+      
 
                 @*@section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }*@
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+               }*@
 
             </div>
         </div>

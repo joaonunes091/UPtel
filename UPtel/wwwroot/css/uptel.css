@@ -15,12 +15,12 @@
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #00b371;
+    background-color: #009961;
     border-color: #009961;
 }
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-    background-color: #009961;
+    background-color: #00b371;
     border-color: #009961;
 }
 
@@ -45,6 +45,11 @@ i:hover {
     align-items: center;
     margin-top: 15%;
     color: darkgray;
+}
+.barraPesquisa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .titulo {
