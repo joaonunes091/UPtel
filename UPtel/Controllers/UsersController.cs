@@ -332,7 +332,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-                        if (!await VerificaContribuinteAsync(infoUsers))
+            if (!await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
             }
@@ -568,7 +568,7 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users)
+        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
             users.TipoId = tipo.TipoId;
@@ -581,6 +581,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    AtualizaFotoUser(users, ficheiroFoto);
                     _context.Update(users);
                     await _context.SaveChangesAsync();
                 }
