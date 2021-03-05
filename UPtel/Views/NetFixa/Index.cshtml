@@ -8,29 +8,29 @@
 
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h1>Internet Fixa</h1>
+                <h1 class="font">Internet Fixa</h1>
                 <br />
-                @if (User.IsInRole("Administrador"))
-                {
-                    <p>
-                        <a class="btn btn-costum" asp-action="Create">Criar Novo</a>
+                @*@if (User.IsInRole("Administrador"))
+                {*@
+                    <p >
+                        <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
-                }
+                @*}*@
                     <br />
-                    <table class="table text-white">
+                    <table class="table table-borderless text-white">
                         <thead>
                             <tr>
 
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.Nome)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.TipoConexao)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PrecoNetFixa)
                                 </th>
                                 <th></th>
@@ -40,18 +40,18 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.TipoConexao)
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.PrecoNetFixa)
                                     </td>
                                     <td>
                                         @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a>*@
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes</a>
+                                        <a asp-action="Details" asp-route-id="@item.NetFixaId">Detalhes<i class="fas fa-search-plus fa-2x"></i></a>
                                         @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>*@
                                     </td>
                                 </tr>
