@@ -3,51 +3,48 @@
 @{
     ViewData["Title"] = "Delete";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h3>Tem a certeza que quer apagar a net móvel?</h3>
-               
-                    <div class="text-white">
-                        <hr />
-                        <dl class="row">
-                            <dt class="col-sm-5 text-white">
-                                @Html.DisplayNameFor(model => model.Nome)
-                            </dt>
-                            <dd class="col-sm-7 text-white">
-                                @Html.DisplayFor(model => model.Nome)
-                            </dd>
-                            <dt class="col-sm-5 text-white">
-                                @Html.DisplayNameFor(model => model.Limite)
-                            </dt>
-                            <dd class="col-sm-7 text-white">
-                                @Html.DisplayFor(model => model.Limite)
-                            </dd>
-                            <dt class="col-sm-5 text-white">
-                                @Html.DisplayNameFor(model => model.PrecoNetMovel)
-                            </dt>
-                            <dd class="col-sm-7 text-white">
-                                @Html.DisplayFor(model => model.PrecoNetMovel)
-                            </dd>
-                            <dt class="col-sm-5 text-white">
-                                @Html.DisplayNameFor(model => model.Notas)
-                            </dt>
-                            <dd class="col-sm-7 text-white">
-                                @Html.DisplayFor(model => model.Notas)
-                            </dd>
-                        </dl>
+                <h3 class="font">Tem a certeza que quer apagar a internet móvel?</h3>
 
-                        <form asp-action="Delete">
-                            <input type="hidden" asp-for="NetMovelId" />
-                            <input type="submit" value="Apagar" class="btn btn-danger" /> |
-                            <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.NetMovelId">Voltar</a>
-                        </form>
-                    </div>
+                <div>              
+                    <dl class="row justify-content-center text-white">
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </dt>
+                        <dd class="col-sm-7 ">
+                            @Html.DisplayFor(model => model.Nome)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Limite)
+                        </dt>
+                        <dd class="col-sm-7 ">
+                            @Html.DisplayFor(model => model.Limite)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.PrecoNetMovel)
+                        </dt>
+                        <dd class="col-sm-7 ">
+                            @Html.DisplayFor(model => model.PrecoNetMovel)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Notas)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.Notas)
+                        </dd>
+                    </dl>
 
+                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
+                        <input type="hidden" asp-for="NetMovelId" />
+                        <button type="submit" class="btn btn-default btn-sm "><i class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+                        <a asp-action="Details" asp-route-id="@Model.NetMovelId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                    </form>
+                </div>
             </div>
-            
         </div>
     </div>
 </section>

@@ -11,7 +11,7 @@ using UPtel.Models;
 
 namespace UPtel.Controllers
 {
-    //[Authorize(Roles = "Operador")]
+    [Authorize(Roles = "Operador")]
     public class ContratosController : Controller
     {
         private readonly UPtelContext _context;
