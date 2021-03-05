@@ -42,11 +42,11 @@ namespace UPtel.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage ="Precisa de colocar um email")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage ="Precisa de colocar uma password")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
