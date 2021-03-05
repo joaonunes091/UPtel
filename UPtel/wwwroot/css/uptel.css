@@ -56,3 +56,16 @@ i:hover {
     color: #009961;
     font-weight: bold;
 }
+
+.leftPanel {
+    width: 15%;
+    max-width: 180px;
+    min-width: 80px;
+    background-image:url(../bootstrap/assets/img/BannerTeste.png);
+}
+.rightPanel {
+    width: 15%;
+    max-width: 180px;
+    min-width: 80px;
+    background-image: url(../bootstrap/assets/img/BannerTeste.png);
+}
