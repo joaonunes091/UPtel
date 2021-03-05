@@ -3,28 +3,64 @@
 }
 
 <section id="hero" class="d-flex flex-column justify-content-center">
-      <div class="container">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-xl-8">
-                <img class="logo" src="~/bootstrap/assets/img/UPtel_logo2.png" alt="UPtel" />
+            <div class="col-xl-10">
+                @*<img class="logo" src="~/bootstrap/assets/img/UPtel_logo2.png" alt="UPtel" />*@
 
 
                 @*<a class="btn btn-primary" asp-action="Index" asp-controller="Canais">Canais</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Cargos">Cargos</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Clientes">Clientes</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Contratos">Contratos</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Funcionarios">Funcionario</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="NetFixa">Net Fixa</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="NetMovel">Net Móvel</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="PacoteCanais">Pacotes Canais</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Pacotes">Pacotes</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Promocoes">Promoções</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Telefone">Telefone</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Telemovel">Telemóvel</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Televisao">Televisão</a>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="TipoClientes">Tipo de clientes</a>*@
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Cargos">Cargos</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Clientes">Clientes</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Contratos">Contratos</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Funcionarios">Funcionario</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="NetFixa">Net Fixa</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="NetMovel">Net Móvel</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="PacoteCanais">Pacotes Canais</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Pacotes">Pacotes</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Promocoes">Promoções</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Telefone">Telefone</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Telemovel">Telemóvel</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Televisao">Televisão</a>
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="TipoClientes">Tipo de clientes</a>*@
+                <section id="services" class="services">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <a asp-action="Index" asp-controller="Televisao">                                   
+                                    <div class="icon-box">
+                                        <div class="icon"><i class="bx bx-tv"></i></div>
+                                        <h4>Televisão</h4>
+                                        <p>Veja aqui os pacotes de televisão que temos disponiveis para si</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                                <a href="">
+                                    <div class="icon-box">
+                                        <div class="icon"><i class="bx bx-phone"></i></div>
+                                        <h4>Comunicações</h4>
+                                        <p>Quer tenha um telefone fixo ou telemovel, temos o tarifário para si</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                <a href="">
+                                    <div class="icon-box">
+                                        <div class="icon"><i class="bx bx-wifi"></i></div>
+                                        <h4>Internet</h4>
+                                        <p>Veja os pacotes de internet fixa e móvel, a mais rápida do mercado</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 </section>
+
 

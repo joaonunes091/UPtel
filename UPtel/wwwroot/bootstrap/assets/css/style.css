@@ -408,7 +408,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/UptelHero.png") top center;
   background-size: cover;
   position: relative;
 }
@@ -670,12 +670,13 @@ section {
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {
-  padding: 60px 30px;
-  transition: all ease-in-out 0.3s;
-  background: #fefefe;
-  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.1);
-  border-radius: 18px;
-  border-bottom: 5px solid #fff;
+    /*padding: 60px 30px;*/
+    transition: all ease-in-out 0.3s;
+    background-color: rgba(255, 255, 255, 0.35);
+    /*background-image: url(../img/TV.jpg);*/
+    /*box-shadow: 0px 5px 90px 0px rgba(255, 255, 255, 0.1);*/
+    border-radius: 18px;
+    border-bottom: 5px solid #fff;
 }
 
 .services .icon-box .icon {
