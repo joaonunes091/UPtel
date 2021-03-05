@@ -4,63 +4,58 @@
     ViewData["Title"] = "Criar pacote de serviços";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 text-white">
 
-                <h2>Criar pacote de serviços</h2>
+                <h2 class="font">Criar pacote de serviços</h2>
 
 
-                <hr />
-                <div class="row">
-                    <div class="col-md-4">
+                <br />
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="NomePacote" class="control-label">Nome do pacote *</label>
                                 <input asp-for="NomePacote" class="form-control" />
                                 <span asp-validation-for="NomePacote" class="text-danger"></span>
                             </div>
-                            @*<div class="form-group">
-                                <label asp-for="PrecoTotal" class="control-label">Preço total do Pacote *</label>
-                                <input asp-for="PrecoTotal" class="form-control" />
-                                <span asp-validation-for="PrecoTotal" class="text-danger"></span>
-                            </div>*@
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="TelevisaoId" class="control-label"></label>
                                 <select asp-for="TelevisaoId" class="form-control" asp-items="ViewBag.TelevisaoId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="TelemovelId" class="control-label"></label>
                                 <select asp-for="TelemovelId" class="form-control" asp-items="ViewBag.TelemovelId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="NetIfixaId" class="control-label"></label>
                                 <select asp-for="NetIfixaId" class="form-control" asp-items="ViewBag.NetIfixaId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="TelefoneId" class="control-label"></label>
                                 <select asp-for="TelefoneId" class="form-control" asp-items="ViewBag.TelefoneId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="NetMovelId" class="control-label"></label>
                                 <select asp-for="NetMovelId" class="form-control" asp-items="ViewBag.NetMovelId"></select>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Criar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="Index">Voltar</a>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
+                        <div>
+                            <a class="text-white">Os campos marcados com * são de preenchimento obrigatório</a>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <a class="text-white">Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
- 
+
                 @*@section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }*@
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }*@
             </div>
         </div>
     </div>

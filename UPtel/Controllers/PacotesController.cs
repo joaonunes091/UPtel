@@ -92,6 +92,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create([Bind("PacoteId,NomePacote,PrecoTotal,TelevisaoId,TelemovelId,NetIfixaId,TelefoneId,NetMovelId")] Pacotes pacotes)
         {
 
