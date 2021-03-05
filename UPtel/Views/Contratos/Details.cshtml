@@ -4,79 +4,80 @@
     ViewData["Title"] = "Detalhes do contrato";
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left text-white">
+        <div class="row justify-content-center  text-white">
             <div class="col-xl-8">
 
-                <h2>Detalhes do contrato</h2>
-                <br />
+                <h2 class="font">Detalhes do contrato</h2>
+                <br /><br />
 
-                <div>
-                    <dl class="row">
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.DataInicio)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.DataInicio)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Fidelizacao)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Fidelizacao)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Numeros)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Numeros)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.TempoPromocao)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.TempoPromocao)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.PrecoContrato)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.PrecoContrato)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Cliente)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Cliente.Nome)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Funcionario)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Funcionario.Nome)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Pacote)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Pacote.NomePacote)
-                        </dd>
-                        <dt class="col-sm-5">
-                            @Html.DisplayNameFor(model => model.Promocao)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Promocao.NomePromocao)
-                        </dd>
-                    </dl>
-                </div>
-                <div class="text-center">
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.ContratoId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.ContratoId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
-                </div>
+                      <div>
+                          <dl class="row d-flex justify-content-center text-center">
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.DataInicio)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.DataInicio)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Fidelizacao)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Fidelizacao)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Numeros)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Numeros)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.TempoPromocao)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.TempoPromocao)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.PrecoContrato)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.PrecoContrato)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Cliente)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Cliente.Nome)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Funcionario)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Funcionario.Nome)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Pacote)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Pacote.NomePacote)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Promocao)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Promocao.NomePromocao)
+                              </dd>
+                          </dl>
+                          <div class="float-right">
+                              <a asp-action="Edit" asp-route-id="@Model.ContratoId"><i class="far fa-edit fa-2x"> &nbsp </i></a>
+                              <a asp-action="Delete" asp-route-id="@Model.ContratoId"><i class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                              <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                          </div>
+                      </div>
             </div>
         </div>
     </div>

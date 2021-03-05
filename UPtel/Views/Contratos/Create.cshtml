@@ -4,73 +4,73 @@
     ViewData["Title"] = "Criar contrato";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            color: #000;
+            content: "";
+        }
+</style>
+
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
+        <div class="row justify-content-center">
+        <div class="col-xl-10 text-white">
 
-                <h2>Novo Contrato</h2>
-                <br />
+            <h2 class="font">Novo Contrato</h2>
+            <br />
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            @*<div class="form-group">
-                                <label asp-for="ClienteId" class="control-label">Contribuinte do cliente *</label>
-                                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                            </div>*@
-                            @*<div class="form-group">
-            <label asp-for="FuncionarioId" class="control-label">Nome do funcionário *</label>
-            <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
-        </div>*@
-                            <div class="form-group">
-                                <label asp-for="PromocaoId" class="control-label">Nome da promoção *</label>
-                                <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="PacoteId" class="control-label">Nome do pacote *</label>
-                                <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Numeros" class="control-label">Números associados ao Contrato</label>
-                                <input asp-for="Numeros" class="form-control" />
-                                <span asp-validation-for="Numeros" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DataInicio" class="control-label">Data de inicio de contrato *</label>
-                                <input asp-for="DataInicio" class="form-control" />
-                                <span asp-validation-for="DataInicio" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Fidelizacao" class="control-label"></label>
-                                <input asp-for="Fidelizacao" class="form-control" />
-                                <span asp-validation-for="Fidelizacao" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="TempoPromocao" class="control-label"></label>
-                                <input asp-for="TempoPromocao" class="form-control" />
-                                <span asp-validation-for="TempoPromocao" class="text-danger"></span>
-                            </div>
-                            @*<div class="form-group">
-            <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
-            <input asp-for="PrecoContrato" class="form-control" />
-            <span asp-validation-for="PrecoContrato" class="text-danger"></span>
-        </div>*@
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />|
-                                <a class="btn btn-info" asp-action="Index">Voltar</a>
-                            </div>
-                        </form>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="PromocaoId" class="control-label">Nome da promoção *</label>
+                            <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
+                        </div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="PacoteId" class="control-label">Nome do pacote *</label>
+                            <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
+                        </div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="Numeros" class="control-label">Números associados ao Contrato</label>
+                            <input asp-for="Numeros" class="form-control" />
+                            <span asp-validation-for="Numeros" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="DataInicio" class="control-label">Data de inicio de contrato *</label>
+                            <input asp-for="DataInicio" class="form-control" />
+                            <span asp-validation-for="DataInicio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="Fidelizacao" class="control-label"></label>
+                            <input asp-for="Fidelizacao" class="form-control" />
+                            <span asp-validation-for="Fidelizacao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="color:darkgray">
+                            <label asp-for="TempoPromocao" class="control-label"></label>
+                            <input asp-for="TempoPromocao" class="form-control" />
+                            <span asp-validation-for="TempoPromocao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group d-flex justify-content-sm-between align-content-center">
+                            <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                            <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                        </div>
+                    </form>
+                    <div style="color:darkgray">
+                        <p>* - Campos de preenchimento obrigatório</p>
                     </div>
                 </div>
-                <div class="text-white">
-                    <p>* - Campos de preenchimento obrigatório</p>
-                </div>
-
             </div>
+            
+
         </div>
     </div>
+</div>
 </section>
 @*@section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
