@@ -4,52 +4,54 @@
     ViewData["Title"] = "Create";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
-                <h2>Criar Pacote Internet Móvel</h2>
-                <hr />
-                <div class="row">
-                    <div class="col-md-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 text-white">
+
+                <h2 class="font">Criar Pacote Internet Móvel</h2>
+                <br />
+                <div class="row justify-content-center">
+                    <div lass="col-md-8">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <label asp-for="Nome" class="control-label text-white">Tarifário *</label>
+                            <div class="form-group" style="color:darkgray">
+                                <label asp-for="Nome" class="control-label">Tarifário *</label>
                                 <input asp-for="Nome" class="form-control" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Limite" class="control-label text-white">Limite *</label>
+                            <div class="form-group" style="color:darkgray">
+                                <label asp-for="Limite" class="control-label">Limite *</label>
                                 <input asp-for="Limite" class="form-control" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="PrecoNetMovel" class="control-label text-white">Preço do tarifário *</label>
+                            <div class="form-group" style="color:darkgray">
+                                <label asp-for="PrecoNetMovel" class="control-label">Preço do tarifário *</label>
                                 <input asp-for="PrecoNetMovel" class="form-control" />
                                 <span asp-validation-for="PrecoNetMovel" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Notas" class="control-label text-white"></label>
+                            <div class="form-group" style="color:darkgray">
+                                <label asp-for="Notas" class="control-label"></label>
                                 <input asp-for="Notas" class="form-control" />
                                 <span asp-validation-for="Notas" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="Index">Voltar</a>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
+                        <div style="color:darkgray">
+                            <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                        </div>
                     </div>
                 </div>
-                <div class="text-white">
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
 
-  
+
+
 
                 @*@section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }*@
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }*@
 
             </div>
         </div>

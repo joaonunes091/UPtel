@@ -4,20 +4,34 @@
     ViewData["Title"] = "Editar dados do contrato";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+
+
+<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            color: #000;
+            content: "";
+        }
+</style>
+
+
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2>Editar contratos</h2>
+                <h2 class="font">Editar contratos</h2>
 
                 <br />
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <div class="col-md-8 text-white">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="ContratoId" />
-                            <div>
+                            <div style="display:none">
                                 <dl class="row">
                                     <dt class="col-md-5">
                                         @Html.DisplayNameFor(model => model.DataInicio)
@@ -26,68 +40,55 @@
                                         @Html.DisplayFor(model => model.DataInicio)
                                     </dd>
                                 </dl>
-                                @*<label asp-for="DataInicio" class="control-label">Data de início de contrato *</label>
-            <input asp-for="DataInicio" class="form-control" />
-            <span asp-validation-for="DataInicio" class="text-danger"></span>*@
-                            </div>
-                            @*<div class="form-group">
-                                <label asp-for="ClienteId" class="control-label">Cliente *</label>
-                                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                                <span asp-validation-for="ClienteId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="FuncionarioId" class="control-label">Funcionário *</label>
-                                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
-                                <span asp-validation-for="FuncionarioId" class="text-danger"></span>
-                            </div>*@
-                            <div class="form-group">
-                                <label asp-for="PromocaoId" class="control-label">Promoção</label>
+                                <label asp-for="PromocaoId" class="control-label" style="color:darkgray">Promoção</label>
                                 <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
                                 <span asp-validation-for="PromocaoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PacoteId" class="control-label">Pacote de serviços *</label>
+                                <label asp-for="PacoteId" class="control-label" style="color:darkgray">Pacote de serviços *</label>
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
                                 <span asp-validation-for="PacoteId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Numeros" class="control-label">Números associados ao Contrato</label>
+                                <label asp-for="Numeros" class="control-label" style="color:darkgray">Números associados ao Contrato</label>
                                 <input asp-for="Numeros" class="form-control" />
                                 <span asp-validation-for="Numeros" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Fidelizacao" class="control-label">Fidelização</label>
+                                <label asp-for="Fidelizacao" class="control-label" style="color:darkgray">Fidelização</label>
                                 <input asp-for="Fidelizacao" class="form-control" />
                                 <span asp-validation-for="Fidelizacao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="TempoPromocao" class="control-label">Período de promoção</label>
+                                <label asp-for="TempoPromocao" class="control-label" style="color:darkgray">Período de promoção</label>
                                 <input asp-for="TempoPromocao" class="form-control" />
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoContrato" class="control-label">Preço do contrato *</label>
+                                <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do contrato *</label>
                                 <input asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.ContratoId">Voltar</a>
-
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Details" asp-route-id="@Model.ContratoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
+                        <div style="color:darkgray">
+                            <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                        </div>
                     </div>
                 </div>
-                <div class="text-white">
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
-
                 
+
+
 
             </div>
         </div>
     </div>
 </section>
-                @*@section Scripts {
-                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            }*@
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

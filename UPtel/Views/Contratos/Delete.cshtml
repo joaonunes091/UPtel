@@ -4,63 +4,65 @@
     ViewData["Title"] = "Eliminar contrato";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+
+
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2>Tem a certeza que quer eliminar o contrato?</h2>
+                <h2 class="font">Tem a certeza que quer eliminar o contrato?</h2>
                 <br />
                 <div>
-                    <dl class="row">
-                        <dt class="col-sm-5">
+                    <dl class="row justify-content-center text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.DataInicio)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DataInicio)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Fidelizacao)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Fidelizacao)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Numeros)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Numeros)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.TempoPromocao)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.TempoPromocao)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoContrato)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoContrato)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Cliente)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Cliente.Nome)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Funcionario)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Funcionario.Nome)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Pacote)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Pacote.NomePacote)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Promocao)
                         </dt>
                         <dd class="col-sm-7">
@@ -68,13 +70,13 @@
                         </dd>
                     </dl>
 
-                    <form asp-action="Delete">
+                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="ContratoId" />
-                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.ContratoId">Voltar</a>
+                        <button type="submit" class="btn btn-default btn-sm "><i class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+                        <a asp-action="Details" asp-route-id="@Model.ContratoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </form>
                 </div>
             </div>
-        </div>  
-    </div>  
+        </div>
+    </div>
 </section>

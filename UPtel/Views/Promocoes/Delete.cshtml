@@ -3,47 +3,46 @@
 @{
     ViewData["Title"] = "Eliminar promoção";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                
-
-                <h3>Tem a certeza que pretende eliminar a promoção?</h3>
+                <h3 class="font">Tem a certeza que pretende eliminar a promoção?</h3>
+                <br /><br />
                 <div>
-           
-                    <dl class="row">
-                        <dt class="col-sm-5 text-white">
+
+                    <dl class="row justify-content-center text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.NomePromocao)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7 ">
                             @Html.DisplayFor(model => model.NomePromocao)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Descricao)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PromoCanais)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PromoCanais)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Desconto)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Desconto)
                         </dd>
                     </dl>
 
-                    <form asp-action="Delete">
+                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="PromocaoId" />
-                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.PromocaoId">Voltar</a>
+                        <button type="submit" class="btn btn-default btn-sm "><i class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+                        <a asp-action="Details" asp-route-id="@Model.PromocaoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </form>
                 </div>
             </div>

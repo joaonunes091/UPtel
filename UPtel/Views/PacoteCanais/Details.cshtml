@@ -4,23 +4,23 @@
     ViewData["Title"] = "Detalhes dos pacotes de canais";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
-                <h2>Detalhes dos pacotes de canais</h2>
+        <div class="row justify-content-center  text-white">
+            <div class="col-xl-8">
+
+                <h2 class="font">Detalhes dos pacotes de canais</h2>
 
                 <div>
-                    @*<h4>PacoteCanais</h4>*@
                     <br />
-                    <dl class="row text-white">
-                        <dt class="col-sm-5">
+                    <dl class="row d-flex justify-content-center text-center">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Canais)
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Canais.NomeCanal)
                         </dd>
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Televisao)
                         </dt>
                         <dd class="col-sm-7">
@@ -28,10 +28,10 @@
                         </dd>
                     </dl>
                 </div>
-                <div class="text-center">
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.PacoteCanalId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.PacoteCanalId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.PacoteCanalId"><i class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.PacoteCanalId"><i class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
         </div>

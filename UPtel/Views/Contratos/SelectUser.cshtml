@@ -4,16 +4,17 @@
     ViewData["Title"] = "Contratos";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
+        <div class="row justify-content-center  text-white">
+            <div class="col-xl-8">
                 <div>
-                    <h2>Procurar Utilizador</h2>
+                    <h2 class="font">Procurar Utilizador</h2>
                     <br />
-                    <div class="col-md-8 border-info mb-6">
+                    <div class="row col-md-10 border-info mb-4 justify-content-center">
                         <div class="card-body">
-                            <h5 class="card-title">Pesquisar contratos (Por Nome/NIF)</h5>
+                            <h5 class="card-title" style="color:darkgrey">Pesquisar contratos (Por Nome/NIF)</h5>
                             <form asp-action="SelectUser" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
@@ -24,21 +25,19 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-
                         @if (Model.Users.Count() == 0)
                         {
-                            <p>Por favor pesquise um utilizador</p>
+                            <p style="color:darkgray">Por favor pesquise um utilizador</p>
                         }
                         else
                         {
-                            <table class="table text-white">
+                            <table class="table table-borderless text-white">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th class="titulo">
                                             Nome do Cliente
                                         </th>
-                                        <th>
+                                        <th class="titulo">
                                             NIF
                                         </th>
                                         <th></th>
@@ -47,61 +46,30 @@
                                 <tbody>
                                     @foreach (var contratos in Model.Users)
                                     {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Contribuinte)
-                                        </td>
-                                        <td>
-                                            <p>
-                                                <a class="btn btn-costum" asp-action="Create" asp-route-id="@contratos.UsersId">Novo Contrato</a>
-                                            </p>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.Contribuinte)
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <a asp-action="Create" asp-route-id="@contratos.UsersId"><i class="fas fa-folder-plus fa-2x"></i></a>
+                                                </p>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
-
-                            @*<nav>
-                                <ul class="pagination pagination-sm justify-content-end">
-                                    @{
-                                        int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                        if (paginaInicial < 1)
-                                        {
-                                            paginaInicial = 1;
-                                        }
-
-                                        int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                        if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                        {
-                                            paginaFinal = Model.Paginacao.TotalPaginas;
-                                        }
-                                    }
-
-                                    <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                        <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                                    </li>
-
-                                    @for (int i = paginaInicial; i <= paginaFinal; i++)
-                                    {
-                                        <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                            <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
-                                        </li>
-                                    }
-
-                                    <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                        <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                                    </li>
-                                </ul>
-                            </nav>*@
-
                         }
                     </div>
 
+
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 </section>
