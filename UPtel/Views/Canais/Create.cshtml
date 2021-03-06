@@ -29,7 +29,7 @@
                     <form asp-action="Create" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="NomeCanal" class="control-label style="color:darkgray"">Nome do canal *</label>
+                            <label asp-for="NomeCanal" class="control-label" style="color:darkgray">Nome do canal *</label>
                             <input asp-for="NomeCanal" class="form-control" placeholder="Ex: Rtp 1" />
                             <span asp-validation-for="NomeCanal" class="text-danger"></span>
                         </div>

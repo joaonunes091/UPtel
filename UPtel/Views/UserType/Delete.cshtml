@@ -3,27 +3,26 @@
 @{
     ViewData["Title"] = "Delete";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2>Tem a certeza que quer apagar o user type?</h2>
+                <h2 class="font">Tem a certeza que quer apagar o user type?</h2>
                 <div>
                     <br />
-                    <dl class="row">
-                        <dt class="col-sm-5">
+                    <dl class="row justify-content-center text-white">
+                        <dt class="col-4 titulo">
                             @Html.DisplayNameFor(model => model.Tipo)
                         </dt>
-                        <dd class="col-sm-7">
+                        <dd class="col-4">
                             @Html.DisplayFor(model => model.Tipo)
                         </dd>
                     </dl>
-
-                    <form asp-action="Delete">
+                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="TipoId" />
-                        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.TipoId">Voltar</a>
+                        <button type="submit" class="btn btn-default btn-sm "><i title="Eliminar" class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+                        <a asp-action="Details" asp-route-id="@@Model.TipoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </form>
                 </div>
             </div>

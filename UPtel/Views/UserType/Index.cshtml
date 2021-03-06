@@ -3,15 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2>User Type</h2>
+                <h2 class="font">User Type</h2>
 
                 <p>
-                    <a class="btn btn-costum" asp-action="Create">Adicionar user type</a>
+                    <a asp-action="Create"><i title="Adicionar user type" class="fas fa-folder-plus fa-3x"></i></a>
                 </p>
 
                 @if (Model.Count() == 0)
@@ -20,10 +20,10 @@
                 }
                 else
                 {
-                    <table class="table text-white">
+                    <table class="table table-borderless text-white">
                         <thead>
                             <tr>
-                                <th>
+                                <th class="text-left titulo">
                                     @Html.DisplayNameFor(model => model.Tipo)
                                 </th>
                                 <th></th>
@@ -33,11 +33,11 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="text-left">
                                         @Html.DisplayFor(modelItem => item.Tipo)
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TipoId">Detalhes</a> 
+                                        <a asp-action="Details" asp-route-id="@item.TipoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
                                 </tr>
                             }
