@@ -166,15 +166,16 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, int x, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
+        public async Task<IActionResult> Edit(int id, Contratos contratos)
         {
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             contratos.FuncionarioId = funcionario.UsersId;
 
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
-            var cliente = _context.Contratos.SingleOrDefault(m => m.ClienteId == x);
-            contratos.ClienteId = cliente.ClienteId;
+            var contratoOriginal = _context.Contratos.AsNoTracking().SingleOrDefault(m => m.ContratoId == id);
+            contratos.ClienteId = contratoOriginal.ClienteId;
+            contratos.DataInicio = contratoOriginal.DataInicio;
 
             if (id != contratos.ContratoId)
             {
@@ -185,7 +186,7 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    _context.Update(contratos);
+                    _context.Contratos.Update(contratos);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -202,7 +203,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
                 return View("Sucesso");
             }
-            //ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte", contratos.ClienteId);
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
             return View(contratos);

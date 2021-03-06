@@ -153,10 +153,10 @@ namespace UPtel.Controllers
             //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
             //}
             CriaFotoUser(infoUsers, ficheiroFoto);
-            //if (!VerificaNIF(infoUsers))
-            //{
-            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            //}
+            if (!VerificaNIF(infoUsers))
+            {
+                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            }
             if (await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
