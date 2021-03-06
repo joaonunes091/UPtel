@@ -3,17 +3,17 @@
 @{
     ViewData["Title"] = "Televisão";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center ">
             <div class="col-xl-8 text-white">
 
-                <h2>Televisão</h2>
+                <h2 class="font">Televisão</h2>
                 <br />
 
-                <div class="col-md-6 border-info mb-4">
+                <div class="col-md-10 border-info mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Pesquisar Televisão</h5>
+                        <h5 class="card-title" style="color:darkgray">Pesquisar Televisão</h5>
                         <form asp-action="Index" method="get">
                             <div class="form-group">
                                 <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
@@ -28,84 +28,84 @@
                 @if (User.IsInRole("Administrador"))
                 {
                     <p>
-                        <a class="btn btn-costum" asp-action="Create">Adicionar novo serviço de televisão</a>
+                        <a asp-action="Create"><i class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
                 }
-                    @if (Model.Televisao.Count() == 0)
-                    {
-                        <p>Não existem serviços de televisão para mostrar</p>
-                    }
-                    else
-                    {
-                        <table class="table text-white">
-                            <thead>
+                @if (Model.Televisao.Count() == 0)
+                {
+                    <p style="color:darkgray">Não existem serviços de televisão para mostrar</p>
+                }
+                else
+                {
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Televisao[0].Nome)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Televisao[0].Descricao)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Televisao[0].PrecoPacoteTelevisao)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Televisao)
+                            {
                                 <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Televisao[0].Nome)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Televisao[0].Descricao)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Televisao[0].PrecoPacoteTelevisao)
-                                    </th>
-                                    <th></th>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.PrecoPacoteTelevisao)
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-action="Details" asp-route-id="@item.TelevisaoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.Televisao)
+                            }
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Descricao)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PrecoPacoteTelevisao)
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.TelevisaoId">Detalhes</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <nav>
-                            <ul class="pagination pagination-sm justify-content-end">
-                                @{
-                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                    if (paginaInicial < 1)
-                                    {
-                                        paginaInicial = 1;
-                                    }
-
-                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                    {
-                                        paginaFinal = Model.Paginacao.TotalPaginas;
-                                    }
+                                    paginaInicial = 1;
                                 }
 
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                                </li>
-
-                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
                                 {
-                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
-                                    </li>
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
                                 }
+                            }
 
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
                                 </li>
-                            </ul>
-                        </nav>
-                    }
-                </div>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+            </div>
         </div>
     </div>
 </section>

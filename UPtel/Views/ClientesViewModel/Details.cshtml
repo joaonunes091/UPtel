@@ -4,91 +4,91 @@
     ViewData["Title"] = "Index";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left text-white">
+        <div class="row justify-content-center  text-white">
             <div class="col-xl-8">
 
-                <h1>Detalhes do Contrato</h1>
+                <h1 class="font">Detalhes do Contrato</h1>
                 <br />
 
-                <dl class="row">
-                    <dt class="col-sm-5">
+                <dl class="row d-flex justify-content-center text-center">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomeFuncionario)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.NomeFuncionario)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.DataInicio)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.DataInicio)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NumerosAssociados)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.NumerosAssociados)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.Fidelizacao)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.Fidelizacao) meses
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.TempoPromocao)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.TempoPromocao) meses
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.PrecoContrato)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.PrecoContrato) €
                     </dd>
                 </dl>
-                <h1>Pacotes</h1>
-                <dl class="row">
-                    <dt class="col-sm-5">
+                <h1 class="font">Pacotes</h1>
+                <dl class="row d-flex justify-content-center text-center">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomePacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.NomePacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NetFixaPacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.NetFixaPacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NetMovelPacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.NetMovelPacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.TelemovelPacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.TelemovelPacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.TelefonePacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.TelefonePacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.TelevisaoPacote)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.TelevisaoPacote)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.PrecoPacote)
                     </dt>
                     <dd class="col-sm-7">
@@ -96,28 +96,28 @@
                     </dd>
                 </dl>
 
-                <h1>Promoções</h1>
-                <dl class="row">
-                    <dt class="col-sm-5">
+                <h1 class="font">Promoções</h1>
+                <dl class="row d-flex justify-content-center text-center">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomePromocao)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => modelItem.NomePromocao)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.DescricaoPromocao)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => modelItem.DescricaoPromocao)
                     </dd>
-                    <dt class="col-sm-5">
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.Desconto)
                     </dt>
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => modelItem.Desconto) %
                     </dd>
                 </dl>
-                <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <a asp-action="Index" class="float-right"><i class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
             </div>
         </div>
     </div>
