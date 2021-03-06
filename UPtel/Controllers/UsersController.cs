@@ -35,7 +35,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Clientes
-        [Authorize(Roles = "Administrador")] 
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
@@ -148,18 +148,25 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            {
-                ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
             CriaFotoUser(infoUsers, ficheiroFoto);
-            if (!VerificaNIF(infoUsers))
-            {
-                ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
-            }
-            if (!await VerificaContribuinteAsync(infoUsers))
+            //if (!VerificaNIF(infoUsers))
+            //{
+            //    ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
+            //}
+            if (await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (infoUsers.CartaoCidadao != null)
+            {
+                if (await VerificaCCAsync(infoUsers))
+                {
+                    ModelState.AddModelError("CartaoCidadao", "Este número de CC já está em uso");
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -218,9 +225,16 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!await VerificaContribuinteAsync(infoUsers))
+            if (await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (infoUsers.CartaoCidadao != null)
+            {
+                if (await VerificaCCAsync(infoUsers))
+                {
+                    ModelState.AddModelError("CartaoCidadao", "Este número de CC já está em uso");
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -230,7 +244,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-           
+
             if (!ModelState.IsValid)
             {
                 //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
@@ -239,7 +253,7 @@ namespace UPtel.Controllers
 
             ViewBag.Mensagem = "Operador adicionado com sucesso";
             return View("Sucesso");
-           
+
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,9 +297,16 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!await VerificaContribuinteAsync(infoUsers))
+            if (await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (infoUsers.CartaoCidadao != null)
+            {
+                if (await VerificaCCAsync(infoUsers))
+                {
+                    ModelState.AddModelError("CartaoCidadao", "Este número de CC já está em uso");
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -329,7 +350,7 @@ namespace UPtel.Controllers
             {
                 return View(infoUsers);
             }
-            if(await VerificaEmailAsync(infoUsers))
+            if (await VerificaEmailAsync(infoUsers))
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
@@ -347,9 +368,16 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-            if (!await VerificaContribuinteAsync(infoUsers))
+            if (await VerificaContribuinteAsync(infoUsers))
             {
                 ModelState.AddModelError("Contribuinte", "Este contribuinte já está em uso");
+            }
+            if (infoUsers.CartaoCidadao != null)
+            {
+                if (await VerificaCCAsync(infoUsers))
+                {
+                    ModelState.AddModelError("CartaoCidadao", "Este número de CC já está em uso");
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -359,7 +387,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-          
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -544,10 +572,10 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                if(User.IsInRole("Administrador"))
-                { 
-                ViewBag.Mensagem = "Cliente alterado com sucesso";
-                return View("Sucesso");
+                if (User.IsInRole("Administrador"))
+                {
+                    ViewBag.Mensagem = "Cliente alterado com sucesso";
+                    return View("Sucesso");
                 }
                 if (User.IsInRole("Cliente"))
                 {
@@ -699,31 +727,25 @@ namespace UPtel.Controllers
 
         private async Task<bool> VerificaContribuinteAsync(RegistoUserViewModel infoUsers)
         {
-            IdentityUser contribuinte = await _gestorUtilizadores.FindByIdAsync(infoUsers.Contribuinte);
+            Users usersContribuinte = await _context.Users.FirstOrDefaultAsync(x => x.Contribuinte == infoUsers.Contribuinte);
 
-            if (contribuinte != null)
-            {
-                return true;
-            }
-            else
+            if (usersContribuinte == null)
             {
                 return false;
             }
+            return true;
         }
 
-        //private async Task<bool> VerificaCCAsync(RegistoUserViewModel infoUsers)
-        //{
-        //    IdentityUser cc = await _gestorUtilizadores.FindByIdAsync(infoUsers.CartaoCidadao);
+        private async Task<bool> VerificaCCAsync(RegistoUserViewModel infoUsers)
+        {
+            Users usersCC = await _context.Users.FirstOrDefaultAsync(x => x.CartaoCidadao == infoUsers.CartaoCidadao);
 
-        //    if (cc != null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+            if (usersCC == null)
+            {
+                return false;
+            }
+            return true;
+        }
 
         private bool VerificaNIF(RegistoUserViewModel infoUsers)
         {
