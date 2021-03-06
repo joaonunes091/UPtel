@@ -45,9 +45,9 @@ namespace UPtel.Models
 
 
         [Display(Name = "Valor total do contrato")]
-        [Required(ErrorMessage = "É necessário preencher o preço.")]
+        //[Required(ErrorMessage = "É necessário preencher o preço.")]
         [Column(TypeName = "decimal(5, 2)")]
-        [Range(1, 9999, ErrorMessage = "O valor não é válido")]
+        //[Range(1, 9999, ErrorMessage = "O valor não é válido")]
         public decimal PrecoContrato { get; set; }
 
 
