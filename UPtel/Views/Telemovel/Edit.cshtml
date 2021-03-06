@@ -3,74 +3,76 @@
 @{
     ViewData["Title"] = "Editar dados do telemóvel";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h1>Editar dados do telemóvel</h1>
+                <h1 class="font">Editar dados do telemóvel</h1>
 
-          
+
                 <br />
-                <div class="row">
-                    <div class="col-md-4 text-white">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 text-white">
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="TelemovelId" />
                             <div class="form-group">
-                                <label asp-for="Nome" class="control-label">Tarifário *</label>
+                                <label asp-for="Nome" class="control-label" style="color:darkgray">Tarifário *</label>
                                 <input asp-for="Nome" class="form-control" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="LimiteMinutos" class="control-label">Limite de minutos *</label>
+                                <label asp-for="LimiteMinutos" class="control-label" style="color:darkgray">Limite de minutos *</label>
                                 <input asp-for="LimiteMinutos" class="form-control" />
                                 <span asp-validation-for="LimiteMinutos" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="LimiteSms" class="control-label">Limite de SMS *</label>
+                                <label asp-for="LimiteSms" class="control-label" style="color:darkgray">Limite de SMS *</label>
                                 <input asp-for="LimiteSms" class="form-control" />
                                 <span asp-validation-for="LimiteSms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMinutoNacional" class="control-label">Preço por minuto de chamadas nacionais *</label>
+                                <label asp-for="PrecoMinutoNacional" class="control-label" style="color:darkgray">Preço por minuto de chamadas nacionais *</label>
                                 <input asp-for="PrecoMinutoNacional" class="form-control" />
                                 <span asp-validation-for="PrecoMinutoNacional" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMinutoInternacional" class="control-label">Preço por minuto de chamadas internacionais *</label>
+                                <label asp-for="PrecoMinutoInternacional" class="control-label" style="color:darkgray">Preço por minuto de chamadas internacionais *</label>
                                 <input asp-for="PrecoMinutoInternacional" class="form-control" />
                                 <span asp-validation-for="PrecoMinutoInternacional" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoSms" class="control-label">Preço de SMS nacional *</label>
+                                <label asp-for="PrecoSms" class="control-label" style="color:darkgray">Preço de SMS nacional *</label>
                                 <input asp-for="PrecoSms" class="form-control" />
                                 <span asp-validation-for="PrecoSms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoMms" class="control-label">Preço de MMS nacional *</label>
+                                <label asp-for="PrecoMms" class="control-label" style="color:darkgray">Preço de MMS nacional *</label>
                                 <input asp-for="PrecoMms" class="form-control" />
                                 <span asp-validation-for="PrecoMms" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoPacoteTelemovel" class="control-label">Preço do pacote de telemóvel *</label>
+                                <label asp-for="PrecoPacoteTelemovel" class="control-label" style="color:darkgray">Preço do pacote de telemóvel *</label>
                                 <input asp-for="PrecoPacoteTelemovel" class="form-control" />
                                 <span asp-validation-for="PrecoPacoteTelemovel" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-costum" /> |
-                                <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.TelemovelId">Voltar</a>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Details" asp-route-id="@Model.TelemovelId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+
                             </div>
                         </form>
+                        <div style="color:darkgray">
+                            <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                        </div>
                     </div>
                 </div>
-                <div class="text-white">
-                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
-                </div>
+                
 
                 @*@section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }*@
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }*@
             </div>
         </div>
     </div>
