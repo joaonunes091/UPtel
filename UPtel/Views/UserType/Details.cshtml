@@ -4,18 +4,18 @@
     ViewData["Title"] = "Details";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left text-white">
-            <div class="col-xl-8">
+        <div class="row justify-content-center text-white">
+            <div>
 
-                <h1>Detalhes dos user types</h1>
+                <h1 class="font">Detalhes dos user types</h1>
                 <br />
                 <div>
                     
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-5">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Tipo)
                         </dt>
                         <dd class="col-sm-7">
@@ -23,10 +23,10 @@
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TipoId">Editar</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TipoId">Eliminar</a> |
-                    <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.TipoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.TipoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
         </div>
