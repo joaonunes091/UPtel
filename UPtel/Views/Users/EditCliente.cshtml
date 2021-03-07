@@ -35,85 +35,91 @@
                                 <input asp-for="Data" class="form-control" placeholder="ex: dd/mm/aaaa" />
                                 <span asp-validation-for="Data" class="text-danger"></span>
                             </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="CartaoCidadao" class="form-label" style="color:darkgray"></label>
-                                <input asp-for="CartaoCidadao" class="form-control" placeholder="ex: 12345678" />
-                                <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Contribuinte" class="form-label" style="color:darkgray">Contribuinte *</label>
-                                <input asp-for="Contribuinte" class="form-control" placeholder="ex: 123456789" />
-                                <span asp-validation-for="Contribuinte" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Telefone" class="form-label" style="color:darkgray"></label>
-                                <input asp-for="Telefone" class="form-control" placeholder="ex: 2xxxxxxxx" />
-                                <span asp-validation-for="Telefone" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Telemovel" class="form-label" style="color:darkgray">Telemóvel *</label>
-                                <input asp-for="Telemovel" class="form-control" placeholder="ex: 9xxxxxxxx" />
-                                <span asp-validation-for="Telemovel" class="text-danger"></span>
-                            </div>
-                            <div class="col-10 form-group">
-                                <label asp-for="Morada" class="form-label" style="color:darkgray">Morada *</label>
-                                <input asp-for="Morada" class="form-control" placeholder="ex: Rua blá, n.34" />
-                                <span asp-validation-for="Morada" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="CodigoPostal" class="form-label" style="color:darkgray">Código Postal *</label>
-                                <div class="form-row">
-                                    <div class="col-md-7">
-                                        <input asp-for="CodigoPostal" class="form-control" placeholder="ex: xxxx" />
-                                        <span asp-validation-for="CodigoPostal" class="text-danger"></span>
-                                    </div>
-                                    -
-                                    <div class="col-md-4">
-                                        <input asp-for="CodigoPostalExt" class="form-control" placeholder="ex: xxx" />
-                                        <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                           
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="CartaoCidadao" class="form-label" style="color:darkgray"></label>
+                                    <input asp-for="CartaoCidadao" class="form-control" placeholder="ex: 12345678" />
+                                    <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Contribuinte" class="form-label" style="color:darkgray">Contribuinte *</label>
+                                    <input asp-for="Contribuinte" class="form-control" placeholder="ex: 123456789" />
+                                    <span asp-validation-for="Contribuinte" class="text-danger"></span>
+                                </div>
+                            
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Telefone" class="form-label" style="color:darkgray"></label>
+                                    <input asp-for="Telefone" class="form-control" placeholder="ex: 2xxxxxxxx" />
+                                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Telemovel" class="form-label" style="color:darkgray">Telemóvel *</label>
+                                    <input asp-for="Telemovel" class="form-control" placeholder="ex: 9xxxxxxxx" />
+                                    <span asp-validation-for="Telemovel" class="text-danger"></span>
+                                </div>
+                                <div class="col-10 form-group">
+                                    <label asp-for="Morada" class="form-label" style="color:darkgray">Morada *</label>
+                                    <input asp-for="Morada" class="form-control" placeholder="ex: Rua blá, n.34" />
+                                    <span asp-validation-for="Morada" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="CodigoPostal" class="form-label" style="color:darkgray">Código Postal *</label>
+                                    <div class="form-row">
+                                        <div class="col-md-7">
+                                            <input asp-for="CodigoPostal" class="form-control" placeholder="ex: xxxx" />
+                                            <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                                        </div>
+                                        -
+                                        <div class="col-md-4">
+                                            <input asp-for="CodigoPostalExt" class="form-control" placeholder="ex: xxx" />
+                                            <span asp-validation-for="CodigoPostalExt" class="text-danger"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Email" class="form-label" style="color:darkgray">E-mail *</label>
-                                <input asp-for="Email" class="form-control" placeholder="ex: teste@qq.ff" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label for="ficheiroFoto" class="form-label" style="color:darkgray">Fotografia (especifique apenas caso queira alterar)</label>
-                                <input name="ficheiroFoto" class="form-control-file" type="file" />
-                            </div>
-                            <div class="col-md-5" style="width:50px;">
-                                @if (Model.Fotografia != null)
-                                {
-                                    <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" />
-                                }
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Estado" class="form-label" style="color:darkgray">Estado do cliente</label>
-                                <input asp-for="Estado" class="form-control" placeholder="ex: Activo" />
-                                <span asp-validation-for="Estado" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-
-                            </div>
-                            <div class=" col-md-5 form-group d-flex justify-content-sm-between align-content-end">
-                                <input asp-for="Fotografia" type="hidden" />
-                                <button type="submit" value="Registar" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-2x"></i></button>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Email" class="form-label" style="color:darkgray">E-mail *</label>
+                                    <input asp-for="Email" class="form-control" placeholder="ex: teste@qq.ff" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label for="ficheiroFoto" class="form-label" style="color:darkgray">Fotografia (especifique apenas caso queira alterar)</label>
+                                    <input name="ficheiroFoto" class="form-control-file" type="file" />
+                                </div>
+                                <div class="col-md-5" style="width:50px;">
+                                    @if (Model.Fotografia != null)
+                                    {
+                                        <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" />
+                                    }
+                                </div>
                                 @if (User.IsInRole("Administrador"))
                                 {
-                                    <a asp-action="DetailsCliente" asp-route-id="@Model.UsersId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                                    <div class="col-md-5 form-group">
+                                        <label asp-for="Estado" class="form-label" style="color:darkgray">Estado do cliente</label>
+                                        <input asp-for="Estado" class="form-control" placeholder="ex: Activo" />
+                                        <span asp-validation-for="Estado" class="text-danger"></span>
+                                    </div>
 
+                                    <div class="col-md-5 form-group">
+
+                                    </div>
                                 }
-                                @if (User.IsInRole("Cliente"))
-                                {
-                                    <a asp-action="Index" asp-controller="ClientesViewModel" asp-route-id="@Model.UsersId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
-                                }
-                            </div>
-                            <div style="color:darkgray">
-                                <p>Os campos marcados com * são de preenchimento obrigatório</p>
-                            </div>
-                        </form>
+                                <div class=" col-md-5 form-group d-flex justify-content-sm-between align-content-end">
+                                    <input asp-for="Fotografia" type="hidden" />
+                                    <button type="submit" value="Registar" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-2x"></i></button>
+                                    @if (User.IsInRole("Administrador"))
+                                    {
+                                        <a asp-action="DetailsCliente" asp-route-id="@Model.UsersId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+
+                                    }
+                                    @if (User.IsInRole("Cliente"))
+                                    {
+                                        <a asp-action="Index" asp-controller="ClientesViewModel" asp-route-id="@Model.UsersId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                                    }
+                                </div>
+                                <div style="color:darkgray">
+                                    <p>Os campos marcados com * são de preenchimento obrigatório</p>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
