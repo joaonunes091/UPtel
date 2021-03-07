@@ -46,7 +46,7 @@ namespace UPtel.Areas.Identity.Pages.Account.Manage
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirme a nova password")]
-            [Compare("NewPassword", ErrorMessage = "A nova palavra passe não coincide com a confirmação.")]
+            [Compare("Password", ErrorMessage = "A nova palavra passe não coincide com a confirmação.")]
             public string ConfirmPassword { get; set; }
         }
 
