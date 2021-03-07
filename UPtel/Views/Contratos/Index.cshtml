@@ -35,7 +35,7 @@
                     <div>
                         @if (Model.Contratos.Count() == 0)
                         {
-                            <p>Não existem contratos para mostrar</p>
+                            <p style="color:darkgray">Não existem contratos para mostrar</p>
                         }
                         else
                         {
@@ -74,10 +74,10 @@
                                                 @Html.DisplayFor(modelItem => contratos.DataInicio)
                                             </td>
                                             <td class="text-center">
-                                                @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                                @Html.DisplayFor(modelItem => contratos.Fidelizacao) meses
                                             </td>
                                             <td class="text-center">
-                                                @Html.DisplayFor(modelItem => contratos.PrecoContrato)
+                                                @Html.DisplayFor(modelItem => contratos.PrecoContrato) €
                                             </td>
                                             <td class="text-center">
                                                 <a asp-action="Details" asp-route-id="@contratos.ContratoId"><i class="fas fa-search-plus fa-2x"></i></a>
