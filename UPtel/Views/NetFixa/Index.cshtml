@@ -13,12 +13,12 @@
 
                 <h1 class="font">Internet Fixa</h1>
                 <br />
-                @*@if (User.IsInRole("Administrador"))
-                {*@
+                @if (User.IsInRole("Administrador"))
+                {
                     <p >
                         <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
-                @*}*@
+                }
                     <br />
                     <table class="table table-borderless text-white">
                         <thead>
@@ -47,12 +47,10 @@
                                         @Html.DisplayFor(modelItem => item.TipoConexao)
                                     </td>
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.PrecoNetFixa)
+                                        @Html.DisplayFor(modelItem => item.PrecoNetFixa) €
                                     </td>
                                     <td>
-                                        @*<a class="btn btn-costum" asp-action="Edit" asp-route-id="@item.NetFixaId">Editar</a>*@
                                         <a asp-action="Details" asp-route-id="@item.NetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                        @*<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NetFixaId">Eliminar</a>*@
                                     </td>
                                 </tr>
                             }
