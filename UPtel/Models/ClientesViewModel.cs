@@ -40,6 +40,8 @@ namespace UPtel.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
+        public byte[] Fotografia { get; set; }
+
         //Informação Contrato
 
         [Display(Name = "Nome do funcionário")]

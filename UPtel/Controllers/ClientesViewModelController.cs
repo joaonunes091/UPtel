@@ -57,6 +57,7 @@ namespace UPtel.Controllers
                 Telefone = infoCliente.Telefone,
                 Telemovel = infoCliente.Telemovel,
                 Email = infoCliente.Email,
+                Fotografia = infoCliente.Fotografia,
                 ListaContratos = listaContratos
             };
 

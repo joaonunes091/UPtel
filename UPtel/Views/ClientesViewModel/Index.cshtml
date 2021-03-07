@@ -13,6 +13,15 @@
                 <br />
                 <dl class="row d-flex justify-content-center text-center">
                     <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Fotografia)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @if (Model.Fotografia != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:50px;" />
+                        }
+                    </dd>
+                    <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomeCliente)
                     </dt>
                     <dd class="col-sm-7">
