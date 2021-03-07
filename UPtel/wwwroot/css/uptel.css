@@ -1,13 +1,13 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
+
 .btn-costum {
-    background-color: #00b371;
+    background-color: #009961;
     color: white;
     border-color: #009961;
 }
-
 .btn-costum:hover {
-    background-color: #009961;
+    background-color: #00b371;
     color: white;
     border-color: #009961;
 }
@@ -36,9 +36,24 @@ i:hover {
 .imgEliminar:hover {
     color: #dc0303;
 }
+
 .imgCriar:hover {
     color:#0639fa
 }
+
+.fixedIcon{
+    color:white;
+}
+.fixedIcon:hover{
+    color:white;
+    transform:none;
+}
+.logInText {
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bolder;
+    font-size:3rem;
+}
+
 
 .font {
     font-family: 'Montserrat', sans-serif;

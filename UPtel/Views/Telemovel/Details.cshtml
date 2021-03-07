@@ -3,78 +3,78 @@
 @{
     ViewData["Title"] = "Detalhes do telemóvel";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
-            <div class="col-xl-8 text-white">
+        <div class="row justify-content-center  text-white">
+            <div class="col-xl-8">
 
-                <h1>Detalhes do telemóvel</h1>
+                <h1 class="font">Detalhes do telemóvel</h1>
 
                 <div>
                     <br />
-                    <dl class="row">
-                        <dt class="col-sm-5 text-white">
+                    <dl class="row d-flex justify-content-center text-center">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.LimiteMinutos)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.LimiteMinutos)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.LimiteSms)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.LimiteSms)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoMinutoNacional)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoMinutoNacional)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoMinutoInternacional)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoMinutoInternacional)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoSms)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoSms)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoMms)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoMms)
                         </dd>
-                        <dt class="col-sm-5 text-white">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.PrecoPacoteTelemovel)
                         </dt>
-                        <dd class="col-sm-7 text-white">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoPacoteTelemovel)
                         </dd>
                     </dl>
                 </div>
                 @if (User.IsInRole("Administrador"))
                 {
-                    <div>
-                        <a class="btn btn-costum" asp-action="Edit" asp-route-id="@Model.TelemovelId">Editar</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.TelemovelId">Eliminar</a> |
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    <div class="float-right">
+                        <a asp-action="Edit" asp-route-id="@Model.TelemovelId"><i class="far fa-edit fa-2x"> &nbsp </i></a>
+                        <a asp-action="Delete" asp-route-id="@Model.TelemovelId"><i class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                        <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                     </div>
                 }
                 else
                 {
-                    <div>
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                    <div class="float-right">
+                        <a asp-action="Index"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </div>
                 }
             </div>
