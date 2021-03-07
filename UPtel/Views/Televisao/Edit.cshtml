@@ -18,17 +18,17 @@
                             <input type="hidden" asp-for="TelevisaoId" />
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label" style="color:darkgray">Nome do pacote de canais *</label>
-                                <input asp-for="Nome" class="form-control" />
+                                <input asp-for="Nome" class="form-control" placeholder="Ex: Básico"/>
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Descricao" class="control-label" style="color:darkgray"></label>
-                                <input asp-for="Descricao" class="form-control" />
+                                <textarea rows="3" asp-for="Descricao" placeholder="Descrição" class="form-control"></textarea>
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PrecoPacoteTelevisao" class="control-label" style="color:darkgray">Preço do pacote de televisão *</label>
-                                <input asp-for="PrecoPacoteTelevisao" class="form-control" />
+                                <input asp-for="PrecoPacoteTelevisao" class="form-control" placeholder="Ex: 15"/>
                                 <span asp-validation-for="PrecoPacoteTelevisao" class="text-danger"></span>
                             </div>
                             <dl class="row d-flex justify-content-between">

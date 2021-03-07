@@ -18,28 +18,27 @@
                             <input type="hidden" asp-for="NetMovelId" />
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label" style="color:darkgray">Tarifário *</label>
-                                <input asp-for="Nome" class="form-control" />
+                                <input asp-for="Nome" class="form-control" placeholder="ex: Básico" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Limite" class="control-label " style="color:darkgray">Limite *</label>
-                                <input asp-for="Limite" class="form-control" />
+                                <input asp-for="Limite" class="form-control" placeholder="ex: Ilimitado" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PrecoNetMovel" class="control-label " style="color:darkgray">Preço do tarifário *</label>
-                                <input asp-for="PrecoNetMovel" class="form-control" />
+                                <input asp-for="PrecoNetMovel" class="form-control" placeholder="ex: 21" />
                                 <span asp-validation-for="PrecoNetMovel" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Notas" class="control-label" style="color:darkgray"></label>
-                                <input asp-for="Notas" class="form-control" />
+                                <textarea rows="3" asp-for="Notas" placeholder="Notas" class="form-control"></textarea>
                                 <span asp-validation-for="Notas" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
                                 <a asp-action="Details" asp-route-id="@Model.NetMovelId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
-
                             </div>
                         </form>
                     </div>
@@ -47,13 +46,11 @@
                 <div style="color:darkgray">
                     <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
-
-
-                @*@section Scripts {
-                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                    }*@
-
             </div>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

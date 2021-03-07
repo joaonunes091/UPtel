@@ -17,22 +17,22 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Nome" class="control-label">Tarifário *</label>
-                                <input asp-for="Nome" class="form-control" />
+                                <input asp-for="Nome" class="form-control"  placeholder="ex: Básico" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Limite" class="control-label">Limite *</label>
-                                <input asp-for="Limite" class="form-control" />
+                                <input asp-for="Limite" class="form-control"  placeholder="ex: Ilimnitado" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="PrecoNetMovel" class="control-label">Preço do tarifário *</label>
-                                <input asp-for="PrecoNetMovel" class="form-control" />
+                                <input asp-for="PrecoNetMovel" class="form-control"  placeholder="ex: 12" />
                                 <span asp-validation-for="PrecoNetMovel" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Notas" class="control-label"></label>
-                                <input asp-for="Notas" class="form-control" />
+                                <textarea rows="3" asp-for="Notas" placeholder="Notas" class="form-control"></textarea>
                                 <span asp-validation-for="Notas" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">

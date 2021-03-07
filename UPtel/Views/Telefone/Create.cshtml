@@ -18,27 +18,27 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Nome" class="control-label">Tarifário *</label>
-                                <input asp-for="Nome" class="form-control" />
+                                <input asp-for="Nome" class="form-control" placeholder="Ex. Básico"/>
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Limite" class="control-label">Limite *</label>
-                                <input asp-for="Limite" class="form-control" />
+                                <input asp-for="Limite" class="form-control" placeholder="Ex. Ilimitado"/>
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="PrecoMinutoNacional" class="control-label">Preço por minuto de chamadas nacionais *</label>
-                                <input asp-for="PrecoMinutoNacional" class="form-control" />
+                                <input asp-for="PrecoMinutoNacional" class="form-control" placeholder="Ex. 0.12"/>
                                 <span asp-validation-for="PrecoMinutoNacional" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="PrecoMinutoInternacional" class="control-label">Preço por minuto de chamadas internacionais *</label>
-                                <input asp-for="PrecoMinutoInternacional" class="form-control" />
+                                <input asp-for="PrecoMinutoInternacional" class="form-control" placeholder="Ex. 0.15"/>
                                 <span asp-validation-for="PrecoMinutoInternacional" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="PrecoPacoteTelefone" class="control-label">Preço do pacote de telefone *</label>
-                                <input asp-for="PrecoPacoteTelefone" class="form-control" />
+                                <input asp-for="PrecoPacoteTelefone" class="form-control" placeholder="Ex. 15"/>
                                 <span asp-validation-for="PrecoPacoteTelefone" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">

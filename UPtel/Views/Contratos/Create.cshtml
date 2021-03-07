@@ -37,22 +37,22 @@
                         </div>
                         <div class="form-group" style="color:darkgray">
                             <label asp-for="Numeros" class="control-label">Números associados ao Contrato</label>
-                            <input asp-for="Numeros" class="form-control" />
+                            <textarea rows="3" asp-for="Numeros" placeholder="Ex: 9145879632" class="form-control"></textarea>
                             <span asp-validation-for="Numeros" class="text-danger"></span>
                         </div>
                         <div class="form-group" style="color:darkgray">
                             <label asp-for="DataInicio" class="control-label">Data de inicio de contrato *</label>
-                            <input asp-for="DataInicio" class="form-control" />
+                            <input asp-for="DataInicio" class="form-control" placeholder="Ex: 1"/>
                             <span asp-validation-for="DataInicio" class="text-danger"></span>
                         </div>
                         <div class="form-group" style="color:darkgray">
                             <label asp-for="Fidelizacao" class="control-label"></label>
-                            <input asp-for="Fidelizacao" class="form-control" />
+                            <input asp-for="Fidelizacao" class="form-control" placeholder="Ex: 5"/>
                             <span asp-validation-for="Fidelizacao" class="text-danger"></span>
                         </div>
                         <div class="form-group" style="color:darkgray">
                             <label asp-for="TempoPromocao" class="control-label"></label>
-                            <input asp-for="TempoPromocao" class="form-control" />
+                            <input asp-for="TempoPromocao" class="form-control" placeholder="Ex: 5"/>
                             <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                         </div>
                         <div class="form-group d-flex justify-content-sm-between align-content-center">
