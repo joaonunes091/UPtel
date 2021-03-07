@@ -3,84 +3,84 @@
 @{
     ViewData["Title"] = "Details";
 }
-<section id="secondhero" class="d-flex flex-column justify-content-center">
-    <div class="container">
-        <div class="row justify-content-center text-left">
+<section id="secondhero">
+    <div class="container ">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h1>Detalhes Cliente Empresarial</h1>
+                <h2 class="font">Detalhes Cliente Empresarial</h2>
 
                 <div class="row">
                     <br />
                     <div class="col-md-6">
                         <dl class="row">
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Nome)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Nome)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 Data de Fundação
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Data)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Contribuinte)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Contribuinte)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Morada)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Morada)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.CodigoPostal)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.CodigoPostal)
                                 -
                                 @Html.DisplayFor(model => model.CodigoPostalExt)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Telefone)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Telefone)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Telemovel)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Telemovel)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Email)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Email)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Estado)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Estado)
                             </dd>
-                            <dt class="col-sm-5 text-white">
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Tipo)
                             </dt>
-                            <dd class="col-sm-7 text-white">
+                            <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Tipo.Tipo)
                             </dd>
                         </dl>
                     </div>
                     <div class="col-md-4">
                         <dl class="row">
-                            <dd class="col-sm-7 text-white" style="width:150px;">
+                            <dd class="col-sm-7" style="width:150px;">
                                 @if (Model.Fotografia != null)
                                 {
                                     <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" />
@@ -93,9 +93,9 @@
                         </dl>
                     </div>
                     <div>
-                        <a class="btn btn-costum" asp-action="EditEmpresa" asp-route-id="@Model.UsersId">Editar</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.UsersId">Eliminar</a> |
-                        <a class="btn btn-info" asp-action="Index">Voltar</a>
+                        <a asp-action="EditEmpresa" asp-route-id="@Model.UsersId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                        <a asp-action="Delete" asp-route-id="@Model.UsersId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                     </div>
                 </div>
             </div>

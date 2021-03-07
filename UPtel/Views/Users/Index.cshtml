@@ -4,17 +4,22 @@
     ViewData["Title"] = "Users";
 }
 
-<section id="secondhero" class="d-flex flex-column justify-content-center">
+<section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
+                <h2 class="font">Utilizadores</h2>
                 <br />
-                <h3>Users</h3>
-                <br />
-
-                <div class="col-md-6 border-info mb-4">
+                <div class="text-center">
+                    <a asp-action="RegistoClienteParticular"><i title="CLiente Particular" class="far fa-address-card fa-2x imgCriar"> &nbsp &nbsp</i></a>
+                    <a asp-action="RegistoClienteEmpresa"><i title="CLiente Empresarial" class="fas fa-building fa-2x imgCriar"> &nbsp &nbsp </i></a>
+                    <a asp-action="RegistoOperador"><i title="Operador" class="fas fa-hammer fa-2x imgCriar"> &nbsp &nbsp</i></a>
+                    <a asp-action="RegistoAdministrador"><i title="Administrador" class="fas fa-hard-hat fa-2x imgCriar"> &nbsp &nbsp</i></a>
+                </div>
+                <br /><br />
+                <div class="col-md-12 border-info mb-4">
                     <div class="card-body">
-                        <h5 class="card-title">Pesquisar users</h5>
+                        <h5 class="card-title" style="color:darkgray">Pesquisar Utilizadores</h5>
                         <form asp-action="Index" method="get">
                             <div class="form-group">
                                 <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
@@ -27,101 +32,98 @@
                     </div>
                 </div>
 
-                <p>
-                    <a class="btn btn-costum" asp-action="RegistoClienteParticular">Registar cliente particular</a>
-                    <a class="btn btn-costum" asp-action="RegistoClienteEmpresa">Registar empresa</a>
-                    <a class="btn btn-costum" asp-action="RegistoOperador">Registar operador</a>
-                    <a class="btn btn-costum" asp-action="RegistoAdministrador">Registar admin</a>
-                </p>
+                <br />
 
-                @if (Model.Users.Count() == 0)
-                {
-                    <p>Efetue uma pesquisa para procurar um funcionário ou cliente.</p>
-                }
-                else
-                {
+                <div>
+                    @if (Model.Users.Count() == 0)
+                    {
+                        <p>Efetue uma pesquisa para procurar um funcionário ou cliente.</p>
+                    }
+                    else
+                    {
 
-                    <table class="table text-white">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Nome)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Contribuinte)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Users[0].Tipo)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Users)
-                            {
+                        <table class="table table-borderless text-white">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Nome)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Contribuinte)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Tipo.Tipo)
-                                    </td>
-                                    <td>
-                                        @{
-                                            if (item.Tipo.Tipo.Contains("Cliente Particular"))
-                                            {
-                                                <a class="btn btn-info" asp-action="DetailsCliente" asp-route-id="@item.UsersId">Detalhes</a>
-                                            }
-                                            else if (item.Tipo.Tipo.Contains("Cliente Empresarial"))
-                                            {
-                                                <a class="btn btn-info" asp-action="DetailsEmpresa" asp-route-id="@item.UsersId">Detalhes</a>
-                                            }
-                                            else
-                                            {
-                                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.UsersId">Detalhes</a>
-                                            }
-                                        }
-                                    </td>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Nome)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Contribuinte)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Tipo)
+                                    </th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <nav>
-                        <ul class="pagination pagination-sm justify-content-end">
-                            @{
-                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaInicial < 1)
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Users)
                                 {
-                                    paginaInicial = 1;
+                                    <tr>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Contribuinte)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Tipo.Tipo)
+                                        </td>
+                                        <td>
+                                            @{
+                                                if (item.Tipo.Tipo.Contains("Cliente Particular"))
+                                                {
+                                                    <a asp-action="DetailsCliente" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                }
+                                                else if (item.Tipo.Tipo.Contains("Cliente Empresarial"))
+                                                {
+                                                    <a asp-action="DetailsEmpresa" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Details" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                @{
+                                    int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaInicial < 1)
+                                    {
+                                        paginaInicial = 1;
+                                    }
+
+                                    int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                    if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                    {
+                                        paginaFinal = Model.Paginacao.TotalPaginas;
+                                    }
                                 }
 
-                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                {
-                                    paginaFinal = Model.Paginacao.TotalPaginas;
-                                }
-                            }
-
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                            </li>
-
-                            @for (int i = paginaInicial; i <= paginaFinal; i++)
-                            {
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
                                 </li>
-                            }
 
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                            </li>
-                        </ul>
-                    </nav>
-                }
+                                @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                {
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    }
+                </div>
             </div>
         </div>
     </div>

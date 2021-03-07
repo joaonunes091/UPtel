@@ -587,6 +587,7 @@ namespace UPtel.Controllers
                 if (User.IsInRole("Administrador"))
                 {
                     ViewBag.Mensagem = "Cliente alterado com sucesso";
+
                     return View("Sucesso");
                 }
                 if (User.IsInRole("Cliente"))
@@ -595,7 +596,7 @@ namespace UPtel.Controllers
                     return RedirectToAction("Sucesso", "ClientesViewModel", users.UsersId);
                 }
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
 
@@ -659,6 +660,7 @@ namespace UPtel.Controllers
             }
             return RedirectToAction("DetailsEmpresa", "Users");
         }
+      
         // GET: Clientes/Delete/5
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
@@ -824,6 +826,7 @@ namespace UPtel.Controllers
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
                 TipoId = infoUsers.TipoId,
                 Fotografia = infoUsers.Fotografia,
+                Estado = infoUsers.Estado,
             };
 
             _context.Add(users);

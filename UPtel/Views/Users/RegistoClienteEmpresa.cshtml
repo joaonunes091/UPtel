@@ -1,3 +1,15 @@
+<style>
+    input[type=file] {
+        color: transparent;
+    }
+
+        input[type=file]:after {
+            /*   color: #000;*/
+            color: white;
+            content: "";
+        }
+</style>
+
 @model RegistoUserViewModel
 
 @{
@@ -5,48 +17,46 @@
 }
 <section id="secondhero" class="d-flex flex-column justify-content-center">
     <div class="container">
-        <div class="row justify-content-center text-left">
+        <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2>Registo</h2>
-
-                <h4>Cliente Empresarial</h4>
-                <br />     
-                <div class="text-black">
-                    <div class="body bg-dark">
-                        <form asp-action="RegistoClienteEmpresa" enctype="multipart/form-data" class="row g-3">
+                <h2 class="font">Registo de Cliente Empresarial</h2>
+                <br />
+                <div class="row d-flex">
+                    <div class="body text-white">
+                        <form asp-action="RegistoClienteEmpresa" enctype="multipart/form-data" class="row g-3 justify-content-center">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Nome" class="form-label">Nome *</label>
+                                <label asp-for="Nome" class="form-label" style="color:darkgray">Nome *</label>
                                 <input asp-for="Nome" class="form-control" placeholder="ex: David" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Data" class="form-label">Data de Fundação *</label>
+                                <label asp-for="Data" class="form-label" style="color:darkgray">Data de Fundação *</label>
                                 <input asp-for="Data" class="form-control" placeholder="ex: dd/mm/aaaa" />
                                 <span asp-validation-for="Data" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Contribuinte" class="form-label">Contribuinte *</label>
+                                <label asp-for="Contribuinte" class="form-label" style="color:darkgray">Contribuinte *</label>
                                 <input asp-for="Contribuinte" class="form-control" placeholder="ex: 123456789" />
                                 <span asp-validation-for="Contribuinte" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Telefone" class="form-label"></label>
+                                <label asp-for="Telefone" class="form-label" style="color:darkgray"></label>
                                 <input asp-for="Telefone" class="form-control" placeholder="ex: 2xxxxxxxx" />
                                 <span asp-validation-for="Telefone" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Telemovel" class="form-label">Telemóvel *</label>
+                                <label asp-for="Telemovel" class="form-label" style="color:darkgray">Telemóvel *</label>
                                 <input asp-for="Telemovel" class="form-control" placeholder="ex: 9xxxxxxxx" />
                                 <span asp-validation-for="Telemovel" class="text-danger"></span>
                             </div>
                             <div class="col-10 form-group">
-                                <label asp-for="Morada" class="form-label">Morada *</label>
+                                <label asp-for="Morada" class="form-label" style="color:darkgray">Morada *</label>
                                 <input asp-for="Morada" class="form-control" placeholder="ex: Rua blá, n.34" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="CodigoPostal" class="form-label">Código Postal *</label>
+                                <label asp-for="CodigoPostal" class="form-label" style="color:darkgray">Código Postal *</label>
                                 <div class="form-row">
                                     <div class="col-md-7">
                                         <input asp-for="CodigoPostal" class="form-control" placeholder="ex: xxxx" />
@@ -60,12 +70,12 @@
                                 </div>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Email" class="form-label">E-mail *</label>
+                                <label asp-for="Email" class="form-label" style="color:darkgray">E-mail *</label>
                                 <input asp-for="Email" class="form-control" placeholder="ex: teste@qq.ff" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="Password" class="form-label">Password *</label>
+                                <label asp-for="Password" class="form-label" style="color:darkgray">Password *</label>
                                 <input asp-for="Password" class="form-control" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
                                 <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
@@ -76,19 +86,28 @@
                                 </div>
                             </div>
                             <div class="col-md-5 form-group">
-                                <label for="ficheiroFoto" class="control-label">Fotografia</label>
+                                <label for="ficheiroFoto" class="form-label" style="color:darkgray">Fotografia</label>
                                 <input name="ficheiroFoto" class="form-control-file" type="file" />
                             </div>
                             <div class="col-md-5 form-group">
-                                <label asp-for="ConfirmePassword" class="form-label">Confirme a sua password *</label>
+                                <label asp-for="ConfirmePassword" class="form-label style=" color:darkgray"">Confirme a sua password *</label>
                                 <input asp-for="ConfirmePassword" class="form-control" />
                                 <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
                             </div>
-                            <div class="col-10 form-group">
-                                <input type="submit" value="Registar" class="btn btn-primary" /> |
-                                <a class="btn btn-info" asp-action="Index">Voltar</a>
+                            <div class="col-md-5 form-group">
+                                <label asp-for="Estado" class="form-label" style="color:darkgray">Estado</label>
+                                <input asp-for="Estado" class="form-control" placeholder="ex: Activo" />
+                                <span asp-validation-for="Estado" class="text-danger"></span>
                             </div>
-                            <div>
+                            <div class="col-md-5 form-group">
+                            </div>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i title="Criar" class="fas fa-folder-plus fa-2x"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</i></button>
+                                <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                            </div>
+                            <div class="col-md-5 form-group">
+                            </div>
+                            <div style="color:darkgray">
                                 <p>Os campos marcados com * são de preenchimento obrigatório</p>
                             </div>
                         </form>

@@ -36,6 +36,11 @@ i:hover {
 .imgEliminar:hover {
     color: #dc0303;
 }
+
+.imgCriar:hover {
+    color:#0639fa
+}
+
 .fixedIcon{
     color:white;
 }
