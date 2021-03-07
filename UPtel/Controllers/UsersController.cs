@@ -432,6 +432,10 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -490,6 +494,10 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -552,6 +560,10 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -619,7 +631,10 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
             if (ModelState.IsValid)
             {
                 try
