@@ -49,9 +49,19 @@
                             <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Telefone)
                             </dt>
-                            <dd class="col-sm-7">
-                                @Html.DisplayFor(model => model.Telefone)
-                            </dd>
+                            @if (Model.Telefone == null)
+                            {
+                                <dd class="col-sm-7">
+                                    n/a
+                                </dd>
+
+                            }
+                            else
+                            {
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.Telefone)
+                                </dd>
+                            }
                             <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Telemovel)
                             </dt>
@@ -67,9 +77,18 @@
                             <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Estado)
                             </dt>
-                            <dd class="col-sm-7">
-                                @Html.DisplayFor(model => model.Estado)
-                            </dd>
+                            @if (Model.Estado == null)
+                            {
+                                <dd class="col-sm-7">
+                                    n/a
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.Estado)
+                                </dd>
+                            }
                             <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Tipo)
                             </dt>

@@ -288,10 +288,10 @@ namespace UPtel.Controllers
             //{
             //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             //}
-            if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            {
-                ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
             CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
