@@ -19,32 +19,32 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="Nome" class="control-label">Tarifário *</label>
+                                <label asp-for="Nome" class="control-label" style="color:darkgray">Tarifário *</label>
                                 <input asp-for="Nome" class="form-control" placeholder="Ex: Básico" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Limite" class="control-label">Limite *</label>
+                                <label asp-for="Limite" class="control-label"style="color:darkgray">Limite *</label>
                                 <input asp-for="Limite" class="form-control" placeholder="Ex: Ilimitado"  />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Velocidade" class="control-label">Velocidade *</label>
+                                <label asp-for="Velocidade" class="control-label" style="color:darkgray">Velocidade *</label>
                                 <input asp-for="Velocidade" class="form-control" placeholder="Ex: 100 Gb"  />
                                 <span asp-validation-for="Velocidade" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="TipoConexao" class="control-label">Tipo de conexão *</label>
+                                <label asp-for="TipoConexao" class="control-label" style="color:darkgray">Tipo de conexão *</label>
                                 <input asp-for="TipoConexao" class="form-control" placeholder="Ex: Fibra" />
                                 <span asp-validation-for="TipoConexao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PrecoNetFixa" class="control-label">Preço do tarifário *</label>
+                                <label asp-for="PrecoNetFixa" class="control-label" style="color:darkgray">Preço do tarifário *</label>
                                 <input asp-for="PrecoNetFixa" class="form-control" placeholder="Ex: 12,00" />
                                 <span asp-validation-for="PrecoNetFixa" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Notas" class="control-label"></label>
+                                <label asp-for="Notas" class="control-label" style="color:darkgray"></label>
                                 <textarea rows="3" asp-for="Notas" placeholder="Notas" class="form-control"></textarea>
                                 <span asp-validation-for="Notas" class="text-danger"></span>
                             </div>
@@ -55,7 +55,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="text-white">
+                <div style="color:darkgray">
                     <a>Os campos marcados com * são de preenchimento obrigatório</a>
                 </div>
             </div>

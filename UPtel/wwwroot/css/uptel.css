@@ -36,6 +36,9 @@ i:hover {
 .imgEliminar:hover {
     color: #dc0303;
 }
+.imgCriar:hover {
+    color:#0639fa
+}
 
 .font {
     font-family: 'Montserrat', sans-serif;

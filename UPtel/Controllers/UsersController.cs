@@ -230,7 +230,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-           
+
             if (!ModelState.IsValid)
             {
                 //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
@@ -239,7 +239,7 @@ namespace UPtel.Controllers
 
             ViewBag.Mensagem = "Operador adicionado com sucesso";
             return View("Sucesso");
-           
+
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -329,7 +329,7 @@ namespace UPtel.Controllers
             {
                 return View(infoUsers);
             }
-            if(await VerificaEmailAsync(infoUsers))
+            if (await VerificaEmailAsync(infoUsers))
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
@@ -359,7 +359,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
             }
-          
+
             if (!ModelState.IsValid)
             {
                 return View(infoUsers);
@@ -544,9 +544,9 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                if(User.IsInRole("Administrador"))
-                { 
-                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                if (User.IsInRole("Administrador"))
+                {
+                    ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
                 }
                 if (User.IsInRole("Cliente"))
@@ -555,7 +555,7 @@ namespace UPtel.Controllers
                     return RedirectToAction("Sucesso", "ClientesViewModel", users.UsersId);
                 }
             }
-            ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
+            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
 
@@ -616,6 +616,7 @@ namespace UPtel.Controllers
             }
             return RedirectToAction("DetailsEmpresa", "Users");
         }
+      
         // GET: Clientes/Delete/5
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
@@ -787,6 +788,7 @@ namespace UPtel.Controllers
                 CodigoPostalExt = infoUsers.CodigoPostalExt,
                 TipoId = infoUsers.TipoId,
                 Fotografia = infoUsers.Fotografia,
+                Estado = infoUsers.Estado,
             };
 
             _context.Add(users);

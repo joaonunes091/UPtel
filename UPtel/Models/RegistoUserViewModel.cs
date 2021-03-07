@@ -36,7 +36,7 @@ namespace UPtel.Models
         public string Morada { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(4, MinimumLength = 4)]
+        [StringLength(4, MinimumLength = 4, ErrorMessage = "Preencher 4 digítos")]
         [Display(Name = "Código Postal")]
         [RegularExpression(@"([123456789]|1)\d{3}", ErrorMessage = "Valor inválido")]
         public string CodigoPostal { get; set; }
@@ -74,7 +74,7 @@ namespace UPtel.Models
         public int TipoId { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [StringLength(3, MinimumLength = 3)]
+        [StringLength(3, MinimumLength = 3, ErrorMessage = "Preencher 3 digítos")]
         [Display(Name = "Extensão do Código Postal")]
         [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostalExt { get; set; }
@@ -84,6 +84,9 @@ namespace UPtel.Models
         [Display(Name = "IBAN")]
         //[RegularExpression(@"")]
         public string Iban { get; set; }
+        
+        [StringLength(50)]
+        public string Estado { get; set; }
 
         public byte[] Fotografia { get; set; }
     }
