@@ -18,7 +18,7 @@ a {
 }
 
     a:hover {
-        color: #3a3a3a;
+        color: white;
         text-decoration: none;
     }
 
@@ -985,7 +985,7 @@ section {
 # Pricing
 --------------------------------------------------------------*/
 .pricing {
-  background-color: #f9f9f9;
+    background-color: beige;
 }
 
 .pricing .box {
