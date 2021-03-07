@@ -53,22 +53,22 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Numeros" class="control-label" style="color:darkgray">Números associados ao Contrato</label>
-                                <input asp-for="Numeros" class="form-control" />
+                                <textarea rows="3" asp-for="Numeros" placeholder="Ex: 9145879632" class="form-control"></textarea>
                                 <span asp-validation-for="Numeros" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Fidelizacao" class="control-label" style="color:darkgray">Fidelização</label>
-                                <input asp-for="Fidelizacao" class="form-control" />
+                                <input asp-for="Fidelizacao" class="form-control" placeholder="Ex: 1"/>
                                 <span asp-validation-for="Fidelizacao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="TempoPromocao" class="control-label" style="color:darkgray">Período de promoção</label>
-                                <input asp-for="TempoPromocao" class="form-control" />
+                                <input asp-for="TempoPromocao" class="form-control" placeholder="Ex: 5"/>
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do contrato *</label>
-                                <input asp-for="PrecoContrato" class="form-control" />
+                                <input asp-for="PrecoContrato" class="form-control" placeholder="Ex: 12"/>
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
