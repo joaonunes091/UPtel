@@ -216,10 +216,10 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            {
-                ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
             CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
@@ -292,7 +292,7 @@ namespace UPtel.Controllers
             //{
             //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
             //}
-            CriaFotoUser(infoUsers, ficheiroFoto);
+    CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -354,14 +354,14 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
-            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            //{
-            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-            //}
-            if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            if (infoUsers.Data > DateTime.Today.AddYears(-18))
             {
-                ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
+            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+            //{
+            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+            //}
             CriaFotoUser(infoUsers, ficheiroFoto);
 
             if (!VerificaNIF(infoUsers))
