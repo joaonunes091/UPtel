@@ -30,6 +30,7 @@ namespace UPtel.Models
 
         [Display(Name = "Promoção de Canais")]
         public int PromoCanais { get; set; }
+       
         public int Desconto { get; set; }
 
         [InverseProperty("Promocao")]
