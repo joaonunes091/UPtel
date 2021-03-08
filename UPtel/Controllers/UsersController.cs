@@ -428,6 +428,7 @@ namespace UPtel.Controllers
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
             users.TipoId = tipo.TipoId;
+
             if (id != users.UsersId)
             {
                 return NotFound();
@@ -555,6 +556,11 @@ namespace UPtel.Controllers
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
             users.TipoId = tipo.TipoId;
+
+            //var userDados = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
+            //users.Contribuinte = userDados.Contribuinte;
+            //users.CartaoCidadao = userDados.CartaoCidadao;
+            //users.Nome = userDados.Nome;
 
             if (id != users.UsersId)
             {
