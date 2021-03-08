@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2 class="font">Tem a certeza que quer apagar o user type?</h2>
+                <h2 class="font">Tem a certeza que quer apagar o tipo de utilizador?</h2>
                 <div>
                     <br />
                     <dl class="row justify-content-center text-white">
@@ -22,7 +22,7 @@
                     <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="TipoId" />
                         <button type="submit" class="btn btn-default btn-sm "><i title="Eliminar" class="far fa-trash-alt fa-2x imgEliminar"></i></button>
-                        <a asp-action="Details" asp-route-id="@@Model.TipoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                        <a asp-action="Details" asp-route-id="@Model.TipoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                     </form>
                 </div>
             </div>
