@@ -5,13 +5,15 @@
 }
 
 <section id="secondhero">
-    <div class="leftPanel">
-
-        <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
-    </div>
+    @if (!User.IsInRole("Administrador"))
+    {
+        <div class="leftPanel">
+            <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
+        </div>
     <div class="rightPanel">
         <img src="~/bootstrap/assets/img/PromoTele2em1.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
     </div>
+    }
     <div class="container">
         <div class="row justify-content-center ">
             <div class="col-xl-8 text-white">
@@ -20,65 +22,65 @@
                     <br />
 
                     @*<div class="col-md-10 border-info mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisar Internet móvel</h5>
-                            <form asp-action="Index" method="get">
-                                <div class="form-group">
-                                    <input name="nomePesquisar" class="form-control mr-sm-2" placeholder="ex: Básico" type="search" value="@Model.NomePesquisar" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>*@
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:darkgray">Pesquisar Internet móvel</h5>
+                                <form asp-action="Index" method="get">
+                                    <div class="form-group">
+                                        <input name="nomePesquisar" class="form-control mr-sm-2" placeholder="ex: Básico" type="search" value="@Model.NomePesquisar" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                        <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>*@
 
-                    </div>
+                </div>
 
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <p>
-                            <a asp-action="Create"><i class="fas fa-folder-plus fa-3x"></i></a>
-                        </p>
-                    }
-                    @if (Model.NetMovel.Count() == 0)
-                    {
-                        <p style="color:darkgray">Não existem canais para mostrar</p>
-                    }
-                    else
-                    {
-                        <table class="table table-borderless text-white">
-                            <thead>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <p>
+                        <a asp-action="Create"><i class="fas fa-folder-plus fa-3x"></i></a>
+                    </p>
+                }
+                @if (Model.NetMovel.Count() == 0)
+                {
+                    <p style="color:darkgray">Não existem canais para mostrar</p>
+                }
+                else
+                {
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.NetMovel[0].Nome)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.NetMovel)
+                            {
                                 <tr>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.NetMovel[0].Nome)
-                                    </th>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.NetMovel[0].PrecoNetMovel)
-                                    </th>
-                                    <th></th>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.PrecoNetMovel) €
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-action="Details" asp-route-id="@item.NetMovelId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.NetMovel)
-                                {
-                                    <tr>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Nome)
-                                        </td>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.PrecoNetMovel) €
-                                        </td>
-                                        <td class="text-center">
-                                            <a asp-action="Details" asp-route-id="@item.NetMovelId"><i class="fas fa-search-plus fa-2x"></i></a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                            }
+                        </tbody>
+                    </table>
 
-                        @*<nav>
+                    @*<nav>
                             <ul class="pagination justify-content-end">
                                 @{
                                     int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
@@ -111,13 +113,13 @@
                             </ul>
                         </nav>*@
 
-                  
 
 
-                    }
-                  
 
-                </div>
+                }
+
+
+            </div>
 
         </div>
 
