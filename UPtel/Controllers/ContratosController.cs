@@ -168,6 +168,15 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Contratos contratos)
         {
+            decimal precoContrato, desconto, total;
+            var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+            var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+
+            precoContrato = pacote.PrecoTotal;
+            desconto = promocoes.Desconto;
+            total = precoContrato - (precoContrato * (desconto / 100));
+            contratos.PrecoContrato = total;
+
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             contratos.FuncionarioId = funcionario.UsersId;

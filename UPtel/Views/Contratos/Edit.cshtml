@@ -66,11 +66,11 @@
                                 <input asp-for="TempoPromocao" class="form-control" placeholder="Ex: 5"/>
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do contrato *</label>
                                 <input asp-for="PrecoContrato" class="form-control" placeholder="Ex: 12"/>
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
-                            </div>
+                            </div>*@
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
                                 <a asp-action="Details" asp-route-id="@Model.ContratoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
