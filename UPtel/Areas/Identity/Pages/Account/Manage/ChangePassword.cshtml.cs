@@ -38,7 +38,7 @@ namespace UPtel.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Password antiga")]
             public string OldPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage ="É necessário colocar a nova password")]
             [StringLength(100, ErrorMessage = "A password precisa de ter entre 6-100 caracteres", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Nova password")]
@@ -91,8 +91,8 @@ namespace UPtel.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Password alterada com sucesso");
+            StatusMessage = "A sua password foi alterada";
 
             return RedirectToPage();
         }
