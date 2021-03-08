@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Internet";
+}
+
+<section id="secondhero">
+    <div class="leftPanel">
+
+        <img src="~/bootstrap/assets/img/PromoNetFixa.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
+    </div>
+    <div class="rightPanel">
+        <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
+    </div>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-8 text-white">
+
+                <h2 class="font">Serviços de Internet</h2>
+                <br /><br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="NetFixa">
+                            <img src="~/bootstrap/assets/img/netfixa.jpg" alt="Internet fixa" title=" serviços de Internet fixa" style="width:100%; height:30vh;" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="NetMovel">
+                            <img src="~/bootstrap/assets/img/nettmovel.png" alt="Internet móvel" title=" serviços de Internet fixa" style="width:100%; height:30vh;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

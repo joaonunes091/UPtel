@@ -18,7 +18,7 @@
                 <div>
                     <h2 class="font">Internet móvel</h2>
                     <br />
-                    <div class="col-md-10 border-info mb-4">
+                    @*<div class="col-md-10 border-info mb-4">
                         <div class="card-body">
                             <h5 class="card-title" style="color:darkgray">Pesquisar Internet móvel</h5>
                             <form asp-action="Index" method="get">
@@ -31,7 +31,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div>*@
                     @if (User.IsInRole("Administrador"))
                     {
                         <p>
@@ -73,7 +73,7 @@
                                 }
                             </tbody>
                         </table>
-                        <nav>
+                        @*<nav>
                             <ul class="pagination justify-content-end">
                                 @{
                                     int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
@@ -104,7 +104,7 @@
                                     <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav>*@
 
                     }
                 </div>

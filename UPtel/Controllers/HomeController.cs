@@ -27,7 +27,14 @@ namespace UPtel.Controllers
         {
             return View();
         }
-
+        public IActionResult Comunicacoes()
+        {
+            return View();
+        }
+        public IActionResult Internet()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
