@@ -42,7 +42,7 @@ namespace UPtel.Data
             InsereDadosTestePacote(DbContext);
             InsereDadosTesteUserTypes(DbContext);
             InsereDadosTesteUsers(DbContext);
-            InsereDadosTesteContratos(DbContext);
+            //InsereDadosTesteContratos(DbContext);
         }
 
         internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
@@ -287,24 +287,39 @@ namespace UPtel.Data
             DbContext.Promocoes.AddRange(new Promocoes[] {
             new Promocoes
             {
-                NomePromocao = "Extra Nacional",
-                Descricao = "Oferta de minutos nacionais",
-                PromoCanais= 3,
-                Desconto = 2
+                NomePromocao = "Promo Chamadas Internacionais",
+                Descricao = "Ligue para o estrangeiro ao preço das chamandas nacionais",
+                
             },
             new Promocoes
             {
-                NomePromocao = "Inter Extra",
-                Descricao = "Oferta de minutos internacionais",
-                PromoCanais= 3,
-                Desconto = 2
+                NomePromocao = "Promoção aniversário estudante",
+                Descricao = "Tenha 30% de desconto na sua Internet móvel ",
+                PromoCanais= 0,
+                Desconto = 30
             },
             new Promocoes
             {
-                NomePromocao = "Up Top",
-                Descricao = "VIP only!... Comunicações grátis!",
-                PromoCanais= 3,
-                Desconto = 2
+                NomePromocao = "Promoção internet fixa",
+                Descricao = "Aproveite para mudar a ligação da sua internet suba a velocidade e mantenha o preço",
+                PromoCanais= 0,
+                Desconto = 0
+
+            },
+              new Promocoes
+            {
+                NomePromocao = "Promoção desporto",
+                Descricao = "Aproveite para ter todos os canais de desporto no mesmo pacote",
+                PromoCanais= 10,
+                Desconto = 15
+
+            },
+                new Promocoes
+            {
+                NomePromocao = "Promoção 2 em 1",
+                Descricao = "Com esta promoção tenha um tarifário há sua medida com internet móvel de excelência",
+                PromoCanais= 0,
+                Desconto = 15
 
             }
         });
