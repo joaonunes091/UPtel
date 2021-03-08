@@ -7,63 +7,66 @@
 
 
 <section id="secondhero">
-    <div class="leftPanel">
+    @if (!User.IsInRole("Administrador"))
+    {
+        <div class="leftPanel">
 
-        <img src="~/bootstrap/assets/img/PromoNetFixa.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
-    </div>
-    <div class="rightPanel">
-        <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
-    </div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 text-white">
+            <img src="~/bootstrap/assets/img/PromoNetFixa.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
+        </div>
+        <div class="rightPanel">
+            <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
+        </div>
+    }
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 text-white">
 
-                <h1 class="font">Internet fixa</h1>
-                <br />
-                @if (User.IsInRole("Administrador"))
-                {
-                    <p>
-                        <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
-                    </p>
-                }
-                <br />
-                <table class="table table-borderless text-white">
-                    <thead>
-                        <tr>
-
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.Nome)
-                            </th>
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.TipoConexao)
-                            </th>
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.PrecoNetFixa)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                    <h1 class="font">Internet fixa</h1>
+                    <br />
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <p>
+                            <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                        </p>
+                    }
+                    <br />
+                    <table class="table table-borderless text-white">
+                        <thead>
                             <tr>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.TipoConexao)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.PrecoNetFixa) €
-                                </td>
-                                <td>
-                                    <a asp-action="Details" asp-route-id="@item.NetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                </td>
+
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.TipoConexao)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PrecoNetFixa)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.TipoConexao)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.PrecoNetFixa) €
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.NetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
