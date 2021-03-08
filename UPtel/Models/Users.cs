@@ -68,7 +68,7 @@ namespace UPtel.Models
         public string Telemovel { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="Endereço eletrónico invalido")]
         [StringLength(255, ErrorMessage = "O limite de caracteres(255) foi ultrapassado")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }

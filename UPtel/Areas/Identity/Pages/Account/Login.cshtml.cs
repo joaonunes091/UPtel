@@ -43,7 +43,7 @@ namespace UPtel.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage ="Precisa de colocar um email")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage ="Endereço eletrónico inválido")]
             public string Email { get; set; }
 
             [Required(ErrorMessage ="Precisa de colocar uma password")]
