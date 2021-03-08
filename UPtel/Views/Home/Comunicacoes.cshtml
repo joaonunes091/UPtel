@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Comunicacoes";
+}
+
+<section id="secondhero">
+    <div class="leftPanel">
+
+        <img src="~/bootstrap/assets/img/PromoTele2em1.png" style="width:100%; height:100vh; padding-left:10%; padding-top:10%;" />
+    </div>
+    <div class="rightPanel">
+        <img src="~/bootstrap/assets/img/PromoTelefone.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
+    </div>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-8 text-white">
+
+                <h2 class="font">Serviços de comunicação</h2>
+                <br /><br />
+                      <div class="row">
+                          <div class="col-md-6">
+                              <a asp-action="Index" asp-controller="Telefone">
+                                  <img src="~/bootstrap/assets/img/telefone1.png" alt="Telefone" title=" serviços de telefone" style="width:100%; height:30vh;" />
+                              </a>
+                          </div> 
+                          <div class="col-md-6">
+                              <a asp-action="Index" asp-controller="Telemovel">
+                                  <img src="~/bootstrap/assets/img/telemovel.png" alt="Telémovel" title=" serviços de telemóvel" style="width:100%; height:30vh;" />
+                              </a>
+                          </div>
+                      </div>
+            </div>
+        </div>
+    </div>
+</section>
