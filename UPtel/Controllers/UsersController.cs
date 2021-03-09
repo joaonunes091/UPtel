@@ -124,7 +124,6 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoAdministrador()
         {
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
         // POST : User/RegistoAdministrador
@@ -191,7 +190,6 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoOperador()
         {
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
@@ -247,7 +245,6 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
-                //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", infoUsers.TipoId);
                 return View(infoUsers);
             }
 
@@ -262,7 +259,6 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteEmpresa()
         {
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
@@ -284,10 +280,6 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("Email", "Este email já existe");
             }
-            //if (infoUsers.Data > DateTime.Today.AddYears(-18))
-            //{
-            //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
-            //}
             //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
             //{
             //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
@@ -331,7 +323,6 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteParticular()
         {
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo");
             return View();
         }
 
@@ -414,7 +405,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -460,7 +450,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -478,7 +467,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -522,7 +510,6 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Cliente alterado com sucesso";
                 return View("Sucesso");
             }
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return View(users);
         }
 
@@ -556,11 +543,6 @@ namespace UPtel.Controllers
         {
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
             users.TipoId = tipo.TipoId;
-
-            //var userDados = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
-            //users.Contribuinte = userDados.Contribuinte;
-            //users.CartaoCidadao = userDados.CartaoCidadao;
-            //users.Nome = userDados.Nome;
 
             if (id != users.UsersId)
             {
@@ -602,7 +584,6 @@ namespace UPtel.Controllers
                     return RedirectToAction("Sucesso", "ClientesViewModel", users.UsersId);
                 }
             }
-            //ViewData["TipoId"] = new SelectList(_context.UserType, "TipoId", "Tipo", users.TipoId);
             return RedirectToAction("DetailsCliente", "Users");
         }
 
