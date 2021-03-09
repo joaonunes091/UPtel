@@ -83,13 +83,15 @@
                                 <ul>
                                     @if (User.IsInRole("Administrador"))
                                     {
-                                        <li class="drop-down">
+                                        <li><a asp-action="Index" asp-controller="Users">Utilizadores</a></li>
+
+                                        @*<li class="drop-down">
                                             <a href="">Utilizadores</a>
                                             <ul>
                                                 <li><a asp-action="Index" asp-controller="Users">Utilizadores</a></li>
                                                 <li><a asp-action="Index" asp-controller="UserType">Tipo de utilizador</a></li>
                                             </ul>
-                                        </li>
+                                        </li>*@
                                     }
 
                                     <li class="drop-down">
@@ -115,26 +117,26 @@
                                                 else
                                                 {
                                                 <li><a asp-action="Index" asp-controller="Televisao">Televisão</a></li>
-                                                }
+                                            }
 
                                                 <li><a asp-action="Index" asp-controller="Telemovel">Telemóvel</a></li>
                                                 <li><a asp-action="Index" asp-controller="Telefone">Telefone</a></li>
-                                            
-                                        </ul>
-                                    </li>
-                                    @if (User.IsInRole("Operador"))
-                                    {
-                                        <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
-                                    }
+
+                                            </ul>
+                                        </li>
+                                        @if (User.IsInRole("Operador"))
+                                        {
+                                            <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
+                                        }
                                         <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
-                                  
+
                                         <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
 
                                         @if (User.IsInRole("Cliente"))
                                         {
                                             <li><a asp-action="Index" asp-controller="ClientesViewModel">Área do Cliente</a></li>
                                         }
-                                        @if (User.IsInRole("Administrador"))
+                                        @*@if (User.IsInRole("Administrador"))
                                         {
                                             <li class="drop-down">
                                                 <a href="#">Registar</a>
@@ -155,7 +157,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                        }
+                                        }*@
                                         <partial name="_LoginPartial" />
 
                                     </ul>
