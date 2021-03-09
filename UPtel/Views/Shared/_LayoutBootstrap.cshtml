@@ -127,8 +127,19 @@
                                         <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
                                     }
                                         <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
-                                  
-                                        <li><a asp-action="Index" asp-controller="Promocoes">Promoções</a></li>
+
+                                        <li class="drop-down">
+                                            <a href="#">Promoçoes</a>
+                                            <ul>
+                                                <li><a asp-action="Index" asp-controller="PromoNetMovel"> Promoções Net Móvel</a></li>
+                                                <li><a asp-action="Index" asp-controller="PromoNetFixa">Promoções Net Fixa</a></li>
+                                                <li><a asp-action="Index" asp-controller="PromoTelefone">Promoções Telefone</a></li>
+                                                <li><a asp-action="Index" asp-controller="PromoTelemovel">Promoções Telemovel</a></li>
+                                                <li><a asp-action="Index" asp-controller="PromoTelevisao">Promoções Televisão</a></li>
+                                            </ul>
+                                        </li>
+
+                                        
 
                                         @if (User.IsInRole("Cliente"))
                                         {

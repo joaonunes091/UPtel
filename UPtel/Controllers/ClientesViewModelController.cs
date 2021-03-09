@@ -107,7 +107,7 @@ namespace UPtel.Controllers
             var nomeTelevisao = televisaoPacotes.Nome;
 
             //Vai buscar as informações das promoções
-            Promocoes infoPromocoes = await _context.Promocoes.SingleOrDefaultAsync(x => x.PromocaoId == infoContartos.PromocaoId);
+            //Promocoes infoPromocoes = await _context.Promocoes.SingleOrDefaultAsync(x => x.PromocaoId == infoContartos.PromocaoId);
 
             cliente = new ClientesViewModel
             {
@@ -127,9 +127,9 @@ namespace UPtel.Controllers
                 TelevisaoPacote = nomeTelevisao,
                 PrecoPacote = infoPacotes.PrecoTotal,
                 //Promoções
-                NomePromocao = infoPromocoes.NomePromocao,
-                DescricaoPromocao = infoPromocoes.Descricao,
-                Desconto = infoPromocoes.Desconto
+                //NomePromocao = infoPromocoes.NomePromocao,
+                //DescricaoPromocao = infoPromocoes.Descricao,
+                //Desconto = infoPromocoes.Desconto
             };
 
             return View(cliente);

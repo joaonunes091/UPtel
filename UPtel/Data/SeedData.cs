@@ -34,7 +34,7 @@ namespace UPtel.Data
             InsereDadosTesteNetMovel(DbContext);
             InsereDadosTesteNetfixa(DbContext);
             InsereDadosTesteCanais(DbContext);
-            InsereDadosTestePromocoes(DbContext);
+            //InsereDadosTestePromocoes(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTesteTelevisao(DbContext);
@@ -49,7 +49,7 @@ namespace UPtel.Data
         {
 
             InsereCanaisFicticiosParaTestarPaginacao(DbContext);
-            InserePromocoesFicticiosParaTestarPaginacao(DbContext);
+            //InserePromocoesFicticiosParaTestarPaginacao(DbContext);
             InsereTelefoneFicticiosParaTestarPaginacao(DbContext);
             InsereTeleMovelFicticiosParaTestarPaginacao(DbContext);
             InsereTelevisaoFicticiosParaTestarPaginacao(DbContext);
@@ -281,71 +281,71 @@ namespace UPtel.Data
         //-------------------------------------------------
 
 
-        private static void InsereDadosTestePromocoes(UPtelContext DbContext)
-        {
-            if (DbContext.Telemovel.Any()) return;
-            DbContext.Promocoes.AddRange(new Promocoes[] {
-            new Promocoes
-            {
-                NomePromocao = "Promo Chamadas Internacionais",
-                Descricao = "Ligue para o estrangeiro ao preço das chamandas nacionais",
+        //private static void InsereDadosTestePromocoes(UPtelContext DbContext)
+        //{
+        //    if (DbContext.Telemovel.Any()) return;
+        //    DbContext.Promocoes.AddRange(new Promocoes[] {
+        //    new Promocoes
+        //    {
+        //        NomePromocao = "Promo Chamadas Internacionais",
+        //        Descricao = "Ligue para o estrangeiro ao preço das chamandas nacionais",
                 
-            },
-            new Promocoes
-            {
-                NomePromocao = "Promoção aniversário estudante",
-                Descricao = "Tenha 30% de desconto na sua Internet móvel ",
-                PromoCanais= 0,
-                Desconto = 30
-            },
-            new Promocoes
-            {
-                NomePromocao = "Promoção internet fixa",
-                Descricao = "Aproveite para mudar a ligação da sua internet suba a velocidade e mantenha o preço",
-                PromoCanais= 0,
-                Desconto = 0
+        //    },
+        //    new Promocoes
+        //    {
+        //        NomePromocao = "Promoção aniversário estudante",
+        //        Descricao = "Tenha 30% de desconto na sua Internet móvel ",
+        //        PromoCanais= 0,
+        //        Desconto = 30
+        //    },
+        //    new Promocoes
+        //    {
+        //        NomePromocao = "Promoção internet fixa",
+        //        Descricao = "Aproveite para mudar a ligação da sua internet suba a velocidade e mantenha o preço",
+        //        PromoCanais= 0,
+        //        Desconto = 0
 
-            },
-              new Promocoes
-            {
-                NomePromocao = "Promoção desporto",
-                Descricao = "Aproveite para ter todos os canais de desporto no mesmo pacote",
-                PromoCanais= 10,
-                Desconto = 15
+        //    },
+        //      new Promocoes
+        //    {
+        //        NomePromocao = "Promoção desporto",
+        //        Descricao = "Aproveite para ter todos os canais de desporto no mesmo pacote",
+        //        PromoCanais= 10,
+        //        Desconto = 15
 
-            },
-                new Promocoes
-            {
-                NomePromocao = "Promoção 2 em 1",
-                Descricao = "Com esta promoção tenha um tarifário há sua medida com internet móvel de excelência",
-                PromoCanais= 0,
-                Desconto = 15
+        //    },
+        //        new Promocoes
+        //    {
+        //        NomePromocao = "Promoção 2 em 1",
+        //        Descricao = "Com esta promoção tenha um tarifário há sua medida com internet móvel de excelência",
+        //        PromoCanais= 0,
+        //        Desconto = 15
 
-            }
-        });
-            DbContext.SaveChanges();
-        }
+        //    }
+        //});
+        //    DbContext.SaveChanges();
+        //}
 
-        private static void InserePromocoesFicticiosParaTestarPaginacao(UPtelContext DbContext)
-        {
+        //private static void InserePromocoesFicticiosParaTestarPaginacao(UPtelContext DbContext)
+        //{
 
-            if (DbContext.Promocoes.Any()) return;
+        //    if (DbContext.Promocoes.Any()) return;
 
-            for (int i = 0; i < 50; i++)
+        //    for (int i = 0; i < 50; i++)
 
-            {
-                DbContext.Promocoes.Add(new Promocoes
-                {
-                    NomePromocao = "Up Top" + i,
-                    Descricao = "VIP only!... Comunicações grátis!",
-                    PromoCanais = 3,
-                    Desconto = 2
+        //    {
+        //        DbContext.Promocoes.Add(new Promocoes
+        //        {
+        //            NomePromocao = "Up Top" + i,
+        //            Descricao = "VIP only!... Comunicações grátis!",
+        //            PromoCanais = 3,
+        //            Desconto = 2
 
-                });
-            }
+        //        });
+        //    }
 
-            DbContext.SaveChanges();
-        }
+        //    DbContext.SaveChanges();
+        //}
 
 
 
@@ -783,7 +783,7 @@ namespace UPtel.Data
 
             Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "José Figueiras");
             Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mariana Rute Guedes");
-            Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
+            //Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
 
 
@@ -793,7 +793,7 @@ namespace UPtel.Data
                 {
                     Cliente = clientes,
                     Funcionario = funcionarios,
-                    Promocao = promocoes,
+                    //Promocao = promocoes,
                     Pacote = pacotes,
                     Numeros = null,
                     DataInicio = new DateTime(1965,05,25),

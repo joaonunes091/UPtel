@@ -75,7 +75,12 @@ namespace UPtel.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Funcionario)
                 .Include(c => c.Pacote)
-                .Include(c => c.Promocao)
+                //.Include(c => c.Promocao)
+                .Include(c => c.PromoNetFixa)
+                .Include(c => c.PromoNetMovel)
+                .Include(c => c.PromoTelefone)
+                .Include(c => c.PromoTelemovel)
+                .Include(c => c.PromoTelevisao)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
             if (contratos == null)
             {
@@ -91,7 +96,12 @@ namespace UPtel.Controllers
         {
             //ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
-            ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
+            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao");
+            ViewData["PromoNetFixaId"] = new SelectList(_context.PromoNetFixa, "PromoNetFixaId", "Nome");
+            ViewData["PromoNetMovelId"] = new SelectList(_context.PromoNetMovel, "PromoNetMovelId", "Nome");
+            ViewData["PromoTelefoneId"] = new SelectList(_context.PromoTelefone, "PromoTelefoneId", "Nome");
+            ViewData["PromoTelemovelId"] = new SelectList(_context.PromoTelemovel, "PromoTelemovelId", "Nome");
+            ViewData["PromoTelevisaoId"] = new SelectList(_context.PromoTelevisao, "PromoTelevisaoId", "Nome");
             return View();
         }
 
@@ -100,17 +110,17 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int? id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
+        public async Task<IActionResult> Create(int? id, [Bind("ContratoId,ClienteId,FuncionarioId,PromoNetFixaId,PromoNetMovelId,PromoTelefoneId,PromoTelemovelId,PromoTelevisaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] Contratos contratos)
         {
-          
-            decimal precoContrato, desconto, total;
-            var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+
+            //decimal precoContrato, desconto, total;
+            //var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
 
-            precoContrato = pacote.PrecoTotal;
-            desconto = promocoes.Desconto;
-            total = precoContrato - (precoContrato * (desconto / 100));
-            contratos.PrecoContrato = total;
+            //precoContrato = pacote.PrecoTotal;
+            //desconto = promocoes.Desconto;
+            //total = precoContrato - (precoContrato * (desconto / 100));
+            //contratos.PrecoContrato = total;
 
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
@@ -128,7 +138,12 @@ namespace UPtel.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-                ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+                //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+                ViewData["PromoNetFixaId"] = new SelectList(_context.PromoNetFixa, "PromoNetFixaId", "Nome");
+                ViewData["PromoNetMovelId"] = new SelectList(_context.PromoNetMovel, "PromoNetMovelId", "Nome");
+                ViewData["PromoTelefoneId"] = new SelectList(_context.PromoTelefone, "PromoTelefoneId", "Nome");
+                ViewData["PromoTelemovelId"] = new SelectList(_context.PromoTelemovel, "PromoTelemovelId", "Nome");
+                ViewData["PromoTelevisaoId"] = new SelectList(_context.PromoTelevisao, "PromoTelevisaoId", "Nome");
                 return View(contratos);
             }
 
@@ -137,7 +152,12 @@ namespace UPtel.Controllers
             ViewBag.Mensagem = "Contrato adicionado com sucesso";
 
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            ViewData["PromoNetFixaId"] = new SelectList(_context.PromoNetFixa, "PromoNetFixaId", "Nome");
+            ViewData["PromoNetMovelId"] = new SelectList(_context.PromoNetMovel, "PromoNetMovelId", "Nome");
+            ViewData["PromoTelefoneId"] = new SelectList(_context.PromoTelefone, "PromoTelefoneId", "Nome");
+            ViewData["PromoTelemovelId"] = new SelectList(_context.PromoTelemovel, "PromoTelemovelId", "Nome");
+            ViewData["PromoTelevisaoId"] = new SelectList(_context.PromoTelevisao, "PromoTelevisaoId", "Nome");
 
             return View("Sucesso");
         }
@@ -157,7 +177,12 @@ namespace UPtel.Controllers
                 return View("Erro");
             }
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            ViewData["PromoNetFixaId"] = new SelectList(_context.PromoNetFixa, "PromoNetFixaId", "Nome");
+            ViewData["PromoNetMovelId"] = new SelectList(_context.PromoNetMovel, "PromoNetMovelId", "Nome");
+            ViewData["PromoTelefoneId"] = new SelectList(_context.PromoTelefone, "PromoTelefoneId", "Nome");
+            ViewData["PromoTelemovelId"] = new SelectList(_context.PromoTelemovel, "PromoTelemovelId", "Nome");
+            ViewData["PromoTelevisaoId"] = new SelectList(_context.PromoTelevisao, "PromoTelevisaoId", "Nome");
             return View(contratos);
         }
 
@@ -168,14 +193,14 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Contratos contratos)
         {
-            decimal precoContrato, desconto, total;
-            var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+            //decimal precoContrato, desconto, total;
+            //var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
 
-            precoContrato = pacote.PrecoTotal;
-            desconto = promocoes.Desconto;
-            total = precoContrato - (precoContrato * (desconto / 100));
-            contratos.PrecoContrato = total;
+            //precoContrato = pacote.PrecoTotal;
+            //desconto = promocoes.Desconto;
+            //total = precoContrato - (precoContrato * (desconto / 100));
+            //contratos.PrecoContrato = total;
 
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
@@ -213,7 +238,12 @@ namespace UPtel.Controllers
                 return View("Sucesso");
             }
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+            ViewData["PromoNetFixaId"] = new SelectList(_context.PromoNetFixa, "PromoNetFixaId", "Nome");
+            ViewData["PromoNetMovelId"] = new SelectList(_context.PromoNetMovel, "PromoNetMovelId", "Nome");
+            ViewData["PromoTelefoneId"] = new SelectList(_context.PromoTelefone, "PromoTelefoneId", "Nome");
+            ViewData["PromoTelemovelId"] = new SelectList(_context.PromoTelemovel, "PromoTelemovelId", "Nome");
+            ViewData["PromoTelevisaoId"] = new SelectList(_context.PromoTelevisao, "PromoTelevisaoId", "Nome");
             return View(contratos);
         }
 
@@ -229,7 +259,12 @@ namespace UPtel.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Funcionario)
                 .Include(c => c.Pacote)
-                .Include(c => c.Promocao)
+                //.Include(c => c.Promocao)
+                .Include(c => c.PromoNetFixa)
+                .Include(c => c.PromoNetMovel)
+                .Include(c => c.PromoTelefone)
+                .Include(c => c.PromoTelemovel)
+                .Include(c => c.PromoTelevisao)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
             if (contratos == null)
             {

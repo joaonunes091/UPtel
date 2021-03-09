@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UPtel.Models.PromoNetFixa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-xl-8 text-white">
+
+                <h1>Promoções net fixa</h1>
+
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Limite)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Velocidade)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Limite)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Velocidade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.PromoNetFixaId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.PromoNetFixaId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.PromoNetFixaId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

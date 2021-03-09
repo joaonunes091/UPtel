@@ -27,12 +27,18 @@ namespace UPtel.Data
         public virtual DbSet<NetMovel> NetMovel { get; set; }
         public virtual DbSet<PacoteCanais> PacoteCanais { get; set; }
         public virtual DbSet<Pacotes> Pacotes { get; set; }
-        public virtual DbSet<Promocoes> Promocoes { get; set; }
+        //public virtual DbSet<Promocoes> Promocoes { get; set; }
         public virtual DbSet<Telefone> Telefone { get; set; }
         public virtual DbSet<Telemovel> Telemovel { get; set; }
         public virtual DbSet<Televisao> Televisao { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
+        public virtual DbSet<PromoTelemovel> PromoTelemovel { get; set; }
+        public virtual DbSet<PromoTelefone> PromoTelefone { get; set; }
+        public virtual DbSet<PromoNetFixa> PromoNetFixa { get; set; }
+        public virtual DbSet<PromoNetMovel> PromoNetMovel { get; set; }
+        public virtual DbSet<PromoTelevisao> PromoTelevisao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,11 +73,11 @@ namespace UPtel.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Contratos_Pacotes");
 
-                entity.HasOne(d => d.Promocao)
-                    .WithMany(p => p.Contratos)
-                    .HasForeignKey(d => d.PromocaoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contratos_Promocoes");
+                //entity.HasOne(d => d.Promocao)
+                //    .WithMany(p => p.Contratos)
+                //    .HasForeignKey(d => d.PromocaoId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Contratos_Promocoes");
             });
 
             /*modelBuilder.Entity<Users>(entity =>

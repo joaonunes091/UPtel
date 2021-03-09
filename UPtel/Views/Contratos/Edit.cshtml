@@ -41,10 +41,35 @@
                                     </dd>
                                 </dl>
                             </div>
+                            @*<div class="form-group">
+            <label asp-for="PromocaoId" class="control-label" style="color:darkgray">Promoção</label>
+            <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
+            <span asp-validation-for="PromocaoId" class="text-danger"></span>
+        </div>*@
                             <div class="form-group">
-                                <label asp-for="PromocaoId" class="control-label" style="color:darkgray">Promoção</label>
-                                <select asp-for="PromocaoId" class="form-control" asp-items="ViewBag.PromocaoId"></select>
-                                <span asp-validation-for="PromocaoId" class="text-danger"></span>
+                                <label asp-for="PromoNetFixaId" class="control-label" style="color:darkgray">Promoção net fixa</label>
+                                <select asp-for="PromoNetFixaId" class="form-control" asp-items="ViewBag.PromoNetFixaId"></select>
+                                <span asp-validation-for="PromoNetFixaId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PromoNetMovelId" class="control-label" style="color:darkgray">Promoção net móvel</label>
+                                <select asp-for="PromoNetMovelId" class="form-control" asp-items="ViewBag.PromoNetMovelId"></select>
+                                <span asp-validation-for="PromoNetMovelId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PromoTelefoneId" class="control-label" style="color:darkgray">Promoção telefone</label>
+                                <select asp-for="PromoTelefoneId" class="form-control" asp-items="ViewBag.PromoTelefoneId"></select>
+                                <span asp-validation-for="PromoTelefoneId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PromoTelemovelId" class="control-label" style="color:darkgray">Promoção telemovel</label>
+                                <select asp-for="PromoTelemovelId" class="form-control" asp-items="ViewBag.PromoTelemovelId"></select>
+                                <span asp-validation-for="PromoTelemovelId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PromoTelevisaoId" class="control-label" style="color:darkgray">Promoção televisão</label>
+                                <select asp-for="PromoTelevisaoId" class="form-control" asp-items="ViewBag.PromoTelevisaoId"></select>
+                                <span asp-validation-for="PromoTelevisaoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PacoteId" class="control-label" style="color:darkgray">Pacote de serviços *</label>
@@ -58,19 +83,19 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Fidelizacao" class="control-label" style="color:darkgray">Fidelização</label>
-                                <input asp-for="Fidelizacao" class="form-control" placeholder="Ex: 1"/>
+                                <input asp-for="Fidelizacao" class="form-control" placeholder="Ex: 1" />
                                 <span asp-validation-for="Fidelizacao" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="TempoPromocao" class="control-label" style="color:darkgray">Período de promoção</label>
-                                <input asp-for="TempoPromocao" class="form-control" placeholder="Ex: 5"/>
+                                <input asp-for="TempoPromocao" class="form-control" placeholder="Ex: 5" />
                                 <span asp-validation-for="TempoPromocao" class="text-danger"></span>
                             </div>
                             @*<div class="form-group">
-                                <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do contrato *</label>
-                                <input asp-for="PrecoContrato" class="form-control" placeholder="Ex: 12"/>
-                                <span asp-validation-for="PrecoContrato" class="text-danger"></span>
-                            </div>*@
+            <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do contrato *</label>
+            <input asp-for="PrecoContrato" class="form-control" placeholder="Ex: 12"/>
+            <span asp-validation-for="PrecoContrato" class="text-danger"></span>
+        </div>*@
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
                                 <a asp-action="Details" asp-route-id="@Model.ContratoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
