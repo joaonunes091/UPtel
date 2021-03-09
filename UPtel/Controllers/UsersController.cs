@@ -148,11 +148,16 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+            if (ficheiroFoto !=  null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
+
             CriaFotoUser(infoUsers, ficheiroFoto);
+           
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -216,11 +221,17 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
+
             CriaFotoUser(infoUsers, ficheiroFoto);
+           
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -288,11 +299,14 @@ namespace UPtel.Controllers
             //{
             //    ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             //}
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
-    CriaFotoUser(infoUsers, ficheiroFoto);
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
+            CriaFotoUser(infoUsers, ficheiroFoto);
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -358,10 +372,13 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
             CriaFotoUser(infoUsers, ficheiroFoto);
 
             if (!VerificaNIF(infoUsers))
@@ -433,10 +450,13 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -495,11 +515,13 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
-
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -566,10 +588,13 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -638,10 +663,13 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-            //if (ficheiroFoto.Length >= 2 * 1024 * 1024)
-            //{
-            //    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
-            //}
+            if (ficheiroFoto != null)
+            {
+                if (ficheiroFoto.Length >= 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Excedeu o limite máximo de 2 Mb para o tamanho da foto.");
+                }
+            }
             if (ModelState.IsValid)
             {
                 try
