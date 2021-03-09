@@ -1,0 +1,43 @@
+﻿@model UPtel.Models.PromoTelevisao
+
+@{
+    ViewData["Title"] = "Details";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 text-white">
+                <h1>Details</h1>
+
+                <div>
+                    <h4>PromoTelevisao</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Nome)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.CanaisGratis)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.CanaisGratis)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.DescontoPrecoTotal)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.PromoTelevisaoId">Edit</a> |
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

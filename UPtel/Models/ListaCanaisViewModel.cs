@@ -11,7 +11,7 @@ namespace UPtel.Models
         public List<Canais> Canais { get; set; }
         public List<PacoteCanais> PacoteCanais { get; set; }
         public List<Pacotes> Pacotes { get; set; }
-        public List<Promocoes> Promocoes { get; set; }
+        //public List<Promocoes> Promocoes { get; set; }
         public List<Telefone> Telefone { get; set; }
         public List<Telemovel> Telemovel { get; set; }
         public List<Televisao> Televisao { get; set; }
