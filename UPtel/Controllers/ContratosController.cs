@@ -47,8 +47,8 @@ namespace UPtel.Controllers
         }
         public async Task<IActionResult> SelectUser(string nomePesquisar)
         {
-
-            List<Users> users = await _context.Users.Where(p => p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar))
+            List<Users> users = await _context.Users.Where(p => !p.Estado.Contains("Desativo") && p.Tipo.Tipo.Contains("Cliente") && p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar))
+                    
                     .Include(t => t.Tipo)
                     .OrderBy(c => c.Nome)
                     .OrderBy(c => c.Contribuinte)
