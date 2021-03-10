@@ -25,6 +25,6 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(4, 2)")]
         public decimal DescontoPrecoTotal { get; set; }
 
-        public ICollection<Contratos> Contratos { get; set; }
+        public virtual ICollection<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
     }
 }

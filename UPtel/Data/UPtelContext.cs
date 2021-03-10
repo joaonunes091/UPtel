@@ -40,6 +40,12 @@ namespace UPtel.Data
         public virtual DbSet<PromoNetMovel> PromoNetMovel { get; set; }
         public virtual DbSet<PromoTelevisao> PromoTelevisao { get; set; }
 
+        public virtual DbSet<ContratoPromoNetFixa> ContratoPromoNetFixa { get; set; }
+        public virtual DbSet<ContratoPromoNetMovel> ContratoPromoNetMovel { get; set; }
+        public virtual DbSet<ContratoPromoTelevisao> ContratoPromotelevisao { get; set; }
+        public virtual DbSet<ContratoPromoTelemovel> ContratoPromoTelemovel { get; set; }
+        public virtual DbSet<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");

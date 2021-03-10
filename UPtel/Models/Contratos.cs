@@ -40,8 +40,8 @@ namespace UPtel.Models
         [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
 
-        [Display(Name = "Período de promoção")]
-        public int? TempoPromocao { get; set; }
+        //[Display(Name = "Período de promoção")]
+        //public int? TempoPromocao { get; set; }
 
 
         [Display(Name = "Valor total do contrato")]
@@ -63,21 +63,13 @@ namespace UPtel.Models
         [InverseProperty(nameof(Pacotes.Contratos))]
         public virtual Pacotes Pacote { get; set; }
 
-        
-        public int PromoTelemovelId { get; set; }
-        public PromoTelemovel PromoTelemovel { get; set; }
+        public virtual ICollection<ContratoPromoNetFixa> ContratoPromoNetFixa { get; set; }
+        public virtual ICollection<ContratoPromoNetMovel> ContratoPromoNetMovel { get; set; }
+        public virtual ICollection<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
+        public virtual ICollection<ContratoPromoTelemovel> ContratoPromoTelemovel { get; set; }
+        public virtual ICollection<ContratoPromoTelevisao> ContratoPromoTelevisao { get; set; }
 
-        public int PromoTelefoneId { get; set; }
-        public PromoTelefone PromoTelefone { get; set; }
 
-        public int PromoNetMovelId { get; set; }
-        public PromoNetMovel PromoNetMovel { get; set; }
-
-        public int PromoNetFixaId { get; set; }
-        public PromoNetFixa PromoNetFixa { get; set; }
-
-        public int PromoTelevisaoId { get; set; }
-        public PromoTelevisao PromoTelevisao { get; set; }
 
         //[ForeignKey(nameof(PromocaoId))]
         //[InverseProperty(nameof(Promocoes.Contratos))]

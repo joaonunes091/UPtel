@@ -116,7 +116,7 @@ namespace UPtel.Controllers
                 DataInicio = infoContartos.DataInicio,
                 NumerosAssociados = infoContartos.Numeros,
                 Fidelizacao = infoContartos.Fidelizacao,
-                TempoPromocao = infoContartos.TempoPromocao,
+                //TempoPromocao = infoContartos.TempoPromocao,
                 PrecoContrato = infoContartos.PrecoContrato,
                 //Pacotes
                 NomePacote = infoPacotes.NomePacote,

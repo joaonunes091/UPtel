@@ -1,0 +1,53 @@
+﻿@model UPtel.Models.ContratoPromoTelevisao
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h1>Edit</h1>
+
+                <h4>ContratoPromoTelevisao</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ContratoTelevisaoId" />
+                            <div class="form-group">
+                                <label asp-for="ContratoId" class="control-label"></label>
+                                <select asp-for="ContratoId" class="form-control" asp-items="ViewBag.ContratoId"></select>
+                                <span asp-validation-for="ContratoId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PromoTelevisaoId" class="control-label"></label>
+                                <select asp-for="PromoTelevisaoId" class="form-control" asp-items="ViewBag.PromoTelevisaoId"></select>
+                                <span asp-validation-for="PromoTelevisaoId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DataInicio" class="control-label"></label>
+                                <input asp-for="DataInicio" class="form-control" />
+                                <span asp-validation-for="DataInicio" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DataFim" class="control-label"></label>
+                                <input asp-for="DataFim" class="form-control" />
+                                <span asp-validation-for="DataFim" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

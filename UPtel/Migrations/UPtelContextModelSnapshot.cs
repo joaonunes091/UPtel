@@ -17,7 +17,7 @@ namespace UPtel.Migrations
             modelBuilder
                 .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("UPtel.Models.Canais", b =>
@@ -136,6 +136,146 @@ namespace UPtel.Migrations
                     b.ToTable("ClientesViewModel");
                 });
 
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetFixa", b =>
+                {
+                    b.Property<int>("ContratoPromoNetFixaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoNetFixaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoNetFixaId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoNetFixaId");
+
+                    b.ToTable("ContratoPromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetMovel", b =>
+                {
+                    b.Property<int>("ContratoPromoNetMovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoNetMovelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoNetMovelId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoNetMovelId");
+
+                    b.ToTable("ContratoPromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelefone", b =>
+                {
+                    b.Property<int>("ContratoPromoTelefoneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelefoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoTelefoneId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelefoneId");
+
+                    b.ToTable("ContratoPromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelemovel", b =>
+                {
+                    b.Property<int>("ContratoPromoTelemovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelemovelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoTelemovelId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelemovelId");
+
+                    b.ToTable("ContratoPromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelevisao", b =>
+                {
+                    b.Property<int>("ContratoTelevisaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelevisaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoTelevisaoId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelevisaoId");
+
+                    b.ToTable("ContratoPromotelevisao");
+                });
+
             modelBuilder.Entity("UPtel.Models.Contratos", b =>
                 {
                     b.Property<int>("ContratoId")
@@ -168,40 +308,12 @@ namespace UPtel.Migrations
                     b.Property<decimal>("PrecoContrato")
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<int>("PromoNetFixaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromoNetMovelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromoTelefoneId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromoTelemovelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PromoTelevisaoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PromocaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TempoPromocao")
                         .HasColumnType("int");
 
                     b.HasKey("ContratoId");
 
                     b.HasIndex("ClientesViewModelId");
-
-                    b.HasIndex("PromoNetFixaId");
-
-                    b.HasIndex("PromoNetMovelId");
-
-                    b.HasIndex("PromoTelefoneId");
-
-                    b.HasIndex("PromoTelemovelId");
-
-                    b.HasIndex("PromoTelevisaoId");
 
                     b.HasIndex(new[] { "ClienteId" }, "IX_Contratos_ClienteId");
 
@@ -671,6 +783,101 @@ namespace UPtel.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetFixa", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoNetFixa")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoNetFixa", "PromoNetFixa")
+                        .WithMany("ContratoPromoNetFixa")
+                        .HasForeignKey("PromoNetFixaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetMovel", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoNetMovel")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoNetMovel", "PromoNetMovel")
+                        .WithMany("ContratoPromoNetMovel")
+                        .HasForeignKey("PromoNetMovelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelefone", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelefone")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelefone", "PromoTelefone")
+                        .WithMany("ContratoPromoTelefone")
+                        .HasForeignKey("PromoTelefoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelemovel", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelemovel")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelemovel", "PromoTelemovel")
+                        .WithMany("ContratoPromoTelemovel")
+                        .HasForeignKey("PromoTelemovelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelevisao", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelevisao")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelevisao", "PromoTelevisao")
+                        .WithMany("ContratoPromoTelevisao")
+                        .HasForeignKey("PromoTelevisaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelevisao");
+                });
+
             modelBuilder.Entity("UPtel.Models.Contratos", b =>
                 {
                     b.HasOne("UPtel.Models.Users", "Cliente")
@@ -695,51 +902,11 @@ namespace UPtel.Migrations
                         .HasConstraintName("FK_Contratos_Pacotes")
                         .IsRequired();
 
-                    b.HasOne("UPtel.Models.PromoNetFixa", "PromoNetFixa")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromoNetFixaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UPtel.Models.PromoNetMovel", "PromoNetMovel")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromoNetMovelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UPtel.Models.PromoTelefone", "PromoTelefone")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromoTelefoneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UPtel.Models.PromoTelemovel", "PromoTelemovel")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromoTelemovelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UPtel.Models.PromoTelevisao", "PromoTelevisao")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromoTelevisaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Cliente");
 
                     b.Navigation("Funcionario");
 
                     b.Navigation("Pacote");
-
-                    b.Navigation("PromoNetFixa");
-
-                    b.Navigation("PromoNetMovel");
-
-                    b.Navigation("PromoTelefone");
-
-                    b.Navigation("PromoTelemovel");
-
-                    b.Navigation("PromoTelevisao");
                 });
 
             modelBuilder.Entity("UPtel.Models.PacoteCanais", b =>
@@ -821,6 +988,19 @@ namespace UPtel.Migrations
                     b.Navigation("ListaContratos");
                 });
 
+            modelBuilder.Entity("UPtel.Models.Contratos", b =>
+                {
+                    b.Navigation("ContratoPromoNetFixa");
+
+                    b.Navigation("ContratoPromoNetMovel");
+
+                    b.Navigation("ContratoPromoTelefone");
+
+                    b.Navigation("ContratoPromoTelemovel");
+
+                    b.Navigation("ContratoPromoTelevisao");
+                });
+
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
                 {
                     b.Navigation("Pacotes");
@@ -838,27 +1018,27 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.PromoNetFixa", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoNetFixa");
                 });
 
             modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoNetMovel");
                 });
 
             modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoTelefone");
                 });
 
             modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoTelemovel");
                 });
 
             modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoTelevisao");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>
