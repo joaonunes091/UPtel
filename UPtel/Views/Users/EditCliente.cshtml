@@ -51,27 +51,27 @@
                             }
                             else
                             {
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Nome" class="form-label" style="color:darkgray">Nome *</label>
-                                <input asp-for="Nome" class="form-control" readonly placeholder="ex: David" />
-                                <span asp-validation-for="Nome" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Data" class="form-label" style="color:darkgray">Data de Nascimento *</label>
-                                <input asp-for="Data" class="form-control" readonly placeholder="ex: dd/mm/aaaa" />
-                                <span asp-validation-for="Data" class="text-danger"></span>
-                            </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Nome" class="form-label" style="color:darkgray">Nome *</label>
+                                    <input asp-for="Nome" class="form-control" readonly placeholder="ex: David" />
+                                    <span asp-validation-for="Nome" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Data" class="form-label" style="color:darkgray">Data de Nascimento *</label>
+                                    <input asp-for="Data" class="form-control" readonly placeholder="ex: dd/mm/aaaa" />
+                                    <span asp-validation-for="Data" class="text-danger"></span>
+                                </div>
 
-                            <div class="col-md-5 form-group">
-                                <label asp-for="CartaoCidadao" class="form-label" style="color:darkgray"></label>
-                                <input asp-for="CartaoCidadao" class="form-control" readonly placeholder="ex: 12345678" />
-                                <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-5 form-group">
-                                <label asp-for="Contribuinte" class="form-label" style="color:darkgray">Contribuinte *</label>
-                                <input asp-for="Contribuinte" class="form-control" readonly placeholder="ex: 123456789" />
-                                <span asp-validation-for="Contribuinte" class="text-danger"></span>
-                            </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="CartaoCidadao" class="form-label" style="color:darkgray"></label>
+                                    <input asp-for="CartaoCidadao" class="form-control" readonly placeholder="ex: 12345678" />
+                                    <span asp-validation-for="CartaoCidadao" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <label asp-for="Contribuinte" class="form-label" style="color:darkgray">Contribuinte *</label>
+                                    <input asp-for="Contribuinte" class="form-control" readonly placeholder="ex: 123456789" />
+                                    <span asp-validation-for="Contribuinte" class="text-danger"></span>
+                                </div>
                             }
                             <div class="col-md-5 form-group">
                                 <label asp-for="Telefone" class="form-label" style="color:darkgray"></label>
@@ -120,9 +120,11 @@
                             @if (User.IsInRole("Administrador"))
                             {
                                 <div class="col-md-5 form-group">
-                                    <label asp-for="Estado" class="form-label" style="color:darkgray">Estado do cliente</label>
-                                    <input asp-for="Estado" class="form-control" placeholder="ex: Activo" />
-                                    <span asp-validation-for="Estado" class="text-danger"></span>
+                                    <label asp-for="Estado" class="form-label" style="color:darkgray"></label>
+                                    <select class="form-control" id="Estado" name="Estado">
+                                        <option>Ativo</option>
+                                        <option>Desativo</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-md-5 form-group">
