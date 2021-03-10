@@ -1,0 +1,61 @@
+﻿@model IEnumerable<UPtel.Models.ContratoPromoTelemovel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h1>ContratosPromoTelemovel</h1>
+
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DataInicio)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DataFim)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contratos)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PromoTelemovel)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DataInicio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DataFim)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contratos.ContratoId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PromoTelemovel.PromoTelemovelId)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.ContratoPromoTelemovelId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.ContratoPromoTelemovelId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.ContratoPromoTelemovelId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

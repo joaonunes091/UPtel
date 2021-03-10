@@ -20,6 +20,6 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(5, 2)")]
         public int DescontoPrecoTotal { get; set; }
 
-        public ICollection<Contratos> Contratos { get; set; }
+        public virtual ICollection<ContratoPromoNetMovel> ContratoPromoNetMovel { get; set; }
     }
 }

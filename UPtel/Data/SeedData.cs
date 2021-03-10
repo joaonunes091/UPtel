@@ -798,7 +798,7 @@ namespace UPtel.Data
                     Numeros = null,
                     DataInicio = new DateTime(1965,05,25),
                     Fidelizacao = 5,
-                    TempoPromocao = 5,
+                    //TempoPromocao = 5,
                     PrecoContrato = 59m,
                 },
 
