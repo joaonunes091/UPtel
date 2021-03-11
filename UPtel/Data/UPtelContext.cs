@@ -42,7 +42,7 @@ namespace UPtel.Data
 
         public virtual DbSet<ContratoPromoNetFixa> ContratoPromoNetFixa { get; set; }
         public virtual DbSet<ContratoPromoNetMovel> ContratoPromoNetMovel { get; set; }
-        public virtual DbSet<ContratoPromoTelevisao> ContratoPromotelevisao { get; set; }
+        public virtual DbSet<ContratoPromoTelevisao> ContratoPromoTelevisao { get; set; }
         public virtual DbSet<ContratoPromoTelemovel> ContratoPromoTelemovel { get; set; }
         public virtual DbSet<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
 

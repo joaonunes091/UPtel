@@ -22,7 +22,7 @@ namespace UPtel.Controllers
         // GET: ContratoPromoTelevisao
         public async Task<IActionResult> Index()
         {
-            var uPtelContext = _context.ContratoPromotelevisao.Include(c => c.Contratos).Include(c => c.PromoTelevisao);
+            var uPtelContext = _context.ContratoPromoTelevisao.Include(c => c.Contratos).Include(c => c.PromoTelevisao);
             return View(await uPtelContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var contratoPromoTelevisao = await _context.ContratoPromotelevisao
+            var contratoPromoTelevisao = await _context.ContratoPromoTelevisao
                 .Include(c => c.Contratos)
                 .Include(c => c.PromoTelevisao)
                 .FirstOrDefaultAsync(m => m.ContratoTelevisaoId == id);
@@ -80,7 +80,7 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var contratoPromoTelevisao = await _context.ContratoPromotelevisao.FindAsync(id);
+            var contratoPromoTelevisao = await _context.ContratoPromoTelevisao.FindAsync(id);
             if (contratoPromoTelevisao == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var contratoPromoTelevisao = await _context.ContratoPromotelevisao
+            var contratoPromoTelevisao = await _context.ContratoPromoTelevisao
                 .Include(c => c.Contratos)
                 .Include(c => c.PromoTelevisao)
                 .FirstOrDefaultAsync(m => m.ContratoTelevisaoId == id);
@@ -152,15 +152,15 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var contratoPromoTelevisao = await _context.ContratoPromotelevisao.FindAsync(id);
-            _context.ContratoPromotelevisao.Remove(contratoPromoTelevisao);
+            var contratoPromoTelevisao = await _context.ContratoPromoTelevisao.FindAsync(id);
+            _context.ContratoPromoTelevisao.Remove(contratoPromoTelevisao);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContratoPromoTelevisaoExists(int id)
         {
-            return _context.ContratoPromotelevisao.Any(e => e.ContratoTelevisaoId == id);
+            return _context.ContratoPromoTelevisao.Any(e => e.ContratoTelevisaoId == id);
         }
     }
 }
