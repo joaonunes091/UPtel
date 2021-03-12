@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.PromocoesViewModel
+﻿@model UPtel.Models.ContratoViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -17,7 +17,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             @*Promoção televisão*@
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label asp-for="PromoTelevisaoId" class="control-label"></label>
                                 <select asp-for="PromoTelevisaoId" class="form-control" asp-items="ViewBag.PromoTelevisaoId"></select>
                             </div>
@@ -30,10 +30,10 @@
                                 <label asp-for="DataFimTelevisao" class="control-label"></label>
                                 <input asp-for="DataFimTelevisao" class="form-control" />
                                 <span asp-validation-for="DataFimTelevisao" class="text-danger"></span>
-                            </div>
+                            </div>-->
 
                             @*Promoção Telefone*@
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label asp-for="PromoTelefoneId" class="control-label"></label>
                                 <select asp-for="PromoTelefoneId" class="form-control" asp-items="ViewBag.PromoTelefoneId"></select>
                             </div>
@@ -46,10 +46,10 @@
                                 <label asp-for="DataFimTelefone" class="control-label"></label>
                                 <input asp-for="DataFimTelefone" class="form-control" />
                                 <span asp-validation-for="DataFimTelefone" class="text-danger"></span>
-                            </div>
+                            </div>-->
 
                             @*Promoção Telemovel*@
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label asp-for="PromoTelemovelId" class="control-label"></label>
                                 <select asp-for="PromoTelemovelId" class="form-control" asp-items="ViewBag.PromoTelemovelId"></select>
                             </div>
@@ -62,10 +62,10 @@
                                 <label asp-for="DataFimTelemovel" class="control-label"></label>
                                 <input asp-for="DataFimTelemovel" class="form-control" />
                                 <span asp-validation-for="DataFimTelemovel" class="text-danger"></span>
-                            </div>
+                            </div>-->
 
                             @*Promoção NetMovel*@
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label asp-for="PromoNetMovelId" class="control-label"></label>
                                 <select asp-for="PromoNetMovelId" class="form-control" asp-items="ViewBag.PromoNetMovelId"></select>
                             </div>
@@ -78,10 +78,10 @@
                                 <label asp-for="DataFimNetMovel" class="control-label"></label>
                                 <input asp-for="DataFimNetMovel" class="form-control" />
                                 <span asp-validation-for="DataFimNetMovel" class="text-danger"></span>
-                            </div>
+                            </div>-->
 
                             @*Promoção NetFixa*@
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label asp-for="PromoNetFixaId" class="control-label"></label>
                                 <select asp-for="PromoNetFixaId" class="form-control" asp-items="ViewBag.PromoNetFixaId"></select>
                             </div>
@@ -94,7 +94,82 @@
                                 <label asp-for="DataFimNetFixa" class="control-label"></label>
                                 <input asp-for="DataFimNetFixa" class="form-control" />
                                 <span asp-validation-for="DataFimNetFixa" class="text-danger"></span>
-                            </div>
+                            </div>-->
+                            <h3>Promoções Net Fixa</h3>
+                            <dl>
+                                @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
+                                {
+                                    <div class="row">
+                                        <dt>
+                                            @Html.HiddenFor(x => Model.ListaPromoNetFixa[i].Id)
+                                            @Html.DisplayFor(z => Model.ListaPromoNetFixa[i].Nome)&nbsp
+                                        </dt>
+                                        <dd>
+                                            @Html.CheckBoxFor(z => Model.ListaPromoNetFixa[i].Selecionado)
+                                        </dd>
+                                    </div>
+                                }
+                            </dl>
+                            <h3>Promoções Net Móvel</h3>
+                            <dl>
+                                @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
+                                {
+                                    <div class="row">
+                                        <dt>
+                                            @Html.HiddenFor(x => Model.ListaPromoNetMovel[i].Id)
+                                            @Html.DisplayFor(z => Model.ListaPromoNetMovel[i].Nome)&nbsp
+                                        </dt>
+                                        <dd>
+                                            @Html.CheckBoxFor(z => Model.ListaPromoNetMovel[i].Selecionado)
+                                        </dd>
+                                    </div>
+                                }
+                            </dl>
+                            <h3>Promoções Telefone</h3>
+                            <dl>
+                                @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
+                                {
+                                    <div class="row">
+                                        <dt>
+                                            @Html.HiddenFor(x => Model.ListaPromoTelefone[i].Id)
+                                            @Html.DisplayFor(z => Model.ListaPromoTelefone[i].Nome)&nbsp
+                                        </dt>
+                                        <dd>
+                                            @Html.CheckBoxFor(z => Model.ListaPromoTelefone[i].Selecionado)
+                                        </dd>
+                                    </div>
+                                }
+                            </dl>
+                            <h3>Promoções Telemóvel</h3>
+                            <dl>
+                                @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
+                                {
+                                    <div class="row">
+                                        <dt>
+                                            @Html.HiddenFor(x => Model.ListaPromoTelemovel[i].Id)
+                                            @Html.DisplayFor(z => Model.ListaPromoTelemovel[i].Nome)&nbsp
+                                        </dt>
+                                        <dd>
+                                            @Html.CheckBoxFor(z => Model.ListaPromoTelemovel[i].Selecionado)
+                                        </dd>
+                                    </div>
+                                }
+                            </dl>
+                            <h3>Promoções Televisão</h3>
+                            <dl>
+                                @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
+                                {
+                                    <div class="row">
+                                        <dt>
+                                            @Html.HiddenFor(x => Model.ListaPromoTelevisao[i].Id)
+                                            @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)&nbsp
+                                        </dt>
+                                        <dd>
+                                            @Html.CheckBoxFor(z => Model.ListaPromoTelevisao[i].Selecionado)
+                                        </dd>
+                                    </div>
+                                }
+                            </dl>
                             <div class="form-group">
                                 <input type="submit" value="Create" class="btn btn-primary" />
                             </div>

@@ -20,10 +20,47 @@ namespace UPtel.Controllers
         }
 
         // GET: Contratos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            var uPtelContext = _context.Contratos.Include(c => c.Cliente).Include(c => c.Funcionario).Include(c => c.Pacote);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar) || p.Cliente.Contribuinte.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Contratos> contratos = await _context.Contratos.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar) || p.Cliente.Contribuinte.Contains(nomePesquisar))
+                .OrderBy(c => c.Cliente.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Contratos = contratos,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
+        }
+
+        //Pesquisa nome cliente para adicionar contrato
+        public async Task<IActionResult> SelectUser(string nomePesquisar)
+        {
+            List<Users> users = await _context.Users.Where(p => !p.Estado.Contains("Desativo") && p.Tipo.Tipo.Contains("Cliente") && p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar))
+
+                    .Include(t => t.Tipo)
+                    .OrderBy(c => c.Nome)
+                    .OrderBy(c => c.Contribuinte)
+                    .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Users = users,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
         }
 
         // GET: Contratos/Details/5
@@ -47,11 +84,65 @@ namespace UPtel.Controllers
             return View(contratos);
         }
 
-        // GET: Contratos/Create
+        //public IActionResult Create()
+        //{
+        //    //ViewData["ClienteId"] = new SelectList(_context.Users.Where(c => c.Tipo.Tipo.Contains("Cliente Particular") || c.Tipo.Tipo.Contains("Cliente Empresarial")), "UsersId", "Contribuinte");
+        //    ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
+        //    return View();
+        //}
+
+        //// POST: Contratos/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(int? id, [Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,TempoPromocao,PrecoContrato")] ContratoViewModel contratoViewModel)
+        //{
+
+        //    //decimal precoContrato, desconto, total;
+        //    //var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+        //    //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+
+        //    //precoContrato = pacote.PrecoTotal;
+        //    //desconto = promocoes.Desconto;
+        //    //total = precoContrato - (precoContrato * (desconto / 100));
+        //    //contratos.PrecoContrato = total;
+
+        //    //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
+        //    var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+        //    contratoViewModel.FuncionarioId = funcionario.UsersId;
+
+        //    //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+        //    var cliente = _context.Users.SingleOrDefault(m => m.UsersId == id);
+        //    contratoViewModel.ClienteId = cliente.UsersId;
+
+        //    if (contratoViewModel.DataInicio > DateTime.Today || contratoViewModel.DataInicio < DateTime.Today.AddDays(-90))
+        //    {
+        //        ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
+        //    }
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratoViewModel.PacoteId);
+        //        //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+        //        return View(contratoViewModel);
+        //    }
+
+        //    _context.Add(contratoViewModel);
+        //    await _context.SaveChangesAsync();
+        //    ViewBag.Mensagem = "Contrato adicionado com sucesso";
+
+        //    ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratoViewModel.PacoteId);
+        //    //ViewData["PromocaoId"] = new SelectList(_context.Promocoes, "PromocaoId", "Descricao", contratos.PromocaoId);
+
+        //    return View("Sucesso");
+        //}
+
+        // GET: Contratos/Create/Promo
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal");
-            ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal");
+            //ViewData["ClienteId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal");
+            //ViewData["FuncionarioId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
 
             var promoNetFixa = _context.PromoNetFixa.ToList();
@@ -100,88 +191,122 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,PrecoContrato")] Contratos contratos)
-        public async Task<IActionResult> Create(ContratoViewModel CVM, Contratos contratos, ContratoPromoNetFixa contratoPromoNetFixa, ContratoPromoNetMovel contratoPromoNetMovel, ContratoPromoTelefone contratoPromoTelefone, ContratoPromoTelemovel contratoPromoTelemovel, ContratoPromoTelevisao contratoPromoTelevisao)
+        public async Task<IActionResult> Create(int? id, ContratoViewModel CVM, Contratos contratos, ContratoPromoNetFixa contratoPromoNetFixa, ContratoPromoNetMovel contratoPromoNetMovel, ContratoPromoTelefone contratoPromoTelefone, ContratoPromoTelemovel contratoPromoTelemovel, ContratoPromoTelevisao contratoPromoTelevisao)
 
         {
+            //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
+            var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+            contratos.FuncionarioId = funcionario.UsersId;
+
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == id);
+            contratos.ClienteId = cliente.UsersId;
+
             List<ContratoPromoNetFixa> listaContratosPromoNetFixa = new List<ContratoPromoNetFixa>();
             List<ContratoPromoNetMovel> listaContratosPromoNetMovel = new List<ContratoPromoNetMovel>();
             List<ContratoPromoTelefone> listaContratosPromoTelefone = new List<ContratoPromoTelefone>();
             List<ContratoPromoTelemovel> listaContratosPromoTelemovel = new List<ContratoPromoTelemovel>();
             List<ContratoPromoTelevisao> listaContratosPromoTelevisao = new List<ContratoPromoTelevisao>();
-            
-            contratos.ClienteId = CVM.ClienteId;
-            contratos.FuncionarioId = CVM.FuncionarioId;
+
+            //contratos.ClienteId = CVM.ClienteId;
+            //contratos.FuncionarioId = CVM.FuncionarioId;
             contratos.PacoteId = CVM.PacoteId;
             contratos.Numeros = CVM.Numeros;
             contratos.DataInicio = CVM.DataInicio;
             contratos.Fidelizacao = CVM.Fidelizacao;
-            
+
             _context.Contratos.Add(contratos);
             await _context.SaveChangesAsync();
-            
+
             int contratoId = contratos.ContratoId;
 
-            foreach (var item in CVM.ListaPromoNetFixa)
+            if (CVM.ListaPromoNetFixa != null)
             {
-                if (item.Selecionado == true)
+                foreach (var item in CVM.ListaPromoNetFixa)
                 {
-                    listaContratosPromoNetFixa.Add(new ContratoPromoNetFixa() { ContratoId = contratoId, PromoNetFixaId = item.Id });
+                    if (item.Selecionado == true)
+                    {
+                        listaContratosPromoNetFixa.Add(new ContratoPromoNetFixa() { ContratoId = contratoId, PromoNetFixaId = item.Id });
+                    }
                 }
-            }
             foreach (var item in listaContratosPromoNetFixa)
             {
                 _context.ContratoPromoNetFixa.Add(item);
             }
-
-            foreach (var item in CVM.ListaPromoNetMovel)
-            {
-                if (item.Selecionado == true)
-                {
-                    listaContratosPromoNetMovel.Add(new ContratoPromoNetMovel() { ContratoId = contratoId, PromoNetMovelId = item.Id });
-                }
-            }
-            foreach (var item in listaContratosPromoNetMovel)
-            {
-                _context.ContratoPromoNetMovel.Add(item);
             }
 
-            foreach (var item in CVM.ListaPromoTelefone)
+            if (CVM.ListaPromoNetMovel != null)
             {
-                if (item.Selecionado == true)
+                foreach (var item in CVM.ListaPromoNetMovel)
                 {
-                    listaContratosPromoTelefone.Add(new ContratoPromoTelefone() { ContratoId = contratoId, PromoTelefoneId = item.Id });
+                    if (item.Selecionado == true)
+                    {
+                        listaContratosPromoNetMovel.Add(new ContratoPromoNetMovel() { ContratoId = contratoId, PromoNetMovelId = item.Id });
+                    }
                 }
-            }
-            foreach (var item in listaContratosPromoTelefone)
-            {
-                _context.ContratoPromoTelefone.Add(item);
+                foreach (var item in listaContratosPromoNetMovel)
+                {
+                    _context.ContratoPromoNetMovel.Add(item);
+                }
             }
 
-            foreach (var item in CVM.ListaPromoTelemovel)
+            if (CVM.ListaPromoTelefone != null)
             {
-                if (item.Selecionado == true)
+                foreach (var item in CVM.ListaPromoTelefone)
                 {
-                    listaContratosPromoTelemovel.Add(new ContratoPromoTelemovel() { ContratoId = contratoId, PromoTelemovelId = item.Id });
+                    if (item.Selecionado == true)
+                    {
+                        listaContratosPromoTelefone.Add(new ContratoPromoTelefone() { ContratoId = contratoId, PromoTelefoneId = item.Id });
+                    }
                 }
-            }
-            foreach (var item in listaContratosPromoTelemovel)
-            {
-                _context.ContratoPromoTelemovel.Add(item);
+                foreach (var item in listaContratosPromoTelefone)
+                {
+                    _context.ContratoPromoTelefone.Add(item);
+                }
             }
 
-            foreach (var item in CVM.ListaPromoTelevisao)
+            if (CVM.ListaPromoTelemovel != null)
             {
-                if (item.Selecionado == true)
+                foreach (var item in CVM.ListaPromoTelemovel)
                 {
-                    listaContratosPromoTelevisao.Add(new ContratoPromoTelevisao() { ContratoId = contratoId, PromoTelevisaoId = item.Id });
+                    if (item.Selecionado == true)
+                    {
+                        listaContratosPromoTelemovel.Add(new ContratoPromoTelemovel() { ContratoId = contratoId, PromoTelemovelId = item.Id });
+                    }
+                }
+                foreach (var item in listaContratosPromoTelemovel)
+                {
+                    _context.ContratoPromoTelemovel.Add(item);
                 }
             }
-            foreach (var item in listaContratosPromoTelevisao)
+
+            if (CVM.ListaPromoTelevisao != null)
             {
-                _context.ContratoPromoTelevisao.Add(item);
+                foreach (var item in CVM.ListaPromoTelevisao)
+                {
+                    if (item.Selecionado == true)
+                    {
+                        listaContratosPromoTelevisao.Add(new ContratoPromoTelevisao() { ContratoId = contratoId, PromoTelevisaoId = item.Id });
+                    }
+                }
+                foreach (var item in listaContratosPromoTelevisao)
+                {
+                    _context.ContratoPromoTelevisao.Add(item);
+                }
+            }
+
+            if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
+            {
+                ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
+                return View(contratos);
             }
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Contratos");
+            return View("Sucesso");
 
         }
 
