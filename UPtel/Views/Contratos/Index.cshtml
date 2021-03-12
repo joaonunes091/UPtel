@@ -28,49 +28,62 @@
                     <p>
                         <a asp-action="SelectUser"><i class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
-                @if (Model.Contratos.Count() == 0)
-                {
-                    <p style="color:darkgray">Não existem contratos a mostrar</p>
-                }
-                else
-                {
-                    <table class="table table-borderless text-white">
-                        <thead>
-                            <tr>
-                                <th class="text-center titulo">
-                                    Cliente
-                                </th>
-                                <th class="text-center titulo">
-                                    Nome de contrato
-                                </th>
-                                <th class="text-center titulo">
-                                    Data de início
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Contratos)
-                            {
-                            <tr>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.ClienteId)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.ContratoId)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.DataInicio)
-                                </td>
-                                <td class="text-center">
-                                    <a asp-action="Details" asp-route-id="@item.ContratoId"><i class="fas fa-search-plus fa-2x"></i></a>
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                }   
+                    @if (Model.Contratos.Count() == 0)
+                    {
+                        <p style="color:darkgray">Não existem contratos a mostrar</p>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center titulo">
+                                        Cliente
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Contribuinte
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Data de início
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Fidelização
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Preço do contrato
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Contratos)
+                                {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Cliente.Contribuinte)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DataInicio)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Fidelizacao) meses
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.PrecoContrato) €
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-action="Details" asp-route-id="@item.ContratoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </div>
         </div>
     </div>
-    </section>
+</section>
