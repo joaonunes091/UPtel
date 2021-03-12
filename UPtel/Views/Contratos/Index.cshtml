@@ -1,85 +1,104 @@
-﻿@model IEnumerable<UPtel.Models.Contratos>
+﻿@*@model IEnumerable<UPtel.Models.Contratos>*@
+@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 <section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
             <div class="col-xl-8 text-white">
-                <h1>Contratos</h1>
+                <div>
+                    <h2 class="font">Contratos</h2>
+                    <br />
+                    <div class="col-md-10 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgrey">Pesquisar contratos (Por Nome/NIF)</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" placeholder="Ex: Bernardo" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PromocaoId)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Numeros)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DataInicio)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Fidelizacao)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PrecoContrato)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Cliente)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Funcionario)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pacote)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
+                    <p>
+                        <a asp-action="SelectUser"><i class="fas fa-folder-plus fa-3x"></i></a>
+                    </p>
+
+                    <div>
+                        @if (Model.Contratos.Count() == 0)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PromocaoId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Numeros)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DataInicio)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Fidelizacao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PrecoContrato)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cliente.CodigoPostal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Funcionario.CodigoPostal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pacote.NomePacote)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
-                                </td>
-                            </tr>
+                            <p style="color:darkgray">Não existem contratos para mostrar</p>
                         }
-                    </tbody>
-                </table>
+                        else
+                        {
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center titulo">
+                                        Nome do Cliente
+                                    </th>
+                                    <th class="text-center titulo">
+                                        NIF
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Data de Início
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Fidelização
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Preço
+                                    </th>
+                                    <th class="text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var contratos in Model.Contratos)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.PromocaoId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Numeros)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.DataInicio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Fidelizacao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.PrecoContrato)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Cliente.CodigoPostal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Funcionario.CodigoPostal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Pacote.NomePacote)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@contratos.ContratoId">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@contratos.ContratoId">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@contratos.ContratoId">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        }
+</div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+    </section>

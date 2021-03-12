@@ -16,19 +16,6 @@
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="ClienteId" class="control-label"></label>
-                                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="FuncionarioId" class="control-label"></label>
-                                <select asp-for="FuncionarioId" class="form-control" asp-items="ViewBag.FuncionarioId"></select>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="PromocaoId" class="control-label"></label>
-                                <input asp-for="PromocaoId" class="form-control" />
-                                <span asp-validation-for="PromocaoId" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label asp-for="PacoteId" class="control-label"></label>
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
                             </div>
@@ -52,7 +39,10 @@
                                 <input asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
-                            <h3>Promoções Net Fixa</h3>
+                            @if (Model.ListaPromoNetFixa != null)
+                            {
+                                <h3>Promoções Net Fixa</h3>
+                            }
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
                                 {
@@ -67,7 +57,11 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Net Móvel</h3>
+                            @if (Model.ListaPromoNetMovel != null)
+                            {
+
+                                <h3>Promoções Net Móvel</h3>
+                            }
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
                                 {
@@ -82,7 +76,10 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Telefone</h3>
+                            @if (Model.ListaPromoTelefone != null)
+                            {
+                                <h3>Promoções Telefone</h3>
+                            }
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
                                 {
@@ -97,7 +94,10 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Telemóvel</h3>
+                            @if (Model.ListaPromoTelemovel != null)
+                            {
+                                <h3>Promoções Telemóvel</h3>
+                            }
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
                                 {
@@ -112,26 +112,30 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Televisão</h3>
-                            <dl>
-                                @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
-                                {
-                                    <div class="row">
-                                        <dt>
-                                            @Html.HiddenFor(x => Model.ListaPromoTelevisao[i].Id)
-                                            @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)&nbsp
-                                        </dt>
-                                        <dd>
-                                            @Html.CheckBoxFor(z => Model.ListaPromoTelevisao[i].Selecionado)
-                                        </dd>
-                                    </div>
-                                }
-                            </dl>
+                            @if (Model.ListaPromoTelevisao != null)
+                            {
+                                <h3>Promoções Televisão</h3>
+                            }
+                                <dl>
+                                    @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
+                                    {
+                                        <div class="row">
+                                            <dt>
+                                                @Html.HiddenFor(x => Model.ListaPromoTelevisao[i].Id)
+                                                @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)&nbsp
+                                            </dt>
+                                            <dd>
+                                                @Html.CheckBoxFor(z => Model.ListaPromoTelevisao[i].Selecionado)
+                                            </dd>
+                                        </div>
+                                    }
+                                </dl>
 
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    @*<a asp-action="AddPromocao" asp-route-id="@Model.ContratoId">Adicionar Promoções</a>*@
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </form>
                     </div>
                 </div>
 
