@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.PromoNetFixa>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,54 +7,108 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>PromoNetFixa</h1>
-
+                <h2 class="font">Promoções internet fixa</h2>
+                <div>
+                    <br />
+                    <div class="col-md-8 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <p>
-                    <a asp-action="Create">Create New</a>
+                    <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Nome)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Limite)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Velocidade)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model.PromoNetFixas.Count() == 0)
+                {
+                    <p>Não existem promoções para mostrar</p>
+                }
+                else
+                {
+
+                    <table class="table table-borderless text-white">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Limite)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Velocidade)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.PromoNetFixaId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.PromoNetFixaId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.PromoNetFixaId">Delete</a>
-                                </td>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Nome)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Velocidade)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
+                                </th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PromoNetFixas)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Limite)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Velocidade)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
             </div>
         </div>
     </div>
