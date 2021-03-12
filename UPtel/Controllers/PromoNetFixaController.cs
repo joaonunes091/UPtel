@@ -20,9 +20,29 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetFixa
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.PromoNetFixa.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.PromoNetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<PromoNetFixa> promoNetFixas = await _context.PromoNetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                PromoNetFixas = promoNetFixas,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(modelo);
+
         }
 
         // GET: PromoNetFixa/Details/5
