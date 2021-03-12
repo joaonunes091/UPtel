@@ -1,8 +1,8 @@
-﻿@*@model IEnumerable<UPtel.Models.Contratos>*@
 @model ListaCanaisViewModel
 
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Contratos";
 }
 <section id="secondhero">
     <div class="container">
@@ -25,79 +25,51 @@
                             </form>
                         </div>
                     </div>
-
                     <p>
                         <a asp-action="SelectUser"><i class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
-
-                    <div>
-                        @if (Model.Contratos.Count() == 0)
-                        {
-                            <p style="color:darkgray">Não existem contratos para mostrar</p>
-                        }
-                        else
-                        {
-                        <table class="table table-borderless text-white">
-                            <thead>
-                                <tr>
-                                    <th class="text-center titulo">
-                                        Nome do Cliente
-                                    </th>
-                                    <th class="text-center titulo">
-                                        NIF
-                                    </th>
-                                    <th class="text-center titulo">
-                                        Data de Início
-                                    </th>
-                                    <th class="text-center titulo">
-                                        Fidelização
-                                    </th>
-                                    <th class="text-center titulo">
-                                        Preço
-                                    </th>
-                                    <th class="text-center"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var contratos in Model.Contratos)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.PromocaoId)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Numeros)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.DataInicio)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Fidelizacao)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.PrecoContrato)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Cliente.CodigoPostal)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Funcionario.CodigoPostal)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => contratos.Pacote.NomePacote)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@contratos.ContratoId">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@contratos.ContratoId">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@contratos.ContratoId">Delete</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        }
-</div>
-                </div>
+                @if (Model.Contratos.Count() == 0)
+                {
+                    <p style="color:darkgray">Não existem contratos a mostrar</p>
+                }
+                else
+                {
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    Cliente
+                                </th>
+                                <th class="text-center titulo">
+                                    Nome de contrato
+                                </th>
+                                <th class="text-center titulo">
+                                    Data de início
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Contratos)
+                            {
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.ClienteId)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.ContratoId)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DataInicio)
+                                </td>
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.ContratoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                }   
             </div>
         </div>
     </div>
