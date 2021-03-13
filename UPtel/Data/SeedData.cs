@@ -31,18 +31,31 @@ namespace UPtel.Data
 
         internal static void InsereDadosTeste(UPtelContext DbContext)
         {
-            InsereDadosTesteNetMovel(DbContext);
-            InsereDadosTesteNetfixa(DbContext);
-            InsereDadosTesteCanais(DbContext);
-            //InsereDadosTestePromocoes(DbContext);
+            InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
+            InsereDadosTesteCanais(DbContext);
             InsereDadosTesteTelevisao(DbContext);
             InsereDadosTestePacoteCanais(DbContext);
-            InsereDadosTestePacote(DbContext);
+            InsereDadosTesteNetMovel(DbContext);
+            InsereDadosTesteNetfixa(DbContext);
             InsereDadosTesteUserTypes(DbContext);
-            InsereDadosTesteUsers(DbContext);
-            //InsereDadosTesteContratos(DbContext);
+            InsereDadosPromoTelemovel(DbContext);
+            InsereDadosTestePacote(DbContext);
+            InsereDadosTesteContratos(DbContext);
+            InsereDadosPromoNetMovel(DbContext);
+            InsereDadosPromoNetFixa(DbContext);
+            InsereDadosPromoTelefone(DbContext);
+            InsereDadosPromoTelevisao(DbContext);
+            InsereDadosContratoPromoTelemovel(DbContext);
+            InsereDadosContratoPromoNetMovel(DbContext);
+            InsereDadosContratoPromoNetFixa(DbContext);
+            InsereDadosContratoPromoTelefone(DbContext);
+            InsereDadosContratoPromoTelevisao(DbContext);
+           
+
+            
+            //InsereDadosTestePromocoes(DbContext);
         }
 
         internal static void InsereDadosTestePaginacaoPesquisa(UPtelContext DbContext)
@@ -75,7 +88,7 @@ namespace UPtel.Data
                 new Televisao
             {
                 Nome = "Sem serviço",
-                Descricao= "Teste",
+                Descricao= "Não tem serviço de televisão",
                 PrecoPacoteTelevisao = 00m,
 
             },
@@ -86,20 +99,20 @@ namespace UPtel.Data
                 PrecoPacoteTelevisao = 30m,
 
             },
-            //new Televisao
-            //{
-            //    Nome = "Entretenimento",
-            //    Descricao= "Teste",
-            //    PrecoPacoteTelevisao = 30m,
+            new Televisao
+            {
+                Nome = "Entretenimento",
+                Descricao= "Teste",
+                PrecoPacoteTelevisao = 30m,
 
-            //},
-            //new Televisao
-            //{
-            //    Nome = "Premium",
-            //    Descricao= "Teste",
-            //    PrecoPacoteTelevisao = 30m,
+            },
+            new Televisao
+            {
+                Nome = "Premium",
+                Descricao= "Teste",
+                PrecoPacoteTelevisao = 30m,
 
-            //},
+            },
 
             });
             DbContext.SaveChanges();
@@ -155,28 +168,7 @@ namespace UPtel.Data
                 PrecoMms = 0.1M,
                 PrecoPacoteTelemovel = 15m
             },
-            //new Telemovel
-            //{
-            //    Numero = "960100010",
-            //    LimiteMinutos = 44600,
-            //    LimiteSms = 5000,
-            //    PrecoMinutoNacional = 0,
-            //    PrecoMinutoInternacional = 0.1M,
-            //    PrecoSms = 0.05M,
-            //    PrecoMms = 0.1M,
-            //    PrecoPacoteTelemovel = 1m
-            //},
-            //new Telemovel
-            //{
-            //    Numero = "910100020",
-            //    LimiteMinutos = 44000,
-            //    LimiteSms = 5000,
-            //    PrecoMinutoNacional = 4,
-            //    PrecoMinutoInternacional = 0,
-            //    PrecoSms = 0.05M,
-            //    PrecoMms = 0.1M,
-            //    PrecoPacoteTelemovel = 1m
-            //}
+           
         });
             DbContext.SaveChanges();
         }
@@ -216,7 +208,7 @@ namespace UPtel.Data
             DbContext.Telefone.AddRange(new Telefone[] {
             new Telefone
             {
-                Nome = "Teste",
+                Nome = "Premium",
                 Limite = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
@@ -232,23 +224,7 @@ namespace UPtel.Data
                 PrecoPacoteTelefone = 0m
 
             },
-            //new Telefone
-            //{
-            //    Numero = "275888888",
-            //    Limite = 44600,
-            //    PrecoMinutoNacional = 0,
-            //    PrecoMinutoInternacional = 0.1M,
-            //    PrecoPacoteTelefone = 1m
-
-            //},
-            //new Telefone
-            //{
-            //    Numero = "224567891",
-            //    Limite = 44600,
-            //    PrecoMinutoNacional = 0,
-            //    PrecoMinutoInternacional = 0,
-            //    PrecoPacoteTelefone = 1m
-            //}
+           
         });
             DbContext.SaveChanges();
         }
@@ -273,80 +249,6 @@ namespace UPtel.Data
 
             DbContext.SaveChanges();
         }
-
-
-        //-------------------------------------------------
-        //         PROMOÇOES
-        //   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
-        //-------------------------------------------------
-
-
-        //private static void InsereDadosTestePromocoes(UPtelContext DbContext)
-        //{
-        //    if (DbContext.Telemovel.Any()) return;
-        //    DbContext.Promocoes.AddRange(new Promocoes[] {
-        //    new Promocoes
-        //    {
-        //        NomePromocao = "Promo Chamadas Internacionais",
-        //        Descricao = "Ligue para o estrangeiro ao preço das chamandas nacionais",
-                
-        //    },
-        //    new Promocoes
-        //    {
-        //        NomePromocao = "Promoção aniversário estudante",
-        //        Descricao = "Tenha 30% de desconto na sua Internet móvel ",
-        //        PromoCanais= 0,
-        //        Desconto = 30
-        //    },
-        //    new Promocoes
-        //    {
-        //        NomePromocao = "Promoção internet fixa",
-        //        Descricao = "Aproveite para mudar a ligação da sua internet suba a velocidade e mantenha o preço",
-        //        PromoCanais= 0,
-        //        Desconto = 0
-
-        //    },
-        //      new Promocoes
-        //    {
-        //        NomePromocao = "Promoção desporto",
-        //        Descricao = "Aproveite para ter todos os canais de desporto no mesmo pacote",
-        //        PromoCanais= 10,
-        //        Desconto = 15
-
-        //    },
-        //        new Promocoes
-        //    {
-        //        NomePromocao = "Promoção 2 em 1",
-        //        Descricao = "Com esta promoção tenha um tarifário há sua medida com internet móvel de excelência",
-        //        PromoCanais= 0,
-        //        Desconto = 15
-
-        //    }
-        //});
-        //    DbContext.SaveChanges();
-        //}
-
-        //private static void InserePromocoesFicticiosParaTestarPaginacao(UPtelContext DbContext)
-        //{
-
-        //    if (DbContext.Promocoes.Any()) return;
-
-        //    for (int i = 0; i < 50; i++)
-
-        //    {
-        //        DbContext.Promocoes.Add(new Promocoes
-        //        {
-        //            NomePromocao = "Up Top" + i,
-        //            Descricao = "VIP only!... Comunicações grátis!",
-        //            PromoCanais = 3,
-        //            Desconto = 2
-
-        //        });
-        //    }
-
-        //    DbContext.SaveChanges();
-        //}
-
 
 
         //-------------------------------------------------
@@ -377,7 +279,22 @@ namespace UPtel.Data
             {
                 NomeCanal = "RTP Africa",
                 Foto = null
-            }
+            },
+              new Canais
+            {
+                NomeCanal = "TV Cine 1",
+                Foto = null
+            },
+                new Canais
+            {
+                NomeCanal = "Hollywood",
+                Foto = null
+            },
+                  new Canais
+            {
+                NomeCanal = "AXN",
+                Foto = null
+            },
         });
             DbContext.SaveChanges();
         }
@@ -417,7 +334,7 @@ namespace UPtel.Data
                 Limite = 7.5m,
                 Velocidade=100,
                 TipoConexao="Sem conexão",
-                PrecoNetFixa = 0m,
+                PrecoNetFixa = 10m,
                 Notas="",
             },
                 new NetFixa
@@ -519,18 +436,57 @@ namespace UPtel.Data
         {
             if (DbContext.PacoteCanais.Any()) return;
 
-            Canais canaisRTP = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP Africa");
+            Canais canaisRTPAfrica = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP Africa");
+            Canais canaisRTP1 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 1");
+            Canais canaisRTP2 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 2");
+            Canais canaisRTP3 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 3");
+            Canais canaisTvCine = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "TV Cine 1");
+            Canais canaisHoll = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "Hollywood");
+            Canais canaisAXN = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "AXN");
             Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
+            Televisao televisaoEnt = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Entretenimento");
+
+            
 
             DbContext.PacoteCanais.AddRange(new PacoteCanais[]
                {
                 new PacoteCanais
                 {
                     Televisao = televisaoBasico,
-                    Canais = canaisRTP
+                    Canais = canaisRTPAfrica,
+                },
+                 new PacoteCanais
+                {
+                    Televisao = televisaoBasico,
+                    Canais = canaisRTP1,
+                },
+                   new PacoteCanais
+                {
+                    Televisao = televisaoBasico,
+                    Canais = canaisRTP2,
+                },
+                   new PacoteCanais
+                {
+                    Televisao = televisaoBasico,
+                    Canais = canaisRTP3,
+                },
+                   new PacoteCanais
+                {
+                    Televisao = televisaoEnt,
+                    Canais = canaisAXN,
+                },
+                   new PacoteCanais
+                {
+                    Televisao = televisaoEnt,
+                    Canais = canaisTvCine,
+                },
+                   new PacoteCanais
+                {
+                    Televisao = televisaoEnt,
+                    Canais = canaisHoll,
                 }
-
                 });
+
 
             DbContext.SaveChanges();
         }
@@ -547,7 +503,7 @@ namespace UPtel.Data
 
             Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
             Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Nome == "Básico");
-            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Fibra 1");
+            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Básico");
             Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Nome == "Básico");
             NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Nome == "Básico");
 
@@ -684,6 +640,7 @@ namespace UPtel.Data
                     Email="Jose.Ramos@gmail.com",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserEmpresa,
+                    Estado = "Ativo",
                     CodigoPostalExt = "695",
 
 
@@ -701,6 +658,7 @@ namespace UPtel.Data
                     Email="joao@ipg.pt",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserParticular,
+                    Estado = "Ativo",
                     CodigoPostalExt="588",
 
                 },
@@ -717,6 +675,7 @@ namespace UPtel.Data
                     Email="maria@ipg.pt",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserOperador,
+                    Estado = "Ativo",
                     CodigoPostalExt="588",
                 },
                 new Users
@@ -732,6 +691,7 @@ namespace UPtel.Data
                     Email="admin@UPtel.pt",
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUserAdministrador,
+                    Estado = "Ativo",
                     CodigoPostalExt="588",
                 },
                 });
@@ -762,6 +722,7 @@ namespace UPtel.Data
                     Email = "José.Ramos@gmail.com " + i,
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUser,
+                    Estado = "Ativo",
                     CodigoPostalExt = "695",
 
                 });
@@ -781,11 +742,9 @@ namespace UPtel.Data
         {
             if (DbContext.Contratos.Any()) return;
 
-            Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "José Figueiras");
+            Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "João Santos");
             Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mariana Rute Guedes");
-            //Promocoes promocoes = DbContext.Promocoes.FirstOrDefault(n => n.NomePromocao == "Extra Nacional");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
-
 
             DbContext.Contratos.AddRange(new Contratos[]
                {
@@ -793,13 +752,11 @@ namespace UPtel.Data
                 {
                     Cliente = clientes,
                     Funcionario = funcionarios,
-                    //Promocao = promocoes,
                     Pacote = pacotes,
-                    Numeros = null,
                     DataInicio = new DateTime(1965,05,25),
                     Fidelizacao = 5,
-                    //TempoPromocao = 5,
                     PrecoContrato = 59m,
+                    Numeros = null,
                 },
 
 
@@ -809,6 +766,361 @@ namespace UPtel.Data
         }
 
 
+        ////-------------------------------------------------
+        ////         PROMO TELEMOVEL
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosPromoTelemovel(UPtelContext DbContext)
+        {
+          
+            if (DbContext.PromoTelemovel.Any()) return;
+          
+            DbContext.PromoTelemovel.AddRange(new PromoTelemovel[] {
+            new PromoTelemovel
+            {
+                Nome = "Dia dos namorados",
+                LimiteMinutos = 500,
+                LimiteSMS = 500,
+                DecontoPrecoMinNacional = 0m,
+                DecontoPrecoMinInternacional = 0m,
+                DecontoPrecoSMS = 5m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 0m,
+                
+            },
+            new PromoTelemovel
+            {
+                Nome = "Páscoa",
+                LimiteMinutos = 500,
+                LimiteSMS = 500,
+                DecontoPrecoMinNacional = 2m,
+                DecontoPrecoMinInternacional = 2m,
+                DecontoPrecoSMS = 0m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 0m,
+
+            },
+            new PromoTelemovel
+            {
+                Nome = "Natal",
+                LimiteMinutos = 0,
+                LimiteSMS = 0,
+                DecontoPrecoMinNacional = 0m,
+                DecontoPrecoMinInternacional = 0m,
+                DecontoPrecoSMS = 0m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 10m,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////        CONTRATO PROMO TELEMOVEL
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosContratoPromoTelemovel(UPtelContext DbContext)
+        {
+
+            if (DbContext.ContratoPromoTelemovel.Any()) return;
+            PromoTelemovel promoNatal = DbContext.PromoTelemovel.FirstOrDefault(c => c.Nome == "Natal");
+            Contratos contratoNatal = DbContext.Contratos.FirstOrDefault(c => c.Cliente.Nome == "João Santos");
+
+
+           DbContext.ContratoPromoTelemovel.AddRange(new ContratoPromoTelemovel[]
+           {
+            new ContratoPromoTelemovel
+            {
+
+                Contratos = contratoNatal,
+                PromoTelemovel  = promoNatal,
+                DataInicio =  new DateTime(2021,12,1),
+                DataFim =  new DateTime(2021,12,31),
+            },
+            
+
+           });
+            DbContext.SaveChanges();
+        }
+
+
+        ////-------------------------------------------------
+        ////         PROMO NET MÓVEL
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosPromoNetMovel(UPtelContext DbContext)
+        {
+
+            if (DbContext.PromoNetMovel.Any()) return;
+
+            DbContext.PromoNetMovel.AddRange(new PromoNetMovel[] {
+            new PromoNetMovel
+            {
+                Nome = "Dia dos namorados",
+                Limite = 1,
+                DescontoPrecoTotal = 10,
+
+            },
+            new PromoNetMovel
+            {
+                Nome = "Páscoa",
+                Limite = 4,
+                DescontoPrecoTotal = 5,
+
+            },
+            new PromoNetMovel
+            {
+                Nome = "Natal",
+                Limite = 5,
+                DescontoPrecoTotal = 5,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////        CONTRATO PROMO NET MÓVEL
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosContratoPromoNetMovel(UPtelContext DbContext)
+        {
+
+            if (DbContext.ContratoPromoNetMovel.Any()) return;
+            PromoNetMovel promoNatal = DbContext.PromoNetMovel.FirstOrDefault(c => c.Nome == "Natal");
+            Contratos contratoNatal = DbContext.Contratos.FirstOrDefault(c => c.Cliente.Nome == "João Santos");
+
+
+            DbContext.ContratoPromoNetMovel.AddRange(new ContratoPromoNetMovel[]
+            {
+            new ContratoPromoNetMovel
+            {
+
+                Contratos = contratoNatal,
+                PromoNetMovel  = promoNatal,
+                DataInicio =  new DateTime(2021,12,1),
+                DataFim =  new DateTime(2021,12,31),
+            },
+
+
+            });
+            DbContext.SaveChanges();
+        }
+       
+        ////-------------------------------------------------
+        ////         PROMO NET FIXA
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosPromoNetFixa(UPtelContext DbContext)
+        {
+
+            if (DbContext.PromoNetFixa.Any()) return;
+
+            DbContext.PromoNetFixa.AddRange(new PromoNetFixa[] {
+            new PromoNetFixa
+            {
+                Nome = "Dia dos namorados",
+                Velocidade  = 30,
+                Limite = 1,
+                DescontoPrecoTotal = 10,
+
+            },
+            new PromoNetFixa
+            {
+                Nome = "Páscoa",
+                Velocidade = 50,
+                Limite = 4,
+                DescontoPrecoTotal = 5,
+
+            },
+            new PromoNetFixa
+            {
+                Nome = "Natal",
+                Velocidade = 100,
+                Limite = 5,
+                DescontoPrecoTotal = 5,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////        CONTRATO PROMO NET FIXA
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosContratoPromoNetFixa(UPtelContext DbContext)
+        {
+
+            if (DbContext.ContratoPromoNetFixa.Any()) return;
+            PromoNetFixa promoNatal = DbContext.PromoNetFixa.FirstOrDefault(c => c.Nome == "Páscoa");
+            Contratos contratoNatal = DbContext.Contratos.FirstOrDefault(c => c.Cliente.Nome == "João Santos");
+
+
+            DbContext.ContratoPromoNetFixa.AddRange(new ContratoPromoNetFixa[]
+            {
+            new ContratoPromoNetFixa
+            {
+
+                Contratos = contratoNatal,
+                PromoNetFixa  = promoNatal,
+                DataInicio =  new DateTime(2021,12,1),
+                DataFim =  new DateTime(2021,12,31),
+            },
+
+
+            });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////         PROMO TELEFONE
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosPromoTelefone(UPtelContext DbContext)
+        {
+
+            if (DbContext.PromoTelefone.Any()) return;
+
+            DbContext.PromoTelefone.AddRange(new PromoTelefone[] {
+            new PromoTelefone
+            {
+                Nome = "Dia dos namorados",
+                DescontoMinNacional = 10,
+                DescontoMinInternacional = 6,
+                Limite = 1,
+                DescontoPrecoTotal = 10,
+
+            },
+            new PromoTelefone
+            {
+                Nome = "Páscoa",
+                DescontoMinNacional = 5,
+                DescontoMinInternacional = 10,
+                Limite = 4,
+                DescontoPrecoTotal = 5,
+
+            },
+            new PromoTelefone
+            {
+                Nome = "Natal",
+                DescontoMinNacional = 20,
+                DescontoMinInternacional = 50,
+                Limite = 5,
+                DescontoPrecoTotal = 10,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////        CONTRATO PROMO TELEFONE
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosContratoPromoTelefone(UPtelContext DbContext)
+        {
+
+            if (DbContext.ContratoPromoTelefone.Any()) return;
+            PromoTelefone promoNatal = DbContext.PromoTelefone.FirstOrDefault(c => c.Nome == "Páscoa");
+            Contratos contratoNatal = DbContext.Contratos.FirstOrDefault(c => c.Cliente.Nome == "João Santos");
+
+
+            DbContext.ContratoPromoTelefone.AddRange(new ContratoPromoTelefone[]
+            {
+            new ContratoPromoTelefone
+            {
+
+                Contratos = contratoNatal,
+                PromoTelefone  = promoNatal,
+                DataInicio =  new DateTime(2021,12,1),
+                DataFim =  new DateTime(2021,12,31),
+            },
+
+
+            });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////         PROMO TELEVISÃO
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosPromoTelevisao(UPtelContext DbContext)
+        {
+
+            if (DbContext.PromoTelevisao.Any()) return;
+
+            DbContext.PromoTelevisao.AddRange(new PromoTelevisao[] {
+            new PromoTelevisao
+            {
+                Nome = "Dia dos namorados",
+                CanaisGratis = 5,
+                DescontoPrecoTotal = 10,
+
+            },
+            new PromoTelevisao
+            {
+                Nome = "Páscoa",
+                CanaisGratis = 4,
+                DescontoPrecoTotal = 5,
+
+            },
+            new PromoTelevisao
+            {
+                Nome = "Natal",
+                CanaisGratis = 2,
+                DescontoPrecoTotal = 10,
+
+            },
+
+        });
+            DbContext.SaveChanges();
+        }
+
+        ////-------------------------------------------------
+        ////        CONTRATO PROMO TELEVISÃO
+        ////   DADOS DE TESTE PARA PAGINAÇÃO E PESQUISA 
+        ////-------------------------------------------------
+
+        private static void InsereDadosContratoPromoTelevisao(UPtelContext DbContext)
+        {
+            
+
+            if (DbContext.ContratoPromoTelevisao.Any()) return;
+            PromoTelevisao promoNatal = DbContext.PromoTelevisao.FirstOrDefault(c => c.Nome == "Páscoa");
+            Contratos contratoNatal = DbContext.Contratos.FirstOrDefault(c => c.Cliente.Nome == "João Santos");
+
+
+            DbContext.ContratoPromoTelevisao.AddRange(new ContratoPromoTelevisao[]
+            {
+            new ContratoPromoTelevisao
+            {
+
+                Contratos = contratoNatal,
+                PromoTelevisao  = promoNatal,
+                DataInicio =  new DateTime(2021,12,1),
+                DataFim =  new DateTime(2021,12,31),
+            },
+
+
+            });
+            DbContext.SaveChanges();
+        }
 
 
         //-------------------------------------------------

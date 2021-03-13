@@ -24,28 +24,34 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Descricao)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CanaisGratis)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.PromoTelevisaoId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.PromoTelevisaoId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.PromoTelevisaoId">Delete</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CanaisGratis)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descricao)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.PromoTelevisaoId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.PromoTelevisaoId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.PromoTelevisaoId">Delete</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

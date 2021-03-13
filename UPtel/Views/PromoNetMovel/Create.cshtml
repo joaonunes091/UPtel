@@ -24,6 +24,11 @@
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Descricao" class="control-label" style="color:darkgray">Descrição da Promoção</label>
+                                <textarea rows="3" asp-for="Descricao" placeholder="Descrição" class="form-control"></textarea>
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="DescontoPrecoTotal" class="control-label" style="color:darkgray">Desconto></label>
                                 <input asp-for="DescontoPrecoTotal" class="form-control" placeholder="Ex: 10" />
                                 <span asp-validation-for="DescontoPrecoTotal" class="text-danger"></span>

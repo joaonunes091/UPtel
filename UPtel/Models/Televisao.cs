@@ -24,7 +24,7 @@ namespace UPtel.Models
         [StringLength(20, ErrorMessage = "O limite de carateres(20) foi ultrapassado")]
         public string Nome { get; set; }
         
-        [StringLength(100, ErrorMessage = "O limite de carateres(100) foi ultrapassado")]
+        [StringLength(300, ErrorMessage = "O limite de carateres(300) foi ultrapassado")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
