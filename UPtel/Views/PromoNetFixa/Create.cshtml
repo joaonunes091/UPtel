@@ -15,7 +15,7 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label" style="color:darkgray">Designação da promoção</label>
-                                <input asp-for="Nome" class="form-control" placeholder="Ex: Básico"/>
+                                <input asp-for="Nome" class="form-control" placeholder="Ex: Básico" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -29,8 +29,13 @@
                                 <span asp-validation-for="Velocidade" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Descricao" class="control-label" style="color:darkgray">Descrição da Promoção</label>
+                                <textarea rows="3" asp-for="Descricao" placeholder="Descrição" class="form-control"></textarea>
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="DescontoPrecoTotal" class="control-label" style="color:darkgray">Desconto</label>
-                                <input asp-for="DescontoPrecoTotal" class="form-control" placeholder="Ex: 10"/>
+                                <input asp-for="DescontoPrecoTotal" class="form-control" placeholder="Ex: 10" />
                                 <span asp-validation-for="DescontoPrecoTotal" class="text-danger"></span>
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">

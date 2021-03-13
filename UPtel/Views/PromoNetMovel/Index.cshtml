@@ -44,6 +44,9 @@
                                     @Html.DisplayNameFor(model => model.PromoNetMovel[0].Limite)
                                 </th>
                                 <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetMovel[0].Descricao)
+                                </th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetMovel[0].DescontoPrecoTotal)
                                 </th>
                                 <th></th>
@@ -52,20 +55,23 @@
                         <tbody>
                             @foreach (var item in Model.PromoNetMovel)
                             {
-                                <tr>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Nome)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Limite)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                    </td>
-                                    <td>
-                                        <a asp-action="Details" asp-route-id="@item.PromoNetMovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Limite)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.PromoNetMovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
