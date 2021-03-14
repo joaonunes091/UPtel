@@ -37,6 +37,18 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContrato { get; set; }
 
+        [ForeignKey(nameof(ClienteId))]
+        [InverseProperty(nameof(Users.ContratosCliente))]
+        public virtual Users Cliente { get; set; }
+
+        [ForeignKey(nameof(FuncionarioId))]
+        [InverseProperty(nameof(Users.ContratosFuncionario))]
+        public virtual Users Funcionario { get; set; }
+
+        [ForeignKey(nameof(PacoteId))]
+        [InverseProperty(nameof(Pacotes.Contratos))]
+        public virtual Pacotes Pacote { get; set; }
+
         public List<CheckBox> ListaPromoNetFixa { get; set; }
         public List<CheckBox> ListaPromoNetMovel { get; set; }
         public List<CheckBox> ListaPromoTelefone { get; set; }

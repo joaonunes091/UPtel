@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Contratos
+﻿@model UPtel.Models.ContratoViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -13,12 +13,12 @@
                     <h4>Contratos</h4>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.PromocaoId)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.PromocaoId)
-                        </dd>
+                        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PromocaoId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PromocaoId)
+        </dd>*@
                         <dt class="col-sm-2">
                             @Html.DisplayNameFor(model => model.Numeros)
                         </dt>
@@ -61,6 +61,72 @@
                         <dd class="col-sm-10">
                             @Html.DisplayFor(model => model.Pacote.NomePacote)
                         </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções net fixa
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
+                            {
+                                @if (Model.ListaPromoNetFixa[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoNetFixa[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções net móvel
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
+                            {
+                                @if (Model.ListaPromoNetMovel[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoNetMovel[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções telefone
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelefone[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelefone[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções telemóvel
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelemovel[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelemovel[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções televisão
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelevisao[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+
                     </dl>
                 </div>
                 <div>

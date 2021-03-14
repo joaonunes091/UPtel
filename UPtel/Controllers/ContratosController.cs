@@ -71,17 +71,62 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var contratos = await _context.Contratos
-                .Include(c => c.Cliente)
-                .Include(c => c.Funcionario)
-                .Include(c => c.Pacote)
-                .FirstOrDefaultAsync(m => m.ContratoId == id);
-            if (contratos == null)
-            {
-                return NotFound();
-            }
+            ContratoViewModel CVM = new ContratoViewModel();
 
-            return View(contratos);
+            var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
+                .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
+                .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
+                .Include(p => p.ContratoPromoTelemovel).ThenInclude(p => p.PromoTelemovel)
+                .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.ContratoId == id);
+
+            var listaPromoNetFixa = _context.PromoNetFixa.Select(x => new CheckBox()
+            {
+                Id = x.PromoNetFixaId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoNetFixa.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoNetMovel = _context.PromoNetMovel.Select(x => new CheckBox()
+            {
+                Id = x.PromoNetMovelId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoNetMovel.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelefone = _context.PromoTelefone.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelefoneId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelefone.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelemovel = _context.PromoTelemovel.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelemovelId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelemovel.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelevisao = _context.PromoTelevisao.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelevisaoId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelevisao.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+
+            CVM.FuncionarioId = contrato.FuncionarioId;
+            CVM.ClienteId = contrato.ClienteId;
+            CVM.DataInicio = contrato.DataInicio;
+            CVM.PacoteId = contrato.PacoteId;
+            CVM.Numeros = contrato.Numeros;
+            CVM.Fidelizacao = contrato.Fidelizacao;
+            CVM.ContratoId = (int)id;
+            CVM.ListaPromoNetFixa = listaPromoNetFixa;
+            CVM.ListaPromoNetMovel = listaPromoNetMovel;
+            CVM.ListaPromoTelefone = listaPromoTelefone;
+            CVM.ListaPromoTelemovel = listaPromoTelemovel;
+            CVM.ListaPromoTelevisao = listaPromoTelevisao;
+
+
+            return View(CVM);
         }
 
 
