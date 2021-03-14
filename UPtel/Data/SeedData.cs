@@ -31,6 +31,7 @@ namespace UPtel.Data
 
         internal static void InsereDadosTeste(UPtelContext DbContext)
         {
+            InsereDadosTesteUserTypes(DbContext);
             InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
@@ -39,7 +40,6 @@ namespace UPtel.Data
             InsereDadosTestePacoteCanais(DbContext);
             InsereDadosTesteNetMovel(DbContext);
             InsereDadosTesteNetfixa(DbContext);
-            InsereDadosTesteUserTypes(DbContext);
             InsereDadosPromoTelemovel(DbContext);
             InsereDadosTestePacote(DbContext);
             InsereDadosTesteContratos(DbContext);
