@@ -48,17 +48,17 @@
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
                                 </th>
                                 @*<th>
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinNacional)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
-                                </th>*@
+                            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinNacional)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
+                        </th>*@
                                 @*<th>
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
-                                </th>*@
+                            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
+                        </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
                                 </th>
@@ -71,41 +71,73 @@
                         <tbody>
                             @foreach (var item in Model.PromoTelemovel)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LimiteSMS)
-                                </td>
-                                @*<td>
-                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMinNacional)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
-                                </td>*@
-                                @*<td>
-                                    @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
-                                </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Descricao)
-                                </td>
-                                <td>
-                                    <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LimiteMinutos)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LimiteSMS)
+                                    </td>
+                                    @*<td>
+                                @Html.DisplayFor(modelItem => item.DecontoPrecoMinNacional)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
+                            </td>*@
+                                    @*<td>
+                                @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
+                            </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
                 }
             </div>
         </div>
