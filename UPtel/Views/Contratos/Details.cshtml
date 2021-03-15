@@ -1,64 +1,62 @@
 ﻿@model UPtel.Models.ContratoViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Details</h1>
-
+                <h2>Detalhes de contratos</h2>
+                <br /><br />
                 <div>
-                    <h4>Contratos</h4>
-                    <hr />
                     <dl class="row">
                         @*<dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PromocaoId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PromocaoId)
-        </dd>*@
-                        <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PromocaoId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PromocaoId)
+                </dd>*@
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Numeros)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Numeros)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DataInicio)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DataInicio)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Fidelizacao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Fidelizacao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.PrecoContrato)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.PrecoContrato)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Cliente)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Cliente.CodigoPostal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Funcionario)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Funcionario.CodigoPostal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Pacote)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Pacote.NomePacote)
                         </dd>
                         <dt class="col-sm-5 titulo">
@@ -126,12 +124,12 @@
                                 }
                             }
                         </dd>
-
                     </dl>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.ContratoId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.ContratoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.ContratoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
         </div>
