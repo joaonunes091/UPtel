@@ -35,27 +35,27 @@
                 else
                 {
 
-                    <table class="table">
+                    <table class="table table-borderless text-white">
                         <thead>
                             <tr>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].Nome)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].Limite)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoMinNacional)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoMinInternacional)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoPrecoTotal)
                                 </th>
-                                <th>
+                                @*<th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].Descricao)
-                                </th>
+                                </th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -78,9 +78,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>
+                                    </td>*@
                                     <td>
                                     <td>
                                         <a asp-action="Details" asp-route-id="@item.PromoTelefoneId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>

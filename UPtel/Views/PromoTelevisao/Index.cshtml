@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Promoções internet fixa</h2>
+                <h2 class="font">Promoções televisão</h2>
                 <div>
                     <br />
                     <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Televisão</h5>
                             <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
@@ -28,25 +28,25 @@
                 <p>
                     <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                 </p>
-                @if (Model.PromoNetFixas.Count() == 0)
+                @if (Model.PromoTelevisao.Count() == 0)
                 {
                     <p>Não existem promoções para mostrar</p>
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table table-borderless text-white">
                         <thead>
                             <tr>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelevisao[0].Nome)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelevisao[0].CanaisGratis)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelevisao[0].DescontoPrecoTotal)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelevisao[0].Descricao)
                                 </th>
                                 <th></th>

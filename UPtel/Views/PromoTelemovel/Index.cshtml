@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Promoções internet fixa</h2>
+                <h2 class="font">Promoções telemóvel</h2>
                 <div>
                     <br />
                     <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Telemóvel</h5>
                             <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
@@ -35,16 +35,16 @@
                 else
                 {
 
-                    <table class="table">
+                    <table class="table table-borderless text-white">
                         <thead>
                             <tr>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].Nome)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
                                 </th>
                                 @*<th>
@@ -59,10 +59,10 @@
                         <th>
                             @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
                         </th>*@
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
                                 </th>
                                 <th></th>
