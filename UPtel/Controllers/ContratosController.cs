@@ -310,6 +310,7 @@ namespace UPtel.Controllers
         // GET: Contratos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ContratoViewModel CVM = new ContratoViewModel();
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
                 .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
