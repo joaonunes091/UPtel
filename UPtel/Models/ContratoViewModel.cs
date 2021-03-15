@@ -10,11 +10,17 @@ namespace UPtel.Models
     public class ContratoViewModel
     {
         public int ContratoId { get; set; }
+        public string NomeContrato { get; set; }
+
 
         [Display(Name = "Nome de cliente")]
         public int ClienteId { get; set; }
+        public string NomeCliente { get; set; }
+
         [Display(Name = "Nome de funcionário")]
         public int FuncionarioId { get; set; }
+        public string NomeFuncionario { get; set; }
+
         [Display(Name = "Nome da promoção")]
         public int PromocaoId { get; set; }
         [Display(Name = "Nome do pacote")]

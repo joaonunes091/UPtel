@@ -78,6 +78,10 @@ namespace UPtel.Controllers
                 .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
                 .Include(p => p.ContratoPromoTelemovel).ThenInclude(p => p.PromoTelemovel)
                 .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao)
+                .Include(p => p.Cliente)
+                .Include(p => p.Funcionario)
+                .Include(p => p.Pacote)
+
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
 
@@ -112,19 +116,21 @@ namespace UPtel.Controllers
                 Selecionado = x.ContratoPromoTelevisao.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
             }).ToList();
 
+            CVM.ContratoId = (int)id;
             CVM.FuncionarioId = contrato.FuncionarioId;
             CVM.ClienteId = contrato.ClienteId;
             CVM.DataInicio = contrato.DataInicio;
             CVM.PacoteId = contrato.PacoteId;
             CVM.Numeros = contrato.Numeros;
             CVM.Fidelizacao = contrato.Fidelizacao;
-            CVM.ContratoId = (int)id;
             CVM.ListaPromoNetFixa = listaPromoNetFixa;
             CVM.ListaPromoNetMovel = listaPromoNetMovel;
             CVM.ListaPromoTelefone = listaPromoTelefone;
             CVM.ListaPromoTelemovel = listaPromoTelemovel;
             CVM.ListaPromoTelevisao = listaPromoTelevisao;
-
+            CVM.NomeCliente = contrato.Cliente.Nome;
+            CVM.NomeFuncionario = contrato.Funcionario.Nome;
+            CVM.NomeContrato = contrato.Pacote.NomePacote;
 
             return View(CVM);
         }
