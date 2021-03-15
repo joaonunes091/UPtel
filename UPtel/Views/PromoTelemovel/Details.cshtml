@@ -5,73 +5,74 @@
 }
 <section id="secondhero">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-white">
             <div class="col-xl-8 text-white">
-                <h1>Details</h1>
+                <h2 class="font">Detalhes da Promoção de telemóvel</h2>
 
                 <div>
-                    <h4>PromoTelemovel</h4>
-                    <hr />
+                    <br /><br />
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.LimiteMinutos)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.LimiteMinutos)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.LimiteSMS)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.LimiteSMS)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DecontoPrecoMinNacional)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DecontoPrecoMinNacional)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DecontoPrecoMinInternacional)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DecontoPrecoMinInternacional)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DecontoPrecoSMS)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DecontoPrecoSMS)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DecontoPrecoMMS)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DecontoPrecoMMS)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DecontoPrecoTotal)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DecontoPrecoTotal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Descricao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.PromoTelemovelId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                <br />
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.PromoTelemovelId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.PromoTelemovelId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
         </div>
