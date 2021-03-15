@@ -7,53 +7,54 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Details</h1>
+                <h2 class="font">Detalhes da Promoção de Telefone</h2>
 
                 <div>
-                    <h4>PromoTelefone</h4>
-                    <hr />
+                    <br /><br />
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Nome)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Limite)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Limite)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DescontoMinNacional)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DescontoMinNacional)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DescontoMinInternacional)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DescontoMinInternacional)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.DescontoPrecoTotal)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5">
                             @Html.DisplayNameFor(model => model.Descricao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
                     </dl>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.PromoTelefoneId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                <br />
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.PromoTelefoneId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.PromoTelefoneId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
         </div>
