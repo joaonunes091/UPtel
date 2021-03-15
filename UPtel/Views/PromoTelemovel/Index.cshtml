@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.PromoTelemovel>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,84 +7,106 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>PromoTelemovel</h1>
-
+                <h2 class="font">Promoções internet fixa</h2>
+                <div>
+                    <br />
+                    <div class="col-md-8 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <p>
-                    <a asp-action="Create">Create New</a>
+                    <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                 </p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Nome)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LimiteMinutos)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LimiteSMS)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DecontoPrecoMinNacional)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DecontoPrecoMinInternacional)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DecontoPrecoSMS)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DecontoPrecoMMS)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DecontoPrecoTotal)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descricao)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nome)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LimiteSMS)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DecontoPrecoMinNacional)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descricao)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.PromoTelemovelId">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.PromoTelemovelId">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.PromoTelemovelId">Delete</a>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                @if (Model.PromoTelemovel.Count() == 0)
+                {
+                    <p>Não existem promoções para mostrar</p>
+                }
+                else
+                {
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
+                                </th>
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinNacional)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
+                                </th>*@
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
+                                </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PromoTelemovel)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LimiteMinutos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LimiteSMS)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMinNacional)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
+                                </td>*@
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descricao)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
             </div>
         </div>
     </div>
