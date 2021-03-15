@@ -20,9 +20,25 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelemovel
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.PromoTelemovel.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.PromoTelemovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+            List<PromoTelemovel> promoTelemovel = await _context.PromoTelemovel.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                PromoTelemovel = promoTelemovel,
+                NomePesquisar = nomePesquisar
+            };
+            return base.View(modelo);
         }
 
         // GET: PromoTelemovel/Details/5
