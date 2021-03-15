@@ -76,8 +76,13 @@ namespace UPtel.Models
         [Display(Name = "Tipo")]
         public int TipoId { get; set; }
 
+        [Display(Name = "Distrito")]
+        public int DistritoId { get; set; }
 
-
+        [Required(ErrorMessage = "É necessário colocar uma data")]
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        public DateTime DataRegisto { get; set; }
 
         [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3, MinimumLength = 3)]
@@ -97,8 +102,14 @@ namespace UPtel.Models
         [ForeignKey(nameof(TipoId))]
         [InverseProperty(nameof(UserType.Users))]
         public virtual UserType Tipo { get; set; }
+
+        [ForeignKey(nameof(DistritoId))]
+        [InverseProperty(nameof(Distrito.Users))]
+        public virtual Distrito DistritoNome { get; set; }
+
         [InverseProperty(nameof(Contratos.Cliente))]
         public virtual ICollection<Contratos> ContratosCliente { get; set; }
+
         [InverseProperty(nameof(Contratos.Funcionario))]
         public virtual ICollection<Contratos> ContratosFuncionario { get; set; }
     }
