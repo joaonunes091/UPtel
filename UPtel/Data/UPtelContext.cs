@@ -32,6 +32,7 @@ namespace UPtel.Data
         public virtual DbSet<Telemovel> Telemovel { get; set; }
         public virtual DbSet<Televisao> Televisao { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
+        public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         public virtual DbSet<PromoTelemovel> PromoTelemovel { get; set; }
@@ -144,6 +145,12 @@ namespace UPtel.Data
                     .HasName("PK_TipoClientes");
             });
 
+            modelBuilder.Entity<Distrito>(entity =>
+            {
+                entity.HasKey(e => e.DistritoId)
+                    .HasName("PK_DistritoNome");
+            });
+
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.Property(e => e.CodigoPostalExt).HasDefaultValueSql("(N'')");
@@ -153,6 +160,12 @@ namespace UPtel.Data
                     .HasForeignKey(d => d.TipoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users_UserType");
+
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Distrito");
             });
 
             OnModelCreatingPartial(modelBuilder);

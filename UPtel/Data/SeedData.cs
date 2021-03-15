@@ -31,6 +31,7 @@ namespace UPtel.Data
 
         internal static void InsereDadosTeste(UPtelContext DbContext)
         {
+            InsereDadosTesteDistrito(DbContext);
             InsereDadosTesteUserTypes(DbContext);
             InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
@@ -606,7 +607,102 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
+        //-------------------------------------------------
+        //       Distritos
+        //       DADOS DE TESTE 
+        //-------------------------------------------------
+        private static void InsereDadosTesteDistrito(UPtelContext DbContext)
+        {
+            if (DbContext.Distrito.Any()) return;
+            DbContext.Distrito.AddRange(new Distrito[] {
+            new Distrito
+            {
+                DistritoNome = "Nacional",
+            },
+            new Distrito
+            {
+                DistritoNome = "Aveiro",
+            },
+            new Distrito
+            {
+                DistritoNome = "Beja",
+            },
+            new Distrito
+            {
+                DistritoNome = "Braga",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Bragança",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Castelo Branco",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Coimbra",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Évora",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Faro",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Guarda",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Leiria",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Lisboa",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Portalegre",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Porto",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Santarém",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Setúbal",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Viana do Castelo",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Vila Real",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Viseu",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Açores",
+            },            
+            new Distrito
+            {
+                DistritoNome = "Madeira",
+            },
 
+        });
+            DbContext.SaveChanges();
+        }
 
         //-------------------------------------------------
         //         USERS
