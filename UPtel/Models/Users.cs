@@ -80,7 +80,7 @@ namespace UPtel.Models
         public int DistritoId { get; set; }
 
         [Required(ErrorMessage = "É necessário colocar uma data")]
-        [Column(TypeName = "date")]
+        [Column(TypeName = "Data de Registo")]
         [DataType(DataType.Date)]
         public DateTime DataRegisto { get; set; }
 

@@ -43,6 +43,7 @@ namespace UPtel.Controllers
                 TotalItems = await _context.Users.Where(p => p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
+
             List<Users> users = await _context.Users.Where(p => p.Nome.Contains(nomePesquisar) || p.Contribuinte.Contains(nomePesquisar) || p.Tipo.Tipo.Contains(nomePesquisar))
                     .Include(t => t.Tipo)
                     .OrderBy(c => c.Nome)
@@ -50,6 +51,8 @@ namespace UPtel.Controllers
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
                     .ToListAsync();
+            
+            List<Users> maisAntigos = await _context.Users.OrderBy(c => c.DataRegisto).ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
@@ -61,8 +64,20 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
 
-        // GET: User/Details/5
-        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> MaisAntigo()
+        {
+            List<Users> maisAntigos = await _context.Users.Where(p => p.Tipo.Tipo.Contains("Cliente")).Include(t => t.Tipo).OrderBy(c => c.DataRegisto).ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Users = maisAntigos,
+            };
+
+            return base.View(modelo);
+        }
+
+            // GET: User/Details/5
+            [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -117,7 +132,41 @@ namespace UPtel.Controllers
             return View(users);
         }
 
+        public async Task<IActionResult> DetailsClienteTopTen(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return View(users);
+        }
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> DetailsEmpresaTopTen(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.Users
+                .Include(u => u.Tipo)
+                .FirstOrDefaultAsync(m => m.UsersId == id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return View(users);
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //GET : User/RegistoAdministrador

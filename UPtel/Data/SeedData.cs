@@ -33,7 +33,7 @@ namespace UPtel.Data
         {
             InsereDadosTesteDistrito(DbContext);
             InsereDadosTesteUserTypes(DbContext);
-            InsereDadosTesteUsers(DbContext);
+            //InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTesteCanais(DbContext);
@@ -43,16 +43,16 @@ namespace UPtel.Data
             InsereDadosTesteNetfixa(DbContext);
             InsereDadosPromoTelemovel(DbContext);
             InsereDadosTestePacote(DbContext);
-            InsereDadosTesteContratos(DbContext);
+            //InsereDadosTesteContratos(DbContext);
             InsereDadosPromoNetMovel(DbContext);
             InsereDadosPromoNetFixa(DbContext);
             InsereDadosPromoTelefone(DbContext);
             InsereDadosPromoTelevisao(DbContext);
-            InsereDadosContratoPromoTelemovel(DbContext);
-            InsereDadosContratoPromoNetMovel(DbContext);
-            InsereDadosContratoPromoNetFixa(DbContext);
-            InsereDadosContratoPromoTelefone(DbContext);
-            InsereDadosContratoPromoTelevisao(DbContext);
+            //InsereDadosContratoPromoTelemovel(DbContext);
+            //InsereDadosContratoPromoNetMovel(DbContext);
+            //InsereDadosContratoPromoNetFixa(DbContext);
+            //InsereDadosContratoPromoTelefone(DbContext);
+            //InsereDadosContratoPromoTelevisao(DbContext);
            
 
             
@@ -811,7 +811,7 @@ namespace UPtel.Data
             {
                 if (DbContext.Users.Any()) return;
 
-                UserType tipoUser = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Operador");
+                UserType tipoUser = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Cliente Particular");
 
                 DbContext.Users.Add(new Users
                 {
@@ -828,7 +828,8 @@ namespace UPtel.Data
                     Tipo = tipoUser,
                     Estado = "Ativo",
                     CodigoPostalExt = "695",
-
+                    DataRegisto = new DateTime(1969 + i, 12, 18),
+                    DistritoId = 1,
                 });
 
             }

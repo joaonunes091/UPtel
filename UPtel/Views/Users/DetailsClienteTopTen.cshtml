@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
 
-                <h2 class="font">Detalhes Cliente Empresarial</h2>
+                <h2 class="font">Detalhes Cliente Individual</h2>
 
                 <div class="row">
                     <br />
@@ -21,11 +21,26 @@
                                 @Html.DisplayFor(model => model.Nome)
                             </dd>
                             <dt class="col-sm-5 titulo">
-                                Data de Fundação
+                                @Html.DisplayNameFor(model => model.Data)
                             </dt>
                             <dd class="col-sm-7">
                                 @Html.DisplayFor(model => model.Data)
                             </dd>
+                            <dt class="col-sm-5 titulo">
+                                @Html.DisplayNameFor(model => model.CartaoCidadao)
+                            </dt>
+                            @if (Model.CartaoCidadao == null)
+                            {
+                                <dd class="col-sm-7">
+                                    n/a
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.CartaoCidadao)
+                                </dd>
+                            }
                             <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Contribuinte)
                             </dt>
@@ -54,7 +69,6 @@
                                 <dd class="col-sm-7">
                                     n/a
                                 </dd>
-
                             }
                             else
                             {
@@ -118,9 +132,9 @@
                         </dl>
                     </div>
                     <div>
-                        <a asp-action="EditEmpresa" asp-route-id="@Model.UsersId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                        <a asp-action="EditCliente" asp-route-id="@Model.UsersId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
                         <a asp-action="Delete" asp-route-id="@Model.UsersId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
-                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                        <a asp-action="MaisAntigo"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                     </div>
                 </div>
             </div>
