@@ -79,6 +79,12 @@ namespace UPtel.Models
         [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
         public string CodigoPostalExt { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime DataRegisto { get; set; }
+
+        [Display(Name = "Distrito")]
+        public int DistritoId { get; set; }
+
         [Column("IBAN")]
         [StringLength(25, ErrorMessage = "O limite de caracteres(25) foi ultrapassado", MinimumLength = 25)]
         [Display(Name = "IBAN")]

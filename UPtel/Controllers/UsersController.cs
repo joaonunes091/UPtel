@@ -51,7 +51,7 @@ namespace UPtel.Controllers
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
                     .ToListAsync();
-            
+
             List<Users> maisAntigos = await _context.Users.OrderBy(c => c.DataRegisto).ToListAsync();
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
@@ -76,8 +76,8 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
 
-            // GET: User/Details/5
-            [Authorize(Roles = "Administrador")]
+        // GET: User/Details/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -87,6 +87,7 @@ namespace UPtel.Controllers
 
             var users = await _context.Users
                 .Include(u => u.Tipo)
+                .Include(u => u.DistritoNome)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
             {
@@ -105,6 +106,7 @@ namespace UPtel.Controllers
 
             var users = await _context.Users
                 .Include(u => u.Tipo)
+                .Include(u => u.DistritoNome)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
             {
@@ -123,6 +125,7 @@ namespace UPtel.Controllers
 
             var users = await _context.Users
                 .Include(u => u.Tipo)
+                .Include(u => u.DistritoNome)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
             {
@@ -141,6 +144,7 @@ namespace UPtel.Controllers
 
             var users = await _context.Users
                 .Include(u => u.Tipo)
+                .Include(u => u.DistritoNome)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
             {
@@ -159,6 +163,7 @@ namespace UPtel.Controllers
 
             var users = await _context.Users
                 .Include(u => u.Tipo)
+                .Include(u => u.DistritoNome)
                 .FirstOrDefaultAsync(m => m.UsersId == id);
             if (users == null)
             {
@@ -173,6 +178,9 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoAdministrador()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View();
         }
         // POST : User/RegistoAdministrador
@@ -181,6 +189,7 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> RegistoAdministrador(RegistoUserViewModel infoUsers, IFormFile ficheiroFoto)
         {
+
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
             infoUsers.TipoId = tipo.TipoId;
 
@@ -196,7 +205,7 @@ namespace UPtel.Controllers
             {
                 ModelState.AddModelError("DataNascimento", "Para se registar tem que ter mais de 18 anos");
             }
-            if (ficheiroFoto !=  null)
+            if (ficheiroFoto != null)
             {
                 if (ficheiroFoto.Length >= 2 * 1024 * 1024)
                 {
@@ -205,7 +214,7 @@ namespace UPtel.Controllers
             }
 
             CriaFotoUser(infoUsers, ficheiroFoto);
-           
+
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -244,6 +253,9 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoOperador()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View();
         }
 
@@ -278,7 +290,7 @@ namespace UPtel.Controllers
             }
 
             CriaFotoUser(infoUsers, ficheiroFoto);
-           
+
             if (!VerificaNIF(infoUsers))
             {
                 ModelState.AddModelError("", "Não foi possível realizar o registo. Tente de novo mais tarde.");
@@ -319,6 +331,9 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteEmpresa()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View();
         }
 
@@ -393,6 +408,9 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult RegistoClienteParticular()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View();
         }
 
@@ -478,6 +496,10 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
+
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View(users);
         }
 
@@ -487,8 +509,12 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Edit(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> Edit(int id, Users users, IFormFile ficheiroFoto)
         {
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var user = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
+            users.DataRegisto = user.DataRegisto;
+
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Administrador");
             users.TipoId = tipo.TipoId;
 
@@ -543,6 +569,9 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+
             return View(users);
         }
 
@@ -551,8 +580,12 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditOperador(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,Iban,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> EditOperador(int id, Users users, IFormFile ficheiroFoto)
         {
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var user = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
+            users.DataRegisto = user.DataRegisto;
+
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Operador");
             users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
@@ -608,6 +641,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             return View(users);
         }
 
@@ -617,8 +652,12 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador,Cliente")]
-        public async Task<IActionResult> EditCliente(int id, [Bind("UsersId,Nome,Data,CartaoCidadao,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> EditCliente(int id, Users users, IFormFile ficheiroFoto)
         {
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var user = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
+            users.DataRegisto = user.DataRegisto;
+
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Particular");
             users.TipoId = tipo.TipoId;
 
@@ -683,6 +722,8 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Ocorreu um erro, possivelmente o cliente já foi eliminado.";
                 return View("Erro");
             }
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+                .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             return View(users);
         }
 
@@ -692,8 +733,12 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> EditEmpresa(int id, [Bind("UsersId,Nome,Data,Contribuinte,Morada,CodigoPostal,Telefone,Telemovel,Email,TipoId,CodigoPostalExt,Estado,Fotografia")] Users users, IFormFile ficheiroFoto)
+        public async Task<IActionResult> EditEmpresa(int id, Users users, IFormFile ficheiroFoto)
         {
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var user = _context.Users.AsNoTracking().SingleOrDefault(m => m.UsersId == id);
+            users.DataRegisto = user.DataRegisto;
+
             var tipo = _context.UserType.SingleOrDefault(c => c.Tipo == "Cliente Empresarial");
             users.TipoId = tipo.TipoId;
             if (id != users.UsersId)
@@ -731,7 +776,7 @@ namespace UPtel.Controllers
             }
             return RedirectToAction("DetailsEmpresa", "Users");
         }
-      
+
         // GET: Clientes/Delete/5
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
@@ -883,6 +928,8 @@ namespace UPtel.Controllers
                 return false;
             }
 
+            infoUsers.DataRegisto = DateTime.Now;
+
             Users users = new Users
             {
                 Nome = infoUsers.Nome,
@@ -898,6 +945,8 @@ namespace UPtel.Controllers
                 TipoId = infoUsers.TipoId,
                 Fotografia = infoUsers.Fotografia,
                 Estado = infoUsers.Estado,
+                DataRegisto = infoUsers.DataRegisto,
+                DistritoId = infoUsers.DistritoId
             };
 
             _context.Add(users);

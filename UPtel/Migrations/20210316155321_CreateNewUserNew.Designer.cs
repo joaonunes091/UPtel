@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210307171141_AlteracoesClientesViewodel")]
-    partial class AlteracoesClientesViewodel
+    [Migration("20210316155321_CreateNewUserNew")]
+    partial class CreateNewUserNew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace UPtel.Migrations
             modelBuilder
                 .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("UPtel.Models.Canais", b =>
@@ -138,6 +138,146 @@ namespace UPtel.Migrations
                     b.ToTable("ClientesViewModel");
                 });
 
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetFixa", b =>
+                {
+                    b.Property<int>("ContratoPromoNetFixaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoNetFixaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoNetFixaId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoNetFixaId");
+
+                    b.ToTable("ContratoPromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetMovel", b =>
+                {
+                    b.Property<int>("ContratoPromoNetMovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoNetMovelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoNetMovelId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoNetMovelId");
+
+                    b.ToTable("ContratoPromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelefone", b =>
+                {
+                    b.Property<int>("ContratoPromoTelefoneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelefoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoTelefoneId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelefoneId");
+
+                    b.ToTable("ContratoPromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelemovel", b =>
+                {
+                    b.Property<int>("ContratoPromoTelemovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelemovelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoPromoTelemovelId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelemovelId");
+
+                    b.ToTable("ContratoPromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelevisao", b =>
+                {
+                    b.Property<int>("ContratoTelevisaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PromoTelevisaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoTelevisaoId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.HasIndex("PromoTelevisaoId");
+
+                    b.ToTable("ContratoPromoTelevisao");
+                });
+
             modelBuilder.Entity("UPtel.Models.Contratos", b =>
                 {
                     b.Property<int>("ContratoId")
@@ -170,12 +310,6 @@ namespace UPtel.Migrations
                     b.Property<decimal>("PrecoContrato")
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<int>("PromocaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TempoPromocao")
-                        .HasColumnType("int");
-
                     b.HasKey("ContratoId");
 
                     b.HasIndex("ClientesViewModelId");
@@ -186,9 +320,25 @@ namespace UPtel.Migrations
 
                     b.HasIndex(new[] { "PacoteId" }, "IX_Contratos_PacoteId");
 
-                    b.HasIndex(new[] { "PromocaoId" }, "IX_Contratos_PromocaoId");
-
                     b.ToTable("Contratos");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Distrito", b =>
+                {
+                    b.Property<int>("DistritoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DistritoNome")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("DistritoId")
+                        .HasName("PK_DistritoNome");
+
+                    b.ToTable("Distrito");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -321,32 +471,177 @@ namespace UPtel.Migrations
                     b.ToTable("Pacotes");
                 });
 
-            modelBuilder.Entity("UPtel.Models.Promocoes", b =>
+            modelBuilder.Entity("UPtel.Models.PromoNetFixa", b =>
                 {
-                    b.Property<int>("PromocaoId")
+                    b.Property<int>("PromoNetFixaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Desconto")
-                        .HasColumnType("int");
+                    b.Property<decimal>("DescontoPrecoTotal")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("NomePromocao")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<decimal>("Limite")
+                        .HasColumnType("decimal(5,2)");
 
-                    b.Property<int>("PromoCanais")
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Velocidade")
                         .HasColumnType("int");
 
-                    b.HasKey("PromocaoId");
+                    b.HasKey("PromoNetFixaId");
 
-                    b.ToTable("Promocoes");
+                    b.ToTable("PromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
+                {
+                    b.Property<int>("PromoNetMovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("DescontoPrecoTotal")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<decimal>("Limite")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PromoNetMovelId");
+
+                    b.ToTable("PromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
+                {
+                    b.Property<int>("PromoTelefoneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("DescontoMinInternacional")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DescontoMinNacional")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DescontoPrecoTotal")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("Limite")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PromoTelefoneId");
+
+                    b.ToTable("PromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
+                {
+                    b.Property<int>("PromoTelemovelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("DecontoPrecoMMS")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DecontoPrecoMinInternacional")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DecontoPrecoMinNacional")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DecontoPrecoSMS")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<decimal>("DecontoPrecoTotal")
+                        .HasColumnType("decimal(4,2)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("LimiteMinutos")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LimiteSMS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PromoTelemovelId");
+
+                    b.ToTable("PromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
+                {
+                    b.Property<int>("PromoTelevisaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CanaisGratis")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DescontoPrecoTotal")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PromoTelevisaoId");
+
+                    b.ToTable("PromoTelevisao");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
+                {
+                    b.Property<int>("ReclamacaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Assunto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descriçao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Resolvido")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ReclamacaoId");
+
+                    b.ToTable("Reclamacao");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>
@@ -427,8 +722,8 @@ namespace UPtel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Descricao")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -492,6 +787,12 @@ namespace UPtel.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("date");
 
+                    b.Property<DateTime>("DataRegisto")
+                        .HasColumnType("date");
+
+                    b.Property<int>("DistritoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -533,6 +834,8 @@ namespace UPtel.Migrations
 
                     b.HasKey("UsersId");
 
+                    b.HasIndex("DistritoId");
+
                     b.HasIndex(new[] { "CartaoCidadao" }, "IX_CartaoCidadaoClientes")
                         .IsUnique()
                         .HasFilter("[CartaoCidadao] IS NOT NULL");
@@ -545,6 +848,101 @@ namespace UPtel.Migrations
                     b.HasIndex(new[] { "Nome" }, "IX_Nome_Users");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetFixa", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoNetFixa")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoNetFixa", "PromoNetFixa")
+                        .WithMany("ContratoPromoNetFixa")
+                        .HasForeignKey("PromoNetFixaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoNetMovel", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoNetMovel")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoNetMovel", "PromoNetMovel")
+                        .WithMany("ContratoPromoNetMovel")
+                        .HasForeignKey("PromoNetMovelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelefone", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelefone")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelefone", "PromoTelefone")
+                        .WithMany("ContratoPromoTelefone")
+                        .HasForeignKey("PromoTelefoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelemovel", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelemovel")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelemovel", "PromoTelemovel")
+                        .WithMany("ContratoPromoTelemovel")
+                        .HasForeignKey("PromoTelemovelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ContratoPromoTelevisao", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Contratos")
+                        .WithMany("ContratoPromoTelevisao")
+                        .HasForeignKey("ContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UPtel.Models.PromoTelevisao", "PromoTelevisao")
+                        .WithMany("ContratoPromoTelevisao")
+                        .HasForeignKey("PromoTelevisaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contratos");
+
+                    b.Navigation("PromoTelevisao");
                 });
 
             modelBuilder.Entity("UPtel.Models.Contratos", b =>
@@ -571,19 +969,11 @@ namespace UPtel.Migrations
                         .HasConstraintName("FK_Contratos_Pacotes")
                         .IsRequired();
 
-                    b.HasOne("UPtel.Models.Promocoes", "Promocao")
-                        .WithMany("Contratos")
-                        .HasForeignKey("PromocaoId")
-                        .HasConstraintName("FK_Contratos_Promocoes")
-                        .IsRequired();
-
                     b.Navigation("Cliente");
 
                     b.Navigation("Funcionario");
 
                     b.Navigation("Pacote");
-
-                    b.Navigation("Promocao");
                 });
 
             modelBuilder.Entity("UPtel.Models.PacoteCanais", b =>
@@ -646,11 +1036,19 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Users", b =>
                 {
+                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
+                        .WithMany("Users")
+                        .HasForeignKey("DistritoId")
+                        .HasConstraintName("FK_Users_Distrito")
+                        .IsRequired();
+
                     b.HasOne("UPtel.Models.UserType", "Tipo")
                         .WithMany("Users")
                         .HasForeignKey("TipoId")
                         .HasConstraintName("FK_Users_UserType")
                         .IsRequired();
+
+                    b.Navigation("DistritoNome");
 
                     b.Navigation("Tipo");
                 });
@@ -663,6 +1061,24 @@ namespace UPtel.Migrations
             modelBuilder.Entity("UPtel.Models.ClientesViewModel", b =>
                 {
                     b.Navigation("ListaContratos");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Contratos", b =>
+                {
+                    b.Navigation("ContratoPromoNetFixa");
+
+                    b.Navigation("ContratoPromoNetMovel");
+
+                    b.Navigation("ContratoPromoTelefone");
+
+                    b.Navigation("ContratoPromoTelemovel");
+
+                    b.Navigation("ContratoPromoTelevisao");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Distrito", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -680,9 +1096,29 @@ namespace UPtel.Migrations
                     b.Navigation("Contratos");
                 });
 
-            modelBuilder.Entity("UPtel.Models.Promocoes", b =>
+            modelBuilder.Entity("UPtel.Models.PromoNetFixa", b =>
                 {
-                    b.Navigation("Contratos");
+                    b.Navigation("ContratoPromoNetFixa");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
+                {
+                    b.Navigation("ContratoPromoNetMovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
+                {
+                    b.Navigation("ContratoPromoTelefone");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
+                {
+                    b.Navigation("ContratoPromoTelemovel");
+                });
+
+            modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
+                {
+                    b.Navigation("ContratoPromoTelevisao");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>
