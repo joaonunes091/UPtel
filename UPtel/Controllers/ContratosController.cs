@@ -131,6 +131,7 @@ namespace UPtel.Controllers
             CVM.NomeCliente = contrato.Cliente.Nome;
             CVM.NomeFuncionario = contrato.Funcionario.Nome;
             CVM.NomeContrato = contrato.Pacote.NomePacote;
+            CVM.PrecoContrato = contrato.PrecoContrato;
 
             return View(CVM);
         }
@@ -407,34 +408,33 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id , ContratoViewModel CVM, Contratos contratos)
         {
-            ////valor do contrato
-            //decimal precoContrato, descontoNetFixa, descontoTelevisão, descontoTelefone, descontoNetMovel, descontoTelemovel, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
-            //var promocoesNetFixa = _context.PromoNetFixa.AsNoTracking().SingleOrDefault(e => e.PromoNetFixaId == id);
-            //var promocoesNetMovel = _context.PromoNetMovel.AsNoTracking().SingleOrDefault(e => e.PromoNetMovelId == id);
-            //var promocoestelevisão = _context.PromoTelevisao.AsNoTracking().SingleOrDefault(e => e.PromoTelevisaoId == id);
-            //var promocoesTelefone = _context.PromoTelefone.AsNoTracking().SingleOrDefault(e => e.PromoTelefoneId == id);
-            //var promocoesTelemovel = _context.PromoTelemovel.AsNoTracking().SingleOrDefault(e => e.PromoTelemovelId == id);
+            //valor do contrato
+            decimal precoContrato, descontoNetFixa, descontoTelevisão, descontoTelefone, descontoNetMovel, descontoTelemovel, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
+            var promocoesNetFixa = _context.PromoNetFixa.AsNoTracking().SingleOrDefault(e => e.PromoNetFixaId == id);
+            var promocoesNetMovel = _context.PromoNetMovel.AsNoTracking().SingleOrDefault(e => e.PromoNetMovelId == id);
+            var promocoestelevisão = _context.PromoTelevisao.AsNoTracking().SingleOrDefault(e => e.PromoTelevisaoId == id);
+            var promocoesTelefone = _context.PromoTelefone.AsNoTracking().SingleOrDefault(e => e.PromoTelefoneId == id);
+            var promocoesTelemovel = _context.PromoTelemovel.AsNoTracking().SingleOrDefault(e => e.PromoTelemovelId == id);
 
-            //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+            var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
 
+            precoContrato = pacote.PrecoTotal;
+            //descontos
+            descontoNetFixa = promocoesNetFixa.DescontoPrecoTotal;
+            descontoTelevisão = promocoestelevisão.DescontoPrecoTotal;
+            descontoTelefone = promocoesTelefone.DescontoPrecoTotal;
+            descontoNetMovel = promocoesNetMovel.DescontoPrecoTotal;
+            descontoTelemovel = promocoesTelemovel.DecontoPrecoTotal;
+            //valor do desconto
+            totalTelefone = precoContrato * (descontoTelefone / 100);
+            totalNetFixa = precoContrato * (descontoNetFixa / 100);
+            totalTelevisao = precoContrato * (descontoTelevisão / 100);
+            totalNetMovel = precoContrato * (descontoNetMovel / 100);
+            totalTelemovel = precoContrato * (descontoTelemovel / 100);
 
-            //precoContrato = pacote.PrecoTotal;
-            ////descontos
-            //descontoNetFixa = promocoesNetFixa.DescontoPrecoTotal;
-            //descontoTelevisão = promocoestelevisão.DescontoPrecoTotal;
-            //descontoTelefone = promocoesTelefone.DescontoPrecoTotal;
-            //descontoNetMovel = promocoesNetMovel.DescontoPrecoTotal;
-            //descontoTelemovel = promocoesTelemovel.DecontoPrecoTotal;
-            ////valor do desconto
-            //totalTelefone = precoContrato * (descontoTelefone / 100);
-            //totalNetFixa = precoContrato * (descontoNetFixa / 100);
-            //totalTelevisao = precoContrato * (descontoTelevisão / 100);
-            //totalNetMovel = precoContrato * (descontoNetMovel / 100);
-            //totalTelemovel = precoContrato * (descontoTelemovel / 100);
-
-            ////total do valor do contrato
-            //total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
-            //contratos.PrecoContrato = total;
+            //total do valor do contrato
+            total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
+            CVM.PrecoContrato = total;
 
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
                 .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
@@ -464,6 +464,7 @@ namespace UPtel.Controllers
             contrato.PacoteId = CVM.PacoteId;
             contrato.Numeros = CVM.Numeros;
             contrato.Fidelizacao = CVM.Fidelizacao;
+            contrato.PrecoContrato = CVM.PrecoContrato;
 
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
