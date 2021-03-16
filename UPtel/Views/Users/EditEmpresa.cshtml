@@ -64,6 +64,11 @@
                                 </div>
                             </div>
                             <div class="col-md-5 form-group">
+                                <label asp-for="DistritoId" class="control-label" style="color:darkgray"></label>
+                                <select asp-for="DistritoId" class="form-control" asp-items="ViewBag.DistritoId"></select>
+                                <span asp-validation-for="DistritoId" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-5 form-group">
                                 <label asp-for="Estado" class="form-label" style="color:darkgray"></label>
                                 <select class="form-control" id="Estado" name="Estado">
                                     <option>Ativo</option>

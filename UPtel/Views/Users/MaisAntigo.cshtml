@@ -40,35 +40,70 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (int i = 0; i < 10; i++)
+                                @if (Model.Users.Count() < 10)
                                 {
-                                <tr>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => Model.Users[i].Nome)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => Model.Users[i].Contribuinte)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => Model.Users[i].Tipo.Tipo)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => Model.Users[i].DataRegisto)
-                                    </td>
-                                    <td>
-                                        @{
-                                            if (Model.Users[i].Tipo.Tipo.Contains("Cliente Particular"))
-                                            {
-                                                <a asp-action="DetailsClienteTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                            }
-                                            else
-                                            {
-                                                <a asp-action="DetailsEmpresaTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                            }
-                                        }
-                                    </td>
-                                </tr>
+                                    @foreach (var item in Model.Users)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Nome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Contribuinte)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Tipo.Tipo)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.DataRegisto)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    if (item.Tipo.Tipo.Contains("Cliente Particular"))
+                                                    {
+                                                        <a asp-action="DetailsClienteTopTen" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="DetailsEmpresaTopTen" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
                                     }
+                                }
+                                else
+                                {
+                                    @for (int i = 0; i < 10; i++)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Users[i].Nome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Users[i].Contribuinte)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Users[i].Tipo.Tipo)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Users[i].DataRegisto)
+                                            </td>
+                                            <td>
+                                                @{
+                                                    if (Model.Users[i].Tipo.Tipo.Contains("Cliente Particular"))
+                                                    {
+                                                        <a asp-action="DetailsClienteTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="DetailsEmpresaTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                                    }
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
                             </tbody>
                         </table>
                     }

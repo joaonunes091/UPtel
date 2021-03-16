@@ -79,8 +79,8 @@ namespace UPtel.Models
         [Display(Name = "Distrito")]
         public int DistritoId { get; set; }
 
-        [Required(ErrorMessage = "É necessário colocar uma data")]
-        [Column(TypeName = "Data de Registo")]
+        //[Required(ErrorMessage = "É necessário colocar uma data")]
+        [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DataRegisto { get; set; }
 
@@ -105,6 +105,7 @@ namespace UPtel.Models
 
         [ForeignKey(nameof(DistritoId))]
         [InverseProperty(nameof(Distrito.Users))]
+        [Display(Name = "Distrito")]
         public virtual Distrito DistritoNome { get; set; }
 
         [InverseProperty(nameof(Contratos.Cliente))]
