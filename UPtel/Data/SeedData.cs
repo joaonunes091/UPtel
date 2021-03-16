@@ -33,7 +33,7 @@ namespace UPtel.Data
         {
             InsereDadosTesteDistrito(DbContext);
             InsereDadosTesteUserTypes(DbContext);
-            //InsereDadosTesteUsers(DbContext);
+            InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
             InsereDadosTesteCanais(DbContext);
@@ -43,19 +43,19 @@ namespace UPtel.Data
             InsereDadosTesteNetfixa(DbContext);
             InsereDadosPromoTelemovel(DbContext);
             InsereDadosTestePacote(DbContext);
-            //InsereDadosTesteContratos(DbContext);
+            InsereDadosTesteContratos(DbContext);
             InsereDadosPromoNetMovel(DbContext);
             InsereDadosPromoNetFixa(DbContext);
             InsereDadosPromoTelefone(DbContext);
             InsereDadosPromoTelevisao(DbContext);
-            //InsereDadosContratoPromoTelemovel(DbContext);
-            //InsereDadosContratoPromoNetMovel(DbContext);
-            //InsereDadosContratoPromoNetFixa(DbContext);
-            //InsereDadosContratoPromoTelefone(DbContext);
-            //InsereDadosContratoPromoTelevisao(DbContext);
-           
+            InsereDadosContratoPromoTelemovel(DbContext);
+            InsereDadosContratoPromoNetMovel(DbContext);
+            InsereDadosContratoPromoNetFixa(DbContext);
+            InsereDadosContratoPromoTelefone(DbContext);
+            InsereDadosContratoPromoTelevisao(DbContext);
 
-            
+
+
             //InsereDadosTestePromocoes(DbContext);
         }
 

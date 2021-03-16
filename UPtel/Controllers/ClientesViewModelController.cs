@@ -138,5 +138,10 @@ namespace UPtel.Controllers
         {
             return View();
         }
+
+        public IActionResult ConfirmacaoReclamacao()
+        {
+            return View();
+        }
     }
 }
