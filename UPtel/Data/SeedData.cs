@@ -738,6 +738,8 @@ namespace UPtel.Data
                     Tipo = tipoUserEmpresa,
                     Estado = "Ativo",
                     CodigoPostalExt = "695",
+                    DistritoId = 1,
+                    DataRegisto = new DateTime(1999,12,1),
 
 
                 },
@@ -756,6 +758,8 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="588",
+                    DistritoId = 1,
+                    DataRegisto = new DateTime(1999,12,1),
 
                 },
                 new Users
@@ -773,6 +777,8 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="588",
+                    DistritoId = 1,
+                    DataRegisto = new DateTime(1999,12,1),
                 },
                 new Users
                 {
@@ -789,6 +795,8 @@ namespace UPtel.Data
                     Tipo = tipoUserAdministrador,
                     Estado = "Ativo",
                     CodigoPostalExt="588",
+                    DistritoId = 1,
+                    DataRegisto = new DateTime(1999,12,1),
                 },
                 });
 

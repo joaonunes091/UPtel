@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210315203258_Distritos")]
-    partial class Distritos
+    [Migration("20210316110408_distrito")]
+    partial class distrito
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
