@@ -189,13 +189,13 @@ namespace UPtel.Controllers
         //public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,PrecoContrato")] Contratos contratos)
         public async Task<IActionResult> Create(int? id, ContratoViewModel CVM, Contratos contratos, ContratoPromoNetFixa contratoPromoNetFixa, ContratoPromoNetMovel contratoPromoNetMovel, ContratoPromoTelefone contratoPromoTelefone, ContratoPromoTelemovel contratoPromoTelemovel, ContratoPromoTelevisao contratoPromoTelevisao)
 
-        {
+        {     //valor do contrato
             //decimal precoContrato, desconto, total;
-            //var promocoes = _context.Promocoes.SingleOrDefault(e => e.PromocaoId == contratos.PromocaoId);
+            //var promocoesNetMovel = _context.PromoNetMovel.SingleOrDefault(e => e.ContratoPromoNetMovel == contratos.ContratoPromoNetMovel);
             //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
 
             //precoContrato = pacote.PrecoTotal;
-            //desconto = promocoes.Desconto;
+            //desconto = promocoesNetMovel.DescontoPrecoTotal;
             //total = precoContrato - (precoContrato * (desconto / 100));
             //contratos.PrecoContrato = total;
 
