@@ -1,0 +1,79 @@
+﻿@model ListaCanaisViewModel
+
+@{
+    ViewData["Title"] = "OldUsers";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Utilizadores mais Antigos</h2>
+                <br />
+                <br /><br />
+                <br />
+
+                <div>
+                    @if (Model.Users.Count() == 0)
+                    {
+                        <p>Não existem utilizadores.</p>
+                    }
+                    else
+                    {
+
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Nome)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Contribuinte)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].Tipo)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].DataRegisto)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < 10; i++)
+                                {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => Model.Users[i].Nome)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => Model.Users[i].Contribuinte)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => Model.Users[i].Tipo.Tipo)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => Model.Users[i].DataRegisto)
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (Model.Users[i].Tipo.Tipo.Contains("Cliente Particular"))
+                                            {
+                                                <a asp-action="DetailsClienteTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="DetailsEmpresaTopTen" asp-route-id="@Model.Users[i].UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -104,6 +104,12 @@
                                 </dd>
                             }
                             <dt class="col-sm-5 titulo">
+                                @Html.DisplayNameFor(model => model.DataRegisto)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.DataRegisto)
+                            </dd>
+                            <dt class="col-sm-5 titulo">
                                 @Html.DisplayNameFor(model => model.Estado)
                             </dt>
                             @if (Model.Estado == null)
