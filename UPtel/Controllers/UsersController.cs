@@ -52,8 +52,6 @@ namespace UPtel.Controllers
                     .Take(paginacao.ItemsPorPagina)
                     .ToListAsync();
 
-            List<Users> maisAntigos = await _context.Users.OrderBy(c => c.DataRegisto).ToListAsync();
-
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Paginacao = paginacao,
