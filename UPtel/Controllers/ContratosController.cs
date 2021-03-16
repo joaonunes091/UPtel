@@ -189,15 +189,34 @@ namespace UPtel.Controllers
         //public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,PrecoContrato")] Contratos contratos)
         public async Task<IActionResult> Create(int? id, ContratoViewModel CVM, Contratos contratos, ContratoPromoNetFixa contratoPromoNetFixa, ContratoPromoNetMovel contratoPromoNetMovel, ContratoPromoTelefone contratoPromoTelefone, ContratoPromoTelemovel contratoPromoTelemovel, ContratoPromoTelevisao contratoPromoTelevisao)
 
-        {     //valor do contrato
-            //decimal precoContrato, desconto, total;
-            //var promocoesNetMovel = _context.PromoNetMovel.SingleOrDefault(e => e.ContratoPromoNetMovel == contratos.ContratoPromoNetMovel);
-            //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+        {   //valor do contrato
+            decimal precoContrato, descontoNetFixa, descontoTelevisão, descontoTelefone, descontoNetMovel, descontoTelemovel, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
+            var promocoesNetFixa = _context.PromoNetFixa.SingleOrDefault(e => e.PromoNetFixaId == id);
+            var promocoesNetMovel = _context.PromoNetMovel.SingleOrDefault(e => e.PromoNetMovelId == id);
+            var promocoestelevisão = _context.PromoTelevisao.SingleOrDefault(e => e.PromoTelevisaoId== id);
+            var promocoesTelefone = _context.PromoTelefone.SingleOrDefault(e => e.PromoTelefoneId == id);
+            var promocoesTelemovel = _context.PromoTelemovel.SingleOrDefault(e => e.PromoTelemovelId == id);
+            
+            var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
 
-            //precoContrato = pacote.PrecoTotal;
-            //desconto = promocoesNetMovel.DescontoPrecoTotal;
-            //total = precoContrato - (precoContrato * (desconto / 100));
-            //contratos.PrecoContrato = total;
+
+            precoContrato = pacote.PrecoTotal;
+            //descontos
+            descontoNetFixa = promocoesNetFixa.DescontoPrecoTotal;
+            descontoTelevisão = promocoestelevisão.DescontoPrecoTotal;
+            descontoTelefone = promocoesTelefone.DescontoPrecoTotal;
+            descontoNetMovel = promocoesNetMovel.DescontoPrecoTotal;
+            descontoTelemovel = promocoesTelemovel.DecontoPrecoTotal;
+            //valor do desconto
+            totalTelefone = precoContrato * (descontoTelefone / 100);
+            totalNetFixa = precoContrato * (descontoNetFixa / 100);
+            totalTelevisao =precoContrato * (descontoTelevisão / 100);
+            totalNetMovel = precoContrato * (descontoNetMovel / 100);
+            totalTelemovel = precoContrato * (descontoTelemovel / 100);
+
+            //total do valor do contrato
+            total = precoContrato - ( totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel );
+            contratos.PrecoContrato = total;
 
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
@@ -386,8 +405,37 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id , ContratoViewModel CVM)
+        public async Task<IActionResult> Edit(int id , ContratoViewModel CVM, Contratos contratos)
         {
+            ////valor do contrato
+            //decimal precoContrato, descontoNetFixa, descontoTelevisão, descontoTelefone, descontoNetMovel, descontoTelemovel, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
+            //var promocoesNetFixa = _context.PromoNetFixa.AsNoTracking().SingleOrDefault(e => e.PromoNetFixaId == id);
+            //var promocoesNetMovel = _context.PromoNetMovel.AsNoTracking().SingleOrDefault(e => e.PromoNetMovelId == id);
+            //var promocoestelevisão = _context.PromoTelevisao.AsNoTracking().SingleOrDefault(e => e.PromoTelevisaoId == id);
+            //var promocoesTelefone = _context.PromoTelefone.AsNoTracking().SingleOrDefault(e => e.PromoTelefoneId == id);
+            //var promocoesTelemovel = _context.PromoTelemovel.AsNoTracking().SingleOrDefault(e => e.PromoTelemovelId == id);
+
+            //var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+
+
+            //precoContrato = pacote.PrecoTotal;
+            ////descontos
+            //descontoNetFixa = promocoesNetFixa.DescontoPrecoTotal;
+            //descontoTelevisão = promocoestelevisão.DescontoPrecoTotal;
+            //descontoTelefone = promocoesTelefone.DescontoPrecoTotal;
+            //descontoNetMovel = promocoesNetMovel.DescontoPrecoTotal;
+            //descontoTelemovel = promocoesTelemovel.DecontoPrecoTotal;
+            ////valor do desconto
+            //totalTelefone = precoContrato * (descontoTelefone / 100);
+            //totalNetFixa = precoContrato * (descontoNetFixa / 100);
+            //totalTelevisao = precoContrato * (descontoTelevisão / 100);
+            //totalNetMovel = precoContrato * (descontoNetMovel / 100);
+            //totalTelemovel = precoContrato * (descontoTelemovel / 100);
+
+            ////total do valor do contrato
+            //total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
+            //contratos.PrecoContrato = total;
+
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
                 .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
                 .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
@@ -401,6 +449,8 @@ namespace UPtel.Controllers
             List<ContratoPromoTelefone> listaContratosPromoTelefone = new List<ContratoPromoTelefone>();
             List<ContratoPromoTelemovel> listaContratosPromoTelemovel = new List<ContratoPromoTelemovel>();
             List<ContratoPromoTelevisao> listaContratosPromoTelevisao = new List<ContratoPromoTelevisao>();
+
+           
 
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
