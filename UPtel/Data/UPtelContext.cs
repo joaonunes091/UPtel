@@ -174,5 +174,7 @@ namespace UPtel.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<UPtel.Models.ClientesViewModel> ClientesViewModel { get; set; }
+
+        public DbSet<UPtel.Models.Reclamacao> Reclamacao { get; set; }
     }
 }
