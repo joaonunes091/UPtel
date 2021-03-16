@@ -1,0 +1,43 @@
+﻿@model UPtel.Models.Reclamacao
+
+@{
+    ViewData["Title"] = "Details";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h1>Details</h1>
+
+                <div>
+                    <h4>Reclamacao</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Descriçao)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Descriçao)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ClienteId)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ClienteId)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Resolvido)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Resolvido)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.ReclamacaoId">Edit</a> |
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
