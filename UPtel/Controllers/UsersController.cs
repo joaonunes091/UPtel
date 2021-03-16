@@ -193,6 +193,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (await VerificaEmailAsync(infoUsers))
@@ -230,6 +232,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Administrador"))
@@ -238,6 +242,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
 
@@ -268,6 +274,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (await VerificaEmailAsync(infoUsers))
@@ -306,6 +314,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Operador"))
@@ -315,6 +325,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
 
@@ -347,6 +359,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (await VerificaEmailAsync(infoUsers))
@@ -385,6 +399,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
@@ -393,6 +409,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
 
@@ -425,6 +443,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (await VerificaEmailAsync(infoUsers))
@@ -461,6 +481,8 @@ namespace UPtel.Controllers
             }
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
             if (!await CriaUtilizadorAsync(infoUsers, "Cliente"))
@@ -470,6 +492,8 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 return View(infoUsers);
             }
 
