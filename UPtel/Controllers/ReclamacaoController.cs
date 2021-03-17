@@ -107,7 +107,8 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    _context.Update(reclamacao);
+                    
+                    _context.Reclamacao.Update(reclamacao);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
