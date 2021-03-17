@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210317131422_Reclamacao")]
+    partial class Reclamacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
