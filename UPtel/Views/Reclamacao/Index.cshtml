@@ -3,23 +3,33 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Reclamação</h1>
+                <h1>Index</h1>
 
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.Assunto)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Descriçao)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ClienteId)
+                                @Html.DisplayNameFor(model => model.NomeCliente)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Resolvido)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cliente)
                             </th>
                             <th></th>
                         </tr>
@@ -29,13 +39,19 @@
                         {
                             <tr>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.Assunto)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.Descriçao)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ClienteId)
+                                    @Html.DisplayFor(modelItem => item.NomeCliente)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Resolvido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cliente.CodigoPostal)
                                 </td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.ReclamacaoId">Edit</a> |
@@ -49,4 +65,5 @@
             </div>
         </div>
     </div>
+ 
 </section>
