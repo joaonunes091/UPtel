@@ -10,26 +10,17 @@
             <div class="col-xl-8 text-white">
                 <h1>Index</h1>
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Assunto)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descriçao)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.NomeCliente)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Resolvido)
+                                @Html.DisplayNameFor(model => model.Assunto)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Cliente)
+                                @Html.DisplayNameFor(model => model.Resolvido)
                             </th>
                             <th></th>
                         </tr>
@@ -37,22 +28,26 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeCliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assunto)
+                            </td>
+                            @if (item.Resolvido == true)
+                            {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Assunto)
+                                    Sim
                                 </td>
+                            }
+                             else
+                            {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Descriçao)
+                                    Não
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NomeCliente)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Resolvido)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cliente.CodigoPostal)
-                                </td>
+                            }
+                                
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.ReclamacaoId">Edit</a> |
                                     <a asp-action="Details" asp-route-id="@item.ReclamacaoId">Details</a> |
