@@ -1,0 +1,56 @@
+﻿@model UPtel.Models.ContratoViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Editar contrato</h2>
+
+                <br />
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8">
+                        <form asp-action="EditVistaCliente">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ContratoId" />
+                            <div class="form-group">
+                                <label asp-for="PacoteId" class="control-label"></label>
+                                <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
+                                <span asp-validation-for="PacoteId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Numeros" class="control-label"></label>
+                                <input asp-for="Numeros" class="form-control" />
+                                <span asp-validation-for="Numeros" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Fidelizacao" class="control-label"></label>
+                                <input asp-for="Fidelizacao" class="form-control" />
+                                <span asp-validation-for="Fidelizacao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PrecoContrato" class="control-label"></label>
+                                <input readonly asp-for="PrecoContrato" class="form-control" />
+                                <span asp-validation-for="PrecoContrato" class="text-danger"></span>
+                            </div>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-controller="ClientesViewModel" asp-action="Index" asp-route-id="@Model.ContratoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style="color:darkgray">
+                    <a>Os campos marcados com * são de preenchimento obrigatório</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
