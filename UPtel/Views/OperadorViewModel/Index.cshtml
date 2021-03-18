@@ -1,0 +1,101 @@
+﻿@model UPtel.Models.OperadorViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartaoCidadao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroContribuinte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodiogoPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtensaoCodigoPostal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telemovel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataRegisto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.NomeCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.CartaoCidadao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Morada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.CodiogoPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Telemovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Fotografia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.DataRegisto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
