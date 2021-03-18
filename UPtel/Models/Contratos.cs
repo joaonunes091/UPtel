@@ -39,7 +39,9 @@ namespace UPtel.Models
         [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
 
-       
+        [StringLength(300, ErrorMessage = "O limite de caracteres(300) foi ultrapassado")]
+        public string EdicaoCliente { get; set; }
+
         [Display(Name = "Valor total do contrato")]
         //[Required(ErrorMessage = "É necessário preencher o preço.")]
         [Column(TypeName = "decimal(5, 2)")]
