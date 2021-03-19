@@ -17,6 +17,7 @@
                     <a asp-action="RegistoAdministrador"><i title="Administrador" class="fas fa-hard-hat fa-2x imgCriar"> &nbsp &nbsp</i></a>
                 </div>
                 <a asp-action="MaisAntigo"><i title="Mais Antigos">Top 10 Mais Antigos</i></a>
+                <a asp-controller="Contratos" asp-action="MelhorCliente"><i title="Mais Antigos">Top 10 Melhores Clientes</i></a>
                 <br /><br />
                 <div class="col-md-12 border-info mb-4">
                     <div class="card-body">
@@ -85,6 +86,8 @@
                                                 {
                                                     <a asp-action="Details" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                                 }
+                                                int x = 0;
+                                                x++;
                                             }
                                         </td>
                                     </tr>

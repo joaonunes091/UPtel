@@ -39,6 +39,8 @@ namespace UPtel.Models
         [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
 
+        public int? Posicao { get; set; }
+
         [Display(Name = "Valor total do contrato")]
         [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContrato { get; set; }
