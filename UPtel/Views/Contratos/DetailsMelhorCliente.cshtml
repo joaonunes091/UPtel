@@ -1,0 +1,131 @@
+﻿@model UPtel.Models.ContratoViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2>Detalhes de contratos</h2>
+                <br /><br />
+                <div>
+                    <dl class="row">
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Numeros)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.Numeros)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.DataInicio)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.DataInicio)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Fidelizacao)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.Fidelizacao)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.PrecoContrato)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.PrecoContrato)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Cliente)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.NomeCliente)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Funcionario)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.NomeFuncionario)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Pacote)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.NomeContrato)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções net fixa
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
+                            {
+                                @if (Model.ListaPromoNetFixa[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoNetFixa[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções net móvel 
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
+                            {
+                                @if (Model.ListaPromoNetMovel[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoNetMovel[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções telefone
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelefone[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelefone[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções telemóvel
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelemovel[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelemovel[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            Promoções televisão
+                        </dt>
+                        <dd class="col-sm-7">
+                            @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
+                            {
+                                @if (Model.ListaPromoTelevisao[i].Selecionado == true)
+                                {
+                                    @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)
+                                    <br />
+                                }
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@Model.ContratoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                    <a asp-action="Delete" asp-route-id="@Model.ContratoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="MelhorCliente"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

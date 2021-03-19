@@ -1,0 +1,99 @@
+﻿@model ListaCanaisViewModel
+
+@{
+    ViewData["Title"] = "BestUser";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Melhores Clientes</h2>
+                <br />
+                <br /><br />
+                <br />
+
+                <div>
+                    @if (Model.Contratos.Count() == 0)
+                    {
+                        <p>Não existem utilizadores.</p>
+                    }
+                    else
+                    {
+
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center titulo">
+                                        Nome
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Contribuinte
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Distrito
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Preço do Contrato
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Contratos.Count() < 10)
+                                {
+                                    @foreach (var item in Model.Contratos)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Cliente.Contribuinte)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Cliente.DistritoNome.DistritoNome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.PrecoContrato)
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@item.ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    @for (int i = 0; i < 10; i++)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Contratos[i].Cliente.Nome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Contratos[i].Cliente.Contribuinte)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Contratos[i].Cliente.DistritoNome.DistritoNome)
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Contratos[i].PrecoContrato)
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@Model.Contratos[i].ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+                <div class="text-right">
+                    <a asp-controller="Users" asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
