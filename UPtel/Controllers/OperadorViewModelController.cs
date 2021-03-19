@@ -35,7 +35,7 @@ namespace UPtel.Controllers
             operador = new OperadorViewModel
             {
                 Id = infoOperador.UsersId,
-                NomeCliente = infoOperador.Nome,
+                NomeOperador = infoOperador.Nome,
                 DataNascimento = infoOperador.Data,
                 CartaoCidadao = infoOperador.CartaoCidadao,
                 NumeroContribuinte = infoOperador.Contribuinte,
@@ -50,131 +50,6 @@ namespace UPtel.Controllers
             };
 
             return View(operador);
-        }
-
-        // GET: OperadorViewModel/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var operadorViewModel = await _context.OperadorViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (operadorViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(operadorViewModel);
-        }
-
-        // GET: OperadorViewModel/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OperadorViewModel/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NomeCliente,DataNascimento,CartaoCidadao,NumeroContribuinte,Morada,CodiogoPostal,ExtensaoCodigoPostal,Telefone,Telemovel,Email,Fotografia,DataRegisto")] OperadorViewModel operadorViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(operadorViewModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(operadorViewModel);
-        }
-
-        // GET: OperadorViewModel/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var operadorViewModel = await _context.OperadorViewModel.FindAsync(id);
-            if (operadorViewModel == null)
-            {
-                return NotFound();
-            }
-            return View(operadorViewModel);
-        }
-
-        // POST: OperadorViewModel/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeCliente,DataNascimento,CartaoCidadao,NumeroContribuinte,Morada,CodiogoPostal,ExtensaoCodigoPostal,Telefone,Telemovel,Email,Fotografia,DataRegisto")] OperadorViewModel operadorViewModel)
-        {
-            if (id != operadorViewModel.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(operadorViewModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OperadorViewModelExists(operadorViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(operadorViewModel);
-        }
-
-        // GET: OperadorViewModel/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var operadorViewModel = await _context.OperadorViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (operadorViewModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(operadorViewModel);
-        }
-
-        // POST: OperadorViewModel/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var operadorViewModel = await _context.OperadorViewModel.FindAsync(id);
-            _context.OperadorViewModel.Remove(operadorViewModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool OperadorViewModelExists(int id)
-        {
-            return _context.OperadorViewModel.Any(e => e.Id == id);
         }
     }
 }

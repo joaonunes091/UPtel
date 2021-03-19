@@ -4,98 +4,98 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<section id="secondhero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center text-left text-white">
+            <div class="col-xl-8 text-white">
+                <h1 class="font">Dados Pessoais de @Model.NomeOperador</h1>
+                <br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CartaoCidadao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroContribuinte)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Morada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodiogoPostal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExtensaoCodigoPostal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telemovel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fotografia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataRegisto)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+                <dl class="row d-flex justify-content-center text-center">
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.NomeOperador)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.NomeOperador)
+                    </dd>
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => Model.NomeCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.CartaoCidadao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.CodiogoPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Telemovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.Fotografia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.DataRegisto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-            </td>
-        </tr>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.DataNascimento)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.DataNascimento)
+                    </dd>
 
-    </tbody>
-</table>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.CartaoCidadao)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.CartaoCidadao)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.NumeroContribuinte)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Morada)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Morada)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.CodiogoPostal)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.CodiogoPostal) - @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Telefone)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Telefone)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Telemovel)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Telemovel)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Email)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.DataRegisto)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.DataRegisto)
+                    </dd>
+
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.DistritoNome)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.DistritoNome)
+                    </dd>
+                </dl>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Manage/SetPassword"><i class="fas fa-key fixedIcon"></i> Mudar Password</a>
+                    <a class="btn btn-costum" asp-action="EditOperador" asp-controller="Users" asp-route-id="@Model.Id"><i class="far fa-edit fixedIcon"></i> Editar</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

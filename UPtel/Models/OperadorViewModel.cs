@@ -13,7 +13,7 @@ namespace UPtel.Models
 
         //Dados Pessoais
         [Display(Name = "Nome")]
-        public string NomeCliente { get; set; }
+        public string NomeOperador { get; set; }
 
         [Display(Name = "Data de nascimento")]
         [DataType(DataType.Date)]
