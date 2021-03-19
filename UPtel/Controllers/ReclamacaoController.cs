@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Reclamacao
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Index()
         {
             var uPtelContext = _context.Reclamacao.Include(r => r.Cliente);
@@ -27,6 +29,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Reclamacao/Details/5
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Reclamacao/Create
+        [Authorize(Roles = "Cliente")]
         public IActionResult Create()
         {
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "UsersId");
@@ -57,6 +61,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> Create([Bind("ReclamacaoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido")] Reclamacao reclamacao)
         {
             if (ModelState.IsValid)
@@ -68,13 +73,16 @@ namespace UPtel.Controllers
 
                 _context.Add(reclamacao);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("ConfirmacaoReclamacao", "ClientesViewModel");
             }
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
-            return View(reclamacao);
+            //return View(reclamacao);
+            return RedirectToAction("ConfirmacaoReclamacao", "ClientesViewModel");
         }
 
         // GET: Reclamacao/Edit/5
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,6 +104,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Edit(int id, [Bind("ReclamacaoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido")] Reclamacao reclamacao)
         {
             if (id != reclamacao.ReclamacaoId)
@@ -129,6 +138,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Reclamacao/Delete/5
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,6 +160,7 @@ namespace UPtel.Controllers
         // POST: Reclamacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var reclamacao = await _context.Reclamacao.FindAsync(id);
