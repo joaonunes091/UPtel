@@ -214,8 +214,8 @@ namespace UPtel.Controllers
             await _context.SaveChangesAsync();
 
             int contratoId = contratos.ContratoId;
-            decimal x = 0;
-            decimal descontoNetFixas = 0, descontoNetMovel = 0 , descontoNetTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
+            decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
+            decimal descontoNetFixas = 0, descontoNetMovel = 0 , descontoTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
             if (CVM.ListaPromoNetFixa != null)
             {
                 foreach (var item in CVM.ListaPromoNetFixa)
@@ -230,20 +230,28 @@ namespace UPtel.Controllers
                 {
                     var netFixa = _context.PromoNetFixa.SingleOrDefault(n => n.PromoNetFixaId == item.PromoNetFixaId);
                     descontoNetFixas += netFixa.DescontoPrecoTotal;
-                    x++;
+                    x1++;
 
                     _context.ContratoPromoNetFixa.Add(item);
                 }
-                
+                if (descontoNetFixas > 50)
+                {
+                    descontoNetFixas = 50;
+                }
+                else
+                {
+                    if (x1 == 0)
+                    {
+                        x1 = 1;
+                        descontoNetFixas = descontoNetFixas / x1;
+                    }
+                    else
+                    {
+                        descontoNetFixas = descontoNetFixas / x1;
+                    }
+                }
             }
-            if (descontoNetFixas > 50)
-            {
-                descontoNetFixas = 50;
-            }
-            else
-            {
-                descontoNetFixas = descontoNetFixas / x;
-            }
+           
 
             if (CVM.ListaPromoNetMovel != null)
             {
@@ -258,18 +266,27 @@ namespace UPtel.Controllers
                 {
                     var netMovel = _context.PromoNetMovel.SingleOrDefault(n => n.PromoNetMovelId == item.PromoNetMovelId);
                     descontoNetMovel += netMovel.DescontoPrecoTotal;
-                    x++;
+                    x2++;
                     _context.ContratoPromoNetMovel.Add(item);
                 }
+                if (descontoNetMovel > 50)
+                {
+                    descontoNetMovel = 50;
+                }
+                else
+                {
+                    if (x2 == 0)
+                    {
+                        x2 = 1;
+                        descontoNetMovel = descontoNetMovel / x2;
+                    }
+                    else
+                    {
+                        descontoNetMovel = descontoNetMovel / x2;
+                    }
+                }
             }
-            if (descontoNetMovel > 50)
-            {
-                descontoNetMovel = 50;
-            }
-            else
-            {
-                descontoNetMovel = descontoNetMovel / x;
-            }
+          
 
             if (CVM.ListaPromoTelefone != null)
             {
@@ -283,19 +300,29 @@ namespace UPtel.Controllers
                 foreach (var item in listaContratosPromoTelefone)
                 {
                     var netTelefone = _context.PromoTelefone.SingleOrDefault(n => n.PromoTelefoneId == item.PromoTelefoneId);
-                    descontoNetTelefone += netTelefone.DescontoPrecoTotal;
-                    x++;
+                    descontoTelefone += netTelefone.DescontoPrecoTotal;
+                    x3++;
                     _context.ContratoPromoTelefone.Add(item);
                 }
+                if (descontoTelefone > 50)
+                {
+                    descontoTelefone = 50;
+                }
+                else
+                {
+                    if (x3 == 0)
+                    {
+                        x3 = 1;
+                        descontoTelefone = descontoTelefone / x3;
+                    }
+                    else
+                    {
+                        descontoTelefone = descontoTelefone / x3;
+                    }
+                }
             }
-            if (descontoNetTelefone > 50)
-            {
-                descontoNetTelefone = 50;
-            }
-            else
-            {
-                descontoNetTelefone = descontoNetTelefone / x;
-            }
+
+           
 
             if (CVM.ListaPromoTelemovel != null)
             {
@@ -310,18 +337,27 @@ namespace UPtel.Controllers
                 {
                     var Telemovel = _context.PromoTelemovel.SingleOrDefault(n => n.PromoTelemovelId== item.PromoTelemovelId);
                     descontoTelemovel += Telemovel.DecontoPrecoTotal;
-                    x++;
+                    x4++;
                     _context.ContratoPromoTelemovel.Add(item);
                 }
+                if (descontoTelemovel > 50)
+                {
+                    descontoTelemovel = 50;
+                }
+                else
+                {
+                    if (x4 == 0)
+                    {
+                        x4 = 1;
+                        descontoTelemovel = descontoTelemovel / x4;
+                    }
+                    else
+                    {
+                        descontoTelemovel = descontoTelemovel / x4;
+                    }
+                }
             }
-            if (descontoTelemovel > 50)
-            {
-                descontoTelemovel = 50;
-            }
-            else
-            {
-                descontoTelemovel = descontoTelemovel / x;
-            }
+          
 
             if (CVM.ListaPromoTelevisao != null)
             {
@@ -336,18 +372,27 @@ namespace UPtel.Controllers
                 {
                     var Televisao = _context.PromoTelevisao.SingleOrDefault(n => n.PromoTelevisaoId == item.PromoTelevisaoId);
                     descontoTelevisao += Televisao.DescontoPrecoTotal;
-                    x++;
+                    x5++;
                     _context.ContratoPromoTelevisao.Add(item);
                 }
+                if (descontoTelevisao > 50)
+                {
+                    descontoTelevisao = 50;
+                }
+                else
+                {
+                    if (x5 == 0)
+                    {
+                        x5 = 1;
+                        descontoTelevisao = descontoTelevisao / x5;
+                    }
+                    else
+                    {
+                        descontoTelevisao = descontoTelevisao / x5;
+                    }
+                }
             }
-            if (descontoTelevisao > 50)
-            {
-                descontoTelevisao = 50;
-            }
-            else
-            {
-                descontoTelevisao = descontoTelevisao / x;
-            }
+           
 
             //valor do contrato
             decimal precoContrato, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
@@ -358,7 +403,7 @@ namespace UPtel.Controllers
             
 
             //valor do desconto
-            totalTelefone = precoContrato * (descontoNetTelefone / 100);
+            totalTelefone = precoContrato * (descontoTelefone / 100);
             totalNetFixa = precoContrato * (descontoNetFixas / 100);
             totalTelevisao = precoContrato * (descontoTelevisao / 100);
             totalNetMovel = precoContrato * (descontoNetMovel / 100);
@@ -444,6 +489,7 @@ namespace UPtel.Controllers
             CVM.Numeros = contrato.Numeros;
             CVM.Fidelizacao = contrato.Fidelizacao;
             CVM.ContratoId = (int)id;
+            CVM.PrecoContrato = contrato.PrecoContrato;
 
             return View(CVM);
 
@@ -465,41 +511,7 @@ namespace UPtel.Controllers
                 .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao)
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
-
-            //valor do contrato
-            decimal precoContrato, descontoNetFixa, descontoTelevisão, descontoTelefone, descontoNetMovel, descontoTelemovel, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
-            var promocoesNetFixa = _context.PromoNetFixa.AsNoTracking().SingleOrDefault(e => e.PromoNetFixaId == id);
-            var promocoesNetMovel = _context.PromoNetMovel.AsNoTracking().SingleOrDefault(e => e.PromoNetMovelId == id);
-            var promocoestelevisão = _context.PromoTelevisao.AsNoTracking().SingleOrDefault(e => e.PromoTelevisaoId == id);
-            var promocoesTelefone = _context.PromoTelefone.AsNoTracking().SingleOrDefault(e => e.PromoTelefoneId == id);
-            var promocoesTelemovel = _context.PromoTelemovel.AsNoTracking().SingleOrDefault(e => e.PromoTelemovelId == id);
-
-            var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
-
-            precoContrato = pacote.PrecoTotal;
-            //descontos
-            descontoNetFixa = promocoesNetFixa.DescontoPrecoTotal;
-            descontoTelevisão = promocoestelevisão.DescontoPrecoTotal;
-            descontoTelefone = promocoesTelefone.DescontoPrecoTotal;
-            descontoNetMovel = promocoesNetMovel.DescontoPrecoTotal;
-            descontoTelemovel = promocoesTelemovel.DecontoPrecoTotal;
-            //valor do desconto
-            totalTelefone = precoContrato * (descontoTelefone / 100);
-            totalNetFixa = precoContrato * (descontoNetFixa / 100);
-            totalTelevisao = precoContrato * (descontoTelevisão / 100);
-            totalNetMovel = precoContrato * (descontoNetMovel / 100);
-            totalTelemovel = precoContrato * (descontoTelemovel / 100);
-
-            //total do valor do contrato
-            total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
-            CVM.PrecoContrato = total;
-
-            List<ContratoPromoNetFixa> listaContratosPromoNetFixa = new List<ContratoPromoNetFixa>();
-            List<ContratoPromoNetMovel> listaContratosPromoNetMovel = new List<ContratoPromoNetMovel>();
-            List<ContratoPromoTelefone> listaContratosPromoTelefone = new List<ContratoPromoTelefone>();
-            List<ContratoPromoTelemovel> listaContratosPromoTelemovel = new List<ContratoPromoTelemovel>();
-            List<ContratoPromoTelevisao> listaContratosPromoTelevisao = new List<ContratoPromoTelevisao>();
-
+           
             //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
             var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             contrato.FuncionarioId = funcionario.UsersId;
@@ -507,6 +519,14 @@ namespace UPtel.Controllers
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
             contrato.ClienteId = contratoOriginal.ClienteId;
             contrato.DataInicio = contratoOriginal.DataInicio;
+
+            List<ContratoPromoNetFixa> listaContratosPromoNetFixa = new List<ContratoPromoNetFixa>();
+            List<ContratoPromoNetMovel> listaContratosPromoNetMovel = new List<ContratoPromoNetMovel>();
+            List<ContratoPromoTelefone> listaContratosPromoTelefone = new List<ContratoPromoTelefone>();
+            List<ContratoPromoTelemovel> listaContratosPromoTelemovel = new List<ContratoPromoTelemovel>();
+            List<ContratoPromoTelevisao> listaContratosPromoTelevisao = new List<ContratoPromoTelevisao>();
+
+
 
             contrato.PacoteId = CVM.PacoteId;
             contrato.Numeros = CVM.Numeros;
@@ -517,6 +537,9 @@ namespace UPtel.Controllers
             await _context.SaveChangesAsync();
 
             int contratoId = contrato.ContratoId;
+            decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
+            decimal descontoNetFixa = 0, descontoNetMovel = 0, descontoTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
+
             if (CVM.ListaPromoNetFixa != null)
             {
                 foreach (var promoNetFixa in CVM.ListaPromoNetFixa)
@@ -539,8 +562,27 @@ namespace UPtel.Controllers
                 {
                     if (!novaListaContratoPromoNetFixa.Contains(promoNetFixa))
                     {
+                        var netFixa = _context.PromoNetFixa.SingleOrDefault(n => n.PromoNetFixaId == promoNetFixa.PromoNetFixaId);
+                        descontoNetFixa += netFixa.DescontoPrecoTotal;
+                        x1++;
                         _context.ContratoPromoNetFixa.Add(promoNetFixa);
                         await _context.SaveChangesAsync();
+                    }
+                }
+                if (descontoNetFixa > 50)
+                {
+                    descontoNetFixa = 50;
+                }
+                else
+                {
+                    if (x1 == 0)
+                    {
+                        x1 = 1;
+                        descontoNetFixa = descontoNetFixa / x1;
+                    }
+                    else
+                    {
+                        descontoNetFixa = descontoNetFixa / x1;
                     }
                 }
             }
@@ -567,8 +609,27 @@ namespace UPtel.Controllers
                 {
                     if (!novaListaContratoPromoNetMovel.Contains(promoNetMovel))
                     {
+                        var netMovel = _context.PromoNetMovel.SingleOrDefault(n => n.PromoNetMovelId == promoNetMovel.PromoNetMovelId);
+                        descontoNetMovel += netMovel.DescontoPrecoTotal;
+                        x2++;
                         _context.ContratoPromoNetMovel.Add(promoNetMovel);
                         await _context.SaveChangesAsync();
+                    }
+                }
+                if (descontoNetMovel > 50)
+                {
+                    descontoNetMovel = 50;
+                }
+                else
+                {
+                    if (x2 == 0)
+                    {
+                        x2 = 1;
+                        descontoNetMovel = descontoNetMovel / x2;
+                    }
+                    else
+                    {
+                        descontoNetMovel = descontoNetMovel / x2;
                     }
                 }
             }
@@ -595,8 +656,27 @@ namespace UPtel.Controllers
                 {
                     if (!novaListaContratoPromoTelefone.Contains(promoTelefone))
                     {
+                        var telefone = _context.PromoTelefone.SingleOrDefault(n => n.PromoTelefoneId == promoTelefone.PromoTelefoneId);
+                        descontoTelefone += telefone.DescontoPrecoTotal;
+                        x3++;
                         _context.ContratoPromoTelefone.Add(promoTelefone);
                         await _context.SaveChangesAsync();
+                    }
+                }
+                if (descontoTelefone > 50)
+                {
+                    descontoTelefone = 50;
+                }
+                else
+                {
+                    if (x3 == 0)
+                    {
+                        x3 = 1;
+                        descontoTelefone = descontoTelefone / x3;
+                    }
+                    else
+                    {
+                        descontoTelefone = descontoTelefone / x3;
                     }
                 }
             }
@@ -623,8 +703,27 @@ namespace UPtel.Controllers
                 {
                     if (!novaListaContratoPromoTelemovel.Contains(promoTelemovel))
                     {
+                        var telemovel = _context.PromoTelemovel.SingleOrDefault(n => n.PromoTelemovelId == promoTelemovel.PromoTelemovelId);
+                        descontoTelemovel += telemovel.DecontoPrecoTotal;
+                        x4++;
                         _context.ContratoPromoTelemovel.Add(promoTelemovel);
                         await _context.SaveChangesAsync();
+                    }
+                }
+                if (descontoTelemovel > 50)
+                {
+                    descontoTelemovel = 50;
+                }
+                else
+                {
+                    if (x4 == 0)
+                    {
+                        x4 = 1;
+                        descontoTelemovel = descontoTelemovel / x4;
+                    }
+                    else
+                    {
+                        descontoTelemovel = descontoTelemovel / x4;
                     }
                 }
             }
@@ -651,13 +750,57 @@ namespace UPtel.Controllers
                 {
                     if (!novaListaContratoPromoTelevisao.Contains(promoTelevisao))
                     {
+                        var Televisao = _context.PromoTelevisao.SingleOrDefault(n => n.PromoTelevisaoId == promoTelevisao.PromoTelevisaoId);
+                        descontoTelevisao += Televisao.DescontoPrecoTotal;
+                        x5++; 
                         _context.ContratoPromoTelevisao.Add(promoTelevisao);
                         await _context.SaveChangesAsync();
                     }
                 }
+                if (descontoTelevisao > 50)
+                {
+                    descontoTelevisao = 50;
+                }
+                else
+                {
+                    if (x5 == 0)
+                    {
+                        x5 = 1;
+                        descontoTelevisao = descontoTelevisao / x5;
+                    }
+                    else
+                    {
+                        descontoTelevisao = descontoTelevisao / x5;
+                    }
+                }
             }
-            return RedirectToAction("Index", "Contratos");
+
+            //valor do contrato
+            decimal precoContrato, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
+
+            var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
+
+            precoContrato = pacote.PrecoTotal;
+
+
+            //valor do desconto
+            totalTelefone = precoContrato * (descontoTelefone / 100);
+            totalNetFixa = precoContrato * (descontoNetFixa / 100);
+            totalTelevisao = precoContrato * (descontoTelevisao / 100);
+            totalNetMovel = precoContrato * (descontoNetMovel / 100);
+            totalTelemovel = precoContrato * (descontoTelemovel / 100);
+
+            //total do valor do contrato
+            total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
+            CVM.PrecoContrato = total;
+            contrato.PrecoContrato = CVM.PrecoContrato;
+
+            await _context.SaveChangesAsync();
+            ViewBag.Mensagem = "Contrato Editado com sucesso";
+            return View("Sucesso");
+        
         }
+       
         // GET: Contratos/EditVistaCliente/5
         public async Task<IActionResult> EditVistaCliente(int? id)
         {
@@ -677,6 +820,15 @@ namespace UPtel.Controllers
                             .SingleOrDefaultAsync(p => p.ContratoId == id);
 
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
+
+            var contratoOriginal = _context.Contratos.AsNoTracking().SingleOrDefault(m => m.ContratoId == id);
+
+            
+            CVM.PacoteId = contrato.PacoteId;
+            CVM.Numeros = contrato.Numeros;
+            CVM.Fidelizacao = contrato.Fidelizacao;
+            CVM.ContratoId = (int)id;
+            CVM.PrecoContrato = contrato.PrecoContrato;
             return View(CVM);
         }
 
@@ -751,7 +903,7 @@ namespace UPtel.Controllers
                     }
                 }
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
-                return View("Sucesso");
+                return View("SucessoCliente");
             }
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
             return View(contratos);
