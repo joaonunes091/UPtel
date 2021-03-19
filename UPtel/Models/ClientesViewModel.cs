@@ -31,6 +31,7 @@ namespace UPtel.Models
         public string CodiogoPostal { get; set; }
 
         public string ExtensaoCodigoPostal { get; set; }
+        public int? Posicao { get; set; }
 
         public string Telefone { get; set; }
 

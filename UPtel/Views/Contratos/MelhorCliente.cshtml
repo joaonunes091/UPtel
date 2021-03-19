@@ -25,6 +25,9 @@
                             <thead>
                                 <tr>
                                     <th class="text-center titulo">
+                                        Posição Nacional
+                                    </th>
+                                    <th class="text-center titulo">
                                         Nome
                                     </th>
                                     <th class="text-center titulo">
@@ -45,6 +48,9 @@
                                     @foreach (var item in Model.Contratos)
                                     {
                                         <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => item.Posicao)
+                                            </td>
                                             <td class="text-center">
                                                 @Html.DisplayFor(modelItem => item.Cliente.Nome)
                                             </td>
@@ -68,6 +74,9 @@
                                     @for (int i = 0; i < 10; i++)
                                     {
                                         <tr>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(modelItem => Model.Contratos[i].Posicao)
+                                            </td>
                                             <td class="text-center">
                                                 @Html.DisplayFor(modelItem => Model.Contratos[i].Cliente.Nome)
                                             </td>

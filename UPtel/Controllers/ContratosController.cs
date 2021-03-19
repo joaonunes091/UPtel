@@ -49,13 +49,21 @@ namespace UPtel.Controllers
             List<Contratos> melhorCliente = await _context.Contratos.Where(p => p.Cliente.Tipo.Tipo.Contains("Cliente"))
                 .Include(p => p.Cliente)
                 .Include(p => p.Cliente.DistritoNome)
-                .OrderBy(c => c.PrecoContrato)
+                .OrderByDescending(c => c.PrecoContrato)
                 .ToListAsync();
+
+            int x = 0;
 
             ListaCanaisViewModel modelo = new ListaCanaisViewModel
             {
                 Contratos = melhorCliente,
+                
             };
+            foreach (var item in modelo.Contratos)
+            {
+                x++;
+                item.Posicao = x;
+            }
 
             return base.View(modelo);
         }
