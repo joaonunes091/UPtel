@@ -80,6 +80,14 @@ namespace UPtel.Models
         [Display(Name = "Telemóvel")]
         public string TelemovelPacote { get; set; }
 
+        //Novas funcionalidades
+        [DataType(DataType.Date)]
+        public DateTime DataRegisto { get; set; }
+
+        [Display(Name = "Distrito")]
+        public virtual Distrito DistritoNome { get; set; }
+        //
+
         public string TelefonePacote { get; set; }
 
         [Display(Name = "Televisão")]

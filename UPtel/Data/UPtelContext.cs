@@ -176,5 +176,7 @@ namespace UPtel.Data
         public DbSet<UPtel.Models.ClientesViewModel> ClientesViewModel { get; set; }
 
         public DbSet<UPtel.Models.Reclamacao> Reclamacao { get; set; }
+
+        public DbSet<UPtel.Models.OperadorViewModel> OperadorViewModel { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210318101748_operador")]
+    partial class operador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,10 +301,6 @@ namespace UPtel.Migrations
 
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("date");
-
-                    b.Property<string>("EdicaoCliente")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int?>("Fidelizacao")
                         .HasColumnType("int");
@@ -693,21 +691,16 @@ namespace UPtel.Migrations
                     b.Property<string>("Assunto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Descriçao")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NomeCliente")
+                    b.Property<string>("Descriçao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Resolvido")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
                     b.HasKey("ReclamacaoId");
-
-                    b.HasIndex("UsersId");
 
                     b.ToTable("Reclamacao");
                 });
@@ -1118,17 +1111,6 @@ namespace UPtel.Migrations
                     b.Navigation("Telemovel");
 
                     b.Navigation("Televisao");
-                });
-
-            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
-                {
-                    b.HasOne("UPtel.Models.Users", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Users", b =>
