@@ -8,35 +8,32 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Create</h1>
+                <h2 class="font">Criar reclamação</h2>
 
-                <h4>Reclamacao</h4>
-                <hr />
-                <div class="row">
-                    <div class="col-md-4">
+                
+                <br />
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="Assunto" class="control-label"></label>
                                 <input asp-for="Assunto" class="form-control" />
                                 <span asp-validation-for="Assunto" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="color:darkgray">
                                 <label asp-for="Descriçao" class="control-label"></label>
-                                <input asp-for="Descriçao" class="form-control" />
+                                <textarea rows="3" asp-for="Descriçao" class="form-control"></textarea>
                                 <span asp-validation-for="Descriçao" class="text-danger"></span>
                             </div>
                             
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Index" asp-controller="ClientesViewModel"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
                     </div>
-                </div>
-
-                <div>
-                    <a asp-action="Index">Back to List</a>
                 </div>
 
                 </div>

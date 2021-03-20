@@ -8,18 +8,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Index</h1>
+                <h1 class="font">Reclamações</h1>
 
-                <table class="table">
+                <table class="table table-borderless text-white">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="text-center titulo">
                                 @Html.DisplayNameFor(model => model.NomeCliente)
                             </th>
-                            <th>
+                            <th class="text-center titulo">
                                 @Html.DisplayNameFor(model => model.Assunto)
                             </th>
-                            <th>
+                            <th class="text-center titulo">
                                 @Html.DisplayNameFor(model => model.Resolvido)
                             </th>
                             <th></th>
@@ -29,30 +29,28 @@
                         @foreach (var item in Model)
                         {
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.NomeCliente)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Assunto)
                             </td>
                             @if (item.Resolvido == true)
                             {
-                                <td>
+                                <td class="text-center">
                                     Sim
                                 </td>
                             }
                              else
                             {
-                                <td>
+                                <td class="text-center">
                                     Não
                                 </td>
                             }
                                 
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.ReclamacaoId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.ReclamacaoId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.ReclamacaoId">Delete</a>
-                                </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                        </td>
                             </tr>
                         }
                     </tbody>
