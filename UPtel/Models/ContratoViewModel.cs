@@ -45,6 +45,37 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContrato { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime DataInicioPromoNetFixa { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataFimPromoNetFixa { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataInicioPromoNetMovel { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataFimPromoNetMovel { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataInicioPromoTelefone { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataFimPromoTelefone { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataInicioPromoTelemovel { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataFimPromoTelemovel { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataInicioPromoTelevisao { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataFimPromoTelevisao { get; set; }
+
+
         [ForeignKey(nameof(ClienteId))]
         [InverseProperty(nameof(Users.ContratosCliente))]
         public virtual Users Cliente { get; set; }
