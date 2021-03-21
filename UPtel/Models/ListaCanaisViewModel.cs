@@ -27,6 +27,7 @@ namespace UPtel.Models
         public List<Users> Users { get; set; }
 
         public List<Contratos> Contratos { get; set; }
+        public List<Distrito> Distritos { get; set; }
 
         //public IEnumerable<Funcionarios> Funcionarios { get; set; }
         //public IEnumerable<Contratos> Contratos { get; set; }
