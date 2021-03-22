@@ -74,7 +74,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal")] PromoNetFixa promoNetFixa)
+        public async Task<IActionResult> Create([Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado")] PromoNetFixa promoNetFixa)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal")] PromoNetFixa promoNetFixa)
+        public async Task<IActionResult> Edit(int id, [Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado")] PromoNetFixa promoNetFixa)
         {
             if (id != promoNetFixa.PromoNetFixaId)
             {

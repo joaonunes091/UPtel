@@ -73,7 +73,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal")] PromoTelevisao promoTelevisao)
+        public async Task<IActionResult> Create([Bind("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal,Descricao,Estado")] PromoTelevisao promoTelevisao)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal")] PromoTelevisao promoTelevisao)
+        public async Task<IActionResult> Edit(int id, [Bind(("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal,Descricao,Estado"))] PromoTelevisao promoTelevisao)
         {
             if (id != promoTelevisao.PromoTelevisaoId)
             {
