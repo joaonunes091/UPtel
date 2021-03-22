@@ -23,6 +23,9 @@ namespace UPtel.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
+        [StringLength(50)]
+        public string Estado { get; set; }
+
         public virtual ICollection<ContratoPromoTelevisao> ContratoPromoTelevisao { get; set; }
     }
 }
