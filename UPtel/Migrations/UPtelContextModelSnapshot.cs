@@ -554,10 +554,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("Estado")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
 
@@ -585,10 +581,6 @@ namespace UPtel.Migrations
                     b.Property<string>("Descricao")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Estado")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
@@ -620,10 +612,6 @@ namespace UPtel.Migrations
                     b.Property<string>("Descricao")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Estado")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Limite")
                         .HasColumnType("int");
@@ -662,10 +650,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("Estado")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int>("LimiteMinutos")
                         .HasColumnType("int");
 
@@ -696,10 +680,6 @@ namespace UPtel.Migrations
                     b.Property<string>("Descricao")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Estado")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
