@@ -36,6 +36,30 @@
                                 <input readonly asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="DistritoId" class="control-label"></label>
+                                <select asp-for="DistritoId" class="form-control" asp-items="ViewBag.DistritoId"></select>
+                                <span asp-validation-for="DistritoId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MoradaContrato" class="control-label"></label>
+                                <input asp-for="MoradaContrato" class="form-control" />
+                                <span asp-validation-for="MoradaContrato" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CodigoPostalCont" class="form-label" style="color:darkgray">Código Postal *</label>
+                                <div class="form-row">
+                                    <div class="col-md-7">
+                                        <input asp-for="CodigoPostalCont" class="form-control" placeholder="ex: xxxx" />
+                                        <span asp-validation-for="CodigoPostalCont" class="text-danger"></span>
+                                    </div>
+                                    -
+                                    <div class="col-md-4">
+                                        <input asp-for="CodigoPostalExtCont" class="form-control" placeholder="ex: xxx" />
+                                        <span asp-validation-for="CodigoPostalExtCont" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
                             <h3>Promoções Net Fixa</h3>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
