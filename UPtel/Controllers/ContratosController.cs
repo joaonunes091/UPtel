@@ -105,6 +105,7 @@ namespace UPtel.Controllers
                 .Include(p => p.Cliente)
                 .Include(p => p.Funcionario)
                 .Include(p => p.Pacote)
+                .Include(p => p.DistritoNome)
 
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
@@ -156,6 +157,10 @@ namespace UPtel.Controllers
             CVM.NomeFuncionario = contrato.Funcionario.Nome;
             CVM.NomeContrato = contrato.Pacote.NomePacote;
             CVM.PrecoContrato = contrato.PrecoContrato;
+            CVM.DistritoNome = contrato.DistritoNome.DistritoNome;
+            CVM.MoradaContrato = contrato.MoradaContrato;
+            CVM.CodigoPostalCont = contrato.CodigoPostalCont;
+            CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
 
             return View(CVM);
         }
@@ -178,6 +183,7 @@ namespace UPtel.Controllers
                 .Include(p => p.Cliente)
                 .Include(p => p.Funcionario)
                 .Include(p => p.Pacote)
+                .Include(p => p.DistritoNome)
 
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
@@ -239,6 +245,8 @@ namespace UPtel.Controllers
         // GET: Contratos/Create/
         public IActionResult Create()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             var contratoPromoNetFixa = _context.ContratoPromoNetFixa.FirstOrDefault();
             var contratoPromoNetMovel = _context.ContratoPromoNetMovel.FirstOrDefault();
@@ -568,6 +576,8 @@ namespace UPtel.Controllers
         // GET: Contratos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+              .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ContratoViewModel CVM = new ContratoViewModel();
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
@@ -626,6 +636,10 @@ namespace UPtel.Controllers
             CVM.Fidelizacao = contrato.Fidelizacao;
             CVM.ContratoId = (int)id;
             CVM.PrecoContrato = contrato.PrecoContrato;
+            CVM.DistritoId = contrato.DistritoId;
+            CVM.MoradaContrato = contrato.MoradaContrato;
+            CVM.CodigoPostalCont = contrato.CodigoPostalCont;
+            CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
 
             return View(CVM);
 
@@ -668,6 +682,10 @@ namespace UPtel.Controllers
             contrato.Numeros = CVM.Numeros;
             contrato.Fidelizacao = CVM.Fidelizacao;
             contrato.PrecoContrato = CVM.PrecoContrato;
+            contrato.DistritoId= CVM.DistritoId;
+            contrato.MoradaContrato = CVM.MoradaContrato  ;
+            contrato.CodigoPostalCont = CVM.CodigoPostalCont;
+            contrato.CodigoPostalExtCont = CVM.CodigoPostalExtCont;
 
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
@@ -1352,7 +1370,11 @@ namespace UPtel.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Funcionario)
                 .Include(c => c.Pacote)
+                .Include(c => c.DistritoNome)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
+
+            
+
             if (contratos == null)
             {
                 return NotFound();

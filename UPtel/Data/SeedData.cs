@@ -850,6 +850,7 @@ namespace UPtel.Data
             Users clientes = DbContext.Users.FirstOrDefault(t => t.Nome == "João Santos");
             Users funcionarios = DbContext.Users.FirstOrDefault(t => t.Nome == "Mariana Rute Guedes");
             Pacotes pacotes = DbContext.Pacotes.FirstOrDefault(t => t.NomePacote == "Básico");
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(d => d.DistritoNome == "Évora");
 
             DbContext.Contratos.AddRange(new Contratos[]
                {
@@ -862,6 +863,10 @@ namespace UPtel.Data
                     Fidelizacao = 5,
                     PrecoContrato = 59m,
                     Numeros = null,
+                    MoradaContrato = "rua",
+                    CodigoPostalCont = "1252",
+                    CodigoPostalExtCont= "222",
+                    DistritoNome = distrito,
                 },
 
 
