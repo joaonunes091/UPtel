@@ -892,7 +892,8 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 5m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 0m,
-                
+                Estado = "Ativo",
+
             },
             new PromoTelemovel
             {
@@ -904,6 +905,7 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 0m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 0m,
+                Estado = "Ativo",
 
             },
             new PromoTelemovel
@@ -916,6 +918,7 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 0m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 10m,
+                Estado = "Ativo",
 
             },
 
@@ -969,6 +972,7 @@ namespace UPtel.Data
                 Nome = "Dia dos namorados",
                 Limite = 1,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
             new PromoNetMovel
@@ -976,6 +980,7 @@ namespace UPtel.Data
                 Nome = "Páscoa",
                 Limite = 4,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
             new PromoNetMovel
@@ -983,6 +988,7 @@ namespace UPtel.Data
                 Nome = "Natal",
                 Limite = 5,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
 
@@ -1036,6 +1042,7 @@ namespace UPtel.Data
                 Velocidade  = 30,
                 Limite = 1,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
             new PromoNetFixa
@@ -1044,6 +1051,7 @@ namespace UPtel.Data
                 Velocidade = 50,
                 Limite = 4,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
             new PromoNetFixa
@@ -1052,6 +1060,7 @@ namespace UPtel.Data
                 Velocidade = 100,
                 Limite = 5,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
 
@@ -1106,6 +1115,7 @@ namespace UPtel.Data
                 DescontoMinInternacional = 6,
                 Limite = 1,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
             new PromoTelefone
@@ -1115,6 +1125,7 @@ namespace UPtel.Data
                 DescontoMinInternacional = 10,
                 Limite = 4,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
             new PromoTelefone
@@ -1124,6 +1135,7 @@ namespace UPtel.Data
                 DescontoMinInternacional = 50,
                 Limite = 5,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
 
@@ -1176,6 +1188,7 @@ namespace UPtel.Data
                 Nome = "Dia dos namorados",
                 CanaisGratis = 5,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
             new PromoTelevisao
@@ -1183,6 +1196,7 @@ namespace UPtel.Data
                 Nome = "Páscoa",
                 CanaisGratis = 4,
                 DescontoPrecoTotal = 5,
+                Estado = "Ativo",
 
             },
             new PromoTelevisao
@@ -1190,6 +1204,7 @@ namespace UPtel.Data
                 Nome = "Natal",
                 CanaisGratis = 2,
                 DescontoPrecoTotal = 10,
+                Estado = "Ativo",
 
             },
 
