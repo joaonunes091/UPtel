@@ -131,7 +131,7 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details" ,new {id = id });
             }
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
             return View(reclamacao);
