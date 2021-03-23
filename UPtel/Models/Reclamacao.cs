@@ -9,6 +9,7 @@ namespace UPtel.Models
 {
     public class Reclamacao
     {
+        [Key]
         public int ReclamacaoId { get; set; }
 
         public int UsersId { get; set; }
@@ -26,6 +27,8 @@ namespace UPtel.Models
         public string NomeCliente { get; set; }
 
         public bool Resolvido { get; set; }
+
+        public List<Reclamacao> ReclamacoesCliente { get; set; }
 
         [ForeignKey(nameof(Users.UsersId))]
         public virtual Users Cliente { get; set; }
