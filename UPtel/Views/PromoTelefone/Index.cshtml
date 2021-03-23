@@ -53,9 +53,9 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoPrecoTotal)
                                 </th>
-                                @*<th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelefone[0].Descricao)
-                                </th>*@
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoTelefone[0].Estado)
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -78,9 +78,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
                                     </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Estado)
+                                    </td>
                                     <td>
                                     <td>
                                         <a asp-action="Details" asp-route-id="@item.PromoTelefoneId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>

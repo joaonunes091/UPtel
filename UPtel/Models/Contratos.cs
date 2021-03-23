@@ -50,6 +50,31 @@ namespace UPtel.Models
         //[Range(1, 9999, ErrorMessage = "O valor não é válido")]
         public decimal PrecoContrato { get; set; }
 
+        [Required(ErrorMessage = "É necessário colocar a morada")]
+        [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
+        [Display(Name = "Morada")]
+        public string MoradaContrato { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(4, MinimumLength = 4)]
+        [Display(Name = "Código Postal")]
+        [RegularExpression(@"([123456789]|1)\d{3}", ErrorMessage = "Valor inválido")]
+        public string CodigoPostalCont { get; set; }
+
+        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        [StringLength(3, MinimumLength = 3)]
+        [Display(Name = "Extensão do Código Postal")]
+        [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]
+        public string CodigoPostalExtCont { get; set; }
+
+        [Display(Name = "Distrito")]
+        public int DistritoId { get; set; }
+
+
+        [ForeignKey(nameof(DistritoId))]
+        [InverseProperty(nameof(Distrito.Contratos))]
+        [Display(Name = "Distrito")]
+        public virtual Distrito DistritoNome { get; set; }
 
         [ForeignKey(nameof(ClienteId))]
         [InverseProperty(nameof(Users.ContratosCliente))]

@@ -105,6 +105,7 @@ namespace UPtel.Controllers
                 .Include(p => p.Cliente)
                 .Include(p => p.Funcionario)
                 .Include(p => p.Pacote)
+                .Include(p => p.DistritoNome)
 
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
@@ -156,6 +157,10 @@ namespace UPtel.Controllers
             CVM.NomeFuncionario = contrato.Funcionario.Nome;
             CVM.NomeContrato = contrato.Pacote.NomePacote;
             CVM.PrecoContrato = contrato.PrecoContrato;
+            CVM.DistritoNome = contrato.DistritoNome.DistritoNome;
+            CVM.MoradaContrato = contrato.MoradaContrato;
+            CVM.CodigoPostalCont = contrato.CodigoPostalCont;
+            CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
 
             return View(CVM);
         }
@@ -178,9 +183,12 @@ namespace UPtel.Controllers
                 .Include(p => p.Cliente)
                 .Include(p => p.Funcionario)
                 .Include(p => p.Pacote)
+                .Include(p => p.DistritoNome)
 
                 .AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
+
+           
 
             var listaPromoNetFixa = _context.PromoNetFixa.Select(x => new CheckBox()
             {
@@ -237,7 +245,14 @@ namespace UPtel.Controllers
         // GET: Contratos/Create/
         public IActionResult Create()
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
+            var contratoPromoNetFixa = _context.ContratoPromoNetFixa.FirstOrDefault();
+            var contratoPromoNetMovel = _context.ContratoPromoNetMovel.FirstOrDefault();
+            var contratoPromoTelefone = _context.ContratoPromoTelefone.FirstOrDefault();
+            var contratoPromoTelemovel = _context.ContratoPromoTelemovel.FirstOrDefault();
+            var contratoPromoTelevisao = _context.ContratoPromoTelevisao.FirstOrDefault();
 
             var promoNetFixa = _context.PromoNetFixa.ToList();
             var promoNetMovel = _context.PromoNetMovel.ToList();
@@ -245,6 +260,22 @@ namespace UPtel.Controllers
             var promoTelemovel = _context.PromoTelemovel.ToList();
             var promoTelevisao = _context.PromoTelevisao.ToList();
             ContratoViewModel CVM = new ContratoViewModel();
+
+            CVM.DataInicioPromoNetFixa = contratoPromoNetFixa.DataInicio;
+            CVM.DataFimPromoNetFixa = contratoPromoNetFixa.DataFim;
+
+            CVM.DataInicioPromoNetMovel = contratoPromoNetMovel.DataInicio;
+            CVM.DataFimPromoNetMovel = contratoPromoNetMovel.DataFim;
+
+            CVM.DataInicioPromoTelefone = contratoPromoTelefone.DataInicio;
+            CVM.DataFimPromoTelefone = contratoPromoTelefone.DataFim;
+
+            CVM.DataInicioPromoTelemovel = contratoPromoTelemovel.DataInicio;
+            CVM.DataFimPromoTelemovel = contratoPromoTelemovel.DataFim;
+
+            CVM.DataInicioPromoTelevisao = contratoPromoTelevisao.DataInicio;
+            CVM.DataFimPromoTelevisao = contratoPromoTelevisao.DataFim;
+
             CVM.ListaPromoNetFixa = promoNetFixa.Select(x => new CheckBox()
             {
                 Id = x.PromoNetFixaId,
@@ -328,8 +359,11 @@ namespace UPtel.Controllers
                     var netFixa = _context.PromoNetFixa.SingleOrDefault(n => n.PromoNetFixaId == item.PromoNetFixaId);
                     descontoNetFixas += netFixa.DescontoPrecoTotal;
                     x1++;
+                    item.DataInicio = CVM.DataInicioPromoNetFixa;
+                    item.DataFim = CVM.DataFimPromoNetFixa;
 
                     _context.ContratoPromoNetFixa.Add(item);
+                    await _context.SaveChangesAsync();
                 }
                 if (descontoNetFixas > 50)
                 {
@@ -364,7 +398,11 @@ namespace UPtel.Controllers
                     var netMovel = _context.PromoNetMovel.SingleOrDefault(n => n.PromoNetMovelId == item.PromoNetMovelId);
                     descontoNetMovel += netMovel.DescontoPrecoTotal;
                     x2++;
+                    item.DataInicio = CVM.DataInicioPromoNetMovel;
+                    item.DataFim = CVM.DataFimPromoNetMovel;
+
                     _context.ContratoPromoNetMovel.Add(item);
+                    await _context.SaveChangesAsync();
                 }
                 if (descontoNetMovel > 50)
                 {
@@ -399,7 +437,10 @@ namespace UPtel.Controllers
                     var netTelefone = _context.PromoTelefone.SingleOrDefault(n => n.PromoTelefoneId == item.PromoTelefoneId);
                     descontoTelefone += netTelefone.DescontoPrecoTotal;
                     x3++;
+                    item.DataInicio = CVM.DataInicioPromoTelefone;
+                    item.DataFim = CVM.DataFimPromoTelefone;
                     _context.ContratoPromoTelefone.Add(item);
+                    await _context.SaveChangesAsync();
                 }
                 if (descontoTelefone > 50)
                 {
@@ -435,7 +476,10 @@ namespace UPtel.Controllers
                     var Telemovel = _context.PromoTelemovel.SingleOrDefault(n => n.PromoTelemovelId== item.PromoTelemovelId);
                     descontoTelemovel += Telemovel.DecontoPrecoTotal;
                     x4++;
+                    item.DataInicio = CVM.DataInicioPromoTelemovel;
+                    item.DataFim = CVM.DataFimPromoTelemovel;
                     _context.ContratoPromoTelemovel.Add(item);
+                    await _context.SaveChangesAsync();
                 }
                 if (descontoTelemovel > 50)
                 {
@@ -470,7 +514,10 @@ namespace UPtel.Controllers
                     var Televisao = _context.PromoTelevisao.SingleOrDefault(n => n.PromoTelevisaoId == item.PromoTelevisaoId);
                     descontoTelevisao += Televisao.DescontoPrecoTotal;
                     x5++;
+                    item.DataInicio = CVM.DataInicioPromoTelevisao;
+                    item.DataFim = CVM.DataFimPromoTelevisao;
                     _context.ContratoPromoTelevisao.Add(item);
+                    await _context.SaveChangesAsync();
                 }
                 if (descontoTelevisao > 50)
                 {
@@ -509,6 +556,7 @@ namespace UPtel.Controllers
             //total do valor do contrato
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             contratos.PrecoContrato = total;
+            cliente.PrecoContratos = contratos.PrecoContrato + cliente.PrecoContratos;
 
             if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
             {
@@ -529,6 +577,8 @@ namespace UPtel.Controllers
         // GET: Contratos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+              .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
             ContratoViewModel CVM = new ContratoViewModel();
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
@@ -587,6 +637,10 @@ namespace UPtel.Controllers
             CVM.Fidelizacao = contrato.Fidelizacao;
             CVM.ContratoId = (int)id;
             CVM.PrecoContrato = contrato.PrecoContrato;
+            CVM.DistritoId = contrato.DistritoId;
+            CVM.MoradaContrato = contrato.MoradaContrato;
+            CVM.CodigoPostalCont = contrato.CodigoPostalCont;
+            CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
 
             return View(CVM);
 
@@ -629,6 +683,10 @@ namespace UPtel.Controllers
             contrato.Numeros = CVM.Numeros;
             contrato.Fidelizacao = CVM.Fidelizacao;
             contrato.PrecoContrato = CVM.PrecoContrato;
+            contrato.DistritoId= CVM.DistritoId;
+            contrato.MoradaContrato = CVM.MoradaContrato  ;
+            contrato.CodigoPostalCont = CVM.CodigoPostalCont;
+            contrato.CodigoPostalExtCont = CVM.CodigoPostalExtCont;
 
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
@@ -1313,7 +1371,11 @@ namespace UPtel.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Funcionario)
                 .Include(c => c.Pacote)
+                .Include(c => c.DistritoNome)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
+
+            
+
             if (contratos == null)
             {
                 return NotFound();

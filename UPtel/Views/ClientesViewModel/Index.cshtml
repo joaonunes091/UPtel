@@ -83,6 +83,18 @@
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.Email)
                     </dd>
+                    <dt class="col-sm-5 titulo">
+                        Posição Nacional
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Posicao)
+                    </dd>
+                    <dt class="col-sm-5 titulo">
+                        Preço total do(s) contrato(s)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.PrecoContratos)
+                    </dd>
                 </dl>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Manage/SetPassword"><i class="fas fa-key fixedIcon"></i> Mudar Password</a>
@@ -112,25 +124,30 @@
                                 <th class="text-center titulo">
                                     Preço
                                 </th>
+                                @*<th class="text-center titulo">
+                                    Posição Nacional
+                                </th>*@
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var contrato in Model.ListaContratos)
                             {
-                                <tr>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => contrato.Pacote.NomePacote)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => contrato.PrecoContrato) €
-                                    </td>
-
-                                    <td class="text-center">
-                                        <a asp-action="Details" asp-route-id="@contrato.PacoteId"><i class="fas fa-search-plus fa-2x"></i></a>
-                                        <a asp-controller="Contratos" asp-action="EditVistaCliente"  asp-route-id="@contrato.ContratoId">Editar Contrato</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => contrato.Pacote.NomePacote)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => contrato.PrecoContrato) €
+                                </td>
+                                @*<td class="text-center">
+                                    @Html.DisplayFor(modelItem => contrato.Posicao)
+                                </td>*@
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@contrato.PacoteId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                    <a asp-controller="Contratos" asp-action="EditVistaCliente" asp-route-id="@contrato.ContratoId">Editar Contrato</a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

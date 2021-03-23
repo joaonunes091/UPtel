@@ -79,6 +79,12 @@ namespace UPtel.Models
         [Display(Name = "Distrito")]
         public int DistritoId { get; set; }
 
+        [Display(Name = "Valor total dos contratos")]
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal PrecoContratos { get; set; }
+
+        public int? Posicao { get; set; }
+
         //[Required(ErrorMessage = "É necessário colocar uma data")]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]

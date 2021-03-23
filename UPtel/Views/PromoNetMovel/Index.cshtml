@@ -49,6 +49,9 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetMovel[0].DescontoPrecoTotal)
                                 </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetMovel[0].Estado)
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -67,6 +70,9 @@
                                 </td>
                                 <td class="text-center">
                                     @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Estado)
                                 </td>
                                 <td>
                                     <a asp-action="Details" asp-route-id="@item.PromoNetMovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
