@@ -56,6 +56,9 @@
                                     <th class="text-center titulo">
                                         @Html.DisplayNameFor(model => model.Users[0].Tipo)
                                     </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.Users[0].PrecoContratos)
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -71,6 +74,9 @@
                                         </td>
                                         <td class="text-center">
                                             @Html.DisplayFor(modelItem => item.Tipo.Tipo)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.PrecoContratos)
                                         </td>
                                         <td>
                                             @{

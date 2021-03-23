@@ -6,14 +6,9 @@ namespace UPtel.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "NomeCliente",
-                table: "OperadorViewModel",
-                newName: "NomeOperador");
-
             migrationBuilder.AddColumn<int>(
                 name: "Posicao",
-                table: "Contratos",
+                table: "Users",
                 type: "int",
                 nullable: true);
         }
@@ -22,12 +17,7 @@ namespace UPtel.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Posicao",
-                table: "Contratos");
-
-            migrationBuilder.RenameColumn(
-                name: "NomeOperador",
-                table: "OperadorViewModel",
-                newName: "NomeCliente");
+                table: "Users");
         }
     }
 }
