@@ -28,8 +28,11 @@ namespace UPtel.Models
         [StringLength(300, ErrorMessage = "O limite de carateres(300) foi ultrapassado")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+        
+        [StringLength(50)]
+        public string Estado { get; set; }
 
-       
+
 
         public virtual ICollection<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
     }

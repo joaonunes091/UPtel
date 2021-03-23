@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210322163139_MoradaContrato")]
+    partial class MoradaContrato
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,9 +116,6 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecoContrato")
-                        .HasColumnType("decimal(5,2)");
-
-                    b.Property<decimal>("PrecoContratos")
                         .HasColumnType("decimal(5,2)");
 
                     b.Property<decimal>("PrecoPacote")
@@ -752,9 +751,6 @@ namespace UPtel.Migrations
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReclamacaoId1")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Resolvido")
                         .HasColumnType("bit");
 
@@ -762,8 +758,6 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ReclamacaoId");
-
-                    b.HasIndex("ReclamacaoId1");
 
                     b.HasIndex("UsersId");
 
@@ -945,12 +939,6 @@ namespace UPtel.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
-
-                    b.Property<int?>("Posicao")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PrecoContratos")
-                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Telefone")
                         .HasMaxLength(9)
@@ -1194,10 +1182,6 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
-                    b.HasOne("UPtel.Models.Reclamacao", null)
-                        .WithMany("ReclamacoesCliente")
-                        .HasForeignKey("ReclamacaoId1");
-
                     b.HasOne("UPtel.Models.Users", "Cliente")
                         .WithMany()
                         .HasForeignKey("UsersId")
@@ -1294,11 +1278,6 @@ namespace UPtel.Migrations
             modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
                 {
                     b.Navigation("ContratoPromoTelevisao");
-                });
-
-            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
-                {
-                    b.Navigation("ReclamacoesCliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>

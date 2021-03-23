@@ -80,6 +80,13 @@ namespace UPtel.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Contratos_Pacotes");
 
+                entity.HasOne(d => d.DistritoNome)
+                   .WithMany(p => p.Contratos)
+                   .HasForeignKey(d => d.DistritoId)
+                   .OnDelete(DeleteBehavior.ClientSetNull)
+                   .HasConstraintName("FK_Contratos_Distrito");
+
+
                 //entity.HasOne(d => d.Promocao)
                 //    .WithMany(p => p.Contratos)
                 //    .HasForeignKey(d => d.PromocaoId)
