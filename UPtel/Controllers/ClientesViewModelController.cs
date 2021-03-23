@@ -34,7 +34,7 @@ namespace UPtel.Controllers
             Users infoCliente = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
 
             List<Contratos> listaContratos = new List<Contratos>();
-            foreach (var contrato in _context.Contratos.Include(p => p.Pacote).Include(p => p.Posicao))
+            foreach (var contrato in _context.Contratos.Include(p => p.Pacote)/*.Include(p => p.Posicao)*/)
             {
                 if (contrato.ClienteId == infoCliente.UsersId)
                 {
