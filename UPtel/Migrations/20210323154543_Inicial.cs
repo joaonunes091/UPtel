@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class CreateNewUserNew : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,46 +19,6 @@ namespace UPtel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Canais", x => x.CanaisId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ClientesViewModel",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CartaoCidadao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumeroContribuinte = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Morada = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CodiogoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExtensaoCodigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telemovel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Fotografia = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    NomeFuncionario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Fidelizacao = table.Column<int>(type: "int", nullable: true),
-                    TempoPromocao = table.Column<int>(type: "int", nullable: true),
-                    PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    NumerosAssociados = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NomePacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NetFixaPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NetMovelPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelemovelPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelefonePacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelevisaoPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PrecoPacote = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    NomePromocao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DescricaoPromocao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PromocaoCanais = table.Column<int>(type: "int", nullable: false),
-                    Desconto = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ClientesViewModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -118,7 +78,8 @@ namespace UPtel.Migrations
                     Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Velocidade = table.Column<int>(type: "int", nullable: false),
                     DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -134,7 +95,8 @@ namespace UPtel.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -152,7 +114,8 @@ namespace UPtel.Migrations
                     DescontoMinNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     DescontoMinInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     DescontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,7 +136,8 @@ namespace UPtel.Migrations
                     DecontoPrecoSMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     DecontoPrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
                     DecontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -189,27 +153,12 @@ namespace UPtel.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CanaisGratis = table.Column<int>(type: "int", nullable: false),
                     DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PromoTelevisao", x => x.PromoTelevisaoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Reclamacao",
-                columns: table => new
-                {
-                    ReclamacaoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Assunto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Descriçao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    Resolvido = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reclamacao", x => x.ReclamacaoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,6 +224,87 @@ namespace UPtel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoClientes", x => x.TipoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClientesViewModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CartaoCidadao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumeroContribuinte = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Morada = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CodiogoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExtensaoCodigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Posicao = table.Column<int>(type: "int", nullable: true),
+                    PrecoContratos = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telemovel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fotografia = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    NomeFuncionario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fidelizacao = table.Column<int>(type: "int", nullable: true),
+                    TempoPromocao = table.Column<int>(type: "int", nullable: true),
+                    PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    NumerosAssociados = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomePacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NetFixaPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NetMovelPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TelemovelPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataRegisto = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DistritoNomeDistritoId = table.Column<int>(type: "int", nullable: true),
+                    TelefonePacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TelevisaoPacote = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PrecoPacote = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    NomePromocao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescricaoPromocao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PromocaoCanais = table.Column<int>(type: "int", nullable: false),
+                    Desconto = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientesViewModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClientesViewModel_Distrito_DistritoNomeDistritoId",
+                        column: x => x.DistritoNomeDistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OperadorViewModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeOperador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CartaoCidadao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumeroContribuinte = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Morada = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CodiogoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExtensaoCodigoPostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telemovel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fotografia = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    DataRegisto = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DistritoNomeDistritoId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperadorViewModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OperadorViewModel_Distrito_DistritoNomeDistritoId",
+                        column: x => x.DistritoNomeDistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -369,6 +399,8 @@ namespace UPtel.Migrations
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     TipoId = table.Column<int>(type: "int", nullable: false),
                     DistritoId = table.Column<int>(type: "int", nullable: false),
+                    PrecoContratos = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Posicao = table.Column<int>(type: "int", nullable: true),
                     DataRegisto = table.Column<DateTime>(type: "date", nullable: false),
                     CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false, defaultValueSql: "(N'')"),
                     IBAN = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
@@ -404,7 +436,13 @@ namespace UPtel.Migrations
                     Numeros = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     DataInicio = table.Column<DateTime>(type: "date", nullable: false),
                     Fidelizacao = table.Column<int>(type: "int", nullable: true),
+                    Posicao = table.Column<int>(type: "int", nullable: true),
+                    EdicaoCliente = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    MoradaContrato = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    CodigoPostalCont = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
+                    CodigoPostalExtCont = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
                     ClientesViewModelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -423,6 +461,12 @@ namespace UPtel.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_Contratos_Distrito",
+                        column: x => x.DistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Contratos_Pacotes",
                         column: x => x.PacoteId,
                         principalTable: "Pacotes",
@@ -434,6 +478,36 @@ namespace UPtel.Migrations
                         principalTable: "Users",
                         principalColumn: "UsersId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reclamacao",
+                columns: table => new
+                {
+                    ReclamacaoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsersId = table.Column<int>(type: "int", nullable: false),
+                    Assunto = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Descriçao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Resolvido = table.Column<bool>(type: "bit", nullable: false),
+                    ReclamacaoId1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reclamacao", x => x.ReclamacaoId);
+                    table.ForeignKey(
+                        name: "FK_Reclamacao_Reclamacao_ReclamacaoId1",
+                        column: x => x.ReclamacaoId1,
+                        principalTable: "Reclamacao",
+                        principalColumn: "ReclamacaoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reclamacao_Users_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "Users",
+                        principalColumn: "UsersId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -577,6 +651,11 @@ namespace UPtel.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClientesViewModel_DistritoNomeDistritoId",
+                table: "ClientesViewModel",
+                column: "DistritoNomeDistritoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ContratoPromoNetFixa_ContratoId",
                 table: "ContratoPromoNetFixa",
                 column: "ContratoId");
@@ -637,6 +716,11 @@ namespace UPtel.Migrations
                 column: "ClientesViewModelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Contratos_DistritoId",
+                table: "Contratos",
+                column: "DistritoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Contratos_FuncionarioId",
                 table: "Contratos",
                 column: "FuncionarioId");
@@ -645,6 +729,11 @@ namespace UPtel.Migrations
                 name: "IX_Contratos_PacoteId",
                 table: "Contratos",
                 column: "PacoteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OperadorViewModel_DistritoNomeDistritoId",
+                table: "OperadorViewModel",
+                column: "DistritoNomeDistritoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PacoteCanais_CanaisId",
@@ -680,6 +769,16 @@ namespace UPtel.Migrations
                 name: "IX_Pacotes_TelevisaoId",
                 table: "Pacotes",
                 column: "TelevisaoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reclamacao_ReclamacaoId1",
+                table: "Reclamacao",
+                column: "ReclamacaoId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reclamacao_UsersId",
+                table: "Reclamacao",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartaoCidadaoClientes",
@@ -728,6 +827,9 @@ namespace UPtel.Migrations
                 name: "ContratoPromoTelevisao");
 
             migrationBuilder.DropTable(
+                name: "OperadorViewModel");
+
+            migrationBuilder.DropTable(
                 name: "PacoteCanais");
 
             migrationBuilder.DropTable(
@@ -764,10 +866,10 @@ namespace UPtel.Migrations
                 name: "Pacotes");
 
             migrationBuilder.DropTable(
-                name: "Distrito");
+                name: "UserType");
 
             migrationBuilder.DropTable(
-                name: "UserType");
+                name: "Distrito");
 
             migrationBuilder.DropTable(
                 name: "NetFixa");
