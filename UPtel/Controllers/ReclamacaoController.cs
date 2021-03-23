@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace UPtel.Controllers
     public class ReclamacaoController : Controller
     {
         private readonly UPtelContext _context;
+        private readonly UserManager<IdentityUser> _gestorUtilizadores;
 
-        public ReclamacaoController(UPtelContext context)
+        public ReclamacaoController(UPtelContext context, UserManager<IdentityUser> gestorUtilizadores)
         {
             _context = context;
+            _gestorUtilizadores = gestorUtilizadores;
         }
 
         // GET: Reclamacao
@@ -52,8 +55,15 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Cliente")]
         public IActionResult Create()
         {
+            var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "UsersId");
-            return View();
+
+            List<Reclamacao> listaReclamacoes = _context.Reclamacao.Include(c => c.Cliente).Where(c => c.Cliente.Email == userEmail).ToList();
+
+            Reclamacao reclamacao = new Reclamacao();
+            reclamacao.ReclamacoesCliente = listaReclamacoes;
+
+            return View(reclamacao);
         }
 
         // POST: Reclamacao/Create
@@ -73,11 +83,10 @@ namespace UPtel.Controllers
 
                 _context.Add(reclamacao);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
                 return RedirectToAction("ConfirmacaoReclamacao", "ClientesViewModel");
             }
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
-            //return View(reclamacao);
+            
             return RedirectToAction("ConfirmacaoReclamacao", "ClientesViewModel");
         }
 
@@ -131,7 +140,7 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details" ,new {id = id });
             }
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
             return View(reclamacao);

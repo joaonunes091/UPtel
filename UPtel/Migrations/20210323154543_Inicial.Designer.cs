@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210317162250_EdicaoClienteContrato")]
-    partial class EdicaoClienteContrato
+    [Migration("20210323154543_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,11 +61,17 @@ namespace UPtel.Migrations
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DataRegisto")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Desconto")
                         .HasColumnType("int");
 
                     b.Property<string>("DescricaoPromocao")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DistritoNomeDistritoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -106,7 +112,13 @@ namespace UPtel.Migrations
                     b.Property<string>("NumerosAssociados")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Posicao")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PrecoContrato")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("PrecoContratos")
                         .HasColumnType("decimal(5,2)");
 
                     b.Property<decimal>("PrecoPacote")
@@ -134,6 +146,8 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DistritoNomeDistritoId");
 
                     b.ToTable("ClientesViewModel");
                 });
@@ -291,8 +305,21 @@ namespace UPtel.Migrations
                     b.Property<int?>("ClientesViewModelId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CodigoPostalCont")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<string>("CodigoPostalExtCont")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("date");
+
+                    b.Property<int>("DistritoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EdicaoCliente")
                         .HasMaxLength(300)
@@ -304,11 +331,19 @@ namespace UPtel.Migrations
                     b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
+                    b.Property<string>("MoradaContrato")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
                     b.Property<string>("Numeros")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("PacoteId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Posicao")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecoContrato")
@@ -317,6 +352,8 @@ namespace UPtel.Migrations
                     b.HasKey("ContratoId");
 
                     b.HasIndex("ClientesViewModelId");
+
+                    b.HasIndex("DistritoId");
 
                     b.HasIndex(new[] { "ClienteId" }, "IX_Contratos_ClienteId");
 
@@ -407,6 +444,59 @@ namespace UPtel.Migrations
                     b.ToTable("NetMovel");
                 });
 
+            modelBuilder.Entity("UPtel.Models.OperadorViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CartaoCidadao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodiogoPostal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataRegisto")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DistritoNomeDistritoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExtensaoCodigoPostal")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Fotografia")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Morada")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeOperador")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeroContribuinte")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telemovel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DistritoNomeDistritoId");
+
+                    b.ToTable("OperadorViewModel");
+                });
+
             modelBuilder.Entity("UPtel.Models.PacoteCanais", b =>
                 {
                     b.Property<int>("PacoteCanalId")
@@ -489,6 +579,10 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("Estado")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
 
@@ -516,6 +610,10 @@ namespace UPtel.Migrations
                     b.Property<string>("Descricao")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Estado")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Limite")
                         .HasColumnType("decimal(5,2)");
@@ -547,6 +645,10 @@ namespace UPtel.Migrations
                     b.Property<string>("Descricao")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Estado")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Limite")
                         .HasColumnType("int");
@@ -585,6 +687,10 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("Estado")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("LimiteMinutos")
                         .HasColumnType("int");
 
@@ -616,6 +722,10 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("Estado")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
@@ -632,13 +742,20 @@ namespace UPtel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Assunto")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Descriçao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReclamacaoId1")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Resolvido")
                         .HasColumnType("bit");
@@ -647,6 +764,8 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ReclamacaoId");
+
+                    b.HasIndex("ReclamacaoId1");
 
                     b.HasIndex("UsersId");
 
@@ -829,6 +948,12 @@ namespace UPtel.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
+                    b.Property<int?>("Posicao")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PrecoContratos")
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<string>("Telefone")
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
@@ -857,6 +982,15 @@ namespace UPtel.Migrations
                     b.HasIndex(new[] { "Nome" }, "IX_Nome_Users");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("UPtel.Models.ClientesViewModel", b =>
+                {
+                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
+                        .WithMany()
+                        .HasForeignKey("DistritoNomeDistritoId");
+
+                    b.Navigation("DistritoNome");
                 });
 
             modelBuilder.Entity("UPtel.Models.ContratoPromoNetFixa", b =>
@@ -966,6 +1100,12 @@ namespace UPtel.Migrations
                         .WithMany("ListaContratos")
                         .HasForeignKey("ClientesViewModelId");
 
+                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
+                        .WithMany("Contratos")
+                        .HasForeignKey("DistritoId")
+                        .HasConstraintName("FK_Contratos_Distrito")
+                        .IsRequired();
+
                     b.HasOne("UPtel.Models.Users", "Funcionario")
                         .WithMany("ContratosFuncionario")
                         .HasForeignKey("FuncionarioId")
@@ -980,9 +1120,20 @@ namespace UPtel.Migrations
 
                     b.Navigation("Cliente");
 
+                    b.Navigation("DistritoNome");
+
                     b.Navigation("Funcionario");
 
                     b.Navigation("Pacote");
+                });
+
+            modelBuilder.Entity("UPtel.Models.OperadorViewModel", b =>
+                {
+                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
+                        .WithMany()
+                        .HasForeignKey("DistritoNomeDistritoId");
+
+                    b.Navigation("DistritoNome");
                 });
 
             modelBuilder.Entity("UPtel.Models.PacoteCanais", b =>
@@ -1045,6 +1196,10 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
+                    b.HasOne("UPtel.Models.Reclamacao", null)
+                        .WithMany("ReclamacoesCliente")
+                        .HasForeignKey("ReclamacaoId1");
+
                     b.HasOne("UPtel.Models.Users", "Cliente")
                         .WithMany()
                         .HasForeignKey("UsersId")
@@ -1098,6 +1253,8 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Distrito", b =>
                 {
+                    b.Navigation("Contratos");
+
                     b.Navigation("Users");
                 });
 
@@ -1139,6 +1296,11 @@ namespace UPtel.Migrations
             modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
                 {
                     b.Navigation("ContratoPromoTelevisao");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
+                {
+                    b.Navigation("ReclamacoesCliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>

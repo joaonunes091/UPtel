@@ -31,7 +31,12 @@ namespace UPtel.Models
         public string CodiogoPostal { get; set; }
 
         public string ExtensaoCodigoPostal { get; set; }
+
         public int? Posicao { get; set; }
+
+        [Column(TypeName = "decimal(5, 2)")]
+        [Display(Name = "Preço do contrato")]
+        public decimal PrecoContratos { get; set; }
 
         public string Telefone { get; set; }
 
