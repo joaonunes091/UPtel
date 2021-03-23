@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210319174243_Posicao")]
-    partial class Posicao
+    [Migration("20210322164113_PrecoTotalContratos")]
+    partial class PrecoTotalContratos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,7 +112,13 @@ namespace UPtel.Migrations
                     b.Property<string>("NumerosAssociados")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Posicao")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PrecoContrato")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("PrecoContratos")
                         .HasColumnType("decimal(5,2)");
 
                     b.Property<decimal>("PrecoPacote")
@@ -696,10 +702,14 @@ namespace UPtel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Assunto")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Descriçao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");
@@ -892,6 +902,12 @@ namespace UPtel.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
+
+                    b.Property<int?>("Posicao")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PrecoContratos")
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Telefone")
                         .HasMaxLength(9)

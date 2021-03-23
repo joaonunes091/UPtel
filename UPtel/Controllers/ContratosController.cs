@@ -556,6 +556,7 @@ namespace UPtel.Controllers
             //total do valor do contrato
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             contratos.PrecoContrato = total;
+            cliente.PrecoContratos = contratos.PrecoContrato + cliente.PrecoContratos;
 
             if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
             {
