@@ -53,7 +53,9 @@ namespace UPtel.Controllers
 
             List<Contratos> listaContratos = new List<Contratos>();
 
+
             foreach (var contrato in _context.Contratos.Include(p => p.Pacote))
+
 
             {
                 if (contrato.ClienteId == infoCliente.UsersId)

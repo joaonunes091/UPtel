@@ -641,6 +641,7 @@ namespace UPtel.Controllers
             CVM.MoradaContrato = contrato.MoradaContrato;
             CVM.CodigoPostalCont = contrato.CodigoPostalCont;
             CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
+            
 
             return View(CVM);
 
