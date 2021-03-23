@@ -93,7 +93,7 @@
                 </ul>
             </li>*@
                                     }
-
+                                    <li><a asp-action="Index" asp-controller="FaturaCliente">Faturas</a></li>
                                     <li class="drop-down">
                                         <a href="">Serviços</a>
                                         <ul>
@@ -131,6 +131,7 @@
                                         }
                                         <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
 
+
                                         <li class="drop-down">
                                             <a href="#">Promoçoes</a>
                                             <ul>
@@ -148,29 +149,30 @@
                                         }
                                         @if (User.IsInRole("Operador"))
                                         {
-                                <li><a asp-action="Index" asp-controller="OperadorViewModel">Área do Operador</a></li> }
-                                            @*@if (User.IsInRole("Administrador"))
-                {
-                    <li class="drop-down">
-                        <a href="#">Registar</a>
-                        <ul>
-                            <li class="drop-down">
-                                <a href="#">Clientes</a>
-                                <ul>
-                                    <li><a asp-action="RegistoClienteParticular" asp-controller="Users">Cliente</a></li>
-                                    <li><a asp-action="RegistoClienteEmpresa" asp-controller="Users">Empresa</a></li>
-                                </ul>
-                            </li>
-                            <li class="drop-down">
-                                <a href="#">Funcionários</a>
-                                <ul>
-                                    <li><a asp-action="RegistoOperador" asp-controller="Users">Operador</a></li>
-                                    <li><a asp-action="RegistoAdministrador" asp-controller="Users">Administrador</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                }*@
+                                            <li><a asp-action="Index" asp-controller="OperadorViewModel">Área do Operador</a></li>
+ }
+                                        @*@if (User.IsInRole("Administrador"))
+            {
+                <li class="drop-down">
+                    <a href="#">Registar</a>
+                    <ul>
+                        <li class="drop-down">
+                            <a href="#">Clientes</a>
+                            <ul>
+                                <li><a asp-action="RegistoClienteParticular" asp-controller="Users">Cliente</a></li>
+                                <li><a asp-action="RegistoClienteEmpresa" asp-controller="Users">Empresa</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="#">Funcionários</a>
+                            <ul>
+                                <li><a asp-action="RegistoOperador" asp-controller="Users">Operador</a></li>
+                                <li><a asp-action="RegistoAdministrador" asp-controller="Users">Administrador</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            }*@
                                         <partial name="_LoginPartial" />
 
                                     </ul>

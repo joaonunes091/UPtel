@@ -34,6 +34,7 @@ namespace UPtel.Data
         public virtual DbSet<UserType> UserType { get; set; }
         public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<FaturaCliente> Faturas { get; set; }
 
         public virtual DbSet<PromoTelemovel> PromoTelemovel { get; set; }
         public virtual DbSet<PromoTelefone> PromoTelefone { get; set; }
@@ -94,14 +95,14 @@ namespace UPtel.Data
                 //    .HasConstraintName("FK_Contratos_Promocoes");
             });
 
-            /*modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<FaturaCliente>(entity =>
             {
-                entity.HasOne(d => d.TipoUtilizador)
-                    .WithMany(p => p.TipoUtilizador)
-                    .HasForeignKey(d => d.TipoId)
+                entity.HasOne(d => d.Fatura)
+                    .WithMany(p => p.Fatura)
+                    .HasForeignKey(d => d.ContratoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Funcionarios_Cargos");
-            });*/
+                    .HasConstraintName("FK_Contratos_Fatura");
+            });
 
             modelBuilder.Entity<PacoteCanais>(entity =>
             {

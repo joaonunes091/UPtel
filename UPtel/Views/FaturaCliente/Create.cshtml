@@ -1,0 +1,69 @@
+﻿@model UPtel.Models.FaturaCliente
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Criar Fatura</h2>
+                <br />
+                <div class="row">
+                    <div class="col-md-10">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="DataEmissao" class="control-label" style="color:darkgray">Data da Emissão</label>
+                                <input asp-for="DataEmissao" class="form-control" />
+                                <span asp-validation-for="DataEmissao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ContratoId" class="control-label" style="color:darkgray">Número do contrato</label>
+                                <select asp-for="ContratoId" class="form-control" asp-items="ViewBag.ContratoId"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Morada" class="control-label" style="color:darkgray">Morada</label>
+                                <select asp-for="Morada" class="form-control" asp-items="ViewBag.Morada"></select>
+                                @* <span asp-validation-for="Morada" class="text-danger"></span>*@
+                            </div>
+                            <!--<div class="form-group">
+                                <label asp-for="NomeCliente" class="control-label" style="color:darkgray">Nome do Cliente</label>
+                                <select asp-for="NomeCliente" class="form-control" asp-items="ViewBag.Nome"></select>-->
+                                @*<input asp-for="NomeCliente" class="form-control" />
+                                <span asp-validation-for="NomeCliente" class="text-danger"></span>*@
+                            <!--</div>-->
+                        <!--<div class="form-group">
+                            <label asp-for="PacoteId" class="control-label" style="color:darkgray">Pacote</label>
+                            <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
+                           
+                        </div>-->
+                            @*<div class="form-group">
+                                <label asp-for="PrecoContrato" class="control-label" style="color:darkgray">Preço do Contrato</label>
+                                <input asp-for="PrecoContrato" class="form-control" />
+                                <span asp-validation-for="PrecoContrato" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="Descricao" class="control-label" style="color:darkgray">Descrição</label>
+                                <input asp-for="Descricao" class="form-control" />
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -13,6 +13,11 @@ namespace UPtel.Models
     [Index(nameof(PacoteId), Name = "IX_Contratos_PacoteId")]
     public partial class Contratos
     {
+        public Contratos()
+        {
+            Fatura = new HashSet<FaturaCliente>();
+        }
+
         [Key]
         [Display(Name ="Nome de contrato")]
         public int ContratoId { get; set; }
@@ -87,6 +92,10 @@ namespace UPtel.Models
         [ForeignKey(nameof(PacoteId))]
         [InverseProperty(nameof(Pacotes.Contratos))]
         public virtual Pacotes Pacote { get; set; }
+
+
+        [InverseProperty("Fatura")]
+        public virtual ICollection<FaturaCliente> Fatura { get; set; }
 
         public virtual ICollection<ContratoPromoNetFixa> ContratoPromoNetFixa { get; set; }
         public virtual ICollection<ContratoPromoNetMovel> ContratoPromoNetMovel { get; set; }
