@@ -64,9 +64,11 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Distrito(string distrito, int pagina = 1)
         {
+            //ViewData["DistritoId"] = new SelectList(_context.Distrito, "DistritoId", "DistritoNome");
+
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Users.Include(d => d.DistritoNome).Where(d => distrito == null || d.DistritoNome.DistritoNome.Contains(distrito)).CountAsync(),
+                TotalItems = await _context.Users.Include(d => d.DistritoNome).Where(d => distrito == null).CountAsync(),
                 PaginaAtual = pagina
             };
 
