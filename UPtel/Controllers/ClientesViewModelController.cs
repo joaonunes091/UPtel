@@ -25,8 +25,26 @@ namespace UPtel.Controllers
         }
 
         // GET: ClientesViewModel
-        public async Task<IActionResult> Index(int? id, ClientesViewModel cliente)
+        public async Task<IActionResult> Index(ClientesViewModel cliente)
         {
+            List<Users> melhoresClientes = await _context.Users.Where(p => p.Tipo.Tipo.Contains("Cliente"))
+
+                .OrderByDescending(c => c.PrecoContratos)
+                .ToListAsync();
+
+            int x = 0;
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Users = melhoresClientes,
+            };
+
+            foreach (var item in modelo.Users)
+            {
+                x++;
+                item.Posicao = x;
+            }
+
             //Vai buscar email do utilizador com log in
             var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
 
@@ -34,14 +52,17 @@ namespace UPtel.Controllers
             Users infoCliente = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
 
             List<Contratos> listaContratos = new List<Contratos>();
-            foreach (var contrato in _context.Contratos.Include(p => p.Pacote)/*.Include(p => p.Posicao)*/)
+
+
+            foreach (var contrato in _context.Contratos.Include(p => p.Pacote))
+
+
             {
                 if (contrato.ClienteId == infoCliente.UsersId)
                 {
                     listaContratos.Add(contrato);
                 }
             }
-
 
             cliente = new ClientesViewModel
             {
@@ -58,7 +79,9 @@ namespace UPtel.Controllers
                 Telemovel = infoCliente.Telemovel,
                 Email = infoCliente.Email,
                 Fotografia = infoCliente.Fotografia,
-                ListaContratos = listaContratos
+                ListaContratos = listaContratos,
+                PrecoContratos = infoCliente.PrecoContratos,
+                Posicao = infoCliente.Posicao
             };
 
             return View(cliente);
@@ -75,7 +98,7 @@ namespace UPtel.Controllers
 
             //Vai buscar as informações dos contratos
             List<Contratos> listaContratos = new List<Contratos>();
-            foreach (var contrato in _context.Contratos.Include(p => p.Pacote).Include(p => p.Posicao))
+            foreach (var contrato in _context.Contratos.Include(p => p.Pacote))
             {
                 if (contrato.ClienteId == infoCliente.UsersId)
                 {
