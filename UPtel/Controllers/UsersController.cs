@@ -87,6 +87,30 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
+        public async Task<IActionResult> DistritoOperador(string distrito, int pagina = 1)
+        {
+
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Users.Include(d => d.DistritoNome).Where(d => distrito == null).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Users> users = await _context.Users.Include(t => t.DistritoNome).Where(d => distrito == null || d.DistritoNome.DistritoNome.Contains(distrito))
+                    .OrderBy(c => c.Nome)
+                    .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                    .Take(paginacao.ItemsPorPagina)
+                    .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Users = users,
+                NomePesquisar = distrito
+            };
+
+            return base.View(modelo);
+        }
         public async Task<IActionResult> DistritoCliente(string distrito, int pagina = 1)
         {
 
