@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -650,6 +650,31 @@ namespace UPtel.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Faturas",
+                columns: table => new
+                {
+                    NrFaturaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DataEmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ContratoId = table.Column<int>(type: "int", nullable: false),
+                    Morada = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PacoteId = table.Column<int>(type: "int", nullable: false),
+                    PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Faturas", x => x.NrFaturaId);
+                    table.ForeignKey(
+                        name: "FK_Contratos_Fatura",
+                        column: x => x.ContratoId,
+                        principalTable: "Contratos",
+                        principalColumn: "ContratoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ClientesViewModel_DistritoNomeDistritoId",
                 table: "ClientesViewModel",
@@ -729,6 +754,11 @@ namespace UPtel.Migrations
                 name: "IX_Contratos_PacoteId",
                 table: "Contratos",
                 column: "PacoteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Faturas_ContratoId",
+                table: "Faturas",
+                column: "ContratoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OperadorViewModel_DistritoNomeDistritoId",
@@ -827,6 +857,9 @@ namespace UPtel.Migrations
                 name: "ContratoPromoTelevisao");
 
             migrationBuilder.DropTable(
+                name: "Faturas");
+
+            migrationBuilder.DropTable(
                 name: "OperadorViewModel");
 
             migrationBuilder.DropTable(
@@ -848,10 +881,10 @@ namespace UPtel.Migrations
                 name: "PromoTelemovel");
 
             migrationBuilder.DropTable(
-                name: "Contratos");
+                name: "PromoTelevisao");
 
             migrationBuilder.DropTable(
-                name: "PromoTelevisao");
+                name: "Contratos");
 
             migrationBuilder.DropTable(
                 name: "Canais");

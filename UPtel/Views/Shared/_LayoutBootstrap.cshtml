@@ -86,14 +86,14 @@
                                         //<li><a asp-action="Index" asp-controller="Users">Utilizadores</a></li>
 
                                         <li class="drop-down">
-                                        <a href="">Utilizadores</a>
-                                        <ul>
-                                            <li><a asp-action="Index" asp-controller="Users">Utilizadores</a></li>
-                                            <li><a asp-action="Distrito" asp-controller="Users">Por Distrito</a></li>
-                                        </ul>
-                                    </li>
+                                            <a href="">Utilizadores</a>
+                                            <ul>
+                                                <li><a asp-action="Index" asp-controller="Users">Utilizadores</a></li>
+                                                <li><a asp-action="Distrito" asp-controller="Users">Por Distrito</a></li>
+                                            </ul>
+                                        </li>
                                     }
-                                    <li><a asp-action="Index" asp-controller="FaturaCliente">Faturas</a></li>
+
                                     <li class="drop-down">
                                         <a href="">Serviços</a>
                                         <ul>
@@ -126,8 +126,15 @@
                                         </li>
                                         @if (User.IsInRole("Operador"))
                                         {
-                                            <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
-                                            <li><a asp-action="Index" asp-controller="Reclamacao">Reclamações</a></li>
+                                            <li class="drop-down">
+                                                <a href="#">Operações</a>
+                                                <ul>
+                                                    <li><a asp-action="Index" asp-controller="FaturaCliente">Faturas</a></li>
+                                                    <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
+                                                    <li><a asp-action="Index" asp-controller="Reclamacao">Reclamações</a></li>
+                                                </ul>
+                                            </li>
+                                           
                                         }
                                         <li><a asp-action="Index" asp-controller="Pacotes">Pacotes</a></li>
 
@@ -150,7 +157,7 @@
                                         @if (User.IsInRole("Operador"))
                                         {
                                             <li><a asp-action="Index" asp-controller="OperadorViewModel">Área do Operador</a></li>
- }
+                                        }
                                         @*@if (User.IsInRole("Administrador"))
             {
                 <li class="drop-down">
