@@ -13,23 +13,42 @@
                 <div class="col-md-12 border-info mb-4">
                     <div class="card-body">
                         <h5 class="card-title" style="color:darkgray">Pesquisar Por Distrito</h5>
-                        <form asp-action="Distrito" method="get">
+                        @*<form asp-action="Distrito" method="get">
                             <div class="form-group">
                                 <label for="nomePesquisar" class="control-label">Selecione o Distrito</label>
                                 <select asp-for="@Model.NomePesquisar" class="form-control" type="search" asp-items="ViewBag.DistritoId"></select>
                                 <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
                             </div>
+                        </form>*@
+
+
+                        <form asp-action="Distrito" method="get">
+                            <div class="form-group">
+                                <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
+
+                            </div>
+                        </form>
+                        <form asp-action="DistritoOperador" method="get">
+                            <h2>Operador</h2>
+                            <div class="form-group">
+                                <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
+
+                            </div>
+                        </form><form asp-action="DistritoCliente" method="get">
+                            <h2>Operador</h2>
+                            <div class="form-group">
+                                <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
+
+                            </div>
                         </form>
 
-
-                            <form asp-action="Distrito" method="get">
-                                <div class="form-group">
-                                    <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
-                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                    <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
-
-                                </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <a asp-action="DistritoOperador" title="Operadores" class="btn btn-outline-light"><i> Operadores</i></a>
                                     <a asp-action="DistritoCliente" title="Clientes" class="btn btn-outline-light">  <i>Clientes</i></a>
                                     <a asp-action="Top10Operador" title="Top 10 Operador" class="btn btn-outline-light"> <i>Top 10 Operador</i></a>
@@ -37,7 +56,7 @@
                                     <a asp-action="MaisAntigo" title="Mais Antigos" class="btn btn-outline-light"><i>Top 10 Mais Antigos</i></a>
                                     <a asp-controller="Contratos" asp-action="MelhorCliente" class="btn btn-outline-light"><i title="Mais Antigos">Top 10 Melhores Clientes</i></a>
                                 </div>
-                            </form>
+                            </form>*@
                     </div>
                 </div>
 

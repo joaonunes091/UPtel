@@ -96,7 +96,7 @@ namespace UPtel.Controllers
                 PaginaAtual = pagina
             };
 
-            List<Users> users = await _context.Users.Include(t => t.DistritoNome).Where(d => distrito == null || d.DistritoNome.DistritoNome.Contains(distrito))
+            List<Users> users = await _context.Users.Include(t => t.DistritoNome).Where(p => p.Tipo.TipoId.Equals(3) && p.DistritoNome.DistritoNome.Contains(distrito))
                     .OrderBy(c => c.Nome)
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
@@ -120,7 +120,7 @@ namespace UPtel.Controllers
                 PaginaAtual = pagina
             };
 
-            List<Users> users = await _context.Users.Include(t => t.DistritoNome).Where(d => distrito == null || d.DistritoNome.DistritoNome.Contains(distrito))
+            List<Users> users = await _context.Users.Include(t => t.DistritoNome).Where(p => p.Tipo.TipoId.Equals(3) && p.DistritoNome.DistritoNome.Contains(distrito))
                     .OrderBy(c => c.Nome)
                     .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                     .Take(paginacao.ItemsPorPagina)
