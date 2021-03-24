@@ -1,0 +1,72 @@
+﻿@model ListaCanaisViewModel
+
+@{
+    ViewData["Title"] = "Contratos";
+}
+
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center text-white">
+            <div class="col-xl-8">
+                <div>
+                    <h2 class="font">Procurar contrato</h2>
+                    <br />
+                    <div class="row col-md-10 border-info mb-4 justify-content-center">
+                       
+                        @if (Model.Contratos.Count() == 0)
+                        {
+                            <p style="color:darkgray">Por favor pesquise um utilizador</p>
+                        }
+                        else
+                        {
+                            <table class="table table-borderless text-white">
+                                <thead>
+                                    <tr>
+                                        <th class="titulo">
+                                            Nome do Cliente
+                                        </th>
+                                        <th class="titulo">
+                                            NIF
+                                        </th>
+                                        <th class="titulo">
+                                            Morada Contrato
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contratos in Model.Contratos)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Cliente.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.Cliente.Contribuinte)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => contratos.MoradaContrato)
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <a asp-action="Create" asp-route-id="@contratos.ContratoId"><i class="fas fa-folder-plus fa-2x"></i></a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                    </div>
+                    <div class="float-right">
+                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

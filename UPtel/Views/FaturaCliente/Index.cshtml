@@ -13,7 +13,7 @@
                     <br />
                     <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisa de Faturas</h5>
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Faturas (Nome do cliente)</h5>
                             <form asp-action="Index" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. João" value="@Model.NomePesquisar" />
@@ -30,7 +30,7 @@
                     </p>
                     @if (Model.FaturaClientes.Count() == 0)
                     {
-                        <p>Não existem Faturas para mostrar</p>
+                        <p>Não existem faturas para mostrar</p>
                     }
                     else
                     {

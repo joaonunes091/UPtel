@@ -1,5 +1,6 @@
-﻿@model UPtel.Models.FaturaCliente
+﻿@*@model UPtel.Models.FaturaCliente*@
 
+@model UPtel.Models.FaturaViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -21,7 +22,7 @@
                         @Html.DisplayNameFor(model => model.Morada)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(model => model.Fatura.MoradaContrato)
+                        @Html.DisplayFor(model => model.Morada)
                     </dd>
                     <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomeCliente)
@@ -33,13 +34,13 @@
                         @Html.DisplayNameFor(model => model.PacoteId)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(model => model.Fatura.Pacote.NomePacote)
+                        @Html.DisplayFor(model => model.NomePacote)
                     </dd>
                     <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.PrecoContrato)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(model => model.Fatura.PrecoContrato)
+                        @Html.DisplayFor(model => model.PrecoContrato)
                     </dd>
                     <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.Descricao)
@@ -58,4 +59,4 @@
         </div>
     </div>
 </section>
-  
+

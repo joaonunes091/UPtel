@@ -10,24 +10,26 @@
         <div class="row justify-content-center  text-white">
             <div class="col-xl-8">
                 <div>
-                    <h2 class="font">Procurar Utilizador</h2>
+                    <h2 class="font">Procurar cliente</h2>
                     <br />
-                    <div class="row col-md-10 border-info mb-4 justify-content-center">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:darkgrey">Pesquisar contratos (Por Nome/NIF)</h5>
-                            <form asp-action="SelectUser" method="get">
-                                <div class="form-group">
-                                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                                </div>
-                            </form>
+                    <div class="row ">
+                        <div class="col-md-10 border-info mb-4 justify-content-center">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:darkgrey">Pesquisar cliente (Por Nome/NIF)</h5>
+                                <form asp-action="SelectUser" method="get">
+                                    <div class="form-group">
+                                        <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                        <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         @if (Model.Users.Count() == 0)
                         {
-                            <p style="color:darkgray">Por favor pesquise um utilizador</p>
+                            <p style="color:darkgray">Por favor pesquise um cliente</p>
                         }
                         else
                         {
@@ -55,7 +57,7 @@
                                             </td>
                                             <td>
                                                 <p>
-                                                    <a asp-action="Create" asp-route-id="@contratos.UsersId"><i class="fas fa-folder-plus fa-2x"></i></a>
+                                                    <a asp-action="SelectContrato" asp-route-id="@contratos.UsersId"><i class="fas fa-folder-plus fa-2x"></i></a>
                                                 </p>
                                             </td>
                                         </tr>
