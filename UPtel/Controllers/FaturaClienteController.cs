@@ -62,6 +62,34 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
 
+        //adicionar contrato depois de escolhido o cliente
+
+        public async Task<IActionResult> SelectContrato(int id)
+        {
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == id);
+
+
+            List<Contratos> contratos = await _context.Contratos.Where(m => m.ClienteId == id)
+               .OrderBy(c => c.MoradaContrato)
+               .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Contratos = contratos,
+                
+            };
+
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            return View(modelo);
+
+        }
+
+
         // GET: FaturaCliente/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -70,27 +98,40 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
+            FaturaViewModel FVM = new FaturaViewModel();
+
+           
             var faturaCliente = await _context.Faturas
                 .Include(f => f.Fatura)                
                 .FirstOrDefaultAsync(m => m.NrFaturaId == id);
 
+            var pacote = await _context.Pacotes
+                .SingleOrDefaultAsync(p => p.PacoteId == faturaCliente.PacoteId);
 
-
+            FVM.NrFaturaId = (int) id;
+            FVM.DataEmissao = faturaCliente.DataEmissao;
+            FVM.ContratoId = faturaCliente.ContratoId;
+            FVM.NomeCliente = faturaCliente.NomeCliente;
+            FVM.Morada = faturaCliente.Morada;
+            FVM.PrecoContrato = faturaCliente.PrecoContrato;
+            FVM.NomePacote = pacote.NomePacote;
+            FVM.PacoteId = pacote.PacoteId;
+            FVM.Descricao = faturaCliente.Descricao;
 
             if (faturaCliente == null)
             {
                 return NotFound();
             }
 
-            return View(faturaCliente);
+            return View(FVM);
         }
 
         // GET: FaturaCliente/Create
-        public IActionResult Create(int? id)
+        public IActionResult Create()
         {
-            ViewData["ContratoId"] = new SelectList(_context.Contratos.Where(x =>x.ContratoId == id), "ContratoId", "ContratoId");
-            ViewData["Morada"] = new SelectList(_context.Contratos.Where(x => x.ContratoId == id), "ContratoId", "MoradaContrato");
-       
+            
+           
+
             return View();
         }
 
@@ -101,23 +142,32 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id,[Bind("NrFaturaId,DataEmissao,ContratoId,Morada,NomeCliente,PacoteId,PrecoContrato,Descricao")] FaturaCliente faturaCliente)
         {
+         
+            //Código que vai buscar o ID do contrato atraves do contrato selecionado na vista SelectContrato
+            var contrato = _context.Contratos.SingleOrDefault(m => m.ContratoId == id);
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
-            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == id);
-            var contrato = _context.Contratos.SingleOrDefault(c => c.ContratoId == id);
-                
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == contrato.ClienteId);
+
+            faturaCliente.ContratoId = contrato.ContratoId;
             faturaCliente.NomeCliente = cliente.Nome;
-            faturaCliente.PrecoContrato = contrato.PrecoContrato;
+            faturaCliente.Morada = contrato.MoradaContrato; 
+            faturaCliente.PrecoContrato = contrato.PrecoContrato; 
             faturaCliente.PacoteId = contrato.PacoteId;
-            faturaCliente.Morada = contrato.MoradaContrato;
-           
+
+            if (faturaCliente.DataEmissao > DateTime.Today || faturaCliente.DataEmissao < DateTime.Today.AddDays(-90))
+            {
+                ModelState.AddModelError("DataEmissao", "A data da fatura não pode ultrapassar os 90 dias anteriores");
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(faturaCliente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.Mensagem = "Fatura criada com sucesso";
+                return View("Sucesso");
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos.Where(x => x.ContratoId == id), "ContratoId", "ContratoId");
-            ViewData["Morada"] = new SelectList(_context.Contratos.Where(x => x.ContratoId == id), "ContratoId", "MoradaContrato");
+            
             return View(faturaCliente);
         }
 
@@ -129,13 +179,32 @@ namespace UPtel.Controllers
                 return NotFound();
             }
 
-            var faturaCliente = await _context.Faturas.FindAsync(id);
+            FaturaViewModel FVM = new FaturaViewModel();
+
+            //var faturaCliente = await _context.Faturas.FindAsync(id);
+            var faturaCliente = await _context.Faturas
+                .Include(f => f.Fatura)
+                .FirstOrDefaultAsync(m => m.NrFaturaId == id);
+
+            var pacote = await _context.Pacotes
+                .SingleOrDefaultAsync(p => p.PacoteId == faturaCliente.PacoteId);
+
+            FVM.DataEmissao = faturaCliente.DataEmissao;
+            FVM.ContratoId = faturaCliente.ContratoId;
+            FVM.NomeCliente = faturaCliente.NomeCliente;
+            FVM.Morada = faturaCliente.Morada;
+            FVM.PrecoContrato = faturaCliente.PrecoContrato;
+            FVM.NomePacote = pacote.NomePacote;
+            FVM.Descricao = faturaCliente.Descricao;
+            FVM.PacoteId = faturaCliente.PacoteId;
+
+
+            
             if (faturaCliente == null)
             {
                 return NotFound();
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "CodigoPostalCont", faturaCliente.ContratoId);
-            return View(faturaCliente);
+            return View(FVM);
         }
 
         // POST: FaturaCliente/Edit/5
@@ -143,36 +212,37 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NrFaturaId,DataEmissao,ContratoId,Morada,NomeCliente,PacoteId,PrecoContrato,Descricao")] FaturaCliente faturaCliente)
+        public async Task<IActionResult> Edit(int id, FaturaViewModel FVM, FaturaCliente faturaCliente)
         {
-            if (id != faturaCliente.NrFaturaId)
+
+            var fatura = await _context.Faturas
+                .Include(f => f.Fatura)
+                .FirstOrDefaultAsync(m => m.NrFaturaId == id);
+
+            var pacote = await _context.Pacotes
+                .SingleOrDefaultAsync(p => p.PacoteId == fatura.PacoteId);
+
+            fatura.DataEmissao = FVM.DataEmissao;
+            fatura.Descricao = FVM.Descricao;
+            fatura.NomeCliente = FVM.NomeCliente;
+            fatura.ContratoId = FVM.ContratoId;
+            fatura.Morada = FVM.Morada;
+            fatura.PrecoContrato = FVM.PrecoContrato;
+            fatura.PacoteId = FVM.PacoteId;
+            FVM.NomePacote = pacote.NomePacote;
+
+            if (faturaCliente.DataEmissao > DateTime.Today || faturaCliente.DataEmissao < DateTime.Today.AddDays(-90))
             {
-                return NotFound();
+                ModelState.AddModelError("DataEmissao", "A data da fatura não pode ultrapassar os 90 dias anteriores");
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(faturaCliente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FaturaClienteExists(faturaCliente.NrFaturaId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "CodigoPostalCont", faturaCliente.ContratoId);
-            return View(faturaCliente);
+            _context.Update(fatura);
+            await _context.SaveChangesAsync();
+
+            ViewBag.Mensagem = "Fatura editada com sucesso";
+            return View("Sucesso");
         }
+          
 
         // GET: FaturaCliente/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -189,7 +259,6 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-
             return View(faturaCliente);
         }
 
@@ -201,12 +270,14 @@ namespace UPtel.Controllers
             var faturaCliente = await _context.Faturas.FindAsync(id);
             _context.Faturas.Remove(faturaCliente);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            ViewBag.Mensagem = "Fatura apagada com sucesso";
+            return View("Sucesso");
         }
 
         private bool FaturaClienteExists(int id)
         {
             return _context.Faturas.Any(e => e.NrFaturaId == id);
         }
+        
     }
 }

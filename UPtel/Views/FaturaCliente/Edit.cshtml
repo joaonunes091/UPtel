@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.FaturaCliente
+﻿@model UPtel.Models.FaturaViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Editar Canal</h2>
+                <h2 class="font">Editar fatura</h2>
                 <br />
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-8 text-white">
@@ -22,13 +22,19 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="ContratoId" class="control-label"></label>
-                                <select asp-for="ContratoId" class="form-control" asp-items="ViewBag.ContratoId"></select>
+                                <input readonly asp-for="ContratoId" class="form-control" />
+                                @*<select  asp-for="ContratoId" class="form-control" asp-items="ViewBag.ContratoId"></select>*@
                                 <span asp-validation-for="ContratoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Morada" class="control-label"></label>
-                                <input asp-for="Morada" class="form-control" />
+                                <input readonly asp-for="Morada" class="form-control" />
                                 <span asp-validation-for="Morada" class="text-danger"></span>
+                            </div>
+                            <div hidden class="form-group">
+                                <label asp-for="PacoteId" class="control-label"></label>
+                                <input asp-for="PacoteId" class="form-control" />
+                                <span asp-validation-for="PacoteId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="NomeCliente" class="control-label"></label>
@@ -36,13 +42,13 @@
                                 <span asp-validation-for="NomeCliente" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="PacoteId" class="control-label"></label>
-                                <input asp-for="PacoteId" class="form-control" />
-                                <span asp-validation-for="PacoteId" class="text-danger"></span>
+                                <label asp-for="NomePacote" class="control-label"></label>
+                                <input readonly asp-for="NomePacote" class="form-control" />
+                                <span asp-validation-for="NomePacote" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="PrecoContrato" class="control-label"></label>
-                                <input asp-for="PrecoContrato" class="form-control" />
+                                <input readonly asp-for="PrecoContrato" class="form-control" />
                                 <span asp-validation-for="PrecoContrato" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -61,7 +67,6 @@
         </div>
     </div>
 </section>
-teste
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
