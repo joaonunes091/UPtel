@@ -7,106 +7,79 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Promoções telemóvel</h2>
+                <h2 class="font">Promoções internet móvel Off</h2>
                 <div>
                     <br />
                     <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Telemóvel</h5>
-                            <form asp-action="Index" method="get">
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <form asp-action="PromoOff" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                    <a asp-action="PromoOff" class="btn btn-outline-light">Limpar</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <p class="d-flex justify-content-sm-between align-content-center">
-                    <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
-                    <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
-                </p>
-                @if (Model.PromoTelemovel.Count() == 0)
+                <br />
+                @if (Model.PromoNetMovel.Count() == 0)
                 {
                     <p>Não existem promoções para mostrar</p>
                 }
                 else
                 {
-
                     <table class="table table-borderless text-white">
                         <thead>
                             <tr>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Nome)
+                                    @Html.DisplayNameFor(model => model.PromoNetMovel[0].Nome)
                                 </th>
                                 @*<th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
-                                    </th>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
-                                    </th>*@
+                            @Html.DisplayNameFor(model => model.PromoNetMovel[0].Limite)
+                        </th>
+                        <th class="text-center titulo">
+                            @Html.DisplayNameFor(model => model.PromoNetMovel[0].Descricao)
+                        </th>
+                        <th class="text-center titulo">
+                            @Html.DisplayNameFor(model => model.PromoNetMovel[0].DescontoPrecoTotal)
+                        </th>*@
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Estado)
+                                    @Html.DisplayNameFor(model => model.PromoNetMovel[0].Estado)
                                 </th>
-                                @*<th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
-                                    </th>*@
-                                @*<th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
-                                    </th>*@
-                                @*<th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
-                                </th>*@
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.PromoTelemovel)
+                            @foreach (var item in Model.PromoNetMovel)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LimiteSMS)
-                                    </td>*@
-                                    <td>
+                                    @*<td class="text-center">
+                                @Html.DisplayFor(modelItem => item.Limite)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.Descricao)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                            </td>*@
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.Estado)
                                     </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
-                                        </td>*@
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
-                                        </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
-                                    </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>*@
-                                    <td>
-                                        <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.PromoNetMovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
+
                     <nav>
                         <ul class="pagination justify-content-end">
                             @{
@@ -140,6 +113,9 @@
                         </ul>
                     </nav>
                 }
+                <div class="form-group d-flex justify-content-sm-between align-content-center">
+                    <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                </div>
             </div>
         </div>
     </div>

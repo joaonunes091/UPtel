@@ -1,39 +1,35 @@
-﻿@model UPtel.Models.PromoNetFixa
+﻿@model UPtel.Models.PromoNetMovel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Criar Promoção Internet fixa</h2>
+                <h2 class="font">Editar promoção móvel</h2>
                 <br />
-                <div class="row">
-                    <div class="col-md-10">
-                        <form asp-action="Create">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 text-white">
+                        <form asp-action="Estado">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="PromoNetMovelId" />
                             <div class="form-group">
                                 <label asp-for="Nome" class="control-label" style="color:darkgray">Designação da promoção</label>
                                 <input asp-for="Nome" class="form-control" placeholder="Ex: Básico" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="Limite" class="control-label" style="color:darkgray">Limite de dados</label>
                                 <input asp-for="Limite" class="form-control" placeholder="Ex: Iimitado" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Velocidade" class="control-label" style="color:darkgray">Velocidade da Ligação</label>
-                                <input asp-for="Velocidade" class="form-control" placeholder="Ex: 100" />
-                                <span asp-validation-for="Velocidade" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="Descricao" class="control-label" style="color:darkgray">Descrição da Promoção</label>
                                 <textarea rows="3" asp-for="Descricao" placeholder="Descrição" class="form-control"></textarea>
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="DescontoPrecoTotal" class="control-label" style="color:darkgray">Desconto</label>
                                 <input asp-for="DescontoPrecoTotal" class="form-control" placeholder="Ex: 10" />
                                 <span asp-validation-for="DescontoPrecoTotal" class="text-danger"></span>
@@ -47,7 +43,7 @@
                             </div>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
-                                <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                                <a asp-action="Details" asp-route-id="@Model.PromoNetMovelId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
                     </div>

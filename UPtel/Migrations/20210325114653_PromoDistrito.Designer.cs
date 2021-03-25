@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210325114653_PromoDistrito")]
+    partial class PromoDistrito
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -615,9 +617,6 @@ namespace UPtel.Migrations
                     b.Property<int>("DistritoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -652,12 +651,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("DistritoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -669,8 +662,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PromoNetMovelId");
-
-                    b.HasIndex("DistritoId");
 
                     b.ToTable("PromoNetMovel");
                 });
@@ -695,12 +686,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("DistritoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -712,8 +697,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PromoTelefoneId");
-
-                    b.HasIndex("DistritoId");
 
                     b.ToTable("PromoTelefone");
                 });
@@ -744,12 +727,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("DistritoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -764,8 +741,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PromoTelemovelId");
-
-                    b.HasIndex("DistritoId");
 
                     b.ToTable("PromoTelemovel");
                 });
@@ -787,12 +762,6 @@ namespace UPtel.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("DistritoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -801,8 +770,6 @@ namespace UPtel.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PromoTelevisaoId");
-
-                    b.HasIndex("DistritoId");
 
                     b.ToTable("PromoTelevisao");
                 });
@@ -1289,50 +1256,6 @@ namespace UPtel.Migrations
                     b.Navigation("DistritoNome");
                 });
 
-            modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
-                {
-                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
-                        .WithMany("PromoNetMovel")
-                        .HasForeignKey("DistritoId")
-                        .HasConstraintName("FK_PromoNetMovel_Distrito")
-                        .IsRequired();
-
-                    b.Navigation("DistritoNome");
-                });
-
-            modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
-                {
-                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
-                        .WithMany("PromoTelefone")
-                        .HasForeignKey("DistritoId")
-                        .HasConstraintName("FK_PromoTelefone_Distrito")
-                        .IsRequired();
-
-                    b.Navigation("DistritoNome");
-                });
-
-            modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
-                {
-                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
-                        .WithMany("PromoTelemovel")
-                        .HasForeignKey("DistritoId")
-                        .HasConstraintName("FK_PromoTelemovel_Distrito")
-                        .IsRequired();
-
-                    b.Navigation("DistritoNome");
-                });
-
-            modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
-                {
-                    b.HasOne("UPtel.Models.Distrito", "DistritoNome")
-                        .WithMany("PromoTelevisao")
-                        .HasForeignKey("DistritoId")
-                        .HasConstraintName("FK_PromoTelevisao_Distrito")
-                        .IsRequired();
-
-                    b.Navigation("DistritoNome");
-                });
-
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
                     b.HasOne("UPtel.Models.Reclamacao", null)
@@ -1397,14 +1320,6 @@ namespace UPtel.Migrations
                     b.Navigation("Contratos");
 
                     b.Navigation("PromoNetFixa");
-
-                    b.Navigation("PromoNetMovel");
-
-                    b.Navigation("PromoTelefone");
-
-                    b.Navigation("PromoTelemovel");
-
-                    b.Navigation("PromoTelevisao");
 
                     b.Navigation("Users");
                 });

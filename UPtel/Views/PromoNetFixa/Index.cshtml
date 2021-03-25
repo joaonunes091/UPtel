@@ -25,8 +25,9 @@
                         </div>
                     </div>
                 </div>
-                <p>
-                    <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                <p class="d-flex justify-content-sm-between align-content-center">
+                    <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                    <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
                 </p>
                 @if (Model.PromoNetFixas.Count() == 0)
                 {
@@ -34,14 +35,13 @@
                 }
                 else
                 {
-
                     <table class="table table-borderless text-white">
                         <thead>
                             <tr>
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].Nome)
                                 </th>
-                                <th class="text-center titulo">
+                                @*<th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
                                 </th>
                                 <th class="text-center titulo">
@@ -52,7 +52,7 @@
                                 </th>
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
-                                </th>
+                                </th>*@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].Estado)
                                 </th>
@@ -62,29 +62,29 @@
                         <tbody>
                             @foreach (var item in Model.PromoNetFixas)
                             {
-                            <tr>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Limite)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Velocidade)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Descricao)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Estado)
-                                </td>
-                                <td>
-                                    <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    @*<td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Limite)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Velocidade)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                    </td>*@
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Estado)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
