@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class t : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,99 +66,6 @@ namespace UPtel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NetMovel", x => x.NetMovelId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoNetFixa",
-                columns: table => new
-                {
-                    PromoNetFixaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Velocidade = table.Column<int>(type: "int", nullable: false),
-                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoNetFixa", x => x.PromoNetFixaId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoNetMovel",
-                columns: table => new
-                {
-                    PromoNetMovelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoNetMovel", x => x.PromoNetMovelId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoTelefone",
-                columns: table => new
-                {
-                    PromoTelefoneId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Limite = table.Column<int>(type: "int", nullable: false),
-                    DescontoMinNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DescontoMinInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoTelefone", x => x.PromoTelefoneId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoTelemovel",
-                columns: table => new
-                {
-                    PromoTelemovelId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LimiteMinutos = table.Column<int>(type: "int", nullable: false),
-                    LimiteSMS = table.Column<int>(type: "int", nullable: false),
-                    DecontoPrecoMinNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DecontoPrecoMinInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DecontoPrecoSMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DecontoPrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    DecontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoTelemovel", x => x.PromoTelemovelId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoTelevisao",
-                columns: table => new
-                {
-                    PromoTelevisaoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CanaisGratis = table.Column<int>(type: "int", nullable: false),
-                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoTelevisao", x => x.PromoTelevisaoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,6 +209,139 @@ namespace UPtel.Migrations
                     table.ForeignKey(
                         name: "FK_OperadorViewModel_Distrito_DistritoNomeDistritoId",
                         column: x => x.DistritoNomeDistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromoNetFixa",
+                columns: table => new
+                {
+                    PromoNetFixaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Velocidade = table.Column<int>(type: "int", nullable: false),
+                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
+                    DistritoNomes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromoNetFixa", x => x.PromoNetFixaId);
+                    table.ForeignKey(
+                        name: "FK_PromoNetFixa_Distrito",
+                        column: x => x.DistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromoNetMovel",
+                columns: table => new
+                {
+                    PromoNetMovelId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Limite = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
+                    DistritoNomes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromoNetMovel", x => x.PromoNetMovelId);
+                    table.ForeignKey(
+                        name: "FK_PromoNetMovel_Distrito",
+                        column: x => x.DistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromoTelefone",
+                columns: table => new
+                {
+                    PromoTelefoneId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Limite = table.Column<int>(type: "int", nullable: false),
+                    DescontoMinNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DescontoMinInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
+                    DistritoNomes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromoTelefone", x => x.PromoTelefoneId);
+                    table.ForeignKey(
+                        name: "FK_PromoTelefone_Distrito",
+                        column: x => x.DistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromoTelemovel",
+                columns: table => new
+                {
+                    PromoTelemovelId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LimiteMinutos = table.Column<int>(type: "int", nullable: false),
+                    LimiteSMS = table.Column<int>(type: "int", nullable: false),
+                    DecontoPrecoMinNacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DecontoPrecoMinInternacional = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DecontoPrecoSMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DecontoPrecoMMS = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    DecontoPrecoTotal = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
+                    DistritoNomes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromoTelemovel", x => x.PromoTelemovelId);
+                    table.ForeignKey(
+                        name: "FK_PromoTelemovel_Distrito",
+                        column: x => x.DistritoId,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromoTelevisao",
+                columns: table => new
+                {
+                    PromoTelevisaoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CanaisGratis = table.Column<int>(type: "int", nullable: false),
+                    DescontoPrecoTotal = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    DistritoId = table.Column<int>(type: "int", nullable: false),
+                    DistritoNomes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromoTelevisao", x => x.PromoTelevisaoId);
+                    table.ForeignKey(
+                        name: "FK_PromoTelevisao_Distrito",
+                        column: x => x.DistritoId,
                         principalTable: "Distrito",
                         principalColumn: "DistritoId",
                         onDelete: ReferentialAction.Restrict);
@@ -799,6 +839,31 @@ namespace UPtel.Migrations
                 name: "IX_Pacotes_TelevisaoId",
                 table: "Pacotes",
                 column: "TelevisaoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PromoNetFixa_DistritoId",
+                table: "PromoNetFixa",
+                column: "DistritoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PromoNetMovel_DistritoId",
+                table: "PromoNetMovel",
+                column: "DistritoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PromoTelefone_DistritoId",
+                table: "PromoTelefone",
+                column: "DistritoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PromoTelemovel_DistritoId",
+                table: "PromoTelemovel",
+                column: "DistritoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PromoTelevisao_DistritoId",
+                table: "PromoTelevisao",
+                column: "DistritoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reclamacao_ReclamacaoId1",
