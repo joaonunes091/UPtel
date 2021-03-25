@@ -73,7 +73,7 @@ namespace UPtel.Controllers
             List<Contratos> melhorCliente = await _context.Contratos
                 .Include(p => p.Cliente.DistritoNome)
                 .Include(p => p.Cliente)
-                .Where(p => p.Cliente.Tipo.Tipo.Contains("Cliente") &&  p.DistritoNome.DistritoNome.Contains(distrito))
+                .Where(p => p.Cliente.Tipo.Tipo.Contains("Cliente") &&  p.Cliente.DistritoNome.DistritoNome.Contains(distrito))
                 .OrderByDescending(c => c.PrecoContrato)
                 //.Take(10)
                 .ToListAsync();
