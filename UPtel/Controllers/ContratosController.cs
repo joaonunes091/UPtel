@@ -67,6 +67,31 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
+        
+        public async Task<IActionResult> MelhorClienteDistrito(string distrito)
+        {
+            List<Contratos> melhorCliente = await _context.Contratos
+                .Include(p => p.Cliente.DistritoNome)
+                .Include(p => p.Cliente)
+                .Where(p => p.Cliente.Tipo.Tipo.Contains("Cliente") &&  p.Cliente.DistritoNome.DistritoNome.Contains(distrito))
+                .OrderByDescending(c => c.PrecoContrato)
+                //.Take(10)
+                .ToListAsync();
+
+            int x = 0;
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Contratos = melhorCliente,
+            };
+            foreach (var item in modelo.Contratos)
+            {
+                x++;
+                item.Posicao = x;
+            }
+
+            return base.View(modelo);
+        }
 
         //Pesquisa nome cliente para adicionar contrato
         public async Task<IActionResult> SelectUser(string nomePesquisar)
