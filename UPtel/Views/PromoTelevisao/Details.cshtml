@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center  text-white">
             <div class="col-xl-8">
-                <h2 class="font">Detalhes da Promoção de televisão</h2>
+                <h2 class="font">Detalhes da Promoção de televisão do distrito @Model.DistritoNomes</h2>
 
                 <div>
                     <br /><br />
@@ -47,7 +47,7 @@
                 <br />
                 <div class="float-right">
                     <a asp-action="Edit" asp-route-id="@Model.PromoTelevisaoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
-                    <a asp-action="Delete" asp-route-id="@Model.PromoTelevisaoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    <a asp-action="Estado" asp-route-id="@Model.PromoTelevisaoId"><i title="Estado" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
                     <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>

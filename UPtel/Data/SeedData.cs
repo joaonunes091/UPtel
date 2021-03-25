@@ -885,7 +885,9 @@ namespace UPtel.Data
         {
           
             if (DbContext.PromoTelemovel.Any()) return;
-          
+           
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
+           
             DbContext.PromoTelemovel.AddRange(new PromoTelemovel[] {
             new PromoTelemovel
             {
@@ -897,7 +899,9 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 5m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 0m,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoTelemovel
@@ -910,7 +914,9 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 0m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 0m,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoTelemovel
@@ -923,7 +929,9 @@ namespace UPtel.Data
                 DecontoPrecoSMS = 0m,
                 DecontoPrecoMMS = 0m,
                 DecontoPrecoTotal = 10m,
-                Estado = "Ativo",
+                Estado = "Off",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
 
@@ -971,13 +979,17 @@ namespace UPtel.Data
 
             if (DbContext.PromoNetMovel.Any()) return;
 
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
+
             DbContext.PromoNetMovel.AddRange(new PromoNetMovel[] {
             new PromoNetMovel
             {
                 Nome = "Dia dos namorados",
                 Limite = 1,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoNetMovel
@@ -985,7 +997,9 @@ namespace UPtel.Data
                 Nome = "Páscoa",
                 Limite = 4,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoNetMovel
@@ -993,7 +1007,9 @@ namespace UPtel.Data
                 Nome = "Natal",
                 Limite = 5,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
+                Estado = "Off",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
 
@@ -1120,6 +1136,8 @@ namespace UPtel.Data
 
             if (DbContext.PromoTelefone.Any()) return;
 
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
+           
             DbContext.PromoTelefone.AddRange(new PromoTelefone[] {
             new PromoTelefone
             {
@@ -1128,7 +1146,9 @@ namespace UPtel.Data
                 DescontoMinInternacional = 6,
                 Limite = 1,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoTelefone
@@ -1138,7 +1158,9 @@ namespace UPtel.Data
                 DescontoMinInternacional = 10,
                 Limite = 4,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
             new PromoTelefone
@@ -1148,7 +1170,9 @@ namespace UPtel.Data
                 DescontoMinInternacional = 50,
                 Limite = 5,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+                Estado = "Off",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
 
             },
 
@@ -1195,13 +1219,18 @@ namespace UPtel.Data
 
             if (DbContext.PromoTelevisao.Any()) return;
 
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
+          
             DbContext.PromoTelevisao.AddRange(new PromoTelevisao[] {
             new PromoTelevisao
             {
                 Nome = "Dia dos namorados",
                 CanaisGratis = 5,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
+
 
             },
             new PromoTelevisao
@@ -1209,7 +1238,10 @@ namespace UPtel.Data
                 Nome = "Páscoa",
                 CanaisGratis = 4,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
+               Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
+
 
             },
             new PromoTelevisao
@@ -1217,7 +1249,10 @@ namespace UPtel.Data
                 Nome = "Natal",
                 CanaisGratis = 2,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+               Estado = "Off",
+                DistritoNome = distrito,
+                DistritoNomes = distrito.DistritoNome,
+
 
             },
 

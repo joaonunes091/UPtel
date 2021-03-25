@@ -185,6 +185,42 @@ namespace UPtel.Data
                     .HasConstraintName("FK_PromoNetFixa_Distrito");
             });
 
+            modelBuilder.Entity<PromoNetMovel>(entity =>
+            {
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.PromoNetMovel)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PromoNetMovel_Distrito");
+            });
+
+            modelBuilder.Entity<PromoTelefone>(entity =>
+            {
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.PromoTelefone)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PromoTelefone_Distrito");
+            });
+
+            modelBuilder.Entity<PromoTelemovel>(entity =>
+            {
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.PromoTelemovel)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PromoTelemovel_Distrito");
+            });
+
+            modelBuilder.Entity<PromoTelevisao>(entity =>
+            {
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.PromoTelevisao)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PromoTelevisao_Distrito");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

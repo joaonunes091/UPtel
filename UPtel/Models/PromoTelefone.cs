@@ -28,9 +28,20 @@ namespace UPtel.Models
         [StringLength(300, ErrorMessage = "O limite de carateres(300) foi ultrapassado")]
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
-        
+
+
+        [Display(Name = "Distrito")]
+        public int DistritoId { get; set; }
+
+        public string DistritoNomes { get; set; }
+
         [StringLength(50)]
         public string Estado { get; set; }
+
+        [ForeignKey(nameof(DistritoId))]
+        [InverseProperty(nameof(Distrito.PromoTelefone))]
+        [Display(Name = "Distrito")]
+        public virtual Distrito DistritoNome { get; set; }
 
 
 

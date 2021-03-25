@@ -20,7 +20,7 @@ namespace UPtel.Controllers
         }
 
 
-        //Pesquisa nome cliente para adicionar contrato
+        //Pesquisa nome distrito para adicionar à promo
         public async Task<IActionResult> SelectDistrito (string nomePesquisar)
         {
             List<Distrito> distrito = await _context.Distrito.Where(p => p.DistritoNome.Contains(nomePesquisar))
@@ -42,12 +42,12 @@ namespace UPtel.Controllers
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.PromoNetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.PromoNetFixa.Where(p => p.Estado.Contains("On") && nomePesquisar == null || p.Estado.Contains("On") && p.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
 
-            List<PromoNetFixa> promoNetFixas = await _context.PromoNetFixa.Where(p => p.Estado.Contains("On") && nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+            List<PromoNetFixa> promoNetFixas = await _context.PromoNetFixa.Where(p => p.Estado.Contains("On") && nomePesquisar == null || p.Estado.Contains("On") && p.Nome.Contains(nomePesquisar))
                 .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
@@ -66,17 +66,17 @@ namespace UPtel.Controllers
             return base.View(modelo);
 
         }
-        // GET: PromoNetFixa
+        // GET: PromoNetFixa Off
         public async Task<IActionResult> PromoOff (string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.PromoNetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.PromoNetFixa.Where(p => p.Estado.Contains("Off") && nomePesquisar == null || p.Estado.Contains("Off") && p.Nome.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
 
-            List<PromoNetFixa> promoNetFixas = await _context.PromoNetFixa.Where(p => p.Estado.Contains("Off") && nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+            List<PromoNetFixa> promoNetFixas = await _context.PromoNetFixa.Where(p => p.Estado.Contains("Off") && nomePesquisar == null || p.Estado.Contains("Off") && p.Nome.Contains(nomePesquisar))
                 .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
@@ -126,7 +126,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id,[Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado,DistritoId,")] PromoNetFixa promoNetFixa)
+        public async Task<IActionResult> Create(int id,[Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetFixa promoNetFixa)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
             var distrito = _context.Distrito.SingleOrDefault(m => m.DistritoId == id);
@@ -202,7 +202,7 @@ namespace UPtel.Controllers
             return View(promoNetFixa);
         }
 
-        // GET: PromoNetFixa/Edit/5
+        // GET: PromoNetFixa/Estado/5
         public async Task<IActionResult> Estado (int? id)
         {
             if (id == null)
@@ -219,7 +219,7 @@ namespace UPtel.Controllers
             return View(promoNetFixa);
         }
 
-        // POST: PromoNetFixa/Edit/5
+        // POST: PromoNetFixa/Estado/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

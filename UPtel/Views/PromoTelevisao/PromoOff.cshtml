@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Promoções internet fixa</h2>
+                <h2 class="font">Promoções televisão inativas</h2>
                 <div>
                     <br />
                     <div class="col-md-8 border-info mb-4">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Internet Fixa</h5>
+                            <h5 class="card-title" style="color:darkgray">Pesquisa de Promoções de Televisão</h5>
                             <form asp-action="PromoOff" method="get">
                                 <div class="form-group">
                                     <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <br />
-                @if (Model.PromoNetFixas.Count() == 0)
+                @if (Model.PromoTelevisao.Count() == 0)
                 {
                     <p>Não existem promoções para mostrar</p>
                 }
@@ -36,50 +36,44 @@
                         <thead>
                             <tr>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Nome)
+                                    @Html.DisplayNameFor(model => model.PromoTelevisao[0].Nome)
                                 </th>
                                 @*<th class="text-center titulo">
-                            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
+                            @Html.DisplayNameFor(model => model.PromoTelevisao[0].CanaisGratis)
                         </th>
                         <th class="text-center titulo">
-                            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Velocidade)
+                            @Html.DisplayNameFor(model => model.PromoTelevisao[0].DescontoPrecoTotal)
                         </th>
                         <th class="text-center titulo">
-                            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Descricao)
-                        </th>
-                        <th class="text-center titulo">
-                            @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
+                            @Html.DisplayNameFor(model => model.PromoTelevisao[0].Descricao)
                         </th>*@
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Estado)
+                                    @Html.DisplayNameFor(model => model.PromoTelevisao[0].Estado)
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.PromoNetFixas)
+                            @foreach (var item in Model.PromoTelevisao)
                             {
                                 <tr>
-                                    <td class="text-center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
-                                    @*<td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Limite)
+                                    @*<td>
+                                @Html.DisplayFor(modelItem => item.CanaisGratis)
                             </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Velocidade)
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Descricao)
-                            </td>
-                            <td class="text-center">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descricao)
                             </td>*@
-                                    <td class="text-center">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.Estado)
                                     </td>
                                     <td>
-                                        <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.PromoTelevisaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
                                 </tr>
                             }
