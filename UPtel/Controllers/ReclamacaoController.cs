@@ -32,7 +32,7 @@ namespace UPtel.Controllers
         }
 
         // GET: Reclamacao/Details/5
-        [Authorize(Roles = "Operador")]
+        [Authorize(Roles = "Operador , Cliente")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -125,7 +125,6 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    
                     _context.Reclamacao.Update(reclamacao);
                     await _context.SaveChangesAsync();
                 }
@@ -182,5 +181,7 @@ namespace UPtel.Controllers
         {
             return _context.Reclamacao.Any(e => e.ReclamacaoId == id);
         }
+
+       
     }
 }

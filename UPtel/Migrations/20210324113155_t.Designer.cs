@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210323154543_Inicial")]
-    partial class Inicial
+    [Migration("20210324113155_t")]
+    partial class t
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -380,6 +380,41 @@ namespace UPtel.Migrations
                         .HasName("PK_DistritoNome");
 
                     b.ToTable("Distrito");
+                });
+
+            modelBuilder.Entity("UPtel.Models.FaturaCliente", b =>
+                {
+                    b.Property<int>("NrFaturaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataEmissao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Morada")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PacoteId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PrecoContrato")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.HasKey("NrFaturaId");
+
+                    b.HasIndex("ContratoId");
+
+                    b.ToTable("Faturas");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -1127,6 +1162,17 @@ namespace UPtel.Migrations
                     b.Navigation("Pacote");
                 });
 
+            modelBuilder.Entity("UPtel.Models.FaturaCliente", b =>
+                {
+                    b.HasOne("UPtel.Models.Contratos", "Fatura")
+                        .WithMany("Fatura")
+                        .HasForeignKey("ContratoId")
+                        .HasConstraintName("FK_Contratos_Fatura")
+                        .IsRequired();
+
+                    b.Navigation("Fatura");
+                });
+
             modelBuilder.Entity("UPtel.Models.OperadorViewModel", b =>
                 {
                     b.HasOne("UPtel.Models.Distrito", "DistritoNome")
@@ -1249,6 +1295,8 @@ namespace UPtel.Migrations
                     b.Navigation("ContratoPromoTelemovel");
 
                     b.Navigation("ContratoPromoTelevisao");
+
+                    b.Navigation("Fatura");
                 });
 
             modelBuilder.Entity("UPtel.Models.Distrito", b =>

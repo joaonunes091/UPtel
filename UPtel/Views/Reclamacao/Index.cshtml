@@ -22,6 +22,7 @@
                             <th class="text-center titulo">
                                 @Html.DisplayNameFor(model => model.Resolvido)
                             </th>
+
                             <th></th>
                         </tr>
                     </thead>
@@ -41,17 +42,18 @@
                                     Sim
                                 </td>
                             }
-                             else
+                            else
                             {
                                 <td class="text-center">
                                     Não
                                 </td>
                             }
-                                
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                        </td>
-                            </tr>
+
+
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
