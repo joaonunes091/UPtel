@@ -11,7 +11,7 @@
                 <br />
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-8 text-white">
-                        <form asp-action="Edit">
+                        <form asp-action="Estado">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="PromoTelefoneId" />
                             <div class="form-group">
@@ -19,32 +19,32 @@
                                 <input asp-for="Nome" class="form-control" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="Limite" class="control-label"></label>
                                 <input asp-for="Limite" class="form-control" />
                                 <span asp-validation-for="Limite" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="DescontoMinNacional" class="control-label"></label>
                                 <input asp-for="DescontoMinNacional" class="form-control" />
                                 <span asp-validation-for="DescontoMinNacional" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="DescontoMinInternacional" class="control-label"></label>
                                 <input asp-for="DescontoMinInternacional" class="form-control" />
                                 <span asp-validation-for="DescontoMinInternacional" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="DescontoPrecoTotal" class="control-label"></label>
                                 <input asp-for="DescontoPrecoTotal" class="form-control" />
                                 <span asp-validation-for="DescontoPrecoTotal" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div hidden class="form-group">
                                 <label asp-for="Descricao" class="control-label" style="color:darkgray">Descrição da Promoção</label>
                                 <textarea rows="3" asp-for="Descricao" placeholder="Descrição" class="form-control"></textarea>
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
-                            <div hidden class="form-group">
+                            <div class="form-group">
                                 <label asp-for="Estado" class="control-label" style="color:darkgray">Estado</label>
                                 <select class="form-control" id="Estado" name="Estado">
                                     <option>On</option>
