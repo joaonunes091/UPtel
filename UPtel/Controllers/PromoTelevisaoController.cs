@@ -192,6 +192,7 @@ namespace UPtel.Controllers
             }
             return View(promoTelevisao);
         }
+      
         // GET: PromoTelevisao/Estado/5
         public async Task<IActionResult> Estado(int? id)
         {
