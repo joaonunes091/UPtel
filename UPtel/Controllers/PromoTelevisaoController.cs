@@ -219,8 +219,11 @@ namespace UPtel.Controllers
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
             var distrito = _context.Distrito.SingleOrDefault(m => m.DistritoId == id);
 
+            var estado = _context.PromoTelevisao.SingleOrDefault(e => e.PromoTelevisaoId == id);
+
             promoTelevisao.DistritoId = distrito.DistritoId;
             promoTelevisao.DistritoNomes = distrito.DistritoNome;
+            promoTelevisao.Estado = estado.Estado;
 
             if (id != promoTelevisao.PromoTelevisaoId)
             {
