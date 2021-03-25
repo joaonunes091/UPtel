@@ -1,0 +1,71 @@
+﻿@model ListaCanaisViewModel
+
+@{
+    ViewData["Title"] = "Distritos";
+}
+
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center  text-white">
+            <div class="col-xl-8">
+                <div>
+                    <h2 class="font">Procurar distrito</h2>
+                    <br />
+                    <div class="row col-md-10 border-info mb-4 justify-content-center">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgrey">Pesquisar contratos (Por Nome/NIF)</h5>
+                            <form asp-action="SelectDistrito" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                        @if (Model.Distritos.Count() == 0)
+                        {
+                            <p style="color:darkgray">Por favor pesquise um distrito</p>
+                        }
+                        else
+                        {
+                            <table class="table table-borderless text-white">
+                                <thead>
+                                    <tr>
+                                        <th class="titulo">
+                                            Nome do Distrito
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var contratos in Model.Distritos)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => contratos.DistritoNome)
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <a asp-action="Create" asp-route-id="@contratos.DistritoId"><i class="fas fa-folder-plus fa-2x"></i></a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                    </div>
+                    <div class="float-right">
+                        <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

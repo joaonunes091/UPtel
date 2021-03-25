@@ -176,6 +176,15 @@ namespace UPtel.Data
                     .HasConstraintName("FK_Users_Distrito");
             });
 
+            modelBuilder.Entity<PromoNetFixa>(entity =>
+            {
+                entity.HasOne(d => d.DistritoNome)
+                    .WithMany(p => p.PromoNetFixa)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PromoNetFixa_Distrito");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

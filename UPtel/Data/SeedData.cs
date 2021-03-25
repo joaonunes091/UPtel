@@ -1040,6 +1040,8 @@ namespace UPtel.Data
 
             if (DbContext.PromoNetFixa.Any()) return;
 
+            Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
+
             DbContext.PromoNetFixa.AddRange(new PromoNetFixa[] {
             new PromoNetFixa
             {
@@ -1047,7 +1049,10 @@ namespace UPtel.Data
                 Velocidade  = 30,
                 Limite = 1,
                 DescontoPrecoTotal = 10,
-                Estado = "Ativo",
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes =distrito.DistritoNome,
+
 
             },
             new PromoNetFixa
@@ -1056,8 +1061,9 @@ namespace UPtel.Data
                 Velocidade = 50,
                 Limite = 4,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
-
+                Estado = "On",
+                DistritoNome = distrito,
+                DistritoNomes =distrito.DistritoNome,
             },
             new PromoNetFixa
             {
@@ -1065,7 +1071,9 @@ namespace UPtel.Data
                 Velocidade = 100,
                 Limite = 5,
                 DescontoPrecoTotal = 5,
-                Estado = "Ativo",
+                Estado = "Off",
+                DistritoNome = distrito,
+                DistritoNomes =distrito.DistritoNome,
 
             },
 

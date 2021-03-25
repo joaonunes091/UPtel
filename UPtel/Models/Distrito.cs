@@ -14,6 +14,7 @@ namespace UPtel.Models
         {
             Users = new HashSet<Users>();
             Contratos = new HashSet<Contratos>();
+            PromoNetFixa = new HashSet<PromoNetFixa>();
         }
         [Key]
         public int DistritoId { get; set; }
@@ -27,5 +28,8 @@ namespace UPtel.Models
 
         [InverseProperty("DistritoNome")]
         public virtual ICollection<Contratos> Contratos { get; set; }
+        
+        [InverseProperty("DistritoNome")]
+        public virtual ICollection<PromoNetFixa> PromoNetFixa { get; set; }
     }
 }

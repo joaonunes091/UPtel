@@ -129,9 +129,6 @@ namespace UPtel.Controllers
         // GET: FaturaCliente/Create
         public IActionResult Create()
         {
-            
-           
-
             return View();
         }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210325114653_PromoDistrito")]
+    partial class PromoDistrito
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -614,9 +616,6 @@ namespace UPtel.Migrations
 
                     b.Property<int>("DistritoId")
                         .HasColumnType("int");
-
-                    b.Property<string>("DistritoNomes")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
                         .HasMaxLength(50)
