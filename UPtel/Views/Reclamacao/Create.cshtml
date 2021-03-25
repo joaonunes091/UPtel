@@ -10,13 +10,13 @@
             <div class="col-xl-8 text-white">
                 <h2 class="font">Criar reclamação</h2>
 
-                
+
                 <br />
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            
+
                             <div class="form-group" style="color:darkgray">
                                 <label asp-for="Assunto" class="control-label"></label>
                                 <input asp-for="Assunto" class="form-control" />
@@ -27,7 +27,7 @@
                                 <textarea rows="3" asp-for="Descriçao" class="form-control"></textarea>
                                 <span asp-validation-for="Descriçao" class="text-danger"></span>
                             </div>
-                            
+
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
                                 <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
                                 <a asp-action="Index" asp-controller="ClientesViewModel"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
@@ -35,55 +35,83 @@
                         </form>
                     </div>
                 </div>
-                </div>
-
-                            <table class="table table-borderless text-white">
-                    <thead>
-                        <tr>
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.NomeCliente)
-                            </th>
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.Assunto)
-                            </th>
-                            <th class="text-center titulo">
-                                @Html.DisplayNameFor(model => model.Resolvido)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.ReclamacoesCliente)
-                        {
-                        <tr>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.NomeCliente)
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Assunto)
-                            </td>
-                            @if (item.Resolvido == true)
-                            {
-                                <td class="text-center">
-                                    Sim
-                                    
-                                </td>
-                            }
-                             else
-                            {
-                                <td class="text-center">
-                                    Não
-                                </td>
-                            }
-                                
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                        </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
             </div>
-        </div>
+            <br />
+                <div id="botaoReclamacoes" class="col-xl-8">
+                    <button type="button" class="btn btn-costum">Ver reclamações</button>
+                </div>
+            </div>
+            <div id="reclamacoes" style="display: none">
+                @if (Model.ReclamacoesCliente.Count() == 0)
+                {
+                    <h3 style="color:darkgrey">Não existem reclamações para mostrar</h3>
+                }
+                else
+                {
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.NomeCliente)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Assunto)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Resolvido)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ReclamacoesCliente)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.NomeCliente)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Assunto)
+                                    </td>
+                                    @if (item.Resolvido == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                 
+                                </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+  
+    </div>
 </section>
+
+<script>
+    var botaoReclamacoes = document.getElementById("botaoReclamacoes");
+    var reclamacoes = document.getElementById("reclamacoes");
+
+   
+    botaoReclamacoes.onclick = function () {
+        if (reclamacoes.style.display == "none") {
+            reclamacoes.setAttribute("style", "display:flex");
+            reclamacoes.setAttribute("style", "justify-content: center");
+
+        } else {
+            reclamacoes.setAttribute("style","display:none");
+        };
+    };
+</script>

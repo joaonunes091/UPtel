@@ -12,41 +12,42 @@
                 <h2 class="font">Tem a certeza que quer eliminar a reclamação?</h2>
                 <div>
                     <br /><br />
-                    <dl class="row justify-content-center text-white">
-                        <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.NomeCliente)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.NomeCliente)
-                        </dd>
-                        <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.Assunto)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Assunto)
-                        </dd>
-                        <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.Descriçao)
-                        </dt>
-                        <dd class="col-sm-7">
-                            @Html.DisplayFor(model => model.Descriçao)
-                        </dd>
-                        <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.Resolvido)
-                        </dt>
-                        @if (Model.Resolvido == true)
-                        {
-                            <dd class="col-sm-7">
-                                Sim
-                            </dd>
-                        }
-                        else
-                        {
-                            <dd class="col-sm-7">
-                                Não
-                            </dd>
-                        }
-                    </dl>
+                          <dl class="row justify-content-center text-white">
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.NomeCliente)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.NomeCliente)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Assunto)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Assunto)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Descriçao)
+                              </dt>
+                              <dd class="col-sm-7">
+                                  @Html.DisplayFor(model => model.Descriçao)
+                              </dd>
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.Resolvido)
+                              </dt>
+                              @if (Model.Resolvido == true)
+                              {
+                                  <dd class="col-sm-7">
+                                      Sim
+                                  </dd>
+                              }
+                              else
+                              {
+                                  <dd class="col-sm-7">
+                                      Não
+                                  </dd>
+                              }
+                              
+                          </dl>
 
                     <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="ReclamacaoId" />
