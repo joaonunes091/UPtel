@@ -25,10 +25,13 @@
                         </div>
                     </div>
                 </div>
-                <p class="d-flex justify-content-sm-between align-content-center">
-                    <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
-                    <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
-                </p>
+                @if (User.IsInRole("Operador"))
+                {
+                    <p class="d-flex justify-content-sm-between align-content-center">
+                        <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                        <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
+                    </p>
+                }
                 @if (Model.PromoNetFixas.Count() == 0)
                 {
                     <p>Não existem promoções para mostrar</p>
@@ -42,20 +45,23 @@
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].Nome)
                                 </th>
                                 @*<th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Velocidade)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Descricao)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
-                                </th>*@
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].Estado)
-                                </th>
+                                        @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoNetFixas[0].Velocidade)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoNetFixas[0].Descricao)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
+                                    </th>*@
+                                @if (User.IsInRole("Operador"))
+                                {
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoNetFixas[0].Estado)
+                                    </th>
+                                }
                                 <th></th>
                             </tr>
                         </thead>
@@ -67,20 +73,23 @@
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     @*<td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Limite)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Velocidade)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                    </td>*@
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Estado)
-                                    </td>
+                                            @Html.DisplayFor(modelItem => item.Limite)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Velocidade)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
+                                        </td>*@
+                                    @if (User.IsInRole("Operador"))
+                                    {
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.Estado)
+                                        </td>
+                                    }
                                     <td>
                                         <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>

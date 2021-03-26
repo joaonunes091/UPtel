@@ -11,43 +11,49 @@
 
                 <div>
                     <br /><br />
-                          <dl class="row">
-                              <dt class="col-sm-5">
-                                  @Html.DisplayNameFor(model => model.Nome)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.Nome)
-                              </dd>
-                              <dt class="col-sm-5">
-                                  @Html.DisplayNameFor(model => model.CanaisGratis)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.CanaisGratis)
-                              </dd>
-                              <dt class="col-sm-5">
-                                  @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.DescontoPrecoTotal)
-                              </dd>
-                              <dt class="col-sm-5">
-                                  @Html.DisplayNameFor(model => model.Descricao)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.Descricao)
-                              </dd>
-                              <dt class="col-sm-5">
-                                  @Html.DisplayNameFor(model => model.Estado)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.Estado)
-                              </dd>
-                          </dl>
+                    <dl class="row">
+                        <dt class="col-sm-5 titulo titulo">
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.Nome)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.CanaisGratis)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.CanaisGratis)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.DescontoPrecoTotal)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.DescontoPrecoTotal)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Descricao)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(model => model.Descricao)
+                        </dd>
+                        @if (User.IsInRole("Operador"))
+                        {
+                            <dt class="col-sm-5 titulo">
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.Estado)
+                            </dd>
+                        }
+                    </dl>
                 </div>
                 <br />
                 <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@Model.PromoTelevisaoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
-                    <a asp-action="Estado" asp-route-id="@Model.PromoTelevisaoId"><i title="Estado" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    @if (User.IsInRole("Operador"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.PromoTelevisaoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+                        <a asp-action="Estado" asp-route-id="@Model.PromoTelevisaoId"><i title="Estado" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
+                    }
                     <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
                 </div>
             </div>
