@@ -30,7 +30,7 @@ namespace UPtel.Models
         [Display(Name = "Números associados")]
         public string Numeros { get; set; }
 
-        [Required(ErrorMessage = "É necessário colocar uma data para o início de contrato")]
+        //[Required(ErrorMessage = "É necessário colocar uma data para o início de contrato")]
         [Display(Name = "Data de início do contrato")]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
@@ -46,18 +46,18 @@ namespace UPtel.Models
         public decimal PrecoContrato { get; set; }
 
 
-        [Required(ErrorMessage = "É necessário colocar a morada")]
+        //[Required(ErrorMessage = "É necessário colocar a morada")]
         [StringLength(80, ErrorMessage = "O limite de caracteres(80) foi ultrapassado")]
         [Display(Name = "Morada")]
         public string MoradaContrato { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(4, MinimumLength = 4)]
         [Display(Name = "Código Postal")]
         [RegularExpression(@"([123456789]|1)\d{3}", ErrorMessage = "Valor inválido")]
         public string CodigoPostalCont { get; set; }
 
-        [Required(ErrorMessage = "Campo de preenchimento obrigatório")]
+        //[Required(ErrorMessage = "Campo de preenchimento obrigatório")]
         [StringLength(3, MinimumLength = 3)]
         [Display(Name = "Extensão do Código Postal")]
         [RegularExpression(@"\d{3}", ErrorMessage = "Este valor é inválido")]

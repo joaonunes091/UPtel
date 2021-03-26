@@ -286,20 +286,20 @@ namespace UPtel.Controllers
             var promoTelevisao = _context.PromoTelevisao.ToList();
             ContratoViewModel CVM = new ContratoViewModel();
 
-            CVM.DataInicioPromoNetFixa = contratoPromoNetFixa.DataInicio;
-            CVM.DataFimPromoNetFixa = contratoPromoNetFixa.DataFim;
+            //CVM.DataInicioPromoNetFixa = contratoPromoNetFixa.DataInicio;
+            //CVM.DataFimPromoNetFixa = contratoPromoNetFixa.DataFim;
 
-            CVM.DataInicioPromoNetMovel = contratoPromoNetMovel.DataInicio;
-            CVM.DataFimPromoNetMovel = contratoPromoNetMovel.DataFim;
+            //CVM.DataInicioPromoNetMovel = contratoPromoNetMovel.DataInicio;
+            //CVM.DataFimPromoNetMovel = contratoPromoNetMovel.DataFim;
 
-            CVM.DataInicioPromoTelefone = contratoPromoTelefone.DataInicio;
-            CVM.DataFimPromoTelefone = contratoPromoTelefone.DataFim;
+            //CVM.DataInicioPromoTelefone = contratoPromoTelefone.DataInicio;
+            //CVM.DataFimPromoTelefone = contratoPromoTelefone.DataFim;
 
-            CVM.DataInicioPromoTelemovel = contratoPromoTelemovel.DataInicio;
-            CVM.DataFimPromoTelemovel = contratoPromoTelemovel.DataFim;
+            //CVM.DataInicioPromoTelemovel = contratoPromoTelemovel.DataInicio;
+            //CVM.DataFimPromoTelemovel = contratoPromoTelemovel.DataFim;
 
-            CVM.DataInicioPromoTelevisao = contratoPromoTelevisao.DataInicio;
-            CVM.DataFimPromoTelevisao = contratoPromoTelevisao.DataFim;
+            //CVM.DataInicioPromoTelevisao = contratoPromoTelevisao.DataInicio;
+            //CVM.DataFimPromoTelevisao = contratoPromoTelevisao.DataFim;
 
             CVM.ListaPromoNetFixa = promoNetFixa.Select(x => new CheckBox()
             {
@@ -582,7 +582,6 @@ namespace UPtel.Controllers
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             contratos.PrecoContrato = total;
             cliente.PrecoContratos = contratos.PrecoContrato + cliente.PrecoContratos;
-
             if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
             {
                 ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
@@ -590,8 +589,10 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+              .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-                return View(contratos);
+                return View(CVM);
             }
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato adicionado com sucesso";
@@ -1063,7 +1064,11 @@ namespace UPtel.Controllers
 
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
             var contratoOriginal = _context.Contratos.AsNoTracking().SingleOrDefault(m => m.ContratoId == id);
-          
+            
+            //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == contratoOriginal.ClienteId);
+            contratos.ClienteId = cliente.UsersId;
+
             var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
                 .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
                 .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
@@ -1092,9 +1097,16 @@ namespace UPtel.Controllers
             contrato.Numeros = CVM.Numeros;
             contrato.Fidelizacao = CVM.Fidelizacao;
             contrato.PrecoContrato = CVM.PrecoContrato;
+            contrato.DistritoId = contratoOriginal.DistritoId;
+            contrato.MoradaContrato = contratoOriginal.MoradaContrato;
+            contrato.CodigoPostalCont = contratoOriginal.CodigoPostalCont;
+            contrato.CodigoPostalExtCont = contratoOriginal.CodigoPostalExtCont;
 
+            //cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
+
+            
 
             int contratoId = contrato.ContratoId;
             decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
@@ -1339,10 +1351,9 @@ namespace UPtel.Controllers
             decimal precoContrato, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
 
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
-
+            //cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
             precoContrato = pacote.PrecoTotal;
-
-
+           
             //valor do desconto
             totalTelefone = precoContrato * (descontoTelefone / 100);
             totalNetFixa = precoContrato * (descontoNetFixa / 100);
@@ -1354,6 +1365,7 @@ namespace UPtel.Controllers
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
+            //cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
 
             if (id != contratos.ContratoId)
             {
@@ -1382,7 +1394,8 @@ namespace UPtel.Controllers
                 return View("SucessoCliente");
             }
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            return View(contratos);
+            
+            return View(CVM);
         }
 
         // GET: Contratos/Delete/5
