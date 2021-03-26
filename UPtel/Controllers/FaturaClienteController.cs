@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using UPtel.Data;
 using UPtel.Models;
 
 namespace UPtel.Controllers
-{
+{    [Authorize(Roles = "Operador")]
     public class FaturaClienteController : Controller
     {
         private readonly UPtelContext _context;

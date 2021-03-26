@@ -887,7 +887,8 @@ namespace UPtel.Data
             if (DbContext.PromoTelemovel.Any()) return;
            
             Distrito distrito = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Aveiro");
-           
+            Distrito distrito1 = DbContext.Distrito.FirstOrDefault(c => c.DistritoNome == "Lisboa");
+
             DbContext.PromoTelemovel.AddRange(new PromoTelemovel[] {
             new PromoTelemovel
             {
@@ -932,6 +933,52 @@ namespace UPtel.Data
                 Estado = "Off",
                 DistritoNome = distrito,
                 DistritoNomes = distrito.DistritoNome,
+
+            },
+            
+            new PromoTelemovel
+            {
+                Nome = "Dia dos namorados",
+                LimiteMinutos = 500,
+                LimiteSMS = 500,
+                DecontoPrecoMinNacional = 0m,
+                DecontoPrecoMinInternacional = 0m,
+                DecontoPrecoSMS = 5m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 0m,
+                Estado = "On",
+                DistritoNome = distrito1,
+                DistritoNomes = distrito1.DistritoNome,
+
+            },
+            new PromoTelemovel
+            {
+                Nome = "Páscoa",
+                LimiteMinutos = 500,
+                LimiteSMS = 500,
+                DecontoPrecoMinNacional = 2m,
+                DecontoPrecoMinInternacional = 2m,
+                DecontoPrecoSMS = 0m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 0m,
+                Estado = "On",
+                DistritoNome = distrito1,
+                DistritoNomes = distrito1.DistritoNome,
+
+            },
+            new PromoTelemovel
+            {
+                Nome = "Natal",
+                LimiteMinutos = 0,
+                LimiteSMS = 0,
+                DecontoPrecoMinNacional = 0m,
+                DecontoPrecoMinInternacional = 0m,
+                DecontoPrecoSMS = 0m,
+                DecontoPrecoMMS = 0m,
+                DecontoPrecoTotal = 10m,
+                Estado = "Off",
+                DistritoNome = distrito1,
+                DistritoNomes = distrito1.DistritoNome,
 
             },
 

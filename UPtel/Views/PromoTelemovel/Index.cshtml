@@ -25,10 +25,13 @@
                         </div>
                     </div>
                 </div>
-                <p class="d-flex justify-content-sm-between align-content-center">
-                    <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
-                    <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
-                </p>
+                @if (User.IsInRole("Operador"))
+                {
+                    <p class="d-flex justify-content-sm-between align-content-center">
+                        <a asp-action="SelectDistrito"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                        <a asp-action="PromoOff"><i title="Estado" class="fas fa-power-off fa-3x"></i></a>
+                    </p>
+                }
                 @if (Model.PromoTelemovel.Count() == 0)
                 {
                     <p>Não existem promoções para mostrar</p>
@@ -48,9 +51,12 @@
                                     <th class="text-center titulo">
                                         @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
                                     </th>*@
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Estado)
-                                </th>
+                                @if (User.IsInRole("Operador"))
+                                {
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].Estado)
+                                    </th>
+                                }
                                 @*<th>
                                         @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
                                     </th>*@
@@ -61,11 +67,11 @@
                                         @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
                                     </th>*@
                                 @*<th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
-                                </th>*@
+                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
+                                    </th>
+                                    <th class="text-center titulo">
+                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
+                                    </th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -77,14 +83,17 @@
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     @*<td>
-                                        @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LimiteSMS)
-                                    </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Estado)
-                                    </td>
+                                            @Html.DisplayFor(modelItem => item.LimiteMinutos)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LimiteSMS)
+                                        </td>*@
+                                    @if (User.IsInRole("Operador"))
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Estado)
+                                        </td>
+                                    }
                                     @*<td>
                                             @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
                                         </td>*@
@@ -95,11 +104,11 @@
                                             @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
                                         </td>*@
                                     @*<td>
-                                        @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Descricao)
-                                    </td>*@
+                                            @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descricao)
+                                        </td>*@
                                     <td>
                                         <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
