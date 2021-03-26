@@ -37,66 +37,74 @@
                 </div>
             </div>
             <br />
-                <div id="botaoReclamacoes" class="col-xl-8">
+            <div class="col-xl-8">
+                <div id="botaoReclamacoes" >
                     <button type="button" class="btn btn-costum">Ver reclamações</button>
                 </div>
             </div>
-            <div id="reclamacoes" style="display: none">
-                @if (Model.ReclamacoesCliente.Count() == 0)
-                {
-                    <h3 style="color:darkgrey">Não existem reclamações para mostrar</h3>
-                }
-                else
-                {
-                    <table class="table table-borderless text-white">
-                        <thead>
-                            <tr>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.NomeCliente)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.Assunto)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.Resolvido)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.ReclamacoesCliente)
-                            {
-                                <tr>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.NomeCliente)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Assunto)
-                                    </td>
-                                    @if (item.Resolvido == true)
-                                    {
-                                        <td class="text-center">
-                                            Sim
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center">
-                                            Não
-                                        </td>
-                                    }
+        </div>
+      
 
-                                <td>
-                                    <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                 
+    <div id="reclamacoes" style="display: none">
+        @if (Model.ReclamacoesCliente.Count() == 0)
+        {
+            <h3 style="color:darkgrey">Não existem reclamações para mostrar</h3>
+        }
+        else
+        {
+            <table class="table table-borderless text-white">
+                <thead>
+                    <tr>
+                        <th class="text-center titulo">
+                            @Html.DisplayNameFor(model => model.NomeCliente)
+                        </th>
+                        <th class="text-center titulo">
+                            @Html.DisplayNameFor(model => model.Assunto)
+                        </th>
+                        <th class="text-center titulo">
+                            @Html.DisplayNameFor(model => model.Resolvido)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ReclamacoesCliente)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.NomeCliente)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.Assunto)
+                            </td>
+                            @if (item.Resolvido == true)
+                            {
+                                <td class="text-center">
+                                    Sim
                                 </td>
-                                </tr>
                             }
-                        </tbody>
-                    </table>
-                }
-            </div>
-  
+                            else
+                            {
+                                <td class="text-center">
+                                    Não
+                                </td>
+                            }
+
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                @if(item.Resolvido == true && item.FeedbackDescricao == null)
+                                { 
+                                <a asp-action="Feedback" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId" class="btn btn-costum">Enviar Feedback</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+       
+    </div>
+
     </div>
 </section>
 
@@ -104,14 +112,14 @@
     var botaoReclamacoes = document.getElementById("botaoReclamacoes");
     var reclamacoes = document.getElementById("reclamacoes");
 
-   
+
     botaoReclamacoes.onclick = function () {
         if (reclamacoes.style.display == "none") {
             reclamacoes.setAttribute("style", "display:flex");
             reclamacoes.setAttribute("style", "justify-content: center");
 
         } else {
-            reclamacoes.setAttribute("style","display:none");
+            reclamacoes.setAttribute("style", "display:none");
         };
     };
 </script>

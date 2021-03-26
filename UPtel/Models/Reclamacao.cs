@@ -28,7 +28,17 @@ namespace UPtel.Models
 
         public bool Resolvido { get; set; }
 
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        public DateTime FeedbackData { get; set; }
+
+        public string FeedbackDescricao { get; set; }
+
+        public bool FeedbackResolvido { get; set; }
+
         public List<Reclamacao> ReclamacoesCliente { get; set; }
+
+        public List<Reclamacao> FeedbackCliente { get; set; }
 
         [ForeignKey(nameof(Users.UsersId))]
         public virtual Users Cliente { get; set; }

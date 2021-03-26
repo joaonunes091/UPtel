@@ -46,7 +46,22 @@
                                       Não
                                   </dd>
                               }
-                              
+
+                              <dt class="col-sm-5 titulo">
+                                  @Html.DisplayNameFor(model => model.FeedbackResolvido)
+                              </dt>
+                              @if (Model.FeedbackResolvido == true)
+                              {
+                                  <dd class="col-sm-7">
+                                      Sim
+                                  </dd>
+                              }
+                              else
+                              {
+                                  <dd class="col-sm-7">
+                                      Não
+                                  </dd>
+                              }
                           </dl>
 
                     <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">

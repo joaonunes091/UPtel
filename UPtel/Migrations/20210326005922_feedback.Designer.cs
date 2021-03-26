@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210326005922_feedback")]
+    partial class feedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -844,9 +846,6 @@ namespace UPtel.Migrations
 
                     b.Property<string>("FeedbackDescricao")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("FeedbackResolvido")
-                        .HasColumnType("bit");
 
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");

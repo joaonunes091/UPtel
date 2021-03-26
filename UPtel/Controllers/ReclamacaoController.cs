@@ -25,10 +25,29 @@ namespace UPtel.Controllers
 
         // GET: Reclamacao
         [Authorize(Roles = "Operador")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            var uPtelContext = _context.Reclamacao.Include(r => r.Cliente);
-            return View(await uPtelContext.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.Reclamacao.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar) || p.Cliente.Contribuinte.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+
+            List<Reclamacao> reclamacoes = await _context.Reclamacao.Include(p => p.Cliente).Where(p => nomePesquisar == null || p.Cliente.Nome.Contains(nomePesquisar) || p.Cliente.Contribuinte.Contains(nomePesquisar))
+                .OrderBy(c => c.Cliente.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                Reclamacoes = reclamacoes,
+                NomePesquisar = nomePesquisar
+            };
+
+
+            return base.View(modelo);
         }
 
         // GET: Reclamacao/Details/5
@@ -182,6 +201,79 @@ namespace UPtel.Controllers
             return _context.Reclamacao.Any(e => e.ReclamacaoId == id);
         }
 
-       
+        // GET: Reclamacao/Feedback/5
+        [Authorize(Roles = "Cliente")]
+        public async Task<IActionResult> Feedback(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var reclamacao = await _context.Reclamacao.FindAsync(id);
+            if (reclamacao == null)
+            {
+                return NotFound();
+            }
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
+            return View(reclamacao);
+        }
+
+        // POST: Reclamacao/Feedback/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Cliente")]
+        public async Task<IActionResult> Feedback(int id, [Bind("ReclamacaoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido,FeedbackDescricao")] Reclamacao reclamacao)
+        {
+            if (id != reclamacao.ReclamacaoId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //Reclamacao rec = new Reclamacao();
+
+                    //List<Reclamacao> listaReclamacoes = new List<Reclamacao>();
+                    //rec.FeedbackData = DateTime.Now;
+                    //rec.FeedbackDescricao = reclamacao.FeedbackDescricao;
+
+                    //rec.Assunto = reclamacao.Assunto;
+                    //rec.Cliente = reclamacao.Cliente;
+                    //rec.Descriçao = reclamacao.Descriçao;
+                    //rec.FeedbackCliente = reclamacao.FeedbackCliente;
+                    //rec.NomeCliente = reclamacao.NomeCliente;
+                    ////rec.ReclamacaoId = reclamacao.ReclamacaoId;
+                    //rec.Resolvido = reclamacao.Resolvido;
+                    //rec.UsersId = reclamacao.UsersId;
+
+                    //listaReclamacoes.Add(rec);
+
+                    //reclamacao.ReclamacoesCliente = listaReclamacoes;
+
+                    reclamacao.FeedbackData = DateTime.Now;
+                    _context.Reclamacao.Update(reclamacao);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReclamacaoExists(reclamacao.ReclamacaoId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Details", new { id = id });
+            }
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "Nome", reclamacao.UsersId);
+            return View(reclamacao);
+        }
     }
 }
