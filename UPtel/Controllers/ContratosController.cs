@@ -340,7 +340,6 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("ContratoId,ClienteId,FuncionarioId,PromocaoId,PacoteId,Numeros,DataInicio,Fidelizacao,PrecoContrato")] Contratos contratos)
         public async Task<IActionResult> Create(int? id, ContratoViewModel CVM, Contratos contratos, ContratoPromoNetFixa contratoPromoNetFixa, ContratoPromoNetMovel contratoPromoNetMovel, ContratoPromoTelefone contratoPromoTelefone, ContratoPromoTelemovel contratoPromoTelemovel, ContratoPromoTelevisao contratoPromoTelevisao)
 
         {
@@ -695,6 +694,7 @@ namespace UPtel.Controllers
             contrato.FuncionarioId = funcionario.UsersId;
 
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
+            var cliente = _context.Users.SingleOrDefault(m => m.UsersId == contratoOriginal.ClienteId);
             contrato.ClienteId = contratoOriginal.ClienteId;
             contrato.DataInicio = contratoOriginal.DataInicio;
 
@@ -717,7 +717,9 @@ namespace UPtel.Controllers
 
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
-
+           
+            cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
+            
             int contratoId = contrato.ContratoId;
             decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
             decimal descontoNetFixa = 0, descontoNetMovel = 0, descontoTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
@@ -976,6 +978,7 @@ namespace UPtel.Controllers
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
+            cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
 
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato Editado com sucesso";
@@ -1102,11 +1105,11 @@ namespace UPtel.Controllers
             contrato.CodigoPostalCont = contratoOriginal.CodigoPostalCont;
             contrato.CodigoPostalExtCont = contratoOriginal.CodigoPostalExtCont;
 
-            //cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
+          
             _context.Contratos.Update(contrato);
             await _context.SaveChangesAsync();
+            cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
 
-            
 
             int contratoId = contrato.ContratoId;
             decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
@@ -1351,7 +1354,7 @@ namespace UPtel.Controllers
             decimal precoContrato, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
 
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
-            //cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
+           
             precoContrato = pacote.PrecoTotal;
            
             //valor do desconto
@@ -1365,7 +1368,7 @@ namespace UPtel.Controllers
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
-            //cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
+            cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
 
             if (id != contratos.ContratoId)
             {
