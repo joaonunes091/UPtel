@@ -1,0 +1,31 @@
+﻿@model UPtel.Models.EmailModel
+@{
+    ViewData["Title"] = "EnviaEmail";
+}
+<h2>Enviar Email</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EnviarEmail">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Destino" class="control-label"></label>
+                <input asp-for="Destino" class="form-control" />
+                <span asp-validation-for="Destino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assunto" class="control-label"></label>
+                <input asp-for="Assunto" class="form-control" />
+                <span asp-validation-for="Assunto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mensagem" class="control-label"></label>
+                <textarea asp-for="Mensagem" class="form-control" rows="3" cols="60"></textarea>
+                <span asp-validation-for="Mensagem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar Email" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
