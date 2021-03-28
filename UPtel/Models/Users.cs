@@ -120,6 +120,7 @@ namespace UPtel.Models
 
         [InverseProperty(nameof(Contratos.Funcionario))]
         public virtual ICollection<Contratos> ContratosFuncionario { get; set; }
+
     }
 
     //    public class RestrictedDate : ValidationAttribute
