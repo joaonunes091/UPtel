@@ -10,7 +10,7 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210326005922_feedback")]
+    [Migration("20210328173055_feedback")]
     partial class feedback
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,21 +21,6 @@ namespace UPtel.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ReclamacaoReclamacao", b =>
-                {
-                    b.Property<int>("FeedbackClienteReclamacaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReclamacoesClienteReclamacaoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FeedbackClienteReclamacaoId", "ReclamacoesClienteReclamacaoId");
-
-                    b.HasIndex("ReclamacoesClienteReclamacaoId");
-
-                    b.ToTable("ReclamacaoReclamacao");
-                });
 
             modelBuilder.Entity("UPtel.Models.Canais", b =>
                 {
@@ -321,12 +306,10 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CodigoPostalCont")
-                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("CodigoPostalExtCont")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -347,7 +330,6 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MoradaContrato")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
@@ -430,6 +412,36 @@ namespace UPtel.Migrations
                     b.HasIndex("ContratoId");
 
                     b.ToTable("Faturas");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FeedbackCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReclamacaoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RespostaFuncionario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -841,22 +853,24 @@ namespace UPtel.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<DateTime>("FeedbackData")
-                        .HasColumnType("date");
-
-                    b.Property<string>("FeedbackDescricao")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Resolvido")
+                    b.Property<int?>("ReclamacaoId1")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ResolvidoCliente")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ResolvidoOperador")
                         .HasColumnType("bit");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
                     b.HasKey("ReclamacaoId");
+
+                    b.HasIndex("ReclamacaoId1");
 
                     b.HasIndex("UsersId");
 
@@ -1065,6 +1079,8 @@ namespace UPtel.Migrations
                         .IsUnique()
                         .HasFilter("[CartaoCidadao] IS NOT NULL");
 
+                    b.HasIndex(new[] { "DataRegisto" }, "IX_Clientes_DataRegisto");
+
                     b.HasIndex(new[] { "TipoId" }, "IX_Clientes_TipoClienteId");
 
                     b.HasIndex(new[] { "Contribuinte" }, "IX_ContribuinteClientes")
@@ -1073,21 +1089,6 @@ namespace UPtel.Migrations
                     b.HasIndex(new[] { "Nome" }, "IX_Nome_Users");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ReclamacaoReclamacao", b =>
-                {
-                    b.HasOne("UPtel.Models.Reclamacao", null)
-                        .WithMany()
-                        .HasForeignKey("FeedbackClienteReclamacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UPtel.Models.Reclamacao", null)
-                        .WithMany()
-                        .HasForeignKey("ReclamacoesClienteReclamacaoId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("UPtel.Models.ClientesViewModel", b =>
@@ -1368,6 +1369,10 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
+                    b.HasOne("UPtel.Models.Reclamacao", null)
+                        .WithMany("ReclamacoesCliente")
+                        .HasForeignKey("ReclamacaoId1");
+
                     b.HasOne("UPtel.Models.Users", "Cliente")
                         .WithMany()
                         .HasForeignKey("UsersId")
@@ -1476,6 +1481,11 @@ namespace UPtel.Migrations
             modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
                 {
                     b.Navigation("ContratoPromoTelevisao");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
+                {
+                    b.Navigation("ReclamacoesCliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>

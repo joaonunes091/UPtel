@@ -48,6 +48,9 @@ namespace UPtel.Data
         public virtual DbSet<ContratoPromoTelemovel> ContratoPromoTelemovel { get; set; }
         public virtual DbSet<ContratoPromoTelefone> ContratoPromoTelefone { get; set; }
 
+        public virtual DbSet<Reclamacao> Reclamacao { get; set; }
+        public virtual DbSet<Feedback> Feedback { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -227,8 +230,6 @@ namespace UPtel.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<UPtel.Models.ClientesViewModel> ClientesViewModel { get; set; }
-
-        public DbSet<UPtel.Models.Reclamacao> Reclamacao { get; set; }
 
         public DbSet<UPtel.Models.OperadorViewModel> OperadorViewModel { get; set; }
     }

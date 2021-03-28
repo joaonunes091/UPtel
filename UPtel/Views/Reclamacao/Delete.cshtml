@@ -3,76 +3,62 @@
 @{
     ViewData["Title"] = "Delete";
 }
-
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-             
-                <h2 class="font">Tem a certeza que quer eliminar a reclamação?</h2>
+                <h1>Delete</h1>
+
+                <h3>Are you sure you want to delete this?</h3>
                 <div>
-                    <br /><br />
-                          <dl class="row justify-content-center text-white">
-                              <dt class="col-sm-5 titulo">
-                                  @Html.DisplayNameFor(model => model.NomeCliente)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.NomeCliente)
-                              </dd>
-                              <dt class="col-sm-5 titulo">
-                                  @Html.DisplayNameFor(model => model.Assunto)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.Assunto)
-                              </dd>
-                              <dt class="col-sm-5 titulo">
-                                  @Html.DisplayNameFor(model => model.Descriçao)
-                              </dt>
-                              <dd class="col-sm-7">
-                                  @Html.DisplayFor(model => model.Descriçao)
-                              </dd>
-                              <dt class="col-sm-5 titulo">
-                                  @Html.DisplayNameFor(model => model.Resolvido)
-                              </dt>
-                              @if (Model.Resolvido == true)
-                              {
-                                  <dd class="col-sm-7">
-                                      Sim
-                                  </dd>
-                              }
-                              else
-                              {
-                                  <dd class="col-sm-7">
-                                      Não
-                                  </dd>
-                              }
+                    <h4>Reclamacao</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Assunto)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Assunto)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Descriçao)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Descriçao)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.NomeCliente)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.NomeCliente)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ResolvidoOperador)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ResolvidoOperador)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ResolvidoCliente)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ResolvidoCliente)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Cliente)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Cliente.CodigoPostal)
+                        </dd>
+                    </dl>
 
-                              <dt class="col-sm-5 titulo">
-                                  @Html.DisplayNameFor(model => model.FeedbackResolvido)
-                              </dt>
-                              @if (Model.FeedbackResolvido == true)
-                              {
-                                  <dd class="col-sm-7">
-                                      Sim
-                                  </dd>
-                              }
-                              else
-                              {
-                                  <dd class="col-sm-7">
-                                      Não
-                                  </dd>
-                              }
-                          </dl>
-
-                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
+                    <form asp-action="Delete">
                         <input type="hidden" asp-for="ReclamacaoId" />
-                        <button type="submit" class="btn btn-default btn-sm "><i title="Eliminar" class="far fa-trash-alt fa-2x imgEliminar"></i></button>
-                        <a asp-action="Details" asp-route-id="@Model.ReclamacaoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
-
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        <a asp-action="Index">Back to List</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-  
 </section>
