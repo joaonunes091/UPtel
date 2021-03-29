@@ -86,8 +86,21 @@
                         @Html.DisplayNameFor(model => model.DistritoNome)
                     </dt>
                     <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.DistritoNome)
+                        @Html.DisplayFor(modelItem => Model.DistritoNome.DistritoNome)
                     </dd>
+                    <dt class="col-sm-5 titulo">
+                       Posição
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.Posicao)
+                    </dd>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.PrecoContratosFunc)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.PrecoContratosFunc)
+                    </dd>
+
                 </dl>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Manage/SetPassword"><i class="fas fa-key fixedIcon"></i> Mudar Password</a>

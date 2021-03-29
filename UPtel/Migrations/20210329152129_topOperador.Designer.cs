@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210329152129_topOperador")]
+    partial class topOperador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -410,35 +412,6 @@ namespace UPtel.Migrations
                     b.HasIndex("ContratoId");
 
                     b.ToTable("Faturas");
-                });
-
-            modelBuilder.Entity("UPtel.Models.Feedback", b =>
-                {
-                    b.Property<int>("FeedbackId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataFeedback")
-                        .HasColumnType("date");
-
-                    b.Property<int>("FuncionarioId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mensagem")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReclamacaoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FeedbackId");
-
-                    b.HasIndex("ReclamacaoId");
-
-                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -851,35 +824,28 @@ namespace UPtel.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ContartoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataReclamacao")
-                        .HasColumnType("date");
-
                     b.Property<string>("Descriçao")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("FuncionarioId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomeCliente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ResolvidoCliente")
+                    b.Property<int?>("ReclamacaoId1")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Resolvido")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("ResolvidoOperador")
-                        .HasColumnType("bit");
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
 
                     b.HasKey("ReclamacaoId");
 
-                    b.HasIndex("ContartoId");
+                    b.HasIndex("ReclamacaoId1");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Reclamacao");
                 });
@@ -1089,8 +1055,6 @@ namespace UPtel.Migrations
                         .IsUnique()
                         .HasFilter("[CartaoCidadao] IS NOT NULL");
 
-                    b.HasIndex(new[] { "DataRegisto" }, "IX_Clientes_DataRegisto");
-
                     b.HasIndex(new[] { "TipoId" }, "IX_Clientes_TipoClienteId");
 
                     b.HasIndex(new[] { "Contribuinte" }, "IX_ContribuinteClientes")
@@ -1255,17 +1219,6 @@ namespace UPtel.Migrations
                     b.Navigation("Fatura");
                 });
 
-            modelBuilder.Entity("UPtel.Models.Feedback", b =>
-                {
-                    b.HasOne("UPtel.Models.Reclamacao", "Reclamacao")
-                        .WithMany("Feedback")
-                        .HasForeignKey("ReclamacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reclamacao");
-                });
-
             modelBuilder.Entity("UPtel.Models.OperadorViewModel", b =>
                 {
                     b.HasOne("UPtel.Models.Distrito", "DistritoNome")
@@ -1390,13 +1343,17 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
-                    b.HasOne("UPtel.Models.Contratos", "Contratos")
-                        .WithMany("Reclamacao")
-                        .HasForeignKey("ContartoId")
+                    b.HasOne("UPtel.Models.Reclamacao", null)
+                        .WithMany("ReclamacoesCliente")
+                        .HasForeignKey("ReclamacaoId1");
+
+                    b.HasOne("UPtel.Models.Users", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Contratos");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Users", b =>
@@ -1441,8 +1398,6 @@ namespace UPtel.Migrations
                     b.Navigation("ContratoPromoTelevisao");
 
                     b.Navigation("Fatura");
-
-                    b.Navigation("Reclamacao");
                 });
 
             modelBuilder.Entity("UPtel.Models.Distrito", b =>
@@ -1504,7 +1459,7 @@ namespace UPtel.Migrations
 
             modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
                 {
-                    b.Navigation("Feedback");
+                    b.Navigation("ReclamacoesCliente");
                 });
 
             modelBuilder.Entity("UPtel.Models.Telefone", b =>

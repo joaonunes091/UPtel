@@ -20,7 +20,15 @@
                 <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
             </div>
         </form>*@
+                    <form asp-controller="Contratos" asp-action="MelhorOperadorDistrito" method="get">
+                        <h2>Top 10 Operadores</h2>
+                        <div class="form-group">
+                            <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                            <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
 
+                        </div>
+                    </form>
 
                         <form asp-action="Distrito" method="get">
                             <div class="form-group">

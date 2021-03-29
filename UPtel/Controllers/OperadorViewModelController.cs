@@ -31,7 +31,7 @@ namespace UPtel.Controllers
 
             var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
             Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
-
+            //var funcionario = await _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
             operador = new OperadorViewModel
             {
                 Id = infoOperador.UsersId,
@@ -45,8 +45,10 @@ namespace UPtel.Controllers
                 Telefone = infoOperador.Telefone,
                 Telemovel = infoOperador.Telemovel,
                 Email = infoOperador.Email,
-                DataRegisto=infoOperador.DataRegisto,
-                DistritoNome=infoOperador.DistritoNome
+                DataRegisto = infoOperador.DataRegisto,
+                DistritoNome = infoOperador.DistritoNome,
+                PrecoContratosFunc = infoOperador.PrecoContratosFunc,
+                Posicao = infoOperador.Posicao,
             };
 
             return View(operador);
