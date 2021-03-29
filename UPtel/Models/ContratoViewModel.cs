@@ -38,6 +38,8 @@ namespace UPtel.Models
 
         [Display(Name = "Fidelização")]
         public int? Fidelizacao { get; set; }
+       
+        public string Estado { get; set; }
 
         public int? Posicao { get; set; }
 
