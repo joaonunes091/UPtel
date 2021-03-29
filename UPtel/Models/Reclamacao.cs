@@ -9,10 +9,19 @@ namespace UPtel.Models
 {
     public class Reclamacao
     {
+        public Reclamacao()
+        {
+            Feedback = new HashSet<Feedback>();
+        }
+
         [Key]
         public int ReclamacaoId { get; set; }
 
-        public int UsersId { get; set; }
+        public int ContartoId { get; set; }
+
+        public int ClienteId { get; set; }
+
+        public int FuncionarioId { get; set; }
 
         [Required(ErrorMessage = "É necessário colocar um assunto")]
         [StringLength(25, ErrorMessage = "O limite de caracteres(25) foi ultrapassado")]
@@ -30,9 +39,15 @@ namespace UPtel.Models
 
         public bool ResolvidoCliente { get; set; }
 
-        public ICollection<Reclamacao> ReclamacoesCliente { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        public DateTime DataReclamacao { get; set; }
 
-        [ForeignKey(nameof(Users.UsersId))]
-        public virtual Users Cliente { get; set; }
+        [ForeignKey(nameof(ContartoId))]
+        [InverseProperty("Reclamacao")]
+        public virtual Contratos Contratos { get; set; }
+
+        [InverseProperty("Reclamacao")]
+        public virtual ICollection<Feedback> Feedback { get; set; }
     }
 }

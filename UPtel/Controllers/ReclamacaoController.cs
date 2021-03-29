@@ -22,7 +22,7 @@ namespace UPtel.Controllers
         // GET: Reclamacao
         public async Task<IActionResult> Index()
         {
-            var uPtelContext = _context.Reclamacao.Include(r => r.Cliente);
+            var uPtelContext = _context.Reclamacao.Include(r => r.Contratos);
             return View(await uPtelContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace UPtel.Controllers
             }
 
             var reclamacao = await _context.Reclamacao
-                .Include(r => r.Cliente)
+                .Include(r => r.Contratos)
                 .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
             if (reclamacao == null)
             {
@@ -48,7 +48,6 @@ namespace UPtel.Controllers
         // GET: Reclamacao/Create
         public IActionResult Create()
         {
-            //ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal");
             return View();
         }
 
@@ -62,17 +61,18 @@ namespace UPtel.Controllers
             if (ModelState.IsValid)
             {
                 var cliente = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
-                reclamacao.UsersId = cliente.UsersId;
+                reclamacao.ClienteId = cliente.UsersId;
                 reclamacao.NomeCliente = cliente.Nome;
                 reclamacao.ResolvidoCliente = false;
                 reclamacao.ResolvidoOperador = false;
+                reclamacao.DataReclamacao = DateTime.Now;
 
 
                 _context.Add(reclamacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
             return View(reclamacao);
         }
 
@@ -89,7 +89,7 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
             return View(reclamacao);
         }
 
@@ -98,7 +98,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReclamacaoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido")] Reclamacao reclamacao)
+        public async Task<IActionResult> Edit(int id, [Bind("ReclamacaoId,UsersId,Assunto,Descriçao,NomeCliente,ResolvidoOperador,ResolvidoCliente")] Reclamacao reclamacao)
         {
             if (id != reclamacao.ReclamacaoId)
             {
@@ -125,7 +125,7 @@ namespace UPtel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
             return View(reclamacao);
         }
 
@@ -138,7 +138,7 @@ namespace UPtel.Controllers
             }
 
             var reclamacao = await _context.Reclamacao
-                .Include(r => r.Cliente)
+                .Include(r => r.Contratos)
                 .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
             if (reclamacao == null)
             {

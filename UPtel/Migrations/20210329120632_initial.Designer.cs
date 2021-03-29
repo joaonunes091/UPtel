@@ -10,8 +10,8 @@ using UPtel.Data;
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    [Migration("20210325190634_Initial")]
-    partial class Initial
+    [Migration("20210329120632_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -306,12 +306,10 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CodigoPostalCont")
-                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
                     b.Property<string>("CodigoPostalExtCont")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -332,7 +330,6 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MoradaContrato")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
@@ -415,6 +412,33 @@ namespace UPtel.Migrations
                     b.HasIndex("ContratoId");
 
                     b.ToTable("Faturas");
+                });
+
+            modelBuilder.Entity("UPtel.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataFeedback")
+                        .HasColumnType("date");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReclamacaoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedback");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -821,6 +845,12 @@ namespace UPtel.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<int>("ContartoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataReclamacao")
+                        .HasColumnType("date");
+
                     b.Property<string>("Descriçao")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -832,7 +862,10 @@ namespace UPtel.Migrations
                     b.Property<int?>("ReclamacaoId1")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Resolvido")
+                    b.Property<bool>("ResolvidoCliente")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ResolvidoOperador")
                         .HasColumnType("bit");
 
                     b.Property<int>("UsersId")
@@ -1048,6 +1081,8 @@ namespace UPtel.Migrations
                     b.HasIndex(new[] { "CartaoCidadao" }, "IX_CartaoCidadaoClientes")
                         .IsUnique()
                         .HasFilter("[CartaoCidadao] IS NOT NULL");
+
+                    b.HasIndex(new[] { "DataRegisto" }, "IX_Clientes_DataRegisto");
 
                     b.HasIndex(new[] { "TipoId" }, "IX_Clientes_TipoClienteId");
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,23 @@ namespace UPtel.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DistritoNome", x => x.DistritoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReclamacaoId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    Mensagem = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataFeedback = table.Column<DateTime>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.FeedbackId);
                 });
 
             migrationBuilder.CreateTable(
@@ -479,9 +496,9 @@ namespace UPtel.Migrations
                     Posicao = table.Column<int>(type: "int", nullable: true),
                     EdicaoCliente = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     PrecoContrato = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    MoradaContrato = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
-                    CodigoPostalCont = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
-                    CodigoPostalExtCont = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    MoradaContrato = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    CodigoPostalCont = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true),
+                    CodigoPostalExtCont = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
                     DistritoId = table.Column<int>(type: "int", nullable: false),
                     ClientesViewModelId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -526,11 +543,14 @@ namespace UPtel.Migrations
                 {
                     ReclamacaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ContartoId = table.Column<int>(type: "int", nullable: false),
                     UsersId = table.Column<int>(type: "int", nullable: false),
                     Assunto = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Descriçao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Resolvido = table.Column<bool>(type: "bit", nullable: false),
+                    ResolvidoOperador = table.Column<bool>(type: "bit", nullable: false),
+                    ResolvidoCliente = table.Column<bool>(type: "bit", nullable: false),
+                    DataReclamacao = table.Column<DateTime>(type: "date", nullable: false),
                     ReclamacaoId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -883,6 +903,11 @@ namespace UPtel.Migrations
                 filter: "[CartaoCidadao] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clientes_DataRegisto",
+                table: "Users",
+                column: "DataRegisto");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Clientes_TipoClienteId",
                 table: "Users",
                 column: "TipoId");
@@ -923,6 +948,9 @@ namespace UPtel.Migrations
 
             migrationBuilder.DropTable(
                 name: "Faturas");
+
+            migrationBuilder.DropTable(
+                name: "Feedback");
 
             migrationBuilder.DropTable(
                 name: "OperadorViewModel");
