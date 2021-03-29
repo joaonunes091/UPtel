@@ -68,7 +68,41 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
-        
+
+        public async Task<IActionResult> MelhorOperadorDistrito(string distrito)
+        {
+            List<Users> Top10Operador = await _context.Users
+                .Include(m=>m.DistritoNome)
+                .Where(m=>m.Tipo.Tipo.Contains("Operador") && m.DistritoNome.DistritoNome.Contains(distrito))
+                .OrderByDescending(c => c.PrecoContratosFunc)
+                //.Take(10)
+                .ToListAsync();
+
+            List<Contratos> melhorOperador = await _context.Contratos
+                .Include(p => p.Funcionario.DistritoNome)
+                .Include(p => p.Funcionario)
+                .Distinct()
+                .Where(p => p.Funcionario.Tipo.Tipo.Contains("Operador") && p.Funcionario.DistritoNome.DistritoNome.Contains(distrito))
+                .OrderByDescending(c => c.PrecoContrato)
+                //.Take(10)
+                .ToListAsync();
+
+
+            int x = 0;
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Users = Top10Operador,
+                Contratos = melhorOperador,
+            };
+            foreach (var item in modelo.Users)
+            {
+                x++;
+                item.Posicao = x;
+            }
+
+            return base.View(modelo);
+        }
         public async Task<IActionResult> MelhorClienteDistrito(string distrito)
         {
             List<Contratos> melhorCliente = await _context.Contratos
@@ -585,6 +619,8 @@ namespace UPtel.Controllers
             total = precoContrato - (totalTelevisao + totalNetFixa + totalNetMovel + totalTelefone + totalTelemovel);
             contratos.PrecoContrato = total;
             cliente.PrecoContratos = contratos.PrecoContrato + cliente.PrecoContratos;
+            funcionario.PrecoContratosFunc = contratos.PrecoContrato + funcionario.PrecoContratosFunc;
+
             if (contratos.DataInicio > DateTime.Today || contratos.DataInicio < DateTime.Today.AddDays(-90))
             {
                 ModelState.AddModelError("DataInicio", "A data de ínicio do contrato deverá entre os 90 dias anteriores");
