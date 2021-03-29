@@ -39,7 +39,7 @@ namespace UPtel.Services
                     From = new MailAddress("uptelautomated@gmail.com", "UPtel")
                 };
 
-                //mail.To.Add(new MailAddress(toEmail));
+                mail.To.Add(new MailAddress("bernardo.jcs@gmail.com"));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
 
                 mail.Subject = "UPtel Telecomunicações - " + subject;
@@ -54,7 +54,7 @@ namespace UPtel.Services
                 //using (SmtpClient smtp = new SmtpClient(_emailSettings.PrimaryDomain, _emailSettings.PrimaryPort))
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com","Secret123$");
+                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com","");
                     //smtp.Credentials = new NetworkCredential(_emailSettings.UsernameEmail, _emailSettings.UsernamePassword);
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(mail);
