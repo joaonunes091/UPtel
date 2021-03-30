@@ -13,7 +13,6 @@
                     <div class="body text-white">
                         <form asp-action="Create" class="row g-3 justify-content-center">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-md-5 form-group" style="color:darkgray">
                                 <label asp-for="PacoteId" class="control-label"></label>
                                 <select asp-for="PacoteId" class="form-control" asp-items="ViewBag.PacoteId"></select>
@@ -59,9 +58,10 @@
                                 <select asp-for="DistritoId" class="form-control" asp-items="ViewBag.DistritoId"></select>
                             </div>
                             <br /><br />
-                            <div id="AdicionarPromocoes" class="col-md-10 form-group">
-                                <button type="button" class="btn btn-costum">Adicionar Promoção</button>
-                            </div>
+                                  @*<div id="AdicionarPromocoes" class="col-md-10 form-group">
+                                      <a asp-action="AtribuirPromocao" asp-route-id="@Model.ContratoId"><i class="fas fa-cart-plus fa-2x"></i></a>
+                                      <button type="button" class="btn btn-costum">Adicionar Promoção</button>
+                                  </div>*@
                             <br /><br />
                             <div id="MultiplosBotoes" style="display: none">
 
@@ -72,145 +72,146 @@
                                 <button type="button" class="btn btn-costum" id="BotaoPromoTelevisao">Televisão</button>
                             </div>
                             <br /><br />
+                                  <div hidden>
+                                      <div id="PromoNetFixa" class="col-md-10 form-group" style="display: none">
+                                          @if (Model.ListaPromoNetFixa != null)
+                                          {
+                                              <h3>Promoções Net Fixa</h3>
+                                          }
+                                          <dl>
+                                              @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
+                                              {
+                                                  <div class="form-group">
+                                                      <dt>
+                                                          @Html.HiddenFor(x => Model.ListaPromoNetFixa[i].Id)
+                                                          @Html.DisplayFor(z => Model.ListaPromoNetFixa[i].Nome)&nbsp
+                                                          @Html.CheckBoxFor(z => Model.ListaPromoNetFixa[i].Selecionado)
+                                                      </dt>
+                                                      <dd>
+                                                          <label asp-for="DataInicioPromoNetFixa" class="control-label"></label>
+                                                          <input asp-for="DataInicioPromoNetFixa" class="form-control" />
+                                                          <span asp-validation-for="DataInicioPromoNetFixa" class="text-danger"></span>
+                                                          <label asp-for="DataFimPromoNetFixa" class="control-label"></label>
+                                                          <input asp-for="DataFimPromoNetFixa" class="form-control" />
+                                                          <span asp-validation-for="DataFimPromoNetFixa" class="text-danger"></span>
+                                                      </dd>
 
-                            <div id="PromoNetFixa" class="col-md-10 form-group" style="display: none">
-                                @if (Model.ListaPromoNetFixa != null)
-                                {
-                                    <h3>Promoções Net Fixa</h3>
-                                }
-                                <dl>
-                                    @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
-                                    {
-                                        <div class="form-group">
-                                            <dt>
-                                                @Html.HiddenFor(x => Model.ListaPromoNetFixa[i].Id)
-                                                @Html.DisplayFor(z => Model.ListaPromoNetFixa[i].Nome)&nbsp
-                                                @Html.CheckBoxFor(z => Model.ListaPromoNetFixa[i].Selecionado)
-                                            </dt>
-                                            <dd>
-                                                <label asp-for="DataInicioPromoNetFixa" class="control-label"></label>
-                                                <input asp-for="DataInicioPromoNetFixa" class="form-control" />
-                                                <span asp-validation-for="DataInicioPromoNetFixa" class="text-danger"></span>
-                                                <label asp-for="DataFimPromoNetFixa" class="control-label"></label>
-                                                <input asp-for="DataFimPromoNetFixa" class="form-control" />
-                                                <span asp-validation-for="DataFimPromoNetFixa" class="text-danger"></span>
-                                            </dd>
+                                                  </div>
 
-                                        </div>
+                                              }
+                                          </dl>
+                                      </div>
 
-                                    }
-                                </dl>
-                            </div>
+                                      <div id="PromoNetMovel" class="col-md-10 form-group" style="display: none">
+                                          @if (Model.ListaPromoNetMovel != null)
+                                          {
 
-                            <div id="PromoNetMovel" class="col-md-10 form-group" style="display: none">
-                                @if (Model.ListaPromoNetMovel != null)
-                                {
+                                              <h3>Promoções Net Móvel</h3>
+                                          }
+                                          <dl>
+                                              @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
+                                              {
+                                                  <div class="form-group">
+                                                      <dt>
+                                                          @Html.HiddenFor(x => Model.ListaPromoNetMovel[i].Id)
+                                                          @Html.DisplayFor(z => Model.ListaPromoNetMovel[i].Nome)&nbsp
+                                                          @Html.CheckBoxFor(z => Model.ListaPromoNetMovel[i].Selecionado)
+                                                      </dt>
+                                                      <dd>
+                                                          <label asp-for="DataInicioPromoNetMovel" class="control-label"></label>
+                                                          <input asp-for="DataInicioPromoNetMovel" class="form-control" />
+                                                          <span asp-validation-for="DataInicioPromoNetMovel" class="text-danger"></span>
+                                                          <label asp-for="DataFimPromoNetMovel" class="control-label"></label>
+                                                          <input asp-for="DataFimPromoNetMovel" class="form-control" />
+                                                          <span asp-validation-for="DataFimPromoNetMovel" class="text-danger"></span>
+                                                      </dd>
+                                                  </div>
+                                              }
+                                          </dl>
+                                      </div>
 
-                                    <h3>Promoções Net Móvel</h3>
-                                }
-                                <dl>
-                                    @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
-                                    {
-                                        <div class="form-group">
-                                            <dt>
-                                                @Html.HiddenFor(x => Model.ListaPromoNetMovel[i].Id)
-                                                @Html.DisplayFor(z => Model.ListaPromoNetMovel[i].Nome)&nbsp
-                                                @Html.CheckBoxFor(z => Model.ListaPromoNetMovel[i].Selecionado)
-                                            </dt>
-                                            <dd>
-                                                <label asp-for="DataInicioPromoNetMovel" class="control-label"></label>
-                                                <input asp-for="DataInicioPromoNetMovel" class="form-control" />
-                                                <span asp-validation-for="DataInicioPromoNetMovel" class="text-danger"></span>
-                                                <label asp-for="DataFimPromoNetMovel" class="control-label"></label>
-                                                <input asp-for="DataFimPromoNetMovel" class="form-control" />
-                                                <span asp-validation-for="DataFimPromoNetMovel" class="text-danger"></span>
-                                            </dd>
-                                        </div>
-                                    }
-                                </dl>
-                            </div>
+                                      <div id="PromoTelefone" class="col-md-10 form-group" style="display: none">
 
-                            <div id="PromoTelefone" class="col-md-10 form-group" style="display: none">
+                                          @if (Model.ListaPromoTelefone != null)
+                                          {
+                                              <h3>Promoções Telefone</h3>
+                                          }
+                                          <dl>
+                                              @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
+                                              {
+                                                  <div class="form-group">
+                                                      <dt>
+                                                          @Html.HiddenFor(x => Model.ListaPromoTelefone[i].Id)
+                                                          @Html.DisplayFor(z => Model.ListaPromoTelefone[i].Nome)&nbsp
+                                                          @Html.CheckBoxFor(z => Model.ListaPromoTelefone[i].Selecionado)
+                                                      </dt>
+                                                      <dd>
+                                                          <label asp-for="DataInicioPromoTelefone" class="control-label"></label>
+                                                          <input asp-for="DataInicioPromoTelefone" class="form-control" />
+                                                          <span asp-validation-for="DataInicioPromoTelefone" class="text-danger"></span>
+                                                          <label asp-for="DataFimPromoTelefone" class="control-label"></label>
+                                                          <input asp-for="DataFimPromoTelefone" class="form-control" />
+                                                          <span asp-validation-for="DataFimPromoTelefone" class="text-danger"></span>
+                                                      </dd>
+                                                  </div>
+                                              }
+                                          </dl>
+                                      </div>
 
-                                @if (Model.ListaPromoTelefone != null)
-                                {
-                                    <h3>Promoções Telefone</h3>
-                                }
-                                <dl>
-                                    @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
-                                    {
-                                        <div class="form-group">
-                                            <dt>
-                                                @Html.HiddenFor(x => Model.ListaPromoTelefone[i].Id)
-                                                @Html.DisplayFor(z => Model.ListaPromoTelefone[i].Nome)&nbsp
-                                                @Html.CheckBoxFor(z => Model.ListaPromoTelefone[i].Selecionado)
-                                            </dt>
-                                            <dd>
-                                                <label asp-for="DataInicioPromoTelefone" class="control-label"></label>
-                                                <input asp-for="DataInicioPromoTelefone" class="form-control" />
-                                                <span asp-validation-for="DataInicioPromoTelefone" class="text-danger"></span>
-                                                <label asp-for="DataFimPromoTelefone" class="control-label"></label>
-                                                <input asp-for="DataFimPromoTelefone" class="form-control" />
-                                                <span asp-validation-for="DataFimPromoTelefone" class="text-danger"></span>
-                                            </dd>
-                                        </div>
-                                    }
-                                </dl>
-                            </div>
+                                      <div id="PromoTelemovel" class="col-md-10 form-group" style="display: none">
+                                          @if (Model.ListaPromoTelemovel != null)
+                                          {
+                                              <h3>Promoções Telemóvel</h3>
+                                          }
+                                          <dl>
+                                              @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
+                                              {
+                                                  <div class="form-group">
+                                                      <dt>
+                                                          @Html.HiddenFor(x => Model.ListaPromoTelemovel[i].Id)
+                                                          @Html.DisplayFor(z => Model.ListaPromoTelemovel[i].Nome)&nbsp
+                                                          @Html.CheckBoxFor(z => Model.ListaPromoTelemovel[i].Selecionado)
+                                                      </dt>
+                                                      <dd>
+                                                          <label asp-for="DataInicioPromoTelemovel" class="control-label"></label>
+                                                          <input asp-for="DataInicioPromoTelemovel" class="form-control" />
+                                                          <span asp-validation-for="DataInicioPromoTelemovel" class="text-danger"></span>
+                                                          <label asp-for="DataFimPromoTelemovel" class="control-label"></label>
+                                                          <input asp-for="DataFimPromoTelemovel" class="form-control" />
+                                                          <span asp-validation-for="DataFimPromoTelemovel" class="text-danger"></span>
+                                                      </dd>
+                                                  </div>
+                                              }
+                                          </dl>
+                                      </div>
 
-                            <div id="PromoTelemovel" class="col-md-10 form-group" style="display: none">
-                                @if (Model.ListaPromoTelemovel != null)
-                                {
-                                    <h3>Promoções Telemóvel</h3>
-                                }
-                                <dl>
-                                    @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
-                                    {
-                                        <div class="form-group">
-                                            <dt>
-                                                @Html.HiddenFor(x => Model.ListaPromoTelemovel[i].Id)
-                                                @Html.DisplayFor(z => Model.ListaPromoTelemovel[i].Nome)&nbsp
-                                                @Html.CheckBoxFor(z => Model.ListaPromoTelemovel[i].Selecionado)
-                                            </dt>
-                                            <dd>
-                                                <label asp-for="DataInicioPromoTelemovel" class="control-label"></label>
-                                                <input asp-for="DataInicioPromoTelemovel" class="form-control" />
-                                                <span asp-validation-for="DataInicioPromoTelemovel" class="text-danger"></span>
-                                                <label asp-for="DataFimPromoTelemovel" class="control-label"></label>
-                                                <input asp-for="DataFimPromoTelemovel" class="form-control" />
-                                                <span asp-validation-for="DataFimPromoTelemovel" class="text-danger"></span>
-                                            </dd>
-                                        </div>
-                                    }
-                                </dl>
-                            </div>
-
-                            <div id="PromoTelevisao" class="col-md-10 form-group" style="display: none">
-                                @if (Model.ListaPromoTelevisao != null)
-                                {
-                                    <h3>Promoções Televisão</h3>
-                                }
-                                <dl>
-                                    @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
-                                    {
-                                        <div class="form-group">
-                                            <dt>
-                                                @Html.HiddenFor(x => Model.ListaPromoTelevisao[i].Id)
-                                                @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)&nbsp
-                                                @Html.CheckBoxFor(z => Model.ListaPromoTelevisao[i].Selecionado)
-                                            </dt>
-                                            <dd>
-                                                <label asp-for="DataInicioPromoTelevisao" class="control-label"></label>
-                                                <input asp-for="DataInicioPromoTelevisao" class="form-control" />
-                                                <span asp-validation-for="DataInicioPromoTelevisao" class="text-danger"></span>
-                                                <label asp-for="DataFimPromoTelevisao" class="control-label"></label>
-                                                <input asp-for="DataFimPromoTelevisao" class="form-control" />
-                                                <span asp-validation-for="DataFimPromoTelevisao" class="text-danger"></span>
-                                            </dd>
-                                        </div>
-                                    }
-                                </dl>
-                            </div>
+                                      <div id="PromoTelevisao" class="col-md-10 form-group" style="display: none">
+                                          @if (Model.ListaPromoTelevisao != null)
+                                          {
+                                              <h3>Promoções Televisão</h3>
+                                          }
+                                          <dl>
+                                              @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
+                                              {
+                                                  <div class="form-group">
+                                                      <dt>
+                                                          @Html.HiddenFor(x => Model.ListaPromoTelevisao[i].Id)
+                                                          @Html.DisplayFor(z => Model.ListaPromoTelevisao[i].Nome)&nbsp
+                                                          @Html.CheckBoxFor(z => Model.ListaPromoTelevisao[i].Selecionado)
+                                                      </dt>
+                                                      <dd>
+                                                          <label asp-for="DataInicioPromoTelevisao" class="control-label"></label>
+                                                          <input asp-for="DataInicioPromoTelevisao" class="form-control" />
+                                                          <span asp-validation-for="DataInicioPromoTelevisao" class="text-danger"></span>
+                                                          <label asp-for="DataFimPromoTelevisao" class="control-label"></label>
+                                                          <input asp-for="DataFimPromoTelevisao" class="form-control" />
+                                                          <span asp-validation-for="DataFimPromoTelevisao" class="text-danger"></span>
+                                                      </dd>
+                                                  </div>
+                                              }
+                                          </dl>
+                                      </div>
+                                  </div>
                             <div class="form-group">
                                 
                             </div>

@@ -7,22 +7,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Index</h1>
+                <h1>Reclamações</h1>
 
-                <p>
-                    <a asp-action="Create">Create New</a>
-                </p>
+        
                 <table class="table">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Assunto)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descriçao)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.NomeCliente)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Assunto)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ResolvidoOperador)
@@ -30,7 +25,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ResolvidoCliente)
                             </th>
-                            
+                            <th>
+                                @Html.DisplayNameFor(model => model.DataReclamacao)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -39,13 +36,10 @@
                         {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Assunto)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descriçao)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.NomeCliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assunto)
                             </td>
                             @if (item.ResolvidoOperador == true)
                             {
@@ -71,7 +65,9 @@
                                     Não
                                 </td>
                             }
-
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataReclamacao)
+                            </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ReclamacaoId">Edit</a> |
                                 <a asp-action="Details" asp-route-id="@item.ReclamacaoId">Details</a> |

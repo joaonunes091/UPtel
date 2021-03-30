@@ -84,6 +84,11 @@ namespace UPtel.Models
         [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContratos { get; set; }
 
+        [Display(Name = "Valor total dos contratos")]
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal PrecoContratosFunc { get; set; }
+
+
         public int? Posicao { get; set; }
 
         //[Required(ErrorMessage = "É necessário colocar uma data")]

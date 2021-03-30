@@ -1,23 +1,30 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class feedback : Migration
+    public partial class topOperador : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Resolvido",
-                table: "Reclamacao",
-                newName: "ResolvidoOperador");
-
-            migrationBuilder.AddColumn<bool>(
-                name: "ResolvidoCliente",
-                table: "Reclamacao",
-                type: "bit",
+            migrationBuilder.AddColumn<decimal>(
+                name: "PrecoContratosFunc",
+                table: "Users",
+                type: "decimal(5,2)",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: 0m);
+
+            migrationBuilder.AddColumn<int>(
+                name: "Posicao",
+                table: "OperadorViewModel",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<decimal>(
+                name: "PrecoContratosFunc",
+                table: "OperadorViewModel",
+                type: "decimal(5,2)",
+                nullable: false,
+                defaultValue: 0m);
 
             migrationBuilder.AlterColumn<string>(
                 name: "MoradaContrato",
@@ -48,48 +55,21 @@ namespace UPtel.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(4)",
                 oldMaxLength: 4);
-
-            migrationBuilder.CreateTable(
-                name: "Feedback",
-                columns: table => new
-                {
-                    FeedbackId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReclamacaoId = table.Column<int>(type: "int", nullable: false),
-                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    FeedbackCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RespostaFuncionario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Data = table.Column<DateTime>(type: "date", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Feedback", x => x.FeedbackId);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clientes_DataRegisto",
-                table: "Users",
-                column: "DataRegisto");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Feedback");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Clientes_DataRegisto",
+            migrationBuilder.DropColumn(
+                name: "PrecoContratosFunc",
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "ResolvidoCliente",
-                table: "Reclamacao");
+                name: "Posicao",
+                table: "OperadorViewModel");
 
-            migrationBuilder.RenameColumn(
-                name: "ResolvidoOperador",
-                table: "Reclamacao",
-                newName: "Resolvido");
+            migrationBuilder.DropColumn(
+                name: "PrecoContratosFunc",
+                table: "OperadorViewModel");
 
             migrationBuilder.AlterColumn<string>(
                 name: "MoradaContrato",
