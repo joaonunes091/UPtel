@@ -14,38 +14,59 @@
                     <h4>Reclamacao</h4>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Assunto)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Assunto)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.Descriçao)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Descriçao)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.NomeCliente)
                         </dt>
-                        <dd class="col-sm-10">
+                        <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.NomeCliente)
                         </dd>
-                        <dt class="col-sm-2">
+                        <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.ResolvidoOperador)
                         </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ResolvidoOperador)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ResolvidoCliente)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ResolvidoCliente)
-                        </dd>
-                    
-                    </dl>
+                       
+                            @if (Model.ResolvidoOperador == true)
+                            {
+                            <dd class="col-sm-7">
+                                Sim
+                            </dd>
+                            }
+                            else
+                            {
+                                <dd class="col-sm-7">
+                                    Não
+                                </dd>
+                            }
+                            
+                            <dt class="col-sm-5 titulo">
+                                @Html.DisplayNameFor(model => model.ResolvidoCliente)
+                            </dt>
+                            
+                                @if (Model.ResolvidoCliente == true)
+                                {
+                                <dd class="col-sm-7">
+                                    Sim
+                                </dd>
+                                }
+                                else
+                                {
+                                    <dd class="col-sm-7">
+                                        Não
+                                    </dd>
+                                }
+                              
+                            </dl>
 
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="ReclamacaoId" />
