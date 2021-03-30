@@ -72,6 +72,7 @@ namespace UPtel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
             return View(reclamacao);
         }
@@ -125,6 +126,7 @@ namespace UPtel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
             ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
             return View(reclamacao);
         }
@@ -142,7 +144,8 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
             if (reclamacao == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(reclamacao);
