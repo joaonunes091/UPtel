@@ -80,7 +80,7 @@ namespace UPtel.Controllers
             }
 
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
 
             return View(reclamacao);
         }
@@ -136,7 +136,7 @@ namespace UPtel.Controllers
             }
 
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.UsersId);
+            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
 
             return View(reclamacao);
         }
