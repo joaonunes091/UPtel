@@ -806,12 +806,14 @@ namespace UPtel.Data
         public static void InsereUsersFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
 
-            for (int i = 10; i < 50; i++)
+            for (int i = 0; i < 20; i++)
 
             {
                 if (DbContext.Users.Any()) return;
 
                 UserType tipoUser = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Cliente Particular");
+                UserType tipoUser1 = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Cliente Empresarial");
+                UserType tipoUser2 = DbContext.UserType.FirstOrDefault(c => c.Tipo == "Operador");
 
                 DbContext.Users.Add(new Users
                 {
@@ -823,13 +825,49 @@ namespace UPtel.Data
                     CodigoPostal = "1500",
                     Telefone = Convert.ToString(247112500 + i),
                     Telemovel = Convert.ToString(913456700 + i),
-                    Email = "José.Ramos@gmail.com " + i,
+                    Email = "Jose.Ramos@gmail.com " + i,
                     Iban = "1234567891234567891234567",
                     Tipo = tipoUser,
                     Estado = "Ativo",
                     CodigoPostalExt = "695",
                     DataRegisto = new DateTime(1969 + i, 12, 18),
-                    DistritoId = 1,
+                    DistritoId = 1+i,
+                });
+                DbContext.Users.Add(new Users
+                {
+                    Nome = "Manuel Antunes " + i,
+                    Data = new DateTime(1969, 12, 18),
+                    CartaoCidadao = Convert.ToString(12345870 + i),
+                    Contribuinte = Convert.ToString(123456800 + i),
+                    Morada = "Rua Júlio Cesár Machado nº14",
+                    CodigoPostal = "1500",
+                    Telefone = Convert.ToString(247112500 + i),
+                    Telemovel = Convert.ToString(913456700 + i),
+                    Email = "Manuel.Antunes@gmail.com " + i,
+                    Iban = "1234567891234567891234567",
+                    Tipo = tipoUser1,
+                    Estado = "Ativo",
+                    CodigoPostalExt = "695",
+                    DataRegisto = new DateTime(1969 + i, 12, 18),
+                    DistritoId = 1 + i,
+                });
+                DbContext.Users.Add(new Users
+                {
+                    Nome = "Joaquim " + i,
+                    Data = new DateTime(1969, 12, 18),
+                    CartaoCidadao = Convert.ToString(12346870 + i),
+                    Contribuinte = Convert.ToString(123466800 + i),
+                    Morada = "Rua Júlio Cesár Machado nº14",
+                    CodigoPostal = "1500",
+                    Telefone = Convert.ToString(247112500 + i),
+                    Telemovel = Convert.ToString(913456700 + i),
+                    Email = "Joaquim@gmail.com " + i,
+                    Iban = "1234567891234567891234567",
+                    Tipo = tipoUser2,
+                    Estado = "Ativo",
+                    CodigoPostalExt = "695",
+                    DataRegisto = new DateTime(1969 + i, 12, 18),
+                    DistritoId = 1 + i,
                 });
 
             }

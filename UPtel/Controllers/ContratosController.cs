@@ -71,18 +71,20 @@ namespace UPtel.Controllers
 
         public async Task<IActionResult> MelhorOperadorDistrito(string distrito)
         {
+
+
             List<Users> Top10Operador = await _context.Users
-                .Include(m=>m.DistritoNome)
                 .Where(m=>m.Tipo.Tipo.Contains("Operador") && m.DistritoNome.DistritoNome.Contains(distrito))
+                .Include(m => m.DistritoNome)
+                
                 .OrderByDescending(c => c.PrecoContratosFunc)
                 //.Take(10)
                 .ToListAsync();
 
             List<Contratos> melhorOperador = await _context.Contratos
-                .Include(p => p.Funcionario.DistritoNome)
-                .Include(p => p.Funcionario)
-                .Distinct()
                 .Where(p => p.Funcionario.Tipo.Tipo.Contains("Operador") && p.Funcionario.DistritoNome.DistritoNome.Contains(distrito))
+                 .Include(p => p.Funcionario.DistritoNome)
+                .Include(p => p.Funcionario)
                 .OrderByDescending(c => c.PrecoContrato)
                 //.Take(10)
                 .ToListAsync();
