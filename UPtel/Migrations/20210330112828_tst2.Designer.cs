@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210330112828_tst2")]
+    partial class tst2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -418,6 +420,9 @@ namespace UPtel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataFeedback")
                         .HasColumnType("date");
@@ -850,6 +855,9 @@ namespace UPtel.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ContartoId")
                         .HasColumnType("int");
 
@@ -863,6 +871,9 @@ namespace UPtel.Migrations
 
                     b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ResolvidoCliente")
                         .HasColumnType("bit");

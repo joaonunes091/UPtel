@@ -18,9 +18,6 @@ namespace UPtel.Models
 
         public int FuncionarioId { get; set; }
 
-      
-        public int ClienteId { get; set; }
-
         public string Mensagem { get; set; }
 
         [Column(TypeName = "date")]
@@ -30,5 +27,8 @@ namespace UPtel.Models
         [ForeignKey(nameof(ReclamacaoId))]
         [InverseProperty("Feedback")]
         public virtual Reclamacao Reclamacao { get; set; }
+
+        [ForeignKey("FuncionarioId")]
+        public Users Users { get; set; }
     }
 }
