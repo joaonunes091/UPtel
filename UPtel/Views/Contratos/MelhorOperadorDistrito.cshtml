@@ -13,6 +13,17 @@
                 <br /><br />
                 <br />
 
+                <form>
+                    <h2>Top 10 Operadores</h2>
+                    <div class="form-group">
+                        <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                        <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                        <a asp-action="MelhorOperadorDistrito" class="btn btn-outline-light">Limpar</a>
+
+                    </div>
+                </form>
+
+
                 <div>
                     @if (Model.Users.Count() == 0)
                     {
@@ -64,8 +75,8 @@
                                                 @Html.DisplayFor(modelItem => item.PrecoContratosFunc)
                                             </td>
                                             @*<td>
-                                                <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@item.ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                            </td>*@
+                                        <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@item.ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>*@
                                         </tr>
                                     }
                                 }
@@ -90,8 +101,8 @@
                                                 @Html.DisplayFor(modelItem => Model.Users[i].PrecoContratosFunc)
                                             </td>
                                             @*<td>
-                                                <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@Model.Contratos[i].ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                            </td>*@
+                                        <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@Model.Contratos[i].ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>*@
                                         </tr>
                                     }
                                 }
@@ -99,9 +110,19 @@
                         </table>
                     }
                 </div>
-                <div class="text-right">
-                    <a asp-controller="Users" asp-action="Distrito"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
-                </div>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <div class="text-right">
+                        <a asp-controller="Users" asp-action="Distrito"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                    </div>
+                }
+                @if (User.IsInRole("Operador"))
+                {
+                    <div class="text-right">
+                        <a asp-controller="OperadorViewModel" asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                    </div>
+                }
+
             </div>
         </div>
     </div>

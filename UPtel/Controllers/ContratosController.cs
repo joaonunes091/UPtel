@@ -41,6 +41,10 @@ namespace UPtel.Controllers
                 NomePesquisar = nomePesquisar
             };
 
+            
+
+
+
             return base.View(modelo);
         }
 
@@ -69,20 +73,23 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
 
-        public async Task<IActionResult> MelhorOperadorDistrito(string distrito)
+        public async Task<IActionResult> MelhorOperadorDistrito(string distrito,Contratos contratos, OperadorViewModel OVM)
         {
+
+            MonthlySum(contratos,OVM);
+
             List<Users> Top10Operador = await _context.Users
-                .Include(m=>m.DistritoNome)
                 .Where(m=>m.Tipo.Tipo.Contains("Operador") && m.DistritoNome.DistritoNome.Contains(distrito))
+                .Include(m => m.DistritoNome)
+                
                 .OrderByDescending(c => c.PrecoContratosFunc)
                 //.Take(10)
                 .ToListAsync();
 
             List<Contratos> melhorOperador = await _context.Contratos
-                .Include(p => p.Funcionario.DistritoNome)
-                .Include(p => p.Funcionario)
-                .Distinct()
                 .Where(p => p.Funcionario.Tipo.Tipo.Contains("Operador") && p.Funcionario.DistritoNome.DistritoNome.Contains(distrito))
+                 .Include(p => p.Funcionario.DistritoNome)
+                .Include(p => p.Funcionario)
                 .OrderByDescending(c => c.PrecoContrato)
                 //.Take(10)
                 .ToListAsync();
@@ -103,6 +110,7 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
+
         public async Task<IActionResult> MelhorClienteDistrito(string distrito)
         {
             List<Contratos> melhorCliente = await _context.Contratos
@@ -981,6 +989,7 @@ namespace UPtel.Controllers
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
             cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato + funcionario.PrecoContratosFunc;
 
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato Editado com sucesso";
@@ -1381,6 +1390,9 @@ namespace UPtel.Controllers
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
             cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
+
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato + funcionario.PrecoContratosFunc;
+
             
             if (!ModelState.IsValid)
             {
@@ -1390,6 +1402,7 @@ namespace UPtel.Controllers
                 ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
                 return View(CVM);
             }
+
 
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato Editado com sucesso";
@@ -1769,6 +1782,7 @@ namespace UPtel.Controllers
             //valor do contrato
             decimal precoContrato, totalNetFixa, totalTelemovel, totalNetMovel, totalTelevisao, totalTelefone, total;
 
+            var funcionario = _context.Users.SingleOrDefault(d => d.UsersId == contratoOriginal.FuncionarioId);
             var pacote = _context.Pacotes.SingleOrDefault(p => p.PacoteId == contratos.PacoteId);
            
             precoContrato = pacote.PrecoTotal;
@@ -1785,6 +1799,7 @@ namespace UPtel.Controllers
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
             cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato + funcionario.PrecoContratosFunc;
 
             if (id != contratos.ContratoId)
             {
@@ -1863,6 +1878,32 @@ namespace UPtel.Controllers
         private bool ContratosExists(int id)
         {
             return _context.Contratos.Any(e => e.ContratoId == id);
+        }
+
+        //OUTRAS FUNÇÕES
+        public void MonthlySum(Contratos contrato, OperadorViewModel OVM)
+        {
+            decimal monthlySum =0;
+            //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
+            var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+            
+            //DateTime data = new DateTime(2021, 03, 01);
+            DateTime data = DateTime.Today;
+            var FisrtDayMonth = new DateTime(data.Year, data.Month,1);
+            var LastDayMonth = FisrtDayMonth.AddMonths(1).AddMinutes(-1);
+          
+
+            if (data == FisrtDayMonth)
+            {
+                
+                var contratos = _context.Contratos.Where(d => d.DataInicio >= FisrtDayMonth && d.DataInicio <= LastDayMonth && d.FuncionarioId == funcionario.UsersId)
+                   .Include(d => d.Funcionario)
+                   .Sum(d => d.PrecoContrato);
+
+
+            }
+           
+
         }
     }
 }
