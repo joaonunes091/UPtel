@@ -19,8 +19,6 @@ namespace UPtel.Models
 
         public int ContartoId { get; set; }
 
-        public int ClienteId { get; set; }
-
         public int FuncionarioId { get; set; }
 
         [Required(ErrorMessage = "É necessário colocar um assunto")]
@@ -31,9 +29,6 @@ namespace UPtel.Models
         [StringLength(250, ErrorMessage = "O limite de caracteres(250) foi ultrapassado")]
         [Display(Name = "Descrição")]
         public string Descriçao { get; set; }
-
-        [Display(Name = "Nome do cliente")]
-        public string NomeCliente { get; set; }
 
         public bool ResolvidoOperador { get; set; }
 
@@ -49,5 +44,8 @@ namespace UPtel.Models
 
         [InverseProperty("Reclamacao")]
         public virtual ICollection<Feedback> Feedback { get; set; }
+
+        [ForeignKey("FuncionarioId")]
+        public Users Users { get; set; }
     }
 }

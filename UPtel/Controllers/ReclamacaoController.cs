@@ -67,8 +67,6 @@ namespace UPtel.Controllers
             {
                 var cliente = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
                 reclamacao.ContartoId = id;           
-                reclamacao.ClienteId = cliente.UsersId;
-                reclamacao.NomeCliente = cliente.Nome;
                 reclamacao.ResolvidoCliente = false;
                 reclamacao.ResolvidoOperador = false;
                 reclamacao.DataReclamacao = DateTime.Now;
@@ -79,8 +77,9 @@ namespace UPtel.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+
+
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
 
             return View(reclamacao);
         }
@@ -135,9 +134,8 @@ namespace UPtel.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "CodigoPostal", reclamacao.ClienteId);
 
+            ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
             return View(reclamacao);
         }
 
