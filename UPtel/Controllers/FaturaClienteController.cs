@@ -157,7 +157,6 @@ namespace UPtel.Controllers
                 ModelState.AddModelError("DataEmissao", "A data da fatura não pode ultrapassar os 90 dias anteriores");
             }
 
-
             if (ModelState.IsValid)
             {
                 _context.Add(faturaCliente);
@@ -165,7 +164,12 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Fatura criada com sucesso";
                 return View("Sucesso");
             }
-            
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Não foi possível adicionar a fatura, tente novamente");
+            }
+
             return View(faturaCliente);
         }
 
@@ -232,6 +236,12 @@ namespace UPtel.Controllers
             if (faturaCliente.DataEmissao > DateTime.Today || faturaCliente.DataEmissao < DateTime.Today.AddDays(-90))
             {
                 ModelState.AddModelError("DataEmissao", "A data da fatura não pode ultrapassar os 90 dias anteriores");
+            }
+            
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Não foi possível adicionar a fatura, tente novamente");
+                return View(FVM);
             }
 
             _context.Update(fatura);

@@ -636,6 +636,7 @@ namespace UPtel.Controllers
 
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Não foi possível registar o contrato, tente novamente");
                 ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
                 ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
@@ -1000,6 +1001,18 @@ namespace UPtel.Controllers
         // GET: Contratos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var procurarContrato = await _context.Contratos.FindAsync(id);
+            if (procurarContrato == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
+                return View("Erro");
+            }
+
             ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
               .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
             ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote");
@@ -1377,7 +1390,19 @@ namespace UPtel.Controllers
             CVM.PrecoContrato = total;
             contrato.PrecoContrato = CVM.PrecoContrato;
             cliente.PrecoContratos = cliente.PrecoContratos + contrato.PrecoContrato;
+
             funcionario.PrecoContratosFunc = CVM.PrecoContrato + funcionario.PrecoContratosFunc;
+
+            
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Não foi possível registar o contrato, tente novamente");
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+              .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+                ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
+                return View(CVM);
+            }
+
 
             await _context.SaveChangesAsync();
             ViewBag.Mensagem = "Contrato Editado com sucesso";
@@ -1463,7 +1488,12 @@ namespace UPtel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditVistaCliente(int id, ContratoViewModel CVM, Contratos contratos)
         {
-
+            var procurarContrato = await _context.Contratos.FindAsync(id);
+            if (procurarContrato == null)
+            {
+                ViewBag.Mensagem = "Ocorreu um erro, possivelmente o contrato já foi eliminado.";
+                return View("Erro");
+            }
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
             var contratoOriginal = _context.Contratos.AsNoTracking().SingleOrDefault(m => m.ContratoId == id);
             
@@ -1797,8 +1827,15 @@ namespace UPtel.Controllers
                 ViewBag.Mensagem = "Contrato alterado com sucesso";
                 return View("SucessoCliente");
             }
-            ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
-            
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Não foi possível registar o contrato, tente novamente");
+                ViewData["DistritoId"] = new SelectList(_context.Distrito.Where(x => !x.DistritoNome.Contains("Nacional"))
+              .OrderBy(x => x.DistritoNome), "DistritoId", "DistritoNome");
+                ViewData["PacoteId"] = new SelectList(_context.Pacotes, "PacoteId", "NomePacote", contratos.PacoteId);
+            }
+
             return View(CVM);
         }
 
@@ -1818,10 +1855,10 @@ namespace UPtel.Controllers
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
 
             
-
             if (contratos == null)
             {
-                return NotFound();
+                ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
+                return View("Sucesso");
             }
 
             return View(contratos);

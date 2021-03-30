@@ -11,6 +11,7 @@ namespace UPtel.Models
 {
     [Index(nameof(CartaoCidadao), Name = "IX_CartaoCidadaoClientes", IsUnique = true)]
     [Index(nameof(TipoId), Name = "IX_Clientes_TipoClienteId")]
+    [Index(nameof(DataRegisto), Name = "IX_Clientes_DataRegisto")]
     [Index(nameof(Contribuinte), Name = "IX_ContribuinteClientes", IsUnique = true)]
     [Index(nameof(Nome), Name = "IX_Nome_Users")]
 
@@ -124,6 +125,7 @@ namespace UPtel.Models
 
         [InverseProperty(nameof(Contratos.Funcionario))]
         public virtual ICollection<Contratos> ContratosFuncionario { get; set; }
+
     }
 
     //    public class RestrictedDate : ValidationAttribute

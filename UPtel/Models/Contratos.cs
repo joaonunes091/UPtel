@@ -16,6 +16,7 @@ namespace UPtel.Models
         public Contratos()
         {
             Fatura = new HashSet<FaturaCliente>();
+            Reclamacao = new HashSet<Reclamacao>();
         }
 
         [Key]
@@ -92,6 +93,9 @@ namespace UPtel.Models
         [ForeignKey(nameof(PacoteId))]
         [InverseProperty(nameof(Pacotes.Contratos))]
         public virtual Pacotes Pacote { get; set; }
+
+        [InverseProperty("Contratos")]
+        public virtual ICollection<Reclamacao> Reclamacao { get; set; }
 
 
         [InverseProperty("Fatura")]
