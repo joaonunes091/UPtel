@@ -61,10 +61,9 @@ namespace UPtel.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Não foi possível adicionar a NET Fixa, tente novamente");
                 return View(netFixa);
             }
-
-          
 
             _context.Add(netFixa);
             await _context.SaveChangesAsync();
