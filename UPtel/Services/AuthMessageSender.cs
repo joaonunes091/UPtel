@@ -39,7 +39,7 @@ namespace UPtel.Services
                     From = new MailAddress("uptelautomated@gmail.com", "UPtel")
                 };
 
-                mail.To.Add(new MailAddress("bernardo.jcs@gmail.com"));
+                //mail.To.Add(new MailAddress("bernardo.jcs@gmail.com"));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
 
                 mail.Subject = "UPtel Telecomunicações - " + subject;
