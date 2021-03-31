@@ -17,7 +17,9 @@ namespace UPtel.Models
         [Key]
         public int ReclamacaoId { get; set; }
 
-        public int ContartoId { get; set; }
+        public int ContratoId { get; set; }
+
+        public string NomeCliente { get; set; }
 
         public int FuncionarioId { get; set; }
 
@@ -38,7 +40,7 @@ namespace UPtel.Models
         [DataType(DataType.Date)]
         public DateTime DataReclamacao { get; set; }
 
-        [ForeignKey(nameof(ContartoId))]
+        [ForeignKey(nameof(ContratoId))]
         [InverseProperty("Reclamacao")]
         public virtual Contratos Contratos { get; set; }
 
