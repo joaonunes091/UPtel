@@ -50,7 +50,7 @@ namespace UPtel.Controllers
         // GET: Reclamacao/Create
 
         [Authorize(Roles = "Cliente")]
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             return View();
         }
@@ -61,23 +61,24 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Cliente")]
-        public async Task<IActionResult> Create([Bind("ReclamacaoId,ContratoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido")] Reclamacao reclamacao, int id)
+        public async Task<IActionResult> Create([Bind("ReclamacaoId,ContratoId,UsersId,Assunto,Descriçao,ResolvidoCliente,ResolvidoOperador")] Reclamacao reclamacao, int id)
         {
             if (ModelState.IsValid)
             {
                 var cliente = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
-                reclamacao.ContartoId = id;           
+                var contrato = _context.Contratos.SingleOrDefault(c => c.ContratoId == id);
+
+                reclamacao.NomeCliente = cliente.Nome;
+                reclamacao.FuncionarioId = contrato.FuncionarioId;  
+                reclamacao.ContratoId = id;
                 reclamacao.ResolvidoCliente = false;
                 reclamacao.ResolvidoOperador = false;
                 reclamacao.DataReclamacao = DateTime.Now;
-
-
+                
                 _context.Add(reclamacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-
 
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
 
@@ -91,13 +92,13 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
-
             var reclamacao = await _context.Reclamacao.FindAsync(id);
+            
             if (reclamacao == null)
             {
                 return NotFound();
             }
-            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContartoId", "ContartoId", reclamacao.ContartoId);
+            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", reclamacao.ContratoId);
             return View(reclamacao);
         }
 
@@ -117,6 +118,18 @@ namespace UPtel.Controllers
             {
                 try
                 {
+                    var rec = await _context.Reclamacao
+                    .AsNoTracking()
+                    .Include(r => r.Contratos)
+                    .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
+
+                    var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+
+                    
+                    reclamacao.ContratoId = rec.ContratoId;
+                    reclamacao.DataReclamacao = rec.DataReclamacao;
+                    reclamacao.FuncionarioId = funcionario.UsersId;
+
                     _context.Update(reclamacao);
                     await _context.SaveChangesAsync();
                 }
