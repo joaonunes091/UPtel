@@ -30,7 +30,7 @@ namespace UPtel.Models
         [Required(ErrorMessage = "É necessário colocar uma descrição")]
         [StringLength(250, ErrorMessage = "O limite de caracteres(250) foi ultrapassado")]
         [Display(Name = "Descrição")]
-        public string Descriçao { get; set; }
+        public string Descricao { get; set; }
 
         public bool ResolvidoOperador { get; set; }
 

@@ -24,6 +24,8 @@ namespace UPtel.Models
         [DataType(DataType.Date)]
         public DateTime DataFeedback { get; set; }
 
+        public List<Feedback> ListaMensagens { get; set; }
+
         [ForeignKey(nameof(ReclamacaoId))]
         [InverseProperty("Feedback")]
         public virtual Reclamacao Reclamacao { get; set; }
