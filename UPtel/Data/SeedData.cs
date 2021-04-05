@@ -504,7 +504,7 @@ namespace UPtel.Data
 
             Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
             Telemovel telemovel = DbContext.Telemovel.FirstOrDefault(t => t.Nome == "Básico");
-            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.TipoConexao == "Básico");
+            NetFixa netFixa = DbContext.NetFixa.FirstOrDefault(n => n.Nome == "Básico");
             Telefone telefone = DbContext.Telefone.FirstOrDefault(t => t.Nome == "Básico");
             NetMovel netMovel = DbContext.NetMovel.FirstOrDefault(n => n.Nome == "Básico");
 
