@@ -100,14 +100,20 @@
                     <dd class="col-sm-7">
                         @Html.DisplayFor(modelItem => Model.PrecoContratosFunc)
                     </dd>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.ValorMensalFat)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(modelItem => Model.ValorMensalFat)
+                    </dd>
 
                 </dl>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-costum" asp-action="MelhorOperadorDistrito" asp-controller="Contratos"><i class="far fa-chart-bar fixedIcon"></i> Top 10 Operadores </a>
+                    <a class="btn btn-costum" asp-action="Contabilizar" asp-controller="faturacaoOperador"><i class="fas fa-euro-sign fixedIcon"></i> contabilizar </a>
+                    <a class="btn btn-costum" asp-action="Index" asp-controller="faturacaoOperador" asp-route-id="@Model.Id"><i class="fas fa-wallet fixedIcon"></i> Faturação </a>
                     <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Manage/SetPassword"><i class="fas fa-key fixedIcon"></i> Mudar Password</a>
                     <a class="btn btn-costum" asp-action="EditOperador" asp-controller="Users" asp-route-id="@Model.Id"><i class="far fa-edit fixedIcon"></i> Editar</a>
-
-
                 </div>
             </div>
         </div>

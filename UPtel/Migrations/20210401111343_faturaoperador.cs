@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UPtel.Migrations
 {
-    public partial class initial : Migration
+    public partial class faturaoperador : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,20 +35,15 @@ namespace UPtel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Feedback",
+                name: "Meses",
                 columns: table => new
                 {
-                    FeedbackId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReclamacaoId = table.Column<int>(type: "int", nullable: false),
-                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    Mensagem = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataFeedback = table.Column<DateTime>(type: "date", nullable: false)
+                    MesId = table.Column<int>(type: "int", nullable: false),
+                    Mes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Feedback", x => x.FeedbackId);
+                    table.PrimaryKey("PK_Meses", x => x.MesId);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,7 +213,9 @@ namespace UPtel.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Fotografia = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     DataRegisto = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DistritoNomeDistritoId = table.Column<int>(type: "int", nullable: true)
+                    DistritoNomeDistritoId = table.Column<int>(type: "int", nullable: true),
+                    PrecoContratosFunc = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    Posicao = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -457,6 +454,7 @@ namespace UPtel.Migrations
                     TipoId = table.Column<int>(type: "int", nullable: false),
                     DistritoId = table.Column<int>(type: "int", nullable: false),
                     PrecoContratos = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    PrecoContratosFunc = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Posicao = table.Column<int>(type: "int", nullable: true),
                     DataRegisto = table.Column<DateTime>(type: "date", nullable: false),
                     CodigoPostalExt = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false, defaultValueSql: "(N'')"),
@@ -538,36 +536,32 @@ namespace UPtel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reclamacao",
+                name: "FaturacaoOperadors",
                 columns: table => new
                 {
-                    ReclamacaoId = table.Column<int>(type: "int", nullable: false)
+                    FatOpId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContartoId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false),
-                    Assunto = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Descriçao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResolvidoOperador = table.Column<bool>(type: "bit", nullable: false),
-                    ResolvidoCliente = table.Column<bool>(type: "bit", nullable: false),
-                    DataReclamacao = table.Column<DateTime>(type: "date", nullable: false),
-                    ReclamacaoId1 = table.Column<int>(type: "int", nullable: true)
+                    Data = table.Column<DateTime>(type: "date", nullable: false),
+                    ValorMensalFat = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    MesId = table.Column<int>(type: "int", nullable: false),
+                    FuncinarioId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reclamacao", x => x.ReclamacaoId);
+                    table.PrimaryKey("PK_FaturacaoOperadors", x => x.FatOpId);
                     table.ForeignKey(
-                        name: "FK_Reclamacao_Reclamacao_ReclamacaoId1",
-                        column: x => x.ReclamacaoId1,
-                        principalTable: "Reclamacao",
-                        principalColumn: "ReclamacaoId",
+                        name: "FK_FatOpr_Meses",
+                        column: x => x.MesId,
+                        principalTable: "Meses",
+                        principalColumn: "MesId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reclamacao_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_FaturacaoOperadors_Users_FuncionarioId",
+                        column: x => x.FuncionarioId,
                         principalTable: "Users",
                         principalColumn: "UsersId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -735,6 +729,65 @@ namespace UPtel.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Reclamacao",
+                columns: table => new
+                {
+                    ReclamacaoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ContartoId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
+                    Assunto = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Descriçao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ResolvidoOperador = table.Column<bool>(type: "bit", nullable: false),
+                    ResolvidoCliente = table.Column<bool>(type: "bit", nullable: false),
+                    DataReclamacao = table.Column<DateTime>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reclamacao", x => x.ReclamacaoId);
+                    table.ForeignKey(
+                        name: "FK_Reclamacao_Contratos_ContartoId",
+                        column: x => x.ContartoId,
+                        principalTable: "Contratos",
+                        principalColumn: "ContratoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reclamacao_Users_FuncionarioId",
+                        column: x => x.FuncionarioId,
+                        principalTable: "Users",
+                        principalColumn: "UsersId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedback",
+                columns: table => new
+                {
+                    FeedbackId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReclamacaoId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
+                    Mensagem = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataFeedback = table.Column<DateTime>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedback", x => x.FeedbackId);
+                    table.ForeignKey(
+                        name: "FK_Feedback_Reclamacao_ReclamacaoId",
+                        column: x => x.ReclamacaoId,
+                        principalTable: "Reclamacao",
+                        principalColumn: "ReclamacaoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Feedback_Users_FuncionarioId",
+                        column: x => x.FuncionarioId,
+                        principalTable: "Users",
+                        principalColumn: "UsersId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ClientesViewModel_DistritoNomeDistritoId",
                 table: "ClientesViewModel",
@@ -816,9 +869,29 @@ namespace UPtel.Migrations
                 column: "PacoteId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FaturacaoOperadors_FuncionarioId",
+                table: "FaturacaoOperadors",
+                column: "FuncionarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FaturacaoOperadors_MesId",
+                table: "FaturacaoOperadors",
+                column: "MesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Faturas_ContratoId",
                 table: "Faturas",
                 column: "ContratoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedback_FuncionarioId",
+                table: "Feedback",
+                column: "FuncionarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedback_ReclamacaoId",
+                table: "Feedback",
+                column: "ReclamacaoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OperadorViewModel_DistritoNomeDistritoId",
@@ -886,14 +959,14 @@ namespace UPtel.Migrations
                 column: "DistritoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reclamacao_ReclamacaoId1",
+                name: "IX_Reclamacao_ContartoId",
                 table: "Reclamacao",
-                column: "ReclamacaoId1");
+                column: "ContartoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reclamacao_UsersId",
+                name: "IX_Reclamacao_FuncionarioId",
                 table: "Reclamacao",
-                column: "UsersId");
+                column: "FuncionarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartaoCidadaoClientes",
@@ -947,6 +1020,9 @@ namespace UPtel.Migrations
                 name: "ContratoPromoTelevisao");
 
             migrationBuilder.DropTable(
+                name: "FaturacaoOperadors");
+
+            migrationBuilder.DropTable(
                 name: "Faturas");
 
             migrationBuilder.DropTable(
@@ -957,9 +1033,6 @@ namespace UPtel.Migrations
 
             migrationBuilder.DropTable(
                 name: "PacoteCanais");
-
-            migrationBuilder.DropTable(
-                name: "Reclamacao");
 
             migrationBuilder.DropTable(
                 name: "PromoNetFixa");
@@ -977,10 +1050,16 @@ namespace UPtel.Migrations
                 name: "PromoTelevisao");
 
             migrationBuilder.DropTable(
-                name: "Contratos");
+                name: "Meses");
+
+            migrationBuilder.DropTable(
+                name: "Reclamacao");
 
             migrationBuilder.DropTable(
                 name: "Canais");
+
+            migrationBuilder.DropTable(
+                name: "Contratos");
 
             migrationBuilder.DropTable(
                 name: "Users");

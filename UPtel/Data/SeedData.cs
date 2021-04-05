@@ -33,6 +33,7 @@ namespace UPtel.Data
         {
             InsereDadosTesteDistrito(DbContext);
             InsereDadosTesteUserTypes(DbContext);
+            InsereDadosTesteMeses(DbContext);
             InsereDadosTesteUsers(DbContext);
             InsereDadosTesteTelefone(DbContext);
             InsereDadosTesteTelemovel(DbContext);
@@ -579,6 +580,75 @@ namespace UPtel.Data
             DbContext.SaveChanges();
         }
 
+
+        //-------------------------------------------------
+        //       MESES
+        //       DADOS DE TESTE 
+        //-------------------------------------------------
+
+
+        private static void InsereDadosTesteMeses(UPtelContext DbContext)
+        {
+            if (DbContext.Meses.Any()) return;
+            DbContext.Meses.AddRange(new Meses[] {
+            new Meses
+            {
+                MesId= 1,
+                Mes = "Janeiro",
+            },
+            new Meses
+            {
+                MesId=2,
+                Mes = "Fevereiro",
+            },new Meses
+            {
+                MesId=3,
+                Mes = "Março",
+            }, new Meses
+            {
+                MesId=4,
+                Mes = "Abril",
+            },
+            new Meses
+            {
+                MesId=5,
+                Mes = "Maio",
+            },
+            new Meses
+            {
+                MesId=6,
+                Mes = "Junho",
+            },new Meses
+            {
+                MesId=7,
+                Mes = "Julho",
+            }, new Meses
+            {
+                MesId=8,
+                Mes = "Agosto",
+            },
+            new Meses
+            {
+                MesId=9,
+                Mes = "Setembro",
+            },
+            new Meses
+            {
+                MesId=10,
+                Mes = "Outubro",
+            },new Meses
+            {
+                MesId=11,
+                Mes = "Novembro",
+            }, new Meses
+            {
+                MesId=12,
+                Mes = "Dezembro",
+            },
+        });
+            DbContext.SaveChanges();
+        }
+
         //-------------------------------------------------
         //       USER TYPES
         //       DADOS DE TESTE 
@@ -740,7 +810,7 @@ namespace UPtel.Data
                     CodigoPostalExt = "695",
                     DistritoId = 1,
                     DataRegisto = new DateTime(1999,12,1),
-
+                    
 
                 },
                 new Users

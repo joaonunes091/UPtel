@@ -76,7 +76,7 @@ namespace UPtel.Controllers
         public async Task<IActionResult> MelhorOperadorDistrito(string distrito,Contratos contratos, OperadorViewModel OVM)
         {
 
-            MonthlySum(contratos,OVM);
+           
 
             List<Users> Top10Operador = await _context.Users
                 .Where(m=>m.Tipo.Tipo.Contains("Operador") && m.DistritoNome.DistritoNome.Contains(distrito))
@@ -1880,30 +1880,6 @@ namespace UPtel.Controllers
             return _context.Contratos.Any(e => e.ContratoId == id);
         }
 
-        //OUTRAS FUNÇÕES
-        public void MonthlySum(Contratos contrato, OperadorViewModel OVM)
-        {
-            decimal monthlySum =0;
-            //Código que vai buscar o ID do funcionário que tem login feito e atribui automaticamente ao contrato
-            var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
-            
-            //DateTime data = new DateTime(2021, 03, 01);
-            DateTime data = DateTime.Today;
-            var FisrtDayMonth = new DateTime(data.Year, data.Month,1);
-            var LastDayMonth = FisrtDayMonth.AddMonths(1).AddMinutes(-1);
-          
-
-            if (data == FisrtDayMonth)
-            {
-                
-                var contratos = _context.Contratos.Where(d => d.DataInicio >= FisrtDayMonth && d.DataInicio <= LastDayMonth && d.FuncionarioId == funcionario.UsersId)
-                   .Include(d => d.Funcionario)
-                   .Sum(d => d.PrecoContrato);
-
-
-            }
-           
-
-        }
+       
     }
 }

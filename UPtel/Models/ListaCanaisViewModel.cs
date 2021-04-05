@@ -32,6 +32,9 @@ namespace UPtel.Models
         public int DistritoPesquisar { get; set; }
 
         public List<Reclamacao> Reclamacoes { get; set; }
+        public List<FaturacaoOperador> FaturacaoOperadores { get; set; }
+        public List<Meses> Meses { get; set; }
+
         //public IEnumerable<Funcionarios> Funcionarios { get; set; }
         //public IEnumerable<Contratos> Contratos { get; set; }
     }
