@@ -48,11 +48,17 @@ namespace UPtel.Models
         [Display(Name = "Distrito")]
         public virtual Distrito DistritoNome { get; set; }
 
-        [Display(Name = "Valor total dos contratos")]
+        [Display(Name = "Valor total dos contratos ano")]
         [Column(TypeName = "decimal(5, 2)")]
         public decimal PrecoContratosFunc { get; set; }
         
         [Display(Name = "Posição no distrito")]
         public int? Posicao { get; set; }
+
+        [Display(Name = "Faturação do mês anterior")]
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal ValorMensalFat { get; set; }
+
+
     }
 }

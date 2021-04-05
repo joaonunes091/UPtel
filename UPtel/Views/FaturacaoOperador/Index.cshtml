@@ -1,0 +1,106 @@
+﻿@model ListaCanaisViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Faturação operador</h2>
+
+                <div class="col-md-8 border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:darkgray">Procura por mês</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Janeiro" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @if (Model.FaturacaoOperadores.Count() == 0)
+                {
+                    <p style="color:darkgrey">Não existem dados para mostrar</p>
+                }
+                else
+                {
+                    <table class="table table-borderless text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.FaturacaoOperadores[0].Data)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.FaturacaoOperadores[0].ValorMensalFat)
+                                </th>
+                                <th class="text-center titulo">
+                                    Mês
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.FaturacaoOperadores)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Data)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.ValorMensalFat)
+                                    </td>                                    
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Mes.Mes)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.FatOpId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i> &nbsp </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+                <div class="form-group d-flex justify-content-sm-between align-content-center">
+                    <a asp-action="Index" asp-controller="OperadorViewModel"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

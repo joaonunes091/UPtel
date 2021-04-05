@@ -1,0 +1,49 @@
+﻿@model UPtel.Models.FaturacaoOperador
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center  text-white">
+            <div class="col-xl-8">
+                <h2 class="font">Detalhes da fatura</h2>
+                <br /><br />
+
+                <dl class="row">
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Data)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Data)
+                    </dd>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.ValorMensalFat)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.ValorMensalFat)
+                    </dd>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.FuncinarioId)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.FuncinarioId)
+                    </dd>
+                    <dt class="col-sm-5 titulo">
+                        @Html.DisplayNameFor(model => model.Mes)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Mes.Mes)
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+        <div class="float-right">
+            @*<a asp-action="Edit" asp-route-id="@Model.FatOpId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a>
+            <a asp-action="Delete" asp-route-id="@Model.FatOpId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>*@
+            <a asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+        </div>
+    </div>
+</section>

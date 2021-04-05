@@ -28,7 +28,7 @@ namespace UPtel.Controllers
         // GET: OperadorViewModel
         public async Task<IActionResult> Index(int? id, OperadorViewModel operador)
         {
-
+            
 
             List<Users> melhoresOperadores = await _context.Users.Where(p => p.Tipo.Tipo.Contains("Operador"))
                 .Include(d=>d.DistritoNome)
@@ -51,7 +51,11 @@ namespace UPtel.Controllers
 
             var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
             Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
-           
+            FaturacaoOperador op = await _context.FaturacaoOperadors.SingleOrDefaultAsync(x => x.FuncinarioId == infoOperador.UsersId);
+
+
+
+
             operador = new OperadorViewModel
             {
                 Id = infoOperador.UsersId,
@@ -66,12 +70,15 @@ namespace UPtel.Controllers
                 Telemovel = infoOperador.Telemovel,
                 Email = infoOperador.Email,
                 DataRegisto = infoOperador.DataRegisto,
-                DistritoNome= infoOperador.DistritoNome,
+                DistritoNome = infoOperador.DistritoNome,
                 PrecoContratosFunc = infoOperador.PrecoContratosFunc,
                 Posicao = infoOperador.Posicao,
+                ValorMensalFat = op.ValorMensalFat,
+                
             };
 
             return View(operador);
         }
+        
     }
 }

@@ -35,6 +35,9 @@ namespace UPtel.Data
         public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<FaturaCliente> Faturas { get; set; }
+        public virtual DbSet<FaturacaoOperador> FaturacaoOperadors { get; set; }
+        public virtual DbSet<Meses> Meses { get; set; }
+
 
         public virtual DbSet<PromoTelemovel> PromoTelemovel { get; set; }
         public virtual DbSet<PromoTelefone> PromoTelefone { get; set; }
@@ -222,6 +225,15 @@ namespace UPtel.Data
                     .HasForeignKey(d => d.DistritoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PromoTelevisao_Distrito");
+            });
+
+            modelBuilder.Entity<FaturacaoOperador>(entity =>
+            {
+                entity.HasOne(d => d.Mes)
+                    .WithMany(p => p.FaturacaoOperador)
+                    .HasForeignKey(d => d.MesId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FatOpr_Meses");
             });
 
             OnModelCreatingPartial(modelBuilder);
