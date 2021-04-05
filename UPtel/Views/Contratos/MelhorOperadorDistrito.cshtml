@@ -50,7 +50,6 @@
                                     <th class="text-center titulo">
                                         Preço do Contrato
                                     </th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,9 +73,6 @@
                                             <td class="text-center">
                                                 @Html.DisplayFor(modelItem => item.PrecoContratosFunc)
                                             </td>
-                                            @*<td>
-                                        <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@item.ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>*@
                                         </tr>
                                     }
                                 }
@@ -100,9 +96,7 @@
                                             <td class="text-center">
                                                 @Html.DisplayFor(modelItem => Model.Users[i].PrecoContratosFunc)
                                             </td>
-                                            @*<td>
-                                        <a asp-controller="Contratos" asp-action="DetailsMelhorCliente" asp-route-id="@Model.Contratos[i].ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>*@
+                                    
                                         </tr>
                                     }
                                 }
