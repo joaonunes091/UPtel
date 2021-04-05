@@ -1611,91 +1611,92 @@ namespace UPtel.Migrations
                 {
                     b.Navigation("FaturacaoOperador");
 
-            modelBuilder.Entity("UPtel.Models.Feedback", b =>
-                {
-                    b.Navigation("ListaMensagens");
+                    modelBuilder.Entity("UPtel.Models.Feedback", b =>
+                        {
+                            b.Navigation("ListaMensagens");
 
-                });
+                        });
 
-            modelBuilder.Entity("UPtel.Models.NetFixa", b =>
-                {
-                    b.Navigation("Pacotes");
-                });
+                    modelBuilder.Entity("UPtel.Models.NetFixa", b =>
+                        {
+                            b.Navigation("Pacotes");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.NetMovel", b =>
-                {
-                    b.Navigation("Pacotes");
-                });
+                    modelBuilder.Entity("UPtel.Models.NetMovel", b =>
+                        {
+                            b.Navigation("Pacotes");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Pacotes", b =>
-                {
-                    b.Navigation("Contratos");
-                });
+                    modelBuilder.Entity("UPtel.Models.Pacotes", b =>
+                        {
+                            b.Navigation("Contratos");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.PromoNetFixa", b =>
-                {
-                    b.Navigation("ContratoPromoNetFixa");
-                });
+                    modelBuilder.Entity("UPtel.Models.PromoNetFixa", b =>
+                        {
+                            b.Navigation("ContratoPromoNetFixa");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
-                {
-                    b.Navigation("ContratoPromoNetMovel");
-                });
+                    modelBuilder.Entity("UPtel.Models.PromoNetMovel", b =>
+                        {
+                            b.Navigation("ContratoPromoNetMovel");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
-                {
-                    b.Navigation("ContratoPromoTelefone");
-                });
+                    modelBuilder.Entity("UPtel.Models.PromoTelefone", b =>
+                        {
+                            b.Navigation("ContratoPromoTelefone");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
-                {
-                    b.Navigation("ContratoPromoTelemovel");
-                });
+                    modelBuilder.Entity("UPtel.Models.PromoTelemovel", b =>
+                        {
+                            b.Navigation("ContratoPromoTelemovel");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
-                {
-                    b.Navigation("ContratoPromoTelevisao");
-                });
+                    modelBuilder.Entity("UPtel.Models.PromoTelevisao", b =>
+                        {
+                            b.Navigation("ContratoPromoTelevisao");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
-                {
-                    b.Navigation("Feedback");
-                });
+                    modelBuilder.Entity("UPtel.Models.Reclamacao", b =>
+                        {
+                            b.Navigation("Feedback");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.ReclamacaoViewModel", b =>
-                {
-                    b.Navigation("ListaMensagens");
-                });
+                    modelBuilder.Entity("UPtel.Models.ReclamacaoViewModel", b =>
+                        {
+                            b.Navigation("ListaMensagens");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Telefone", b =>
-                {
-                    b.Navigation("Pacotes");
-                });
+                    modelBuilder.Entity("UPtel.Models.Telefone", b =>
+                        {
+                            b.Navigation("Pacotes");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Telemovel", b =>
-                {
-                    b.Navigation("Pacotes");
-                });
+                    modelBuilder.Entity("UPtel.Models.Telemovel", b =>
+                        {
+                            b.Navigation("Pacotes");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Televisao", b =>
-                {
-                    b.Navigation("PacoteCanais");
+                    modelBuilder.Entity("UPtel.Models.Televisao", b =>
+                        {
+                            b.Navigation("PacoteCanais");
 
-                    b.Navigation("Pacotes");
-                });
+                            b.Navigation("Pacotes");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.UserType", b =>
-                {
-                    b.Navigation("Users");
-                });
+                    modelBuilder.Entity("UPtel.Models.UserType", b =>
+                        {
+                            b.Navigation("Users");
+                        });
 
-            modelBuilder.Entity("UPtel.Models.Users", b =>
-                {
-                    b.Navigation("ContratosCliente");
+                    modelBuilder.Entity("UPtel.Models.Users", b =>
+                        {
+                            b.Navigation("ContratosCliente");
 
-                    b.Navigation("ContratosFuncionario");
-                });
+                            b.Navigation("ContratosFuncionario");
+                        });
 #pragma warning restore 612, 618
+                });
         }
     }
 }
