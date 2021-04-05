@@ -43,7 +43,7 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PrecoNetFixa)
                                 </th>
-                                <th>
+                                <th class="text-center titulo">
                                     Detalhes
                                 </th>
                             </tr>
@@ -61,7 +61,7 @@
                                     <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.PrecoNetFixa) €
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a asp-action="Details" asp-route-id="@item.NetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
                                 </tr>

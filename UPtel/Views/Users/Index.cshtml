@@ -60,7 +60,7 @@
                                     <th class="text-center titulo">
                                         @Html.DisplayNameFor(model => model.Users[0].PrecoContratos)
                                     </th>
-                                    <th>
+                                    <th class="text-center titulo">
                                         Detalhes
                                     </th>
                                 </tr>
@@ -81,7 +81,7 @@
                                         <td class="text-center">
                                             @Html.DisplayFor(modelItem => item.PrecoContratos)
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @{
                                                 if (item.Tipo.Tipo.Contains("Cliente Particular"))
                                                 {

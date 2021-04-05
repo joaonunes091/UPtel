@@ -31,23 +31,25 @@
                         }
                         else
                         {
-                            <table class="table table-borderless text-white">
+                            <table class="table text-white">
                                 <thead>
                                     <tr>
-                                        <th class="titulo">
+                                        <th class="text-center titulo">
                                             Nome do Distrito
                                         </th>
-                                        <th></th>
+                                        <th class="text-center titulo">
+                                            Escolher
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var contratos in Model.Distritos)
                                     {
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 @Html.DisplayFor(modelItem => contratos.DistritoNome)
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <p>
                                                     <a asp-action="Create" asp-route-id="@contratos.DistritoId"><i class="fas fa-folder-plus fa-2x"></i></a>
                                                 </p>

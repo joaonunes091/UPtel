@@ -31,29 +31,31 @@
                         }
                         else
                         {
-                            <table class="table table-borderless text-white">
+                            <table class="table text-white">
                                 <thead>
                                     <tr>
-                                        <th class="titulo">
+                                        <th class="text-center titulo">
                                             Nome do Cliente
                                         </th>
-                                        <th class="titulo">
+                                        <th class="text-center titulo">
                                             NIF
                                         </th>
-                                        <th></th>
+                                        <th class="text-center titulo">
+                                            Escolher
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var contratos in Model.Users)
                                     {
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 @Html.DisplayFor(modelItem => contratos.Nome)
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 @Html.DisplayFor(modelItem => contratos.Contribuinte)
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <p>
                                                     <a asp-action="Create" asp-route-id="@contratos.UsersId"><i class="fas fa-folder-plus fa-2x"></i></a>
                                                 </p>
