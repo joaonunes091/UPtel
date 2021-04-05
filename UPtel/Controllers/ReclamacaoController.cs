@@ -112,11 +112,17 @@ namespace UPtel.Controllers
             RVM.ResolvidoCliente = reclamacao.ResolvidoCliente;
             RVM.DataReclamacao = reclamacao.DataReclamacao;
 
+            //var fb = await _context.Feedback
+            //    .FirstOrDefaultAsync(x => x.ReclamacaoId == reclamacao.ReclamacaoId);
+
+            //RVM.Mensagem = fb.Mensagem;
+            //RVM.DataFeedback = DateTime.Now;
+
             if (reclamacao == null)
             {
                 return NotFound();
             }
-            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", reclamacao.ContratoId);
+            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", RVM.ContratoId);
             return View(RVM);
         }
 
@@ -125,7 +131,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ReclamacaoViewModel RVM)
+        public async Task<IActionResult> Edit(int id, ReclamacaoViewModel RVM, Feedback feedback)
         {
             if (id != RVM.ReclamacaoId)
             {
@@ -137,12 +143,12 @@ namespace UPtel.Controllers
                 try
                 {
                     var reclamacao = await _context.Reclamacao
-                    .AsNoTracking()
-                    .Include(r => r.Contratos)
-                    .Include(r => r.Feedback)
-                    .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
+                        .AsNoTracking()
+                        .Include(r => r.Contratos)
+                        .Include(r => r.Feedback)
+                        .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
 
-                    var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+                    var funcionario = await _context.Users.SingleOrDefaultAsync(c => c.Email == User.Identity.Name);
 
                     reclamacao.ReclamacaoId = RVM.ReclamacaoId;
                     reclamacao.ContratoId = RVM.ContratoId;
@@ -153,10 +159,16 @@ namespace UPtel.Controllers
                     reclamacao.ResolvidoOperador = RVM.ResolvidoOperador;
                     reclamacao.ResolvidoCliente = RVM.ResolvidoCliente;
                     reclamacao.DataReclamacao = RVM.DataReclamacao;
-                    
 
                     _context.Reclamacao.Update(reclamacao);
                     await _context.SaveChangesAsync();
+
+                    feedback.FuncionarioId = funcionario.UsersId;
+                    feedback.DataFeedback = DateTime.Now;
+
+                    _context.Feedback.Add(feedback);
+                    await _context.SaveChangesAsync();
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
