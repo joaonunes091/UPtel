@@ -19,10 +19,10 @@
                             <input type="hidden" asp-for="ContratoId" />
 
                             @*<div class="form-group">
-                                    <label asp-for="NomeCliente" class="control-label"></label>
-                                    <input readonly asp-for="NomeCliente" class="form-control" />
-                                    <span asp-validation-for="NomeCliente" class="text-danger"></span>
-                                </div>*@
+            <label asp-for="NomeCliente" class="control-label"></label>
+            <input readonly asp-for="NomeCliente" class="form-control" />
+            <span asp-validation-for="NomeCliente" class="text-danger"></span>
+        </div>*@
                             <div class="form-group">
                                 <label asp-for="Assunto" class="control-label"></label>
                                 <input readonly asp-for="Assunto" class="form-control" />
@@ -33,7 +33,11 @@
                                 <input readonly asp-for="Descricao" class="form-control" />
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
-
+                            <div class="form-group">
+                                <label asp-for="Mensagem" class="control-label"></label>
+                                <textarea rows="3" asp-for="Mensagem" class="form-control"></textarea>
+                                <span asp-validation-for="Mensagem" class="text-danger"></span>
+                            </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" asp-for="ResolvidoOperador" /> @Html.DisplayNameFor(model => model.ResolvidoOperador)
