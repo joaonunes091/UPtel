@@ -31,31 +31,17 @@
                         <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
                     </p>
 
-                    <div style="overflow-x:auto;">
-                    
+                    <div style="overflow-x:auto">
 
-                    @if (Model.Canais.Count() == 0)
-                    {
-                        <p style="color:darkgrey">Não existem canais para mostrar</p>
-                    }
-                    else
-                    {
-                        <table class="table text-white">
-                            <thead>
-                                <tr>
-                                    <th class="text-center titulo">
-                                        Logo
-                                    </th>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var canais in Model.Canais)
-                                {
 
+                        @if (Model.Canais.Count() == 0)
+                        {
+                            <p style="color:darkgrey">Não existem canais para mostrar</p>
+                        }
+                        else
+                        {
+                            <table class="table text-white">
+                                <thead>
                                     <tr>
                                         <th class="text-center titulo">
                                             Logo
@@ -64,9 +50,9 @@
                                             @Html.DisplayNameFor(model => model.Canais[0].NomeCanal)
                                         </th>
                                         <th class="text-center titulo">
-                                           Detalhes
+                                            Detalhes
                                         </th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,6 +108,7 @@
                                 </ul>
                             </nav>
                         }
+
                     </div>
                 </div>
             </div>
