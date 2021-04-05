@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210402155518_reclamacaoViewModel")]
+    partial class reclamacaoViewModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,37 +414,6 @@ namespace UPtel.Migrations
                     b.ToTable("Faturas");
                 });
 
-            modelBuilder.Entity("UPtel.Models.FaturacaoOperador", b =>
-                {
-                    b.Property<int>("FatOpId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("date");
-
-                    b.Property<int>("FuncinarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FuncionarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MesId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValorMensalFat")
-                        .HasColumnType("decimal(5,2)");
-
-                    b.HasKey("FatOpId");
-
-                    b.HasIndex("FuncionarioId");
-
-                    b.HasIndex("MesId");
-
-                    b.ToTable("FaturacaoOperadors");
-                });
-
             modelBuilder.Entity("UPtel.Models.Feedback", b =>
                 {
                     b.Property<int>("FeedbackId")
@@ -479,19 +450,6 @@ namespace UPtel.Migrations
                     b.HasIndex("ReclamacaoViewModelId");
 
                     b.ToTable("Feedback");
-                });
-
-            modelBuilder.Entity("UPtel.Models.Meses", b =>
-                {
-                    b.Property<int>("MesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MesId");
-
-                    b.ToTable("Meses");
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>
@@ -607,9 +565,6 @@ namespace UPtel.Migrations
 
                     b.Property<string>("Telemovel")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("ValorMensalFat")
-                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -1358,23 +1313,6 @@ namespace UPtel.Migrations
                     b.Navigation("Fatura");
                 });
 
-            modelBuilder.Entity("UPtel.Models.FaturacaoOperador", b =>
-                {
-                    b.HasOne("UPtel.Models.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("FuncionarioId");
-
-                    b.HasOne("UPtel.Models.Meses", "Mes")
-                        .WithMany("FaturacaoOperador")
-                        .HasForeignKey("MesId")
-                        .HasConstraintName("FK_FatOpr_Meses")
-                        .IsRequired();
-
-                    b.Navigation("Mes");
-
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("UPtel.Models.Feedback", b =>
                 {
                     b.HasOne("UPtel.Models.Feedback", null)
@@ -1606,15 +1544,9 @@ namespace UPtel.Migrations
                     b.Navigation("Users");
                 });
 
-
-            modelBuilder.Entity("UPtel.Models.Meses", b =>
-                {
-                    b.Navigation("FaturacaoOperador");
-
             modelBuilder.Entity("UPtel.Models.Feedback", b =>
                 {
                     b.Navigation("ListaMensagens");
-
                 });
 
             modelBuilder.Entity("UPtel.Models.NetFixa", b =>

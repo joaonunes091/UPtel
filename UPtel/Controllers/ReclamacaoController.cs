@@ -50,9 +50,10 @@ namespace UPtel.Controllers
         // GET: Reclamacao/Create
 
         [Authorize(Roles = "Cliente")]
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            return View();
+            ReclamacaoViewModel RVM = new ReclamacaoViewModel();
+            return View(RVM);
         }
 
         // POST: Reclamacao/Create
@@ -61,23 +62,27 @@ namespace UPtel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Cliente")]
-        public async Task<IActionResult> Create([Bind("ReclamacaoId,ContratoId,UsersId,Assunto,Descriçao,NomeCliente,Resolvido")] Reclamacao reclamacao, int id)
+        public async Task<IActionResult> Create(ReclamacaoViewModel RVM,Reclamacao reclamacao, int id)
         {
             if (ModelState.IsValid)
             {
                 var cliente = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
-                reclamacao.ContartoId = id;           
+                var contrato = _context.Contratos.SingleOrDefault(c => c.ContratoId == id);
+
+                reclamacao.NomeCliente = cliente.Nome;
+                reclamacao.FuncionarioId = contrato.FuncionarioId;  
+                reclamacao.ContratoId = id;
                 reclamacao.ResolvidoCliente = false;
                 reclamacao.ResolvidoOperador = false;
                 reclamacao.DataReclamacao = DateTime.Now;
-
+                reclamacao.Assunto = RVM.Assunto;
+                reclamacao.Descricao = RVM.Descricao;
+                reclamacao.ReclamacaoId = RVM.ReclamacaoId;
 
                 _context.Add(reclamacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-
 
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
 
@@ -91,14 +96,28 @@ namespace UPtel.Controllers
             {
                 return NotFound();
             }
+            //var reclamacao = await _context.Reclamacao.FindAsync(id);
+            ReclamacaoViewModel RVM = new ReclamacaoViewModel();
+            var reclamacao = await _context.Reclamacao.Include(p => p.Feedback)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.ReclamacaoId == id);
 
-            var reclamacao = await _context.Reclamacao.FindAsync(id);
+            RVM.ReclamacaoId = reclamacao.ReclamacaoId;
+            RVM.ContratoId = reclamacao.ContratoId;
+            RVM.NomeCliente = reclamacao.NomeCliente;
+            RVM.FuncionarioId = reclamacao.FuncionarioId;
+            RVM.Assunto = reclamacao.Assunto;
+            RVM.Descricao = reclamacao.Descricao;
+            RVM.ResolvidoOperador = reclamacao.ResolvidoOperador;
+            RVM.ResolvidoCliente = reclamacao.ResolvidoCliente;
+            RVM.DataReclamacao = reclamacao.DataReclamacao;
+
             if (reclamacao == null)
             {
                 return NotFound();
             }
-            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContartoId", "ContartoId", reclamacao.ContartoId);
-            return View(reclamacao);
+            ViewData["ContartoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", reclamacao.ContratoId);
+            return View(RVM);
         }
 
         // POST: Reclamacao/Edit/5
@@ -106,9 +125,9 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReclamacaoId,ContartoId,UsersId,Assunto,Descriçao,NomeCliente,ResolvidoOperador,ResolvidoCliente")] Reclamacao reclamacao)
+        public async Task<IActionResult> Edit(int id, ReclamacaoViewModel RVM)
         {
-            if (id != reclamacao.ReclamacaoId)
+            if (id != RVM.ReclamacaoId)
             {
                 return NotFound();
             }
@@ -117,12 +136,31 @@ namespace UPtel.Controllers
             {
                 try
                 {
-                    _context.Update(reclamacao);
+                    var reclamacao = await _context.Reclamacao
+                    .AsNoTracking()
+                    .Include(r => r.Contratos)
+                    .Include(r => r.Feedback)
+                    .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
+
+                    var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+
+                    reclamacao.ReclamacaoId = RVM.ReclamacaoId;
+                    reclamacao.ContratoId = RVM.ContratoId;
+                    reclamacao.NomeCliente = RVM.NomeCliente;
+                    reclamacao.FuncionarioId = funcionario.UsersId;
+                    reclamacao.Assunto = RVM.Assunto;
+                    reclamacao.Descricao = RVM.Descricao;
+                    reclamacao.ResolvidoOperador = RVM.ResolvidoOperador;
+                    reclamacao.ResolvidoCliente = RVM.ResolvidoCliente;
+                    reclamacao.DataReclamacao = RVM.DataReclamacao;
+                    
+
+                    _context.Reclamacao.Update(reclamacao);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReclamacaoExists(reclamacao.ReclamacaoId))
+                    if (!ReclamacaoExists(RVM.ReclamacaoId))
                     {
                         return NotFound();
                     }
@@ -136,7 +174,7 @@ namespace UPtel.Controllers
 
 
             ModelState.AddModelError("", "Não foi possível registar a reclamação, tente novamente");
-            return View(reclamacao);
+            return View(RVM);
         }
 
         // GET: Reclamacao/Delete/5
