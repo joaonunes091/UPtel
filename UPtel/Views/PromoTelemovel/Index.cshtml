@@ -72,7 +72,7 @@
         <th class="text-center titulo">
             @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
         </th>*@
-                                <th>
+                                <th class="text-center titulo">
                                     Detalhes
                                 </th>
                             </tr>
@@ -81,7 +81,7 @@
                             @foreach (var item in Model.PromoTelemovel)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     @*<td>
@@ -92,7 +92,7 @@
                                         </td>*@
                                     @if (User.IsInRole("Operador"))
                                     {
-                                        <td>
+                                        <td class="text-center">
                                             @Html.DisplayFor(modelItem => item.Estado)
                                         </td>
                                     }
@@ -111,7 +111,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Descricao)
                                         </td>*@
-                                    <td>
+                                    <td class="text-center">
                                         <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                     </td>
                                 </tr>

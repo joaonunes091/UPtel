@@ -98,7 +98,11 @@ namespace UPtel.Controllers
 
             //Vai buscar as informações dos contratos
             List<Contratos> listaContratos = new List<Contratos>();
-            foreach (var contrato in _context.Contratos.Include(p => p.Pacote))
+            foreach (var contrato in _context.Contratos.Include(p => p.Pacote).Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
+                .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
+                .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
+                .Include(p => p.ContratoPromoTelemovel).ThenInclude(p => p.PromoTelemovel)
+                .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao))
             {
                 if (contrato.ClienteId == infoCliente.UsersId)
                 {

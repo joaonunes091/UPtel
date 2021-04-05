@@ -79,7 +79,7 @@
                     else
                     {
 
-                        <table class="table table-borderless text-white">
+                        <table class="table text-white">
                             <thead>
                                 <tr>
                                     <th class="text-center titulo">
@@ -91,7 +91,7 @@
                                     <th class="text-center titulo">
                                         @Html.DisplayNameFor(model => model.Users[0].DistritoNome)
                                     </th>
-                                    <th></th>
+                                    <th class="text-center titulo"> Detalhes</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,7 +107,7 @@
                                         <td class="text-center">
                                             @Html.DisplayFor(modelItem => item.DistritoNome.DistritoNome)
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a asp-action="Details" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
                                             </td>
                                     </tr>
