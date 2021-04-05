@@ -39,18 +39,18 @@
                 else
                 {
 
-                    <table class="table table-borderless text-white">
+                    <table class="table text-white">
                         <thead>
                             <tr>
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].Nome)
                                 </th>
                                 @*<th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
-                                    </th>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
-                                    </th>*@
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
+        </th>
+        <th class="text-center titulo">
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
+        </th>*@
                                 @if (User.IsInRole("Operador"))
                                 {
                                     <th class="text-center titulo">
@@ -58,21 +58,23 @@
                                     </th>
                                 }
                                 @*<th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
-                                    </th>*@
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMinInternacional)
+        </th>*@
                                 @*<th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
-                                    </th>*@
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoSMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoMMS)
+        </th>*@
                                 @*<th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
-                                    </th>
-                                    <th class="text-center titulo">
-                                        @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
-                                    </th>*@
-                                <th></th>
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].DecontoPrecoTotal)
+        </th>
+        <th class="text-center titulo">
+            @Html.DisplayNameFor(model => model.PromoTelemovel[0].Descricao)
+        </th>*@
+                                <th>
+                                    Detalhes
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
