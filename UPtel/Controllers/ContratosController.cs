@@ -1495,7 +1495,7 @@ namespace UPtel.Controllers
                 return View("Erro");
             }
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
-            var contratoOriginal = _context.Contratos.AsNoTracking().SingleOrDefault(m => m.ContratoId == id);
+            var contratoOriginal = _context.Contratos.SingleOrDefault(m => m.ContratoId == id);
             
             //Código que vai buscar o ID do cliente atraves do cliente selecionado na vista SelectUser
             var cliente = _context.Users.SingleOrDefault(m => m.UsersId == contratoOriginal.ClienteId);
@@ -1506,7 +1506,7 @@ namespace UPtel.Controllers
                 .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
                 .Include(p => p.ContratoPromoTelemovel).ThenInclude(p => p.PromoTelemovel)
                 .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .SingleOrDefaultAsync(p => p.ContratoId == id);
 
             contrato.ContratoId = contratoOriginal.ContratoId;
@@ -1867,9 +1867,13 @@ namespace UPtel.Controllers
         // POST: Contratos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, ContratoViewModel CVM)
         {
             var contratos = await _context.Contratos.FindAsync(id);
+            var funcionario = _context.Users.SingleOrDefault(d => d.UsersId == contratos.FuncionarioId);
+
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato - funcionario.PrecoContratosFunc;
+                                   
             _context.Contratos.Remove(contratos);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
