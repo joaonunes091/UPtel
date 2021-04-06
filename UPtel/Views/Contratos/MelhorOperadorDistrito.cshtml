@@ -107,13 +107,13 @@
                 @if (User.IsInRole("Administrador"))
                 {
                     <div class="text-right">
-                        <a asp-controller="Users" asp-action="Distrito"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                        <a asp-controller="Users" asp-action="Distrito"><i title="Voltar" class="far fa-caret-square-left fa-2x"> &nbsp </i></a>
                     </div>
                 }
                 @if (User.IsInRole("Operador"))
                 {
                     <div class="text-right">
-                        <a asp-controller="OperadorViewModel" asp-action="Index"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"> &nbsp </i></a>
+                        <a asp-controller="OperadorViewModel" asp-action="Index"><i title="Voltar" class="far fa-caret-square-left fa-2x"> &nbsp </i></a>
                     </div>
                 }
 
