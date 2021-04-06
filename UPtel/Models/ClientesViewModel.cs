@@ -92,7 +92,6 @@ namespace UPtel.Models
 
         [Display(Name = "Distrito")]
         public virtual Distrito DistritoNome { get; set; }
-        //
 
         public string TelefonePacote { get; set; }
 
