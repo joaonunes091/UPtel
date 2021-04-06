@@ -4,21 +4,52 @@
     ViewData["Title"] = "Users";
 }
 
+
+
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
                 <h2 class="font">Utilizadores</h2>
                 <br />
-                <div class="text-center">
-                    <a asp-action="RegistoClienteParticular"><i title="Cliente Particular" class="far fa-address-card fa-2x imgCriar"> &nbsp &nbsp</i></a>
-                    <a asp-action="RegistoClienteEmpresa"><i title="Cliente Empresarial" class="fas fa-building fa-2x imgCriar"> &nbsp &nbsp </i></a>
-                    <a asp-action="RegistoOperador"><i title="Operador" class="fas fa-hammer fa-2x imgCriar"> &nbsp &nbsp</i></a>
-                    <a asp-action="RegistoAdministrador"><i title="Administrador" class="fas fa-hard-hat fa-2x imgCriar"> &nbsp &nbsp</i></a>
-                </div>
-                <a asp-action="MaisAntigo"><i title="Mais Antigos">Top 10 Mais Antigos</i></a>
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="drop-down">
+                            <a href="">Criar Novo Utilizador</a>
+                            <ul style="background: #808080">
+                                <li>
+                                    <a asp-action="RegistoClienteParticular">Cliente Particular</a>
+                                </li>
+                                <li>
+                                    <a asp-action="RegistoClienteEmpresa">Cliente Empresarial</a>
+                                </li>
+                                <li>
+                                    <a asp-action="RegistoOperador">Operador</a>
+                                </li>
+                                <li>
+                                    <a asp-action="RegistoAdministrador">Administrador</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="drop-down">
+                            <a href="">Top 10</a>
+                            <ul style="background: #808080">
+                                <li>
+                                    <a asp-action="MaisAntigo">Top 10 Mais Antigos</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Contratos" asp-action="MelhorCliente">Top 10 Melhores Clientes</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Contratos" asp-action="MelhorOperadorDistrito">Top 10 Melhores Operadores</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                @*<a asp-action="MaisAntigo"><i title="Mais Antigos">Top 10 Mais Antigos</i></a>
                 <a asp-controller="Contratos" asp-action="MelhorCliente"><i title="Mais Antigos">Top 10 Melhores Clientes</i></a>
-                <a asp-controller="Contratos" asp-action="MelhorOperadorDistrito"><i title="Mais Antigos">Top 10 Melhores Operadores</i></a>
+                <a asp-controller="Contratos" asp-action="MelhorOperadorDistrito"><i title="Mais Antigos">Top 10 Melhores Operadores</i></a>*@
                 <br /><br />
                 <div class="col-md-12 border-info mb-4">
                     <div class="card-body">
