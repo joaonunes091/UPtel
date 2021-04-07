@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3>Promoções Net Fixa</h3>
+                            <h5>Promoções Net Fixa</h5>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoNetFixa.Count; i++)
                                 {
@@ -75,7 +75,7 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Net Móvel</h3>
+                            <h5>Promoções Net Móvel</h5>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoNetMovel.Count; i++)
                                 {
@@ -90,7 +90,7 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Telefone</h3>
+                            <h5>Promoções Telefone</h5>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoTelefone.Count; i++)
                                 {
@@ -105,7 +105,7 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Telemóvel</h3>
+                            <h5>Promoções Telemóvel</h5>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoTelemovel.Count; i++)
                                 {
@@ -120,7 +120,7 @@
                                     </div>
                                 }
                             </dl>
-                            <h3>Promoções Televisão</h3>
+                            <h5>Promoções Televisão</h5>
                             <dl>
                                 @for (int i = 0; i < Model.ListaPromoTelevisao.Count; i++)
                                 {
@@ -136,8 +136,8 @@
                                 }
                             </dl>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
-                                <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
-                                <a asp-action="Details" asp-route-id="@Model.ContratoId"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                                <button type="submit" class="btn btn-default btn-sm "><i title="Guardar" class="far fa-plus-square fa-2x"></i></button>
+                                <a asp-action="Details" asp-route-id="@Model.ContratoId"><i title="Voltar" class="far fa-caret-square-left  fa-2x"></i></a>
                             </div>
                         </form>
                     </div>
