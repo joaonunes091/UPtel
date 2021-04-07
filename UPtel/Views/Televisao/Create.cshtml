@@ -31,15 +31,15 @@
                                 <span asp-validation-for="PrecoPacoteTelevisao" class="text-danger"></span>
                             </div>
                             
-                                <dl class="row d-flex justify-content-between">
+                                <dl class="row d-flex justify-content-center">
                                     @for (int i = 0; i < Model.ListaCanais.Count; i++)
                                     {
                                         <div class="row col-4" style="color:darkgray">
-                                            <dt>
+                                            <dt class="row col-md-11">
                                                 @Html.HiddenFor(x => Model.ListaCanais[i].Id)
                                                 @Html.DisplayFor(z => Model.ListaCanais[i].Nome) &nbsp
                                             </dt>
-                                            <dd>
+                                            <dd class="row col-md-1 align-content-sm-center">
                                                 @Html.CheckBoxFor(z => Model.ListaCanais[i].Selecionado)
                                             </dd>
                                         </div>

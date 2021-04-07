@@ -31,23 +31,23 @@
                                 <input asp-for="PrecoPacoteTelevisao" class="form-control" placeholder="Ex: 15"/>
                                 <span asp-validation-for="PrecoPacoteTelevisao" class="text-danger"></span>
                             </div>
-                            <dl class="row d-flex justify-content-between">
+                            <dl class="row justify-content-center">
                                 @for (int i = 0; i < Model.ListaCanais.Count; i++)
                                 {
                                     <div class="row col-4" style="color:darkgray">
-                                        <dt>
+                                        <dt class="row col-md-11">
                                             @Html.HiddenFor(x => Model.ListaCanais[i].Id)
                                             @Html.DisplayFor(z => Model.ListaCanais[i].Nome) &nbsp
                                         </dt>
-                                        <dd>
+                                        <dd class="row col-md-1 align-content-sm-center">
                                             @Html.CheckBoxFor(z => Model.ListaCanais[i].Selecionado)
                                         </dd>
                                     </div>
                                 }
                             </dl>
                             <div class="form-group d-flex justify-content-sm-between align-content-center">
-                                <button type="submit" class="btn btn-default btn-sm "><i class="fas fa-folder-plus fa-3x"></i></button>
-                                <a asp-action="Details" asp-route-id="@Model.TelevisaoId"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                                <button type="submit" class="btn btn-default btn-sm "><i class="far fa-plus-square fa-2x"></i></button>
+                                <a asp-action="Details" asp-route-id="@Model.TelevisaoId"><i class="far fa-caret-square-left fa-2x"></i></a>
 
                             </div>
                         </form>

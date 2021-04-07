@@ -69,9 +69,9 @@
                                 @Html.DisplayFor(modelItem => item.DataReclamacao)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.ReclamacaoId">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.ReclamacaoId">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.ReclamacaoId">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@item.ReclamacaoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a> 
+                                <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"> &nbsp</i></a> 
+                                <a asp-action="Delete" asp-route-id="@item.ReclamacaoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
                             </td>
                         </tr>
                         }
