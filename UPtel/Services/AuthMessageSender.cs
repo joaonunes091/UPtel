@@ -35,34 +35,31 @@ namespace UPtel.Services
 
                 MailMessage mail = new MailMessage()
                 {
-                    //From = new MailAddress(_emailSettings.UsernameEmail, "UPtel")
                     From = new MailAddress("uptelautomated@gmail.com", "UPtel")
                 };
 
-                //mail.To.Add(new MailAddress("bernardo.jcs@gmail.com"));
+                mail.To.Add(new MailAddress(toEmail));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
 
-                mail.Subject = "UPtel Telecomunicações - " + subject;
+                mail.Subject = "UPtel - " + subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
-                mail.Priority = MailPriority.Normal;
+                mail.Priority = MailPriority.High;
 
                 //outras opções
                 //mail.Attachments.Add(new Attachment(arquivo));
                 //
 
-                //using (SmtpClient smtp = new SmtpClient(_emailSettings.PrimaryDomain, _emailSettings.PrimaryPort))
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com","");
-                    //smtp.Credentials = new NetworkCredential(_emailSettings.UsernameEmail, _emailSettings.UsernamePassword);
+                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com", "");
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(mail);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }
