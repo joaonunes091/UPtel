@@ -724,7 +724,7 @@ namespace UPtel.Controllers
             return View(CVM);
 
         }
-        //POST
+        //POST Atribuir Promoção
         [HttpPost]
         public async Task<IActionResult> AtribuirPromocao(int id, ContratoViewModel CVM, Contratos contratos)
         {
@@ -768,7 +768,7 @@ namespace UPtel.Controllers
             await _context.SaveChangesAsync();
 
             cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
-
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato - funcionario.PrecoContratosFunc;
             int contratoId = contrato.ContratoId;
             decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
             decimal descontoNetFixas = 0, descontoNetMovel = 0, descontoTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
@@ -1130,7 +1130,8 @@ namespace UPtel.Controllers
             await _context.SaveChangesAsync();
            
             cliente.PrecoContratos = cliente.PrecoContratos - contrato.PrecoContrato;
-            
+            funcionario.PrecoContratosFunc = CVM.PrecoContrato - funcionario.PrecoContratosFunc;
+
             int contratoId = contrato.ContratoId;
             decimal x1 = 0, x2 = 0, x3 = 0, x4 = 0, x5 = 0;
             decimal descontoNetFixa = 0, descontoNetMovel = 0, descontoTelefone = 0, descontoTelevisao = 0, descontoTelemovel = 0;
@@ -1867,12 +1868,12 @@ namespace UPtel.Controllers
         // POST: Contratos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id, ContratoViewModel CVM)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var contratos = await _context.Contratos.FindAsync(id);
             var funcionario = _context.Users.SingleOrDefault(d => d.UsersId == contratos.FuncionarioId);
 
-            funcionario.PrecoContratosFunc = CVM.PrecoContrato - funcionario.PrecoContratosFunc;
+            funcionario.PrecoContratosFunc = contratos.PrecoContrato - funcionario.PrecoContratosFunc;
                                    
             _context.Contratos.Remove(contratos);
             await _context.SaveChangesAsync();
