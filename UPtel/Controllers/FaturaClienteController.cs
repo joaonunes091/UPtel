@@ -199,7 +199,7 @@ namespace UPtel.Controllers
             FVM.NomePacote = pacote.NomePacote;
             FVM.Descricao = faturaCliente.Descricao;
             FVM.PacoteId = faturaCliente.PacoteId;
-
+            FVM.NrFaturaId = faturaCliente.NrFaturaId;
 
             
             if (faturaCliente == null)
