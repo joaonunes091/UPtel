@@ -35,10 +35,12 @@ namespace UPtel.Models
 
         public string Mensagem { get; set; }
 
-        public List<Feedback> ListaMensagens { get; set; }
+        public ICollection<Feedback> ListaMensagens { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DataFeedback { get; set; }
+
+        //public virtual ICollection<Feedback> Feedback { get; set; }
     }
 }

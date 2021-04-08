@@ -7,13 +7,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Delete</h1>
-
-                <h3>Are you sure you want to delete this?</h3>
+              
+                <h2 class="font">Tem a certeza que quer eliminar esta reclamação?</h2>
+                <br />
                 <div>
-                    <h4>Reclamacao</h4>
-                    <hr />
-                    <dl class="row">
+                    <br />
+                    <dl class="row justify-content-center text-white">
                         <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.NomeCliente)
                         </dt>
@@ -68,10 +67,12 @@
 
                     </dl>
 
-                    <form asp-action="Delete">
+                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
                         <input type="hidden" asp-for="ReclamacaoId" />
                         <button type="submit" class="btn btn-default btn-sm "><i title="Eliminar" class="far fa-trash-alt fa-2x imgEliminar"></i></button>
+
                         <a asp-action="Index"><i title="Voltar" class="far fa-caret-square-left fa-2x"> &nbsp </i></a>
+
                     </form>
                 </div>
             </div>

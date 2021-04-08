@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.Reclamacao>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,77 +7,140 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Reclamações</h1>
+                <h2 class="font">Reclamações</h2>
+                <div>
+                    <br />
+                    <div class="col-md-8 border-info mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:darkgrey">Pesquisar Reclamações (Por Nome/NIF)</h5>
+                            <form asp-action="Index" method="get">
+                                <div class="form-group">
+                                    <input name="nomePesquisar" class="form-control" placeholder="Ex: Bernardo" type="search" value="@Model.NomePesquisar" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                    <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.Reclamacoes.Count() == 0)
+                {
+                    <p style="color:darkgray">Não existem reclamações a mostrar</p>
+                }
+                else
+                {
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    Nome do Cliente
+                                </th>
+                                <th class="text-center titulo">
+                                    Assunto
+                                </th>
+                                <th class="text-center titulo">
+                                    Resolvido Operador
+                                </th>
+                                <th class="text-center titulo">
+                                    Resolvido Cliente
+                                </th>
+                                <th class="text-center titulo">
+                                    Data da Reclamação
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Reclamacoes)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.NomeCliente)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Assunto)
+                                    </td>
+                                    @if (item.ResolvidoOperador == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+                                    @if (item.ResolvidoCliente == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                    </td>
+                                    <td class="text-center">
+                                        @if(item.ResolvidoOperador == false)
+                                        { 
+                                        <a class="btn btn-costum" asp-action="RespostaReclamacaoOperador" asp-route-id="@item.ReclamacaoId">Responder</a> 
+                                        }   
+                                        @if (item.ResolvidoOperador == true && item.ResolvidoCliente == false)
+                                        {
+                                        <a class="btn btn-costum" asp-action="RespostaFeedback" asp-route-id="@item.ReclamacaoId">Responder ao feedback</a>
+                                        }
+                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.ReclamacaoId">Detalhes</a> |
+                                        <a class="btn btn-costum" asp-action="Delete" asp-route-id="@item.ReclamacaoId">Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    }
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
 
-        
-                <table class="table">
-                    <thead>
-                        <tr>
-                            @*<th>
-                                @Html.DisplayNameFor(model => model.NomeCliente)
-                            </th>*@
-                            <th>
-                                @Html.DisplayNameFor(model => model.Assunto)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ResolvidoOperador)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ResolvidoCliente)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DataReclamacao)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.NomeCliente)
-                            </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Assunto)
-                            </td>
-                            @if (item.ResolvidoOperador == true)
-                            {
-                                <td>
-                                    Sim
-                                </td>
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
                             }
-                            else
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
                             {
-                                <td>
-                                    Não
-                                </td>
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
                             }
-                            @if (item.ResolvidoCliente == true)
-                            {
-                                <td>
-                                    Sim
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    Não
-                                </td>
-                            }
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DataReclamacao)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.ReclamacaoId"><i title="Editar" class="far fa-edit fa-2x"> &nbsp </i></a> 
-                                <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"> &nbsp</i></a> 
-                                <a asp-action="Delete" asp-route-id="@item.ReclamacaoId"><i title="Apagar" class="far fa-trash-alt fa-2x imgEliminar"> &nbsp </i></a>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
         </div>
     </div>
 </section>

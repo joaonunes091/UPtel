@@ -1,0 +1,84 @@
+﻿@model IEnumerable<UPtel.Models.Reclamacao>
+@{
+    ViewData["Title"] = "IndexCliente";
+}
+
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h2 class="font">Reclamações</h2>
+
+
+                @if (Model.Any())
+                {
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.Assunto)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.ResolvidoOperador)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.ResolvidoCliente)
+                                </th>
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.DataReclamacao)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Assunto)
+                                    </td>
+                                    @if (item.ResolvidoOperador == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+                                    @if (item.ResolvidoCliente == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-costum" asp-action="FeedbackCliente" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId">Feedback Reclamação</a>
+                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.ReclamacaoId">Detalhes</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a class="btn btn-costum" asp-action="Index" asp-controller="ClientesViewModel">Voltar</a>
+                }
+                else
+                {
+                    <p style="color:darkgray">Não existem contratos para mostrar</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
