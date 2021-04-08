@@ -12,19 +12,17 @@ namespace UPtel.Models
         [Key]
         public int FeedbackId { get; set; }
 
-        
         public int ReclamacaoId { get; set; }
 
-
         public int FuncionarioId { get; set; }
+
+        public string Nome { get; set; }
 
         public string Mensagem { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DataFeedback { get; set; }
-
-        public List<Feedback> ListaMensagens { get; set; }
 
         [ForeignKey(nameof(ReclamacaoId))]
         [InverseProperty("Feedback")]

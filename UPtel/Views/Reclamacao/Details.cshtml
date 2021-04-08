@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Reclamacao
+﻿@model UPtel.Models.ReclamacaoViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -7,11 +7,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Details</h1>
+                <h2 class="font">Detalhes da Reclamação</h2>
 
                 <div>
-                    <h4>Reclamacao</h4>
-                    <hr />
+                    <br />
                     <dl class="row">
                         <dt class="col-sm-5 titulo">
                             @Html.DisplayNameFor(model => model.NomeCliente)
@@ -67,9 +66,51 @@
 
                     </dl>
                 </div>
-                <div>
-                    <a asp-action="Edit" asp-route-id="@Model.ReclamacaoId">Edit</a> |
-                    <a asp-action="Index">Back to List</a>
+                @if (Model.ListaMensagens.Count != 0)
+                {
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th class="text-center titulo">
+                                    Nome
+                                </th>
+                                <th class="text-center titulo">
+                                    Data
+                                </th>
+                                <th class="text-center titulo">
+                                    Mensagem
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaMensagens)
+                            {
+                            <tr>
+                                <td>
+                                    @item.Nome
+                                </td>
+                                <td>
+                                    @item.DataFeedback
+                                </td>
+                                <td>
+                                    @item.Mensagem
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                }
+                <div class="float-right">
+                    
+                    @if (User.IsInRole("Operador"))
+                    {
+                        <a asp-action="Index">Voltar</a>
+                    }
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <a asp-action="IndexCliente">Voltar</a>
+                    }
                 </div>
             </div>
         </div>

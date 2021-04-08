@@ -777,13 +777,13 @@ namespace UPtel.Migrations
                         column: x => x.ContratoId,
                         principalTable: "Contratos",
                         principalColumn: "ContratoId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reclamacao_Users_FuncionarioId",
                         column: x => x.FuncionarioId,
                         principalTable: "Users",
                         principalColumn: "UsersId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -813,13 +813,13 @@ namespace UPtel.Migrations
                         column: x => x.ReclamacaoId,
                         principalTable: "Reclamacao",
                         principalColumn: "ReclamacaoId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Feedback_ReclamacaoViewModel_ReclamacaoViewModelId",
                         column: x => x.ReclamacaoViewModelId,
                         principalTable: "ReclamacaoViewModel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Feedback_Users_FuncionarioId",
                         column: x => x.FuncionarioId,

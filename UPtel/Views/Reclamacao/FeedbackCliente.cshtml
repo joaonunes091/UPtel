@@ -1,0 +1,102 @@
+﻿@model UPtel.Models.ReclamacaoViewModel
+
+@{
+    ViewData["Title"] = "FeedbackCliente";
+
+}
+<section id="secondhero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
+                <h1 class="font">Feedback</h1>
+
+                <br />
+                <div class="row">
+                    <div class="col-md-10">
+                        <form asp-action="FeedbackCliente">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ReclamacaoId" />
+                            <input type="hidden" asp-for="ContratoId" />
+
+                            <div class="form-group">
+                                <label asp-for="NomeCliente" class="control-label"></label>
+                                <input readonly asp-for="NomeCliente" class="form-control" />
+                                <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DataReclamacao" class="control-label"></label>
+                                <input readonly asp-for="DataReclamacao" class="form-control" />
+                                <span asp-validation-for="DataReclamacao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Assunto" class="control-label"></label>
+                                <input readonly asp-for="Assunto" class="form-control" />
+                                <span asp-validation-for="Assunto" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Descricao" class="control-label"></label>
+                                <textarea rows="3" readonly asp-for="Descricao" class="form-control"></textarea>
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+                            </div>
+
+                            @if (Model.ListaMensagens.Count != 0)
+                            {
+                                <table class="table text-white">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center titulo">
+                                                Nome
+                                            </th>
+                                            <th class="text-center titulo">
+                                                Data
+                                            </th>
+                                            <th class="text-center titulo">
+                                                Mensagem
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.ListaMensagens)
+                                        {
+                                            <tr>
+                                                <td class="text-center">
+                                                    @item.Nome
+                                                </td>
+                                                <td text-center>
+                                                    @item.DataFeedback
+                                                </td>
+                                                <td text-center>
+                                                    @item.Mensagem
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            }
+
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="ResolvidoCliente" /> @Html.DisplayNameFor(model => model.ResolvidoCliente)
+                                </label>
+                                <div class="form-group">
+                                    <label asp-for="Mensagem" class="control-label"></label>
+                                    <textarea rows="3" asp-for="Mensagem" class="form-control"></textarea>
+                                    <span asp-validation-for="Mensagem" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" value="Save" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="IndexCliente"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

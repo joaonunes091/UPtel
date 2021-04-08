@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPtel.Data;
 
 namespace UPtel.Migrations
 {
     [DbContext(typeof(UPtelContext))]
-    partial class UPtelContextModelSnapshot : ModelSnapshot
+    [Migration("20210406101357_listaMensagem")]
+    partial class listaMensagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -457,9 +459,6 @@ namespace UPtel.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Mensagem")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ReclamacaoId")

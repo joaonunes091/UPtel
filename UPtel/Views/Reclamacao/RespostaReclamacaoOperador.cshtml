@@ -1,28 +1,32 @@
 ﻿@model UPtel.Models.ReclamacaoViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "RespostaReclamacaoOperador";
 }
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-                <h1>Edit</h1>
+                <h1 class="font">Responder Reclamação</h1>
 
-                <h4>Reclamacao</h4>
-                <hr />
+                <br />
                 <div class="row">
-                    <div class="col-md-4">
-                        <form asp-action="Edit">
+                    <div class="col-md-10">
+                        <form asp-action="RespostaReclamacaoOperador">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="ReclamacaoId" />
                             <input type="hidden" asp-for="ContratoId" />
 
-                            @*<div class="form-group">
-            <label asp-for="NomeCliente" class="control-label"></label>
-            <input readonly asp-for="NomeCliente" class="form-control" />
-            <span asp-validation-for="NomeCliente" class="text-danger"></span>
-        </div>*@
+                            <div class="form-group">
+                                <label asp-for="NomeCliente" class="control-label"></label>
+                                <input readonly asp-for="NomeCliente" class="form-control" />
+                                <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DataReclamacao" class="control-label"></label>
+                                <input readonly asp-for="DataReclamacao" class="form-control" />
+                                <span asp-validation-for="DataReclamacao" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label asp-for="Assunto" class="control-label"></label>
                                 <input readonly asp-for="Assunto" class="form-control" />
@@ -33,19 +37,21 @@
                                 <input readonly asp-for="Descricao" class="form-control" />
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Mensagem" class="control-label"></label>
-                                <textarea rows="3" asp-for="Mensagem" class="form-control"></textarea>
-                                <span asp-validation-for="Mensagem" class="text-danger"></span>
-                            </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
                                     <input class="form-check-input" asp-for="ResolvidoOperador" /> @Html.DisplayNameFor(model => model.ResolvidoOperador)
                                 </label>
+                                <div class="form-group">
+                                    <label asp-for="Mensagem" class="control-label"></label>
+                                    <textarea rows="3" asp-for="Mensagem" class="form-control"></textarea>
+                                    <span asp-validation-for="Mensagem" class="text-danger"></span>
+                                </div>
+
                             </div>
 
-                            <div class="form-group">
-                                <input type="submit" value="Save" class="btn btn-primary" />
+                            <div class="form-group d-flex justify-content-sm-between align-content-center">
+                                <button type="submit" value="Save" class="btn btn-default btn-sm "><i title="Guardar" class="fas fa-folder-plus fa-3x"></i></button>
+                                <a asp-action="IndexCliente"><i title="Voltar" class="far fa-arrow-alt-circle-left fa-2x"></i></a>
                             </div>
                         </form>
                     </div>
