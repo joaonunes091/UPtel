@@ -20,7 +20,7 @@
                 <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
             </div>
         </form>*@
-                   
+
 
                         <form asp-action="Distrito" method="get">
                             <div class="form-group">
@@ -56,16 +56,33 @@
                             </div>
                         </form>
 
-                        <form>
-                            <div class="form-group">
+                        <nav class="nav-menu">
+                            <ul>
+                                <li class="drop-down">
+                                    <a href="">Top utilizador</a>
+                                    <ul style="background: #808080">
+                                        <li>
+                                            <a asp-action="MaisAntigo" title="Mais Antigos" >Top 10 Mais Antigos</a>
+                                            
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Contratos" asp-action="MelhorCliente">Top 10 Melhores Clientes</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!--<form>
+                            <div class="form-group">-->
                                 @*<a asp-action="DistritoOperador" title="Operadores" class="btn btn-outline-light"><i> Operadores</i></a>
                 <a asp-action="DistritoCliente" title="Clientes" class="btn btn-outline-light">  <i>Clientes</i></a>*@
-                                <a asp-action="Top10Operador" title="Top 10 Operador" class="btn btn-outline-light"> <i>Top 10 Operador</i></a>
+                                <!--<a asp-action="Top10Operador" title="Top 10 Operador" class="btn btn-outline-light"> <i>Top 10 Operador</i></a>
                                 <a asp-action="Top10Cliente" title="Top 10 Cliente" class="btn btn-outline-light"> <i>Top 10 Cliente</i></a>
                                 <a asp-action="MaisAntigo" title="Mais Antigos" class="btn btn-outline-light"><i>Top 10 Mais Antigos</i></a>
                                 <a asp-controller="Contratos" asp-action="MelhorCliente" class="btn btn-outline-light"><i title="Mais Antigos">Top 10 Melhores Clientes</i></a>
                             </div>
-                        </form>
+                        </form>-->
                     </div>
                 </div>
 
