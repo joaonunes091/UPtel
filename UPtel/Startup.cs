@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UPtel.Data;
+using UPtel.Services;
 
 namespace UPtel
 {
@@ -31,7 +32,11 @@ namespace UPtel
             services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddMvc();
+
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
