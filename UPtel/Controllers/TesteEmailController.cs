@@ -46,6 +46,7 @@ namespace UPtel.Controllers
         //    return View(email);
         //}
 
+        [Authorize(Roles = "Operador")]
         public async Task<IActionResult> TesteEnvioEmail()
         {
             List<Contratos> contratos = await bd.Contratos.ToListAsync();
