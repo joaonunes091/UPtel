@@ -48,16 +48,21 @@ namespace UPtel.Controllers
 
         public async Task<IActionResult> TesteEnvioEmail()
         {
-            var contratos = await bd.Contratos.ToListAsync();
-            var emailenviado = await bd.EnvioDeFaturas.ToListAsync();
+            List<Contratos> contratos = await bd.Contratos.ToListAsync();
+            
 
             DateTime hoje = DateTime.Today;
             DateTime mespassado = hoje.AddMonths(-1);
-            int mes = mespassado.Month;
+
+            var dia1 = new DateTime(hoje.Year, hoje.Month, 1);
+            DateTime finaldia = dia1.AddMonths(1).AddMinutes(-1);
+
+            List<FaturaCliente> emailenviado = await bd.Faturas.Where(d => d.DataEmissao >= dia1 && d.DataEmissao <= finaldia).ToListAsync();
+
 
             foreach (var item in emailenviado)
             {
-                if (item.mes == mes)
+                if (item.DataEmissao == mespassado)
                 {
                     return RedirectToAction("EmailsJaEnviados");
                 }
@@ -65,17 +70,20 @@ namespace UPtel.Controllers
 
 
             string email; string assunto; string mensagem;
+            var cliente = await bd.Users.Where(c => c.Tipo.Tipo.Contains("Cliente")).ToListAsync();
 
 
-            foreach (var item in *)
+
+            foreach (var item in cliente)
             {
+                var valorpagar = await bd.Contratos.SingleOrDefaultAsync(c => c.ClienteId == item.UsersId);
                 //var cliente = await bd.Users.FirstOrDefaultAsync(m => m.UserId == item.UserId);
-                decimal preco = *;
-                email = cliente.Email;
-
-                string NomeMes = NomesDoMes(mes);
-                assunto = "UPtel - Faturação de "+ NomeMes;
-                mensagem = "Caro/a cliente, informamos que o preço a pagar em " + NomeMes + "é de" + preco + "€ da fatura de ";
+                decimal preco = valorpagar.PrecoContrato;
+                email = valorpagar.Cliente.Email;
+                int qq = (int) mespassado.Month;
+                var mes = await bd.Meses.SingleOrDefaultAsync(m => m.MesId == qq);
+                assunto = "UPtel - Faturação de "+ mes.Mes;
+                mensagem = "Caro/a cliente, informamos que o preço a pagar em " + mes.Mes + "é de" + preco + "€ da fatura de ";
 
                 try
                 {
@@ -90,10 +98,10 @@ namespace UPtel.Controllers
                 }
             }
 
-            emailenviado.Add(new EnvioDeFaturas() { DataDeEnvio = DateTime.Today, Enviado = true, mes = mes });
+            emailenviado.Add(new FaturaCliente() { DataEmissao = DateTime.Today, Enviado = true, mes = mes });
             foreach (var item in emailenviado)
             {
-                bd.EnvioDeFaturas.Add(item);
+                bd.Faturas.Add(item);
             }
             await bd.SaveChangesAsync();
             return RedirectToAction("EmailEnviado");
@@ -114,53 +122,53 @@ namespace UPtel.Controllers
             return View();
         }
 
-        internal static string NomesDoMes(int mes)
-        {
-            string NomedoMes = "";
-            switch (mes)
-            {
-                case 1:
-                    NomedoMes = "Janeiro";
-                    break;
-                case 2:
-                    NomedoMes = "Fevereiro";
-                    break;
-                case 3:
-                    NomedoMes = "Março";
-                    break;
-                case 4:
-                    NomedoMes = "Abril";
-                    break;
-                case 5:
-                    NomedoMes = "Maio";
-                    break;
-                case 6:
-                    NomedoMes = "Junho";
-                    break;
-                case 7:
-                    NomedoMes = "Julho";
-                    break;
-                case 8:
-                    NomedoMes = "Agosto";
-                    break;
-                case 9:
-                    NomedoMes = "Setembro";
-                    break;
-                case 10:
-                    NomedoMes = "Outubro";
-                    break;
-                case 11:
-                    NomedoMes = "Novembro";
-                    break;
-                case 12:
-                    NomedoMes = "Dezembro";
-                    break;
+        //internal static string NomesDoMes(int mes)
+        //{
+        //    string NomedoMes = "";
+        //    switch (mes)
+        //    {
+        //        case 1:
+        //            NomedoMes = "Janeiro";
+        //            break;
+        //        case 2:
+        //            NomedoMes = "Fevereiro";
+        //            break;
+        //        case 3:
+        //            NomedoMes = "Março";
+        //            break;
+        //        case 4:
+        //            NomedoMes = "Abril";
+        //            break;
+        //        case 5:
+        //            NomedoMes = "Maio";
+        //            break;
+        //        case 6:
+        //            NomedoMes = "Junho";
+        //            break;
+        //        case 7:
+        //            NomedoMes = "Julho";
+        //            break;
+        //        case 8:
+        //            NomedoMes = "Agosto";
+        //            break;
+        //        case 9:
+        //            NomedoMes = "Setembro";
+        //            break;
+        //        case 10:
+        //            NomedoMes = "Outubro";
+        //            break;
+        //        case 11:
+        //            NomedoMes = "Novembro";
+        //            break;
+        //        case 12:
+        //            NomedoMes = "Dezembro";
+        //            break;
 
-                default:
-                    break;
-            }
+        //        default:
+        //            break;
+        //    }
 
-            return NomedoMes;
-        }
+        //    return NomedoMes;
+        //}
     }
 }
