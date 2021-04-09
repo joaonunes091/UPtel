@@ -132,9 +132,6 @@
                                                     <li><a asp-action="Index" asp-controller="Contratos">Contratos</a></li>
                                                     <li><a asp-action="Index" asp-controller="Reclamacao">Reclamações</a></li>
                                                     <li><a asp-controller="TesteEmail" asp-action="TesteEnvioEmail">Enviar Email e Fatura</a></li>
-                                                    <li>
-                                                        <a asp-action="Contabilizar" asp-controller="faturacaoOperador">Contabilizar </a>
-                                                    </li>
                                                 </ul>
                                             </li>
 
@@ -159,7 +156,9 @@
                                         }
                                         @if (User.IsInRole("Operador"))
                                         {
-                                            <li><a asp-action="Index" asp-controller="OperadorViewModel">Área do Operador</a></li>
+                                            <li>
+                                                <a asp-action="Contabilizar" asp-controller="faturacaoOperador">Área do Operador </a>
+                                            </li>
                                         }
                                         @*@if (User.IsInRole("Administrador"))
             {
