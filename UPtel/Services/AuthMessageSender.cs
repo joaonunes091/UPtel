@@ -41,7 +41,7 @@ namespace UPtel.Services
                 mail.To.Add(new MailAddress(toEmail));
                 //mail.CC.Add(new MailAddress(_emailSettings.CcEmail));
 
-                mail.Subject = "UPtel - " + subject;
+                mail.Subject = subject;
                 mail.Body = message;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;

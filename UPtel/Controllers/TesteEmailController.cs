@@ -49,12 +49,13 @@ namespace UPtel.Controllers
         public async Task<IActionResult> TesteEnvioEmail()
         {
             List<Contratos> contratos = await bd.Contratos.ToListAsync();
-            
+
 
             DateTime hoje = DateTime.Today;
             DateTime mespassado = hoje.AddMonths(-1);
 
-            var dia1 = new DateTime(hoje.Year, hoje.Month, 1);
+
+            var dia1 = new DateTime(mespassado.Year, mespassado.Month, 1);
             DateTime finaldia = dia1.AddMonths(1).AddMinutes(-1);
 
             List<FaturaCliente> emailenviado = await bd.Faturas.Where(d => d.DataEmissao >= dia1 && d.DataEmissao <= finaldia).ToListAsync();
@@ -62,7 +63,7 @@ namespace UPtel.Controllers
 
             foreach (var item in emailenviado)
             {
-                if (item.DataEmissao == mespassado)
+                if (item.DataEmissao.Month == mespassado.Month)
                 {
                     return RedirectToAction("EmailsJaEnviados");
                 }
@@ -76,34 +77,65 @@ namespace UPtel.Controllers
 
             foreach (var item in cliente)
             {
-                var valorpagar = await bd.Contratos.SingleOrDefaultAsync(c => c.ClienteId == item.UsersId);
-                //var cliente = await bd.Users.FirstOrDefaultAsync(m => m.UserId == item.UserId);
-                decimal preco = valorpagar.PrecoContrato;
-                email = valorpagar.Cliente.Email;
-                int qq = (int) mespassado.Month;
-                var mes = await bd.Meses.SingleOrDefaultAsync(m => m.MesId == qq);
-                assunto = "UPtel - Faturação de "+ mes.Mes;
-                mensagem = "Caro/a cliente, informamos que o preço a pagar em " + mes.Mes + "é de" + preco + "€ da fatura de ";
-
-                try
+                if (item.ContratosCliente.Count() != 0)
                 {
-                    //email destino, assunto do email, mensagem a enviar
-                    await _emailSender.SendEmailAsync(email, assunto, mensagem);
+                    foreach (var fatura in contratos)
+                    {
+
+                        var valorpagar = await bd.Contratos.FirstOrDefaultAsync(c => c.ContratoId == fatura.ContratoId);
+                        //var cliente = await bd.Users.FirstOrDefaultAsync(m => m.UserId == item.UserId);
+                        decimal preco = valorpagar.PrecoContrato;
+                        email = valorpagar.Cliente.Email;
+                        int qq = (int)mespassado.Month;
+                        var mes = await bd.Meses.SingleOrDefaultAsync(m => m.MesId == qq);
+                        assunto = "UPtel - Faturação de " + mes.Mes;
+                        mensagem = "Caro/a cliente, informamos que o preço a pagar em " + mes.Mes + " é de " + preco + " € da fatura de " + mes.Mes;
+
+                        try
+                        {
+                            //email destino, assunto do email, mensagem a enviar
+                            await _emailSender.SendEmailAsync(email, assunto, mensagem);
 
 
-                }
-                catch (Exception)
-                {
-                    return RedirectToAction("EmailFalhou");
+                        }
+                        catch (Exception)
+                        {
+                            return RedirectToAction("EmailFalhou");
+                        }
+
+
+                        if (fatura.ClienteId == item.UsersId)
+                        {
+                            FaturaCliente faturaCliente = new FaturaCliente();
+
+                            faturaCliente.DataEmissao = hoje;
+                            faturaCliente.ContratoId = fatura.ContratoId;
+                            faturaCliente.NomeCliente = fatura.Cliente.Nome;
+                            faturaCliente.Morada = fatura.MoradaContrato;
+                            faturaCliente.PrecoContrato = fatura.PrecoContrato;
+                            faturaCliente.PacoteId = fatura.PacoteId;
+                            faturaCliente.PrecoContrato = fatura.PrecoContrato;
+
+
+
+                            if (ModelState.IsValid)
+                            {
+                                bd.Add(faturaCliente);
+                                await bd.SaveChangesAsync();
+
+                            }
+
+                        }
+                    }
                 }
             }
 
-            emailenviado.Add(new FaturaCliente() { DataEmissao = DateTime.Today, Enviado = true, mes = mes });
-            foreach (var item in emailenviado)
-            {
-                bd.Faturas.Add(item);
-            }
-            await bd.SaveChangesAsync();
+            ////emailenviado.Add(new FaturaCliente() { DataEmissao = DateTime.Today, Enviado = true, mes = mes });
+            //foreach (var item in emailenviado)
+            //{
+            //    bd.Faturas.Add(item);
+            //}
+            //await bd.SaveChangesAsync();
             return RedirectToAction("EmailEnviado");
 
 
