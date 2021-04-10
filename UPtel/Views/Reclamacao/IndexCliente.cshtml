@@ -18,7 +18,7 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.Assunto)
                                 </th>
-                                
+
                                 <th class="text-center titulo">
                                     Resolvido
                                 </th>
@@ -32,43 +32,45 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            
-                            <tr>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Assunto)
-                                </td>
-                                
-                                @if (item.ResolvidoCliente == true)
-                                {
+
+                                <tr>
                                     <td class="text-center">
-                                        Sim
+                                        @Html.DisplayFor(modelItem => item.Assunto)
                                     </td>
-                                }
-                                else
-                                {
-                                    <td class="text-center">
-                                        Não
-                                    </td>
-                                }
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.DataReclamacao)
-                                </td>
-                                <td class="text-center">
-                                    <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a>
-                                </td>
-                               
-                                <td class="text-center">
-                                    @if (item.ResolvidoCliente == false) 
-                                    { 
-                                        <a class="btn btn-costum" asp-action="FeedbackCliente" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId">Responder</a>
+
+                                    @if (item.ResolvidoCliente == true)
+                                    {
+                                        <td class="text-center">
+                                            Sim
+                                        </td>
                                     }
-                                </td>
-                            </tr>
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            Não
+                                        </td>
+                                    }
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                    </td>
+
+                                    <td class="text-center">
+                                        @if (item.ResolvidoCliente == false)
+                                        {
+                                            <a class="btn btn-costum" asp-action="FeedbackCliente" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId">Responder</a>
+                                        }
+                                    </td>
+                                </tr>
 
                             }
                         </tbody>
                     </table>
-                    <a class="btn btn-costum" asp-action="Index" asp-controller="ClientesViewModel">Voltar</a>
+                    <div class="float-right">
+                        <a asp-action="Index" asp-controller="ClientesViewModel"><i title="Voltar" class="far fa-caret-square-left fa-2x"></i></a>
+                    </div>
                 }
                 else
                 {
