@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace UPtel.Controllers
             _context = context;
         }
         //Pesquisa nome distrito para adicionar à promo
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> SelectDistrito(string nomePesquisar)
         {
             List<Distrito> distrito = await _context.Distrito.Where(p => p.DistritoNome.Contains(nomePesquisar))
@@ -33,6 +35,7 @@ namespace UPtel.Controllers
 
             return base.View(modelo);
         }
+       
         // GET: PromoTelemovel
         public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
@@ -54,7 +57,9 @@ namespace UPtel.Controllers
             };
             return base.View(modelo);
         }
+
         // GET: PromoTelemovel
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> PromoOff (string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
@@ -95,6 +100,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelemovel/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             return View();
@@ -105,6 +111,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(int id, [Bind("PromoTelemovelId,Nome,LimiteMinutos,LimiteSMS,DecontoPrecoMinNacional,DecontoPrecoMinInternacional,DecontoPrecoSMS,DecontoPrecoMMS,DecontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoTelemovel promoTelemovel)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -123,6 +130,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelemovel/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -143,6 +151,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("PromoTelemovelId,Nome,LimiteMinutos,LimiteSMS,DecontoPrecoMinNacional,DecontoPrecoMinInternacional,DecontoPrecoSMS,DecontoPrecoMMS,DecontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoTelemovel promoTelemovel)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -183,6 +192,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelemovel/Estado/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int? id)
         {
             if (id == null)
@@ -203,6 +213,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int id, [Bind("PromoTelemovelId,Nome,LimiteMinutos,LimiteSMS,DecontoPrecoMinNacional,DecontoPrecoMinInternacional,DecontoPrecoSMS,DecontoPrecoMMS,DecontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoTelemovel promoTelemovel)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -238,7 +249,9 @@ namespace UPtel.Controllers
             }
             return View(promoTelemovel);
         }
+
         // GET: PromoTelemovel/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -259,6 +272,7 @@ namespace UPtel.Controllers
         // POST: PromoTelemovel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var promoTelemovel = await _context.PromoTelemovel.FindAsync(id);
