@@ -1,4 +1,4 @@
-﻿@model UPtel.Models.Reclamacao
+﻿@model UPtel.Models.ReclamacaoViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 text-white">
-              
+
                 <h2 class="font">Tem a certeza que quer eliminar esta reclamação?</h2>
                 <br />
                 <div>
@@ -67,7 +67,50 @@
 
                     </dl>
 
-                    <form class="d-flex justify-content-sm-between align-content-center col-10" asp-action="Delete">
+                    <h3 class="font">Histórico de mensagens</h3>
+                    <br />
+
+                    @if (Model.ListaMensagens.Count != 0)
+                    {
+                        <table class="table text-white">
+                            <thead>
+                                <tr>
+                                    <th class="text-center titulo">
+                                        Nome
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Data
+                                    </th>
+                                    <th class="text-center titulo">
+                                        Mensagem
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListaMensagens)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            @item.Nome
+                                        </td>
+                                        <td class="text-center">
+                                            @item.DataFeedback
+                                        </td>
+                                        <td class="text-center">
+                                            @item.Mensagem
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    }
+                    else
+                    {
+                        <p style="color:darkgray">Não existem mensagens a mostrar</p>
+                    }
+
+                    <form class="d-flex justify-content-sm-between align-content-center col-12" asp-action="Delete">
                         <input type="hidden" asp-for="ReclamacaoId" />
                         <button type="submit" class="btn btn-default btn-sm "><i title="Eliminar" class="far fa-trash-alt fa-2x imgEliminar"></i></button>
 

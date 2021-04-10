@@ -49,7 +49,8 @@
                                 <th class="text-center titulo">
                                     Data da Reclamação
                                 </th>
-                                <th></th>
+                                <th class="text-center titulo">Detalhes</th>
+                                <th class="text-center titulo">Respostas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,16 +91,19 @@
                                         @Html.DisplayFor(modelItem => item.DataReclamacao)
                                     </td>
                                     <td class="text-center">
-                                        @if(item.ResolvidoOperador == false)
-                                        { 
-                                        <a class="btn btn-costum" asp-action="RespostaReclamacaoOperador" asp-route-id="@item.ReclamacaoId">Responder</a> 
-                                        }   
+                                        
+                                        <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a> 
+                                        
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.ResolvidoOperador == false)
+                                        {
+                                            <a class="btn btn-costum" asp-action="RespostaReclamacaoOperador" asp-route-id="@item.ReclamacaoId">Responder à reclamação</a>
+                                        }
                                         @if (item.ResolvidoOperador == true && item.ResolvidoCliente == false)
                                         {
-                                        <a class="btn btn-costum" asp-action="RespostaFeedback" asp-route-id="@item.ReclamacaoId">Responder ao feedback</a>
+                                            <a class="btn btn-costum" asp-action="RespostaFeedback" asp-route-id="@item.ReclamacaoId">Responder ao feedback</a>
                                         }
-                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.ReclamacaoId">Detalhes</a> |
-                                        <a class="btn btn-costum" asp-action="Delete" asp-route-id="@item.ReclamacaoId">Eliminar</a>
                                     </td>
                                 </tr>
                             }

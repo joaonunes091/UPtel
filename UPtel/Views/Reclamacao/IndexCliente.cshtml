@@ -18,57 +18,53 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.Assunto)
                                 </th>
+                                
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.ResolvidoOperador)
-                                </th>
-                                <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.ResolvidoCliente)
+                                    Resolvido
                                 </th>
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.DataReclamacao)
                                 </th>
-                                <th></th>
+                                <th class="text-center titulo"> Detalhes </th>
+                                <th class="text-center titulo"> Respostas </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                            
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Assunto)
+                                </td>
+                                
+                                @if (item.ResolvidoCliente == true)
+                                {
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Assunto)
+                                        Sim
                                     </td>
-                                    @if (item.ResolvidoOperador == true)
-                                    {
-                                        <td class="text-center">
-                                            Sim
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center">
-                                            Não
-                                        </td>
-                                    }
-                                    @if (item.ResolvidoCliente == true)
-                                    {
-                                        <td class="text-center">
-                                            Sim
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center">
-                                            Não
-                                        </td>
-                                    }
+                                }
+                                else
+                                {
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                        Não
                                     </td>
-                                    <td class="text-center">
-                                        <a class="btn btn-costum" asp-action="FeedbackCliente" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId">Feedback Reclamação</a>
-                                        <a class="btn btn-costum" asp-action="Details" asp-route-id="@item.ReclamacaoId">Detalhes</a>
-                                    </td>
-                                </tr>
+                                }
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                </td>
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                               
+                                <td class="text-center">
+                                    @if (item.ResolvidoCliente == false) 
+                                    { 
+                                        <a class="btn btn-costum" asp-action="FeedbackCliente" asp-controller="Reclamacao" asp-route-id="@item.ReclamacaoId">Responder</a>
+                                    }
+                                </td>
+                            </tr>
+
                             }
                         </tbody>
                     </table>
