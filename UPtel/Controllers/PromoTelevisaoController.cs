@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace UPtel.Controllers
 
 
         //Pesquisa nome distrito para adicionar à promo
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> SelectDistrito(string nomePesquisar)
         {
             List<Distrito> distrito = await _context.Distrito.Where(p => p.DistritoNome.Contains(nomePesquisar))
@@ -64,6 +66,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelevisão Off
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> PromoOff(string nomePesquisar, int pagina = 1)
         {
 
@@ -109,6 +112,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelevisao/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             return View();
@@ -119,6 +123,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(int id, [Bind("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoTelevisao promoTelevisao)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -137,6 +142,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelevisao/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -157,6 +163,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind(("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes"))] PromoTelevisao promoTelevisao)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -192,8 +199,9 @@ namespace UPtel.Controllers
             }
             return View(promoTelevisao);
         }
-      
+
         // GET: PromoTelevisao/Estado/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int? id)
         {
             if (id == null)
@@ -214,6 +222,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int id, [Bind(("PromoTelevisaoId,Nome,CanaisGratis,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes"))] PromoTelevisao promoTelevisao)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -254,6 +263,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoTelevisao/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -274,6 +284,7 @@ namespace UPtel.Controllers
         // POST: PromoTelevisao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var promoTelevisao = await _context.PromoTelevisao.FindAsync(id);

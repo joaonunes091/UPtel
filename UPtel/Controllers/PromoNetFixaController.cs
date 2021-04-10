@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace UPtel.Controllers
 
 
         //Pesquisa nome distrito para adicionar à promo
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> SelectDistrito (string nomePesquisar)
         {
             List<Distrito> distrito = await _context.Distrito.Where(p => p.DistritoNome.Contains(nomePesquisar))
@@ -66,7 +68,9 @@ namespace UPtel.Controllers
             return base.View(modelo);
 
         }
+
         // GET: PromoNetFixa Off
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> PromoOff (string nomePesquisar, int pagina = 1)
         {
             Paginacao paginacao = new Paginacao
@@ -96,7 +100,6 @@ namespace UPtel.Controllers
 
         }
 
-
         // GET: PromoNetFixa/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -116,6 +119,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetFixa/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             return View();
@@ -126,6 +130,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(int id,[Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetFixa promoNetFixa)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -144,6 +149,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetFixa/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -165,6 +171,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetFixa promoNetFixa)
         {
 
@@ -206,6 +213,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetFixa/Estado/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado (int? id)
         {
             if (id == null)
@@ -227,6 +235,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado (int id, [Bind("PromoNetFixaId,Nome,Limite,Velocidade,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetFixa promoNetFixa)
         {
 
@@ -265,6 +274,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetFixa/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -285,6 +295,7 @@ namespace UPtel.Controllers
         // POST: PromoNetFixa/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var promoNetFixa = await _context.PromoNetFixa.FindAsync(id);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace UPtel.Controllers
         }
 
         //Pesquisa nome distrito para adicionar à promo
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> SelectDistrito(string nomePesquisar)
         {
             List<Distrito> distrito = await _context.Distrito.Where(p => p.DistritoNome.Contains(nomePesquisar))
@@ -60,7 +62,8 @@ namespace UPtel.Controllers
             return base.View(modelo);
         }
         // GET: PromoNetMovel Off
-        public async Task<IActionResult> PromoOff (string nomePesquisar, int pagina = 1)
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> PromoOff(string nomePesquisar, int pagina = 1)
         {
 
             Paginacao paginacao = new Paginacao
@@ -104,6 +107,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetMovel/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             return View();
@@ -114,6 +118,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(int id, [Bind("PromoNetMovelId,Nome,Limite,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetMovel promoNetMovel)
         {
 
@@ -133,6 +138,7 @@ namespace UPtel.Controllers
         }
 
         // GET: PromoNetMovel/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -153,6 +159,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("PromoNetMovelId,Nome,Limite,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetMovel promoNetMovel)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -192,6 +199,7 @@ namespace UPtel.Controllers
             return View(promoNetMovel);
         }
         // GET: PromoNetMovel/Estado/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int? id)
         {
             if (id == null)
@@ -212,6 +220,7 @@ namespace UPtel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Estado(int id, [Bind("PromoNetMovelId,Nome,Limite,DescontoPrecoTotal,Descricao,Estado,DistritoId,DistritoNomes")] PromoNetMovel promoNetMovel)
         {
             //Código que vai buscar o ID do distrito atraves do distrito selecionado na vista SelectDistrito
@@ -248,6 +257,7 @@ namespace UPtel.Controllers
             return View(promoNetMovel);
         }
         // GET: PromoNetMovel/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -268,6 +278,7 @@ namespace UPtel.Controllers
         // POST: PromoNetMovel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var promoNetMovel = await _context.PromoNetMovel.FindAsync(id);
