@@ -15,17 +15,17 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <input type="hidden" asp-for="PromoTelevisaoId" />
                             <div class="form-group">
-                                <label asp-for="Nome" class="control-label"></label>
+                                <label asp-for="Nome" class="control-label"style="color:darkgray">Designação da promoção</label>
                                 <input asp-for="Nome" class="form-control" />
                                 <span asp-validation-for="Nome" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CanaisGratis" class="control-label"></label>
+                                <label asp-for="CanaisGratis" class="control-label"style="color:darkgray">Canais grátis</label>
                                 <input asp-for="CanaisGratis" class="form-control" />
                                 <span asp-validation-for="CanaisGratis" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="DescontoPrecoTotal" class="control-label"></label>
+                                <label asp-for="DescontoPrecoTotal" class="control-label" style="color:darkgray">Desconto preço total</label>
                                 <input asp-for="DescontoPrecoTotal" class="form-control" />
                                 <span asp-validation-for="DescontoPrecoTotal" class="text-danger"></span>
                             </div>
@@ -35,7 +35,7 @@
                                 <span asp-validation-for="Descricao" class="text-danger"></span>
                             </div>
                             <div hidden class="form-group">
-                                <label asp-for="Estado" class="control-label"></label>
+                                <label asp-for="Estado" class="control-label" style="color:darkgray">Estado</label>
                                 <select class="form-control" id="Estado" name="Estado">
                                     <option>On</option>
                                     <option>Off</option>
