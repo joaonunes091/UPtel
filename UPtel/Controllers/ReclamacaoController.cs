@@ -377,21 +377,41 @@ namespace UPtel.Controllers
         [Authorize(Roles = "Operador")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var reclamacao = await _context.Reclamacao
-                .Include(r => r.Contratos)
-                .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
-            if (reclamacao == null)
-            {
-                ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
-                return View("Sucesso");
-            }
+            //var reclamacao = await _context.Reclamacao
+            //    .Include(r => r.Contratos)
+            //    .FirstOrDefaultAsync(m => m.ReclamacaoId == id);
+            //if (reclamacao == null)
+            //{
+            //    ViewBag.Mensagem = "O cliente já foi eliminado por outra pessoa.";
+            //    return View("Sucesso");
+            //}
 
-            return View(reclamacao);
+            //return View(reclamacao);
+
+            ReclamacaoViewModel RVM = new ReclamacaoViewModel();
+
+            var reclamacao = await _context.Reclamacao.Include(p => p.Feedback)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.ReclamacaoId == id);
+
+
+            RVM.ReclamacaoId = reclamacao.ReclamacaoId;
+            RVM.ContratoId = reclamacao.ContratoId;
+            RVM.NomeCliente = reclamacao.NomeCliente;
+            RVM.FuncionarioId = reclamacao.FuncionarioId;
+            RVM.Assunto = reclamacao.Assunto;
+            RVM.Descricao = reclamacao.Descricao;
+            RVM.ResolvidoOperador = reclamacao.ResolvidoOperador;
+            RVM.ResolvidoCliente = reclamacao.ResolvidoCliente;
+            RVM.DataReclamacao = reclamacao.DataReclamacao;
+            RVM.ListaMensagens = reclamacao.Feedback;
+
+            return View(RVM);
         }
 
         // POST: Reclamacao/Delete/5

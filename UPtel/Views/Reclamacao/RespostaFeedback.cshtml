@@ -77,10 +77,15 @@
                                 </table>
                             }
 
+                        <div class="form-group">
+                            <label asp-for="ResolvidoOperador" class="control-label" style="color:darkgray">Resolvido?</label>
+                            <select name="ResolvidoOperador">
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+
                             <div class="form-group form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="ResolvidoOperador" /> @Html.DisplayNameFor(model => model.ResolvidoOperador)
-                                </label>
                                 <div class="form-group">
                                     <label asp-for="Mensagem" class="control-label"></label>
                                     <textarea rows="3" asp-for="Mensagem" class="form-control"></textarea>

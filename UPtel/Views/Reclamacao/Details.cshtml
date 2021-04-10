@@ -67,6 +67,8 @@
                     </dl>
                 </div>
 
+                <h2 class="font">Detalhes da Reclamação</h2>
+
                 @if (Model.ListaMensagens.Count != 0)
                 {
                     <table class="table text-white">
@@ -86,31 +88,35 @@
                         <tbody>
                             @foreach (var item in Model.ListaMensagens)
                             {
-                            <tr>
-                                <td>
-                                    @item.Nome
-                                </td>
-                                <td>
-                                    @item.DataFeedback
-                                </td>
-                                <td>
-                                    @item.Mensagem
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @item.Nome
+                                    </td>
+                                    <td>
+                                        @item.DataFeedback
+                                    </td>
+                                    <td>
+                                        @item.Mensagem
+                                    </td>
+                                </tr>
                             }
                         </tbody>
 
                     </table>
                 }
+                else
+                {
+                    <p style="color:darkgray">Não existem mensagens a mostrar</p>
+                }
                 <div class="float-right">
-                    
+
                     @if (User.IsInRole("Operador"))
                     {
-                        <a asp-action="Index">Voltar</a>
+                        <a asp-action="Index"><i title="Voltar" class="far fa-caret-square-left fa-2x"> &nbsp </i></a>
                     }
                     @if (User.IsInRole("Cliente"))
                     {
-                        <a asp-action="IndexCliente">Voltar</a>
+                        <a asp-action="IndexCliente"><i title="Voltar" class="far fa-caret-square-left fa-2x"> &nbsp </i></a>
                     }
 
                 </div>
