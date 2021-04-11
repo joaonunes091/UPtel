@@ -53,7 +53,7 @@ namespace UPtel.Controllers
             Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
             FaturacaoOperador op = await _context.FaturacaoOperadors.SingleOrDefaultAsync(x => x.FuncinarioId == infoOperador.UsersId);
 
-           
+
 
             operador = new OperadorViewModel
             {
@@ -73,6 +73,7 @@ namespace UPtel.Controllers
                 PrecoContratosFunc = infoOperador.PrecoContratosFunc,
                 Posicao = infoOperador.Posicao,
                 ValorMensalFat = op.ValorMensalFat,
+                Fotografia = infoOperador.Fotografia,
                 
             };
 

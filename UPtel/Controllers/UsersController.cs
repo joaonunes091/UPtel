@@ -715,7 +715,7 @@ namespace UPtel.Controllers
                         throw;
                     }
                 }
-                ViewBag.Mensagem = "Cliente alterado com sucesso";
+                ViewBag.Mensagem = "Operador alterado com sucesso";
                 return View("Sucesso");
             }
             return View(users);

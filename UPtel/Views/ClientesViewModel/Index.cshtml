@@ -20,6 +20,10 @@
                         {
                             <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:50px;" />
                         }
+            else
+            {
+                <img src="~/bootstrap/assets/img/placeholder.png" class="img-fluid" style="width:50px;"/>
+            }
                     </dd>
                     <dt class="col-sm-5 titulo">
                         @Html.DisplayNameFor(model => model.NomeCliente)
