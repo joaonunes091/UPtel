@@ -13,9 +13,18 @@
                         <h1>@ViewBag.Mensagem</h1>
                         <br />
                         <div>
+                            @if (User.IsInRole("Administrador"))
+                            {
                                 <a class="btn btn-primary" asp-action="Index">
                                     Ver Users
                                 </a>
+                            }
+                            else if (User.IsInRole("Operador"))
+                            {
+                                <a class="btn btn-primary" asp-action="Index"asp-controller="OperadorViewModel">
+                                    Voltar
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>

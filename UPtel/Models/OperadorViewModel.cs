@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UPtel.Models
 {
-    public class OperadorViewModel 
+    public class OperadorViewModel
     {
         public int Id { get; set; }
 
@@ -43,6 +43,7 @@ namespace UPtel.Models
         public byte[] Fotografia { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Data de Registo")]
         public DateTime DataRegisto { get; set; }
 
         [Display(Name = "Distrito")]

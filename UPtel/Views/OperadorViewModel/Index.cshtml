@@ -10,107 +10,117 @@
             <div class="col-xl-8 text-white">
                 <h1 class="font">Dados Pessoais de @Model.NomeOperador</h1>
                 <br />
+                <div class="row">
+                    <dl class="col-8 row d-flex justify-content-center text-left">
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.NomeOperador)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.NomeOperador)
+                        </dd>
 
-                <dl class="row d-flex justify-content-center text-center">
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.NomeOperador)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NomeOperador)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.DataNascimento)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.DataNascimento)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.DataNascimento)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.DataNascimento)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.CartaoCidadao)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.CartaoCidadao)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.CartaoCidadao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.CartaoCidadao)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.NumeroContribuinte)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.NumeroContribuinte)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.NumeroContribuinte)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Morada)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.Morada)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.Morada)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Morada)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.CodiogoPostal)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.CodiogoPostal) - @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.CodiogoPostal)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.CodiogoPostal) - @Html.DisplayFor(modelItem => Model.ExtensaoCodigoPostal)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.Telefone)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.Telefone)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Telefone)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Telemovel)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.Telemovel)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.Telemovel)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Telemovel)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.Email)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.Email)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Email)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.DataRegisto)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.DataRegisto)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.DataRegisto)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.DataRegisto)
-                    </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.DistritoNome)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.DistritoNome.DistritoNome)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.Posicao)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.Posicao)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.PrecoContratosFunc)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.PrecoContratosFunc)
+                        </dd>
+                        <dt class="col-sm-5 titulo">
+                            @Html.DisplayNameFor(model => model.ValorMensalFat)
+                        </dt>
+                        <dd class="col-sm-7">
+                            @Html.DisplayFor(modelItem => Model.ValorMensalFat)
+                        </dd>
 
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.DistritoNome)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.DistritoNome.DistritoNome)
-                    </dd>
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.Posicao)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.Posicao)
-                    </dd>
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.PrecoContratosFunc)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.PrecoContratosFunc)
-                    </dd>
-                    <dt class="col-sm-5 titulo">
-                        @Html.DisplayNameFor(model => model.ValorMensalFat)
-                    </dt>
-                    <dd class="col-sm-7">
-                        @Html.DisplayFor(modelItem => Model.ValorMensalFat)
-                    </dd>
-
-                </dl>
+                    </dl>
+                    <div class="col-4">
+                        @if (Model.Fotografia != null)
+                        {
+                            <img src="data:image/jpeg;base64, @Convert.ToBase64String(Model.Fotografia)" class="img-fluid" style="width:100px;" />
+                        }
+                        else
+                        {
+                            <img src="~/bootstrap/assets/img/placeholder.png" class="img-fluid" style="width:50px;" />
+                        }
+                    </div>
+                </div>
                 <div class="d-flex justify-content-between">
                     <a class="btn btn-costum" asp-action="MelhorOperadorDistrito" asp-controller="Contratos"><i class="far fa-chart-bar fixedIcon"></i> Top 10 Operadores </a>
-                    <a class="btn btn-costum" asp-action="Contabilizar" asp-controller="faturacaoOperador"><i class="fas fa-euro-sign fixedIcon"></i> Contabilizar </a>
                     <a class="btn btn-costum" asp-action="Index" asp-controller="faturacaoOperador" asp-route-id="@Model.Id"><i class="fas fa-wallet fixedIcon"></i> Faturação </a>
                     <a class="btn btn-costum" asp-area="Identity" asp-page="/Account/Manage/SetPassword"><i class="fas fa-key fixedIcon"></i> Mudar Password</a>
                     <a class="btn btn-costum" asp-action="EditOperador" asp-controller="Users" asp-route-id="@Model.Id"><i class="far fa-edit fixedIcon"></i> Editar</a>
