@@ -41,10 +41,10 @@
                                     Assunto
                                 </th>
                                 <th class="text-center titulo">
-                                    Resolvido Operador
+                                    Resolvido (Operador)
                                 </th>
                                 <th class="text-center titulo">
-                                    Resolvido Cliente
+                                    Resolvido (Cliente)
                                 </th>
                                 <th class="text-center titulo">
                                     Data da Reclamação
@@ -56,94 +56,105 @@
                         <tbody>
                             @foreach (var item in Model.Reclamacoes)
                             {
-                                <tr>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.NomeCliente)
-                                    </td>
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Assunto)
-                                    </td>
-                                    @if (item.ResolvidoOperador == true)
-                                    {
+                               
+                                    <tr>
                                         <td class="text-center">
-                                            Sim
+
+                                            @if (item.PorResoponder == true && item.ResolvidoCliente == false)
+                                            {
+                                                <i class="fas fa-exclamation-triangle text-warning fixedIcon"></i><br>
+                                            }
+
+                                            @Html.DisplayFor(modelItem => item.NomeCliente)
                                         </td>
-                                    }
-                                    else
-                                    {
                                         <td class="text-center">
-                                            Não
+                                            @Html.DisplayFor(modelItem => item.Assunto)
                                         </td>
-                                    }
-                                    @if (item.ResolvidoCliente == true)
-                                    {
-                                        <td class="text-center">
-                                            Sim
-                                        </td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center">
-                                            Não
-                                        </td>
-                                    }
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.DataReclamacao)
-                                    </td>
-                                    <td class="text-center">
-                                        
-                                        <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a> 
-                                        
-                                    </td>
-                                    <td class="text-center">
-                                        @if (item.ResolvidoOperador == false)
+                                        @if (item.ResolvidoOperador == true)
                                         {
-                                            <a class="btn btn-costum" asp-action="RespostaReclamacaoOperador" asp-route-id="@item.ReclamacaoId">Responder à reclamação</a>
+                                            <td class="text-center">
+                                                Sim
+                                            </td>
                                         }
-                                        @if (item.ResolvidoOperador == true && item.ResolvidoCliente == false)
+                                        else
                                         {
-                                            <a class="btn btn-costum" asp-action="RespostaFeedback" asp-route-id="@item.ReclamacaoId">Responder ao feedback</a>
+                                            <td class="text-center">
+                                                Não
+                                            </td>
                                         }
-                                    </td>
-                                </tr>
+                                        @if (item.ResolvidoCliente == true)
+                                        {
+                                            <td class="text-center">
+                                                Sim
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">
+                                                Não
+                                            </td>
+                                        }
+                                        <td class="text-center">
+                                            @Html.DisplayFor(modelItem => item.DataReclamacao)
+                                        </td>
+                                        <td class="text-center">
+
+                                            <a asp-action="Details" asp-route-id="@item.ReclamacaoId"><i class="fas fa-search-plus fa-2x"></i></a>
+
+                                        </td>
+                                        <td class="text-center">
+                                            @if (item.ResolvidoOperador == false)
+                                            {
+                                                <a class="btn btn-costum" asp-action="RespostaReclamacaoOperador" asp-route-id="@item.ReclamacaoId">Responder à reclamação</a>
+                                            }
+                                            @if (item.ResolvidoOperador == true && item.ResolvidoCliente == false)
+                                            {
+                                                <a class="btn btn-costum" asp-action="RespostaFeedback" asp-route-id="@item.ReclamacaoId">Responder ao feedback</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                
+                                
+
                             }
                         </tbody>
-                    </table>
+                        </table>
                     }
-                    <nav>
-                        <ul class="pagination justify-content-end">
-                            @{
-                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaInicial < 1)
-                                {
-                                    paginaInicial = 1;
-                                }
+                            
+                            <nav>
+                                <ul class="pagination justify-content-end">
+                                    @{
+                                        int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        if (paginaInicial < 1)
+                                        {
+                                            paginaInicial = 1;
+                                        }
 
-                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
-                                if (paginaFinal > Model.Paginacao.TotalPaginas)
-                                {
-                                    paginaFinal = Model.Paginacao.TotalPaginas;
-                                }
-                            }
+                                        int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                        if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                        {
+                                            paginaFinal = Model.Paginacao.TotalPaginas;
+                                        }
+                                    }
 
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
-                            </li>
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                                    </li>
 
-                            @for (int i = paginaInicial; i <= paginaFinal; i++)
-                            {
-                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
-                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
-                                </li>
-                            }
+                                    @for (int i = paginaInicial; i <= paginaFinal; i++)
+                                    {
+                                        <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                            <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                        </li>
+                                    }
 
 
-                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
-                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                                    <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                        <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
         </div>
     </div>

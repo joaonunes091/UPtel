@@ -35,6 +35,10 @@
 
                                 <tr>
                                     <td class="text-center">
+                                        @if (item.PorResoponder == false && item.ResolvidoCliente == false)
+                                        {
+                                            <i class="fas fa-exclamation-triangle text-warning fixedIcon"></i><br>
+                                        }
                                         @Html.DisplayFor(modelItem => item.Assunto)
                                     </td>
 

@@ -52,7 +52,7 @@ namespace UPtel.Services
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com", "");
+                    smtp.Credentials = new NetworkCredential("uptelautomated@gmail.com", "Secret123$");
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(mail);
                 }

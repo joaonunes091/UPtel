@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using static System.ComponentModel.DataAnnotations.RegularExpressionAttribute;
 
 namespace UPtel.Models
 {
@@ -35,6 +37,8 @@ namespace UPtel.Models
         public bool ResolvidoOperador { get; set; }
 
         public bool ResolvidoCliente { get; set; }
+
+        public bool PorResoponder { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
