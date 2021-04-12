@@ -742,6 +742,54 @@ section {
   transform: translateY(-10px);
   border-color: #009961;
 }
+.services .icon-box1 {
+    padding: 30px 30px;
+    transition: all ease-in-out 0.3s;
+    background-color: rgba(255, 255, 255, 0.35);
+    /*background-image: url(../img/TV.jpg);*/
+    /*box-shadow: 0px 5px 90px 0px rgba(255, 255, 255, 0.1);*/
+    border-radius: 18px;
+    /*border-bottom: 5px solid #fff;*/
+}
+
+    .services .icon-box1 .icon {
+        width: 64px;
+        height: 64px;
+        background: #009961;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /*margin-bottom: 20px;*/
+        transition: ease-in-out 0.3s;
+        color: #fefefe;
+    }
+
+        .services .icon-box1 .icon i {
+            font-size: 28px;
+        }
+
+    .services .icon-box1 h4 {
+        font-weight: 700;
+        /*margin-bottom: 15px;*/
+        font-size: 24px;
+    }
+
+        .services .icon-box1 h4 a {
+            color: rgb(0, 0, 0);
+            transition: ease-in-out 0.3s;
+        }
+
+    .services .icon-box1 p {
+        line-height: 24px;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    .services .icon-box1:hover {
+        transform: translateY(-10px);
+        border-color: #009961;
+    }
 
 /*.services .icon-box:hover h4 a {
   color: #009961;

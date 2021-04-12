@@ -10,25 +10,45 @@
     <div class="rightPanel">
         <img src="~/bootstrap/assets/img/PromoTelefone.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
     </div>
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-xl-10 text-white">
+    <h2 class="font text-center">Serviços de comunicação</h2>
+    
+    <section id="services" class="services">
+        <div class="container">
+            <div class="row justify-content-center">
 
-                <h2 class="font">Serviços de comunicação</h2>
-                <br /><br />
-                      <div class="row text-center">
-                          <div class="col-md-6">
-                              <a asp-action="Index" asp-controller="Telefone">
-                                  <img src="~/bootstrap/assets/img/telefone1.jpg" alt="Telefone" title="Serviços de telefone" style="width:200px; height:200px;" />
-                              </a>
-                          </div> 
-                          <div class="col-md-6">
-                              <a asp-action="Index" asp-controller="Telemovel">
-                                  <img src="~/bootstrap/assets/img/telemovel.jpg" alt="Telemóvel" title="Serviços de telemóvel" style="width:200px; height:200px;" />
-                              </a>
-                          </div>
-                      </div>
+
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <a asp-action="Index" asp-controller="Telefone">
+                        <div class="icon-box1 text-center" style="width:250px; height:250px">
+                            <h4 class="font">Telefone</h4>
+                            <img  src="~/bootstrap/assets/img/telefone1.jpg" alt="Telefone" title="Serviços de telefone" style="width:100px; height:100px;" />
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                    <a asp-action="Index" asp-controller="Telemovel">
+                        <div class="icon-box1 text-center" style="width:250px; height:250px">
+                            <h4 class="font">Telemóvel</h4>
+                            <img src="~/bootstrap/assets/img/telemovel.jpg" alt="Telemóvel" title="Serviços de telemóvel" style="width:100px; height:100px;" />
+                        </div>
+                    </a>
+                </div>
+
+                @*<div class="row text-center">
+                        <div class="col-md-6">
+                            <a asp-action="Index" asp-controller="Telefone">
+                                <img src="~/bootstrap/assets/img/telefone1.jpg" alt="Telefone" title="Serviços de telefone" style="width:200px; height:200px;" />
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a asp-action="Index" asp-controller="Telemovel">
+                                <img src="~/bootstrap/assets/img/telemovel.jpg" alt="Telemóvel" title="Serviços de telemóvel" style="width:200px; height:200px;" />
+                            </a>
+                        </div>
+                    </div>*@
+
             </div>
         </div>
-    </div>
+    </section>
 </section>
