@@ -22,6 +22,7 @@ namespace UPtel.Models
         public List<Telefone> Telefone { get; set; }
         public List<Telemovel> Telemovel { get; set; }
         public List<Televisao> Televisao { get; set; }
+        public List<NetFixa> NetFixa { get; set; }
 
         public Paginacao Paginacao { get; set; }
         public string NomePesquisar { get; set; }
