@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UPtel.Models.NetFixa>
+﻿@model ListaCanaisViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -17,31 +17,55 @@
             <img src="~/bootstrap/assets/img/PromoAniv.png" style="width:100%; height:100vh; padding-right:10%; padding-top:10%" />
         </div>
     }
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-8 text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-white">
 
-                    <h1 class="font">Internet fixa</h1>
-                    <br />
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <p>
-                            <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
-                        </p>
-                    }
-                    <br />
+                <h2 class="font">Internet fixa</h2>
+                <br />
+                <div class="col-md-10 border-info mb-4">
+
+                </div>
+                <br />
+                <div class="col-md-8 border-info mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:darkgray">Pesquisa de Pacotes de Televisão</h5>
+                        <form asp-action="Index" method="get">
+                            <div class="form-group">
+                                <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Básico" value="@Model.NomePesquisar" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <p>
+                        <a asp-action="Create"><i title="Criar Novo" class="fas fa-folder-plus fa-3x"></i></a>
+                    </p>
+                }
+                <br />
+                @if (Model.NetFixa.Count() == 0)
+                {
+                    <p style="color:darkgray">Não existem serviços de internet fixa para mostrar</p>
+                }
+                else
+                {
                     <table class="table text-white">
                         <thead>
                             <tr>
 
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.Nome)
+                                    @Html.DisplayNameFor(model => model.NetFixa[0].Nome)
                                 </th>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.TipoConexao)
+                                    @Html.DisplayNameFor(model => model.NetFixa[0].TipoConexao)
                                 </th>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.PrecoNetFixa)
+                                    @Html.DisplayNameFor(model => model.NetFixa[0].PrecoNetFixa)
                                 </th>
                                 <th class="text-center titulo">
                                     Detalhes
@@ -49,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.NetFixa)
                             {
                                 <tr>
                                     <td class="text-center">
@@ -68,7 +92,40 @@
                             }
                         </tbody>
                     </table>
-                </div>
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            @{
+                                int paginaInicial = Model.Paginacao.PaginaAtual - Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaInicial < 1)
+                                {
+                                    paginaInicial = 1;
+                                }
+
+                                int paginaFinal = Model.Paginacao.PaginaAtual + Paginacao.NUMERO_PAGINAS_MOSTRAR_ANTES_DEPOIS;
+                                if (paginaFinal > Model.Paginacao.TotalPaginas)
+                                {
+                                    paginaFinal = Model.Paginacao.TotalPaginas;
+                                }
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == 1 ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="1" asp-route-nomePesquisar="@Model.NomePesquisar">Primeiro</a>
+                            </li>
+
+                            @for (int i = paginaInicial; i <= paginaFinal; i++)
+                            {
+                                <li class="page-item @(Model.Paginacao.PaginaAtual == i ? "active" : "")">
+                                    <a class="page-link" asp-action="Index" asp-route-pagina="@i" asp-route-nomePesquisar="@Model.NomePesquisar">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.Paginacao.PaginaAtual == Model.Paginacao.TotalPaginas  ? "disabled" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-pagina="@Model.Paginacao.TotalPaginas" asp-route-nomePesquisar="@Model.NomePesquisar">Último</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
             </div>
         </div>
-    </section>
+    </div>
+</section>

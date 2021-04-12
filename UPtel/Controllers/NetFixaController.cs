@@ -21,9 +21,27 @@ namespace UPtel.Controllers
         }
 
         // GET: NetFixa
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomePesquisar, int pagina = 1)
         {
-            return View(await _context.NetFixa.ToListAsync());
+            Paginacao paginacao = new Paginacao
+            {
+                TotalItems = await _context.NetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar)).CountAsync(),
+                PaginaAtual = pagina
+            };
+            List<NetFixa> netFixa = await _context.NetFixa.Where(p => nomePesquisar == null || p.Nome.Contains(nomePesquisar))
+                .OrderBy(c => c.Nome)
+                .Skip(paginacao.ItemsPorPagina * (pagina - 1))
+                .Take(paginacao.ItemsPorPagina)
+                .ToListAsync();
+
+            ListaCanaisViewModel model = new ListaCanaisViewModel
+            {
+                Paginacao = paginacao,
+                NetFixa = netFixa,
+                NomePesquisar = nomePesquisar
+            };
+
+            return base.View(model);
         }
 
         // GET: NetFixa/Details/5
