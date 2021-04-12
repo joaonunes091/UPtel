@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UPtel.Data;
 using UPtel.Models;
+using UPtel.Services;
 
 namespace UPtel.Controllers
 {
     public class ReclamacaoController : Controller
     {
         private readonly UPtelContext _context;
+        private readonly IEmailSender _emailSender;
 
-        public ReclamacaoController(UPtelContext context)
+        public ReclamacaoController(IEmailSender emailSender, IWebHostEnvironment env, UPtelContext context)
         {
+            _emailSender = emailSender;
             _context = context;
         }
 
@@ -109,6 +113,7 @@ namespace UPtel.Controllers
                 reclamacao.ContratoId = id;
                 reclamacao.ResolvidoCliente = false;
                 reclamacao.ResolvidoOperador = false;
+                reclamacao.PorResoponder = true;
                 reclamacao.DataReclamacao = DateTime.Now;
                 reclamacao.Assunto = RVM.Assunto;
                 reclamacao.Descricao = RVM.Descricao;
@@ -150,13 +155,12 @@ namespace UPtel.Controllers
 
             var feedback = await _context.Feedback.FirstOrDefaultAsync(x => x.ReclamacaoId == reclamacao.ReclamacaoId);
             var funcionario = await _context.Users.SingleOrDefaultAsync(c => c.Email == User.Identity.Name);
-
+          
             if (feedback != null)
             { 
             RVM.FuncionarioId = feedback.FuncionarioId;
             RVM.Mensagem = feedback.Mensagem;
             RVM.DataFeedback = feedback.DataFeedback;
-            //RVM.NomeFuncionario = funcionario.Nome;
             }
 
             if (reclamacao == null)
@@ -199,6 +203,15 @@ namespace UPtel.Controllers
                     reclamacao.ResolvidoOperador = RVM.ResolvidoOperador;
                     reclamacao.ResolvidoCliente = RVM.ResolvidoCliente;
                     reclamacao.DataReclamacao = RVM.DataReclamacao;
+                    reclamacao.PorResoponder = false;
+
+                    var contrato = await _context.Contratos.SingleOrDefaultAsync(c => c.ContratoId == reclamacao.ContratoId);
+                    var cliente = await _context.Users.SingleOrDefaultAsync(c => c.UsersId == contrato.ClienteId);
+
+                    string email; string assunto; string mensagem;
+                    assunto = "UPtel - Reclamação de " + reclamacao.NomeCliente;
+                    mensagem = "Caro/a " + reclamacao.NomeCliente + ", informamos que o nosso operador " + funcionario.Nome + " respondeu à sua reclamação";
+                    email = cliente.Email;
 
                     _context.Reclamacao.Update(reclamacao);
                     await _context.SaveChangesAsync();
@@ -210,6 +223,15 @@ namespace UPtel.Controllers
 
                     _context.Feedback.Add(feedback);
                     await _context.SaveChangesAsync();
+
+                    try
+                    {
+                        await _emailSender.SendEmailAsync(email, assunto, mensagem);
+                    }
+                    catch (Exception)
+                    {
+                        return RedirectToAction("RespostaReclamacaoOperador");
+                    }
 
                 }
                 catch (DbUpdateConcurrencyException)
@@ -282,6 +304,7 @@ namespace UPtel.Controllers
                 reclamacao.ResolvidoOperador = reclamacao.ResolvidoOperador;
                 reclamacao.ResolvidoCliente = RVM.ResolvidoCliente;
                 reclamacao.DataReclamacao = RVM.DataReclamacao;
+                reclamacao.PorResoponder = true;
 
                 _context.Reclamacao.Update(reclamacao);
                 await _context.SaveChangesAsync();
@@ -354,6 +377,15 @@ namespace UPtel.Controllers
                 reclamacao.ResolvidoOperador = RVM.ResolvidoOperador;
                 reclamacao.ResolvidoCliente = RVM.ResolvidoCliente;
                 reclamacao.DataReclamacao = RVM.DataReclamacao;
+                reclamacao.PorResoponder = false;
+
+                var contrato = await _context.Contratos.SingleOrDefaultAsync(c => c.ContratoId == reclamacao.ContratoId);
+                var cliente = await _context.Users.SingleOrDefaultAsync(c => c.UsersId == contrato.ClienteId);
+
+                string email; string assunto; string mensagem;
+                assunto = "UPtel - Resposta ao feedback de " + reclamacao.NomeCliente;
+                mensagem = "Caro/a " + reclamacao.NomeCliente + ", informamos que o nosso operador " + funcionario.Nome + " respondeu ao seu feedback";
+                email = cliente.Email;
 
                 _context.Reclamacao.Update(reclamacao);
                 await _context.SaveChangesAsync();
@@ -365,6 +397,16 @@ namespace UPtel.Controllers
 
                 _context.Feedback.Add(feedback);
                 await _context.SaveChangesAsync();
+
+                try
+                {
+                    await _emailSender.SendEmailAsync(email, assunto, mensagem);
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("RespostaFeedback");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 

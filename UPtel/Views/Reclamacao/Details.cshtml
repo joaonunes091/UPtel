@@ -13,7 +13,7 @@
                     <br />
                     <dl class="row">
                         <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.NomeCliente)
+                            Nome do cliente
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.NomeCliente)
@@ -25,13 +25,13 @@
                             @Html.DisplayFor(model => model.Assunto)
                         </dd>
                         <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.Descricao)
+                            Descrição
                         </dt>
                         <dd class="col-sm-7">
                             @Html.DisplayFor(model => model.Descricao)
                         </dd>
                         <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.ResolvidoOperador)
+                            Resolvido (Operador)
                         </dt>
 
                         @if (Model.ResolvidoOperador == true)
@@ -47,9 +47,9 @@
                             </dd>
                         }
 
-                        <dt class="col-sm-5 titulo">
-                            @Html.DisplayNameFor(model => model.ResolvidoCliente)
-                        </dt>
+                    <dt class="col-sm-5 titulo">
+                        Resolvido (Cliente)
+                    </dt>
 
                         @if (Model.ResolvidoCliente == true)
                         {
@@ -67,7 +67,7 @@
                     </dl>
                 </div>
 
-                <h2 class="font">Detalhes da Reclamação</h2>
+                <h2 class="font">Histórico de mensagens</h2>
 
                 @if (Model.ListaMensagens.Count != 0)
                 {
@@ -81,7 +81,7 @@
                                     Data
                                 </th>
                                 <th class="text-center titulo">
-                                    Mensagem
+                                    Mensagem 
                                 </th>
                             </tr>
                         </thead>
@@ -89,13 +89,13 @@
                             @foreach (var item in Model.ListaMensagens)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="col-sm-7">
                                         @item.Nome
                                     </td>
-                                    <td>
-                                        @item.DataFeedback
+                                    <td class="col-sm-7">
+                                        @item.DataFeedback.Day/@item.DataFeedback.Month/@item.DataFeedback.Year
                                     </td>
-                                    <td>
+                                    <td class="col-sm-7">
                                         @item.Mensagem
                                     </td>
                                 </tr>
