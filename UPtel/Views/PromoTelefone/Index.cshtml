@@ -45,18 +45,10 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelefone[0].Nome)
                                 </th>
-                                @*<th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelefone[0].Limite)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoMinNacional)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoMinInternacional)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelefone[0].DescontoPrecoTotal)
-        </th>*@
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoTelefone[0].DistritoId)
+                                </th>
+
                                 @if (User.IsInRole("Operador"))
                                 {
                                     <th class="text-center titulo">
@@ -71,32 +63,24 @@
                         <tbody>
                             @foreach (var item in Model.PromoTelefone)
                             {
-                                <tr>
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DistritoNome.DistritoNome)
+                                </td>
+
+                                @if (User.IsInRole("Operador"))
+                                {
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Nome)
+                                        @Html.DisplayFor(modelItem => item.Estado)
                                     </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.Limite)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DescontoMinNacional)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DescontoMinInternacional)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                        </td>*@
-                                    @if (User.IsInRole("Operador"))
-                                    {
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Estado)
-                                        </td>
-                                    }
-                                    <td class="text-center">
-                                        <a asp-action="Details" asp-route-id="@item.PromoTelefoneId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>
-                                </tr>
+                                }
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.PromoTelefoneId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

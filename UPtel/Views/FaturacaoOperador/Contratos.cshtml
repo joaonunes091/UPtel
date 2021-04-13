@@ -7,27 +7,11 @@
     <div class="container">
         <div class="row justify-content-center ">
             <div class="col-xl-8 text-white">
-                <h2 class="font">Faturação operador</h2>
+                <h2 class="font">Contratos operador</h2>
 
-                <div class="col-md-8 border-info mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color:darkgray">Procura por mês</h5>
-                        <form asp-action="Index" method="get">
-                            <div class="form-group">
-                                <input name="nomePesquisar" class="form-control" type="search" placeholder="Ex. Janeiro" value="@Model.NomePesquisar" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                <a asp-action="Index" class="btn btn-outline-light">Limpar</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div>
-                    <a class="btn btn-costum " asp-action="Contratos" asp-controller="FaturacaoOperador">Meus contratos</a>
-                </div>
-                <br /><br />
-                @if (Model.FaturacaoOperadores.Count() == 0)
+                
+
+                @if (Model.Contratos.Count() == 0)
                 {
                     <p style="color:darkgrey">Não existem dados para mostrar</p>
                 }
@@ -37,32 +21,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.FaturacaoOperadores[0].Data)
+                                    @Html.DisplayNameFor(model => model.Contratos[0].Cliente.Nome)
                                 </th>
                                 <th class="text-center titulo">
-                                    @Html.DisplayNameFor(model => model.FaturacaoOperadores[0].ValorMensalFat)
+                                    @Html.DisplayNameFor(model => model.Contratos[0].PrecoContrato)
                                 </th>
-                                <th class="text-center titulo">
-                                    Mês
-                                </th>
+                                
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.FaturacaoOperadores)
+                            @foreach (var item in Model.Contratos)
                             {
                                 <tr>
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Data)
+                                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
                                     </td>
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.ValorMensalFat)
+                                        @Html.DisplayFor(modelItem => item.PrecoContrato)
                                     </td>                                    
-                                    <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Mes.Mes)
-                                    </td>
+                                    
                                     <td>
-                                        <a asp-action="Details" asp-route-id="@item.FatOpId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i> &nbsp </a>
+                                        <a asp-action="DetailsContratosOperador" asp-controller="Contratos" asp-route-id="@item.ContratoId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i> &nbsp </a>
                                     </td>
                                 </tr>
                             }

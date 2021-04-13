@@ -158,6 +158,109 @@ namespace UPtel.Controllers
         // GET: Contratos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            List<Contratos> melhorCliente = await _context.Contratos
+                 .Include(p => p.Cliente.DistritoNome)
+                 .Include(p => p.Cliente)
+                 .Where(p => p.Cliente.Tipo.Tipo.Contains("Cliente"))
+                 .OrderByDescending(c => c.PrecoContrato)
+                 //.Take(10)
+                 .ToListAsync();
+
+            int x = 0;
+
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Contratos = melhorCliente,
+            };
+          
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ContratoViewModel CVM = new ContratoViewModel();
+
+            var contrato = await _context.Contratos.Include(p => p.ContratoPromoNetFixa).ThenInclude(p => p.PromoNetFixa)
+                .Include(p => p.ContratoPromoNetMovel).ThenInclude(p => p.PromoNetMovel)
+                .Include(p => p.ContratoPromoTelefone).ThenInclude(p => p.PromoTelefone)
+                .Include(p => p.ContratoPromoTelemovel).ThenInclude(p => p.PromoTelemovel)
+                .Include(p => p.ContratoPromoTelevisao).ThenInclude(p => p.PromoTelevisao)
+                .Include(p => p.Cliente)
+                .Include(p => p.Funcionario)
+                .Include(p => p.Pacote)
+                .Include(p => p.DistritoNome)
+
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.ContratoId == id);
+
+            foreach (var item in modelo.Contratos)
+            {
+                x++;
+                item.Posicao = x;
+                CVM.Posicao = item.Posicao;
+            }
+
+
+            var listaPromoNetFixa = _context.PromoNetFixa.Select(x => new CheckBox()
+            {
+                Id = x.PromoNetFixaId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoNetFixa.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoNetMovel = _context.PromoNetMovel.Select(x => new CheckBox()
+            {
+                Id = x.PromoNetMovelId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoNetMovel.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelefone = _context.PromoTelefone.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelefoneId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelefone.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelemovel = _context.PromoTelemovel.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelemovelId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelemovel.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+            var listaPromoTelevisao = _context.PromoTelevisao.Select(x => new CheckBox()
+            {
+                Id = x.PromoTelevisaoId,
+                Nome = x.Nome,
+                Selecionado = x.ContratoPromoTelevisao.Any(x => x.ContratoId == contrato.ContratoId) ? true : false
+            }).ToList();
+
+            CVM.ContratoId = (int)id;
+            CVM.FuncionarioId = contrato.FuncionarioId;
+            CVM.ClienteId = contrato.ClienteId;
+            CVM.DataInicio = contrato.DataInicio;
+            CVM.PacoteId = contrato.PacoteId;
+            CVM.Numeros = contrato.Numeros;
+            CVM.Fidelizacao = contrato.Fidelizacao;
+            CVM.ListaPromoNetFixa = listaPromoNetFixa;
+            CVM.ListaPromoNetMovel = listaPromoNetMovel;
+            CVM.ListaPromoTelefone = listaPromoTelefone;
+            CVM.ListaPromoTelemovel = listaPromoTelemovel;
+            CVM.ListaPromoTelevisao = listaPromoTelevisao;
+            CVM.NomeCliente = contrato.Cliente.Nome;
+            CVM.NomeFuncionario = contrato.Funcionario.Nome;
+            CVM.NomeContrato = contrato.Pacote.NomePacote;
+            CVM.PrecoContrato = contrato.PrecoContrato;
+            CVM.DistritoNome = contrato.DistritoNome.DistritoNome;
+            CVM.MoradaContrato = contrato.MoradaContrato;
+            CVM.CodigoPostalCont = contrato.CodigoPostalCont;
+            CVM.CodigoPostalExtCont = contrato.CodigoPostalExtCont;
+            
+            return View(CVM);
+        }
+
+        // GET: Contratos/DetailsContratosOperador/5
+        public async Task<IActionResult> DetailsContratosOperador(int? id)
+        {
             if (id == null)
             {
                 return NotFound();

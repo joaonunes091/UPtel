@@ -45,6 +45,7 @@ namespace UPtel.Controllers
                 PaginaAtual = pagina
             };
             List<PromoTelemovel> promoTelemovel = await _context.PromoTelemovel.Where(p => p.Estado.Contains("On") && nomePesquisar == null || p.Estado.Contains("On") && p.Nome.Contains(nomePesquisar))
+                 .Include(d => d.DistritoNome)
                 .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)
