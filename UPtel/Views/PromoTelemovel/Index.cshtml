@@ -45,12 +45,10 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoTelemovel[0].Nome)
                                 </th>
-                                @*<th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteMinutos)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoTelemovel[0].LimiteSMS)
-        </th>*@
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoTelemovel[0].DistritoId)
+                                </th>
+                                
                                 @if (User.IsInRole("Operador"))
                                 {
                                     <th class="text-center titulo">
@@ -80,41 +78,25 @@
                         <tbody>
                             @foreach (var item in Model.PromoTelemovel)
                             {
-                                <tr>
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DistritoNome.DistritoNome)
+                                </td>
+                               
+                                @if (User.IsInRole("Operador"))
+                                {
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Nome)
+                                        @Html.DisplayFor(modelItem => item.Estado)
                                     </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.LimiteMinutos)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.LimiteSMS)
-                                        </td>*@
-                                    @if (User.IsInRole("Operador"))
-                                    {
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Estado)
-                                        </td>
-                                    }
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoMinInternacional)
-                                        </td>*@
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoSMS)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoMMS)
-                                        </td>*@
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.DecontoPrecoTotal)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Descricao)
-                                        </td>*@
-                                    <td class="text-center">
-                                        <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>
-                                </tr>
+                                }
+                             
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.PromoTelemovelId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

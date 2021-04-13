@@ -47,6 +47,7 @@ namespace UPtel.Controllers
             };
 
             List<PromoNetMovel> promoNetMovel = await _context.PromoNetMovel.Where(p => p.Estado.Contains("On") && nomePesquisar == null || p.Estado.Contains("On") && p.Nome.Contains(nomePesquisar))
+                .Include(d => d.DistritoNome)
                 .OrderBy(c => c.Nome)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)

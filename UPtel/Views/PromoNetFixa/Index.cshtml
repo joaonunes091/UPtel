@@ -44,18 +44,10 @@
                                 <th class="text-center titulo">
                                     @Html.DisplayNameFor(model => model.PromoNetFixas[0].Nome)
                                 </th>
-                                @*<th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Limite)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Velocidade)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoNetFixas[0].Descricao)
-        </th>
-        <th class="text-center titulo">
-            @Html.DisplayNameFor(model => model.PromoNetFixas[0].DescontoPrecoTotal)
-        </th>*@
+                                <th class="text-center titulo">
+                                    @Html.DisplayNameFor(model => model.PromoNetFixas[0].DistritoId)
+                                </th>
+                              
                                 @if (User.IsInRole("Operador"))
                                 {
                                     <th class="text-center titulo">
@@ -70,32 +62,24 @@
                         <tbody>
                             @foreach (var item in Model.PromoNetFixas)
                             {
-                                <tr>
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DistritoNome.DistritoNome)
+                                </td>
+                                
+                                @if (User.IsInRole("Operador"))
+                                {
                                     <td class="text-center">
-                                        @Html.DisplayFor(modelItem => item.Nome)
+                                        @Html.DisplayFor(modelItem => item.Estado)
                                     </td>
-                                    @*<td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Limite)
-                                        </td>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Velocidade)
-                                        </td>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Descricao)
-                                        </td>
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.DescontoPrecoTotal)
-                                        </td>*@
-                                    @if (User.IsInRole("Operador"))
-                                    {
-                                        <td class="text-center">
-                                            @Html.DisplayFor(modelItem => item.Estado)
-                                        </td>
-                                    }
-                                    <td class="text-center">
-                                        <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                    </td>
-                                </tr>
+                                }
+                                <td class="text-center">
+                                    <a asp-action="Details" asp-route-id="@item.PromoNetFixaId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
