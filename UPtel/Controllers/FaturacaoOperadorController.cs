@@ -68,6 +68,32 @@ namespace UPtel.Controllers
             return RedirectToAction("Index", "OperadorViewModel");
         }
 
+        public async Task<IActionResult> Contratos(Contratos contratos, string nomePesquisar, int pagina = 1) 
+        {
+            var funcionario = _context.Users.SingleOrDefault(c => c.Email == User.Identity.Name);
+
+            Paginacao paginacao = new Paginacao
+            {
+                
+                PaginaAtual = pagina
+            };
+
+            List<Contratos> contrato = await _context.Contratos.Where(x => x.FuncionarioId == funcionario.UsersId)
+                .Include(c=>c.Cliente)
+                .OrderByDescending(c=>c.DataInicio)
+                .ToListAsync();
+            ListaCanaisViewModel modelo = new ListaCanaisViewModel
+            {
+                Contratos = contrato,
+                Paginacao = paginacao,
+            };
+
+
+            //return RedirectToAction("Contratos");
+            return base.View(modelo);
+        }
+
+       
 
 
         //OUTRAS FUNÇÕES
