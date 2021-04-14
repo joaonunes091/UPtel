@@ -492,11 +492,11 @@ namespace UPtel.Data
         {
             if (DbContext.PacoteCanais.Any()) return;
 
-            Canais canaisRTPAfrica = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP Africa");
+            Canais canaisRTPAfrica = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "TVI");
             Canais canaisRTP1 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 1");
             Canais canaisRTP2 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 2");
-            Canais canaisRTP3 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "RTP 3");
-            Canais canaisTvCine = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "TV Cine 1");
+            Canais canaisRTP3 = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "SIC");
+            Canais canaisTvCine = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "SportTv");
             Canais canaisHoll = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "Hollywood");
             Canais canaisAXN = DbContext.Canais.FirstOrDefault(c => c.NomeCanal == "AXN");
             Televisao televisaoBasico = DbContext.Televisao.FirstOrDefault(t => t.Nome == "Básico");
@@ -873,14 +873,14 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt = "695",
                     DistritoId = 1,
-                    DataRegisto = new DateTime(1999,12,1),
+                    DataRegisto = new DateTime(1999,12,01),
                     
 
                 },
                 new Users
                 {
                     Nome = "João Santos",
-                    Data = new DateTime(1990,8,8),
+                    Data = new DateTime(1990,08,08),
                     CartaoCidadao="24045212",
                     Contribuinte="157782731",
                     Morada="Rua do Pinho Alto nº 25",
@@ -893,13 +893,13 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="588",
                     DistritoId = 1,
-                    DataRegisto = new DateTime(1999,12,1),
+                    DataRegisto = new DateTime(1999,12,01),
 
                 },
                 new Users
                 {
                     Nome = "Mariana Rute Guedes",
-                    Data = new DateTime(1987,11,7),
+                    Data = new DateTime(1987,11,07),
                     CartaoCidadao="15487986",
                     Contribuinte="16687495",
                     Morada="Rua do Comércio nº4",
@@ -912,12 +912,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="588",
                     DistritoId = 1,
-                    DataRegisto = new DateTime(1999,12,1),
+                    DataRegisto = new DateTime(1999,12,01),
                 },
                 new Users
                 {
                     Nome = "David Rui Pedroso",
-                    Data = new DateTime(1985,1,20),
+                    Data = new DateTime(1985,01,20),
                     CartaoCidadao="34657986",
                     Contribuinte="376554971",
                     Morada="Rua de São Mamede nº10",
@@ -930,7 +930,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="588",
                     DistritoId = 1,
-                    DataRegisto = new DateTime(1999,12,1),
+                    DataRegisto = new DateTime(1999,12,01),
                 },
 
                 //USERS AVEIRO ID=2
@@ -951,12 +951,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="756",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2020,12,1),
+                    DataRegisto = new DateTime(2020,12,01),
                 },
                 new Users
                 {
                     Nome = "Simão Gonçalves",
-                    Data = new DateTime(1998,7,25),
+                    Data = new DateTime(1998,07,25),
                     CartaoCidadao="24045217",
                     Contribuinte="157782459",
                     Morada="Rua da Fonte nº3",
@@ -992,7 +992,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Vanessa Ferreira",
-                    Data = new DateTime(1980,5,15),
+                    Data = new DateTime(1980,05,15),
                     CartaoCidadao="24041452",
                     Contribuinte="157142659",
                     Morada="Rua do Largo nº 16",
@@ -1005,12 +1005,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="726",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2021,3,1),
+                    DataRegisto = new DateTime(2021,03,01),
                 },
                 new Users
                 {
                     Nome = "Luis Dias",
-                    Data = new DateTime(1998,7,25),
+                    Data = new DateTime(1998,07,25),
                     CartaoCidadao="24044859",
                     Contribuinte="168592459",
                     Morada="Rua da Fonte nº 2",
@@ -1028,7 +1028,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Fernando Rui",
-                    Data = new DateTime(1987,7,15),
+                    Data = new DateTime(1987,07,15),
                     CartaoCidadao="24487559",
                     Contribuinte="162548659",
                     Morada="Rua da Praça nº2",
@@ -1041,12 +1041,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="421",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2021,2,17),
+                    DataRegisto = new DateTime(2021,02,17),
                 },
                 new Users
                 {
                     Nome = "Joana Lima",
-                    Data = new DateTime(1988,8,18),
+                    Data = new DateTime(1988,08,18),
                     CartaoCidadao="24445879",
                     Contribuinte="162547749",
                     Morada="Rua da Praça nº8",
@@ -1059,12 +1059,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="421",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2020,2,14),
+                    DataRegisto = new DateTime(2020,02,14),
                 },
                 new Users
                 {
                     Nome = "Madalena Vieira",
-                    Data = new DateTime(1990,9,25),
+                    Data = new DateTime(1990,09,25),
                     CartaoCidadao="24459875",
                     Contribuinte="162565948",
                     Morada="Rua do General nº27",
@@ -1077,12 +1077,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="300",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2019,8,13),
+                    DataRegisto = new DateTime(2019,08,13),
                 },
                 new Users
                 {
                     Nome = "Rosa Sousa",
-                    Data = new DateTime(1994,3,7),
+                    Data = new DateTime(1994,03,07),
                     CartaoCidadao="29874455",
                     Contribuinte="156596248",
                     Morada="Rua do General nº14",
@@ -1095,12 +1095,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="301",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2019,8,28),
+                    DataRegisto = new DateTime(2019,08,28),
                 },
                 new Users
                 {
                     Nome = "Rute Antunes",
-                    Data = new DateTime(1996,6,6),
+                    Data = new DateTime(1996,06,06),
                     CartaoCidadao="29484628",
                     Contribuinte="151548748",
                     Morada="Rua de S.Pedro nº 4",
@@ -1113,7 +1113,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="289",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2019,10,8),
+                    DataRegisto = new DateTime(2019,10,08),
                 },
 
                 //OPERADORES
@@ -1133,12 +1133,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="600",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2017,8,2),
+                    DataRegisto = new DateTime(2017,08,02),
                 },
                 new Users
                 {
                     Nome = "António Fonte",
-                    Data = new DateTime(1976,3,33),
+                    Data = new DateTime(1976,03,30),
                     CartaoCidadao="26725914",
                     Contribuinte="13544952",
                     Morada="Largo da Praça nº 19",
@@ -1151,12 +1151,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="390",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2017,8,3),
+                    DataRegisto = new DateTime(2017,08,03),
                 },
                 new Users
                 {
                     Nome = "Nuno Azeite",
-                    Data = new DateTime(1980,1,9),
+                    Data = new DateTime(1980,01,09),
                     CartaoCidadao="26387991",
                     Contribuinte="13253335",
                     Morada="Rua do Pinhal nº 7",
@@ -1169,14 +1169,14 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="600",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2017,8,2),
+                    DataRegisto = new DateTime(2017,08,02),
                 },
                 new Users
                 {
                     Nome = "Nelsón Pinto",
                     Data = new DateTime(1983,10,20),
                     CartaoCidadao="26459172",
-                    Contribuinte="19325445",
+                    Contribuinte="19325447",
                     Morada="Rua da Câmara nº6",
                     CodigoPostal="4500",
                     Telefone="",
@@ -1193,7 +1193,7 @@ namespace UPtel.Data
                 {
                     Nome = "Vitor Fernandes",
                     Data = new DateTime(1983,10,20),
-                    CartaoCidadao="26459172",
+                    CartaoCidadao="26459179",
                     Contribuinte="19325445",
                     Morada="Rua da Câmara nº18",
                     CodigoPostal="4500",
@@ -1205,12 +1205,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="189",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2018,7,10),
+                    DataRegisto = new DateTime(2018,07,10),
                 },
                 new Users
                 {
                     Nome = "Ana Gomes",
-                    Data = new DateTime(1985,3,4),
+                    Data = new DateTime(1985,03,04),
                     CartaoCidadao="26545847",
                     Contribuinte="13658499",
                     Morada="Rua do Olival nº1",
@@ -1223,7 +1223,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="109",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2018,5,17),
+                    DataRegisto = new DateTime(2018,05,17),
                 },
                 new Users
                 {
@@ -1241,12 +1241,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="139",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2021,1,26),
+                    DataRegisto = new DateTime(2021,01,26),
                 },
                 new Users
                 {
                     Nome = "Inês Sousa",
-                    Data = new DateTime(1999,3,16),
+                    Data = new DateTime(1999,03,16),
                     CartaoCidadao="26414452",
                     Contribuinte="19359752",
                     Morada="Bairro de S.Pedro nº14",
@@ -1259,12 +1259,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="220",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2021,1,14),
+                    DataRegisto = new DateTime(2021,01,14),
                 },
                 new Users
                 {
                     Nome = "Rita Silva",
-                    Data = new DateTime(1998,4,10),
+                    Data = new DateTime(1998,04,10),
                     CartaoCidadao="26745921",
                     Contribuinte="15395442",
                     Morada="Rua da Escola Nova nº4",
@@ -1277,12 +1277,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="356",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2020,11,8),
+                    DataRegisto = new DateTime(2020,11,08),
                 },
                 new Users
                 {
                     Nome = "Ricardo Vieira",
-                    Data = new DateTime(1996,4,1),
+                    Data = new DateTime(1996,04,01),
                     CartaoCidadao="26173692",
                     Contribuinte="19368432",
                     Morada="Rua da Escola Nova nº18",
@@ -1295,7 +1295,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="140",
                     DistritoId = 2,
-                    DataRegisto = new DateTime(2020,1,6),
+                    DataRegisto = new DateTime(2020,01,006),
                 },
 
                 //USERS BEJA ID=3
@@ -1303,9 +1303,9 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Gustavo Simões",
-                    Data = new DateTime(1980,8,29),
-                    CartaoCidadao="12452174",
-                    Contribuinte="153965445",
+                    Data = new DateTime(1980,08,29),
+                    CartaoCidadao="12455174",
+                    Contribuinte="153966445",
                     Morada="Rua da Fonte nº20",
                     CodigoPostal="3900",
                     Telefone="278744414",
@@ -1316,12 +1316,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="100",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,6,15),
+                    DataRegisto = new DateTime(2019,06,15),
                 },
                 new Users
                 {
                     Nome = "Sara Forte",
-                    Data = new DateTime(1991,8,31),
+                    Data = new DateTime(1991,08,30),
                     CartaoCidadao="14521472",
                     Contribuinte="154963545",
                     Morada="Rua da Enseada nº18",
@@ -1334,13 +1334,13 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="110",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,4,20),
+                    DataRegisto = new DateTime(2019,04,20),
                 },
                 new Users
                 {
                     Nome = "Rute Manteigas",
-                    Data = new DateTime(1994,4,1),
-                    CartaoCidadao="12452174",
+                    Data = new DateTime(1994,04,01),
+                    CartaoCidadao="12457174",
                     Contribuinte="153965445",
                     Morada="Rua da Fonte nº4",
                     CodigoPostal="3900",
@@ -1352,7 +1352,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="120",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,6,3),
+                    DataRegisto = new DateTime(2019,06,03),
                 },
                 new Users
                 {
@@ -1375,7 +1375,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Francisco Ferreira",
-                    Data = new DateTime(1998,5,7),
+                    Data = new DateTime(1998,05,07),
                     CartaoCidadao="12411874",
                     Contribuinte="151113745",
                     Morada="Rua da Ponte nº2",
@@ -1388,12 +1388,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="140",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2018,9,10),
+                    DataRegisto = new DateTime(2018,09,10),
                 },
                 new Users
                 {
                     Nome = "Jorge Conceição",
-                    Data = new DateTime(1972,1,8),
+                    Data = new DateTime(1972,01,08),
                     CartaoCidadao="12478744",
                     Contribuinte="153764945",
                     Morada="Rua da Fonte nº15",
@@ -1411,7 +1411,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Miguel Garcia",
-                    Data = new DateTime(1995,10,4),
+                    Data = new DateTime(1995,10,04),
                     CartaoCidadao="12441234",
                     Contribuinte="156258745",
                     Morada="Rua da Praça nº5",
@@ -1424,12 +1424,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="160",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,3,31),
+                    DataRegisto = new DateTime(2019,03,31),
                 },
                 new Users
                 {
                     Nome = "Susana Sampaio",
-                    Data = new DateTime(1986,7,21),
+                    Data = new DateTime(1986,07,21),
                     CartaoCidadao="12441598",
                     Contribuinte="289374645",
                     Morada="Rua do Jardim nº4",
@@ -1442,13 +1442,13 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="170",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,10,1),
+                    DataRegisto = new DateTime(2019,10,01),
                 },
                 new Users
                 {
                     Nome = "Beatriz Nunes",
-                    Data = new DateTime(1985,4,12),
-                    CartaoCidadao="12487447",
+                    Data = new DateTime(1985,04,12),
+                    CartaoCidadao="12487457",
                     Contribuinte="159374645",
                     Morada="Rua do Pinhal Novo nº10",
                     CodigoPostal="3900",
@@ -1460,12 +1460,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="180",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2021,1,8),
+                    DataRegisto = new DateTime(2021,01,08),
                 },
                 new Users
                 {
                     Nome = "Vasco Simões",
-                    Data = new DateTime(1997,7,27),
+                    Data = new DateTime(1997,07,27),
                     CartaoCidadao="12487447",
                     Contribuinte="157464935",
                     Morada="Rua da Fonte nº30",
@@ -1478,7 +1478,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="190",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2020,5,20),
+                    DataRegisto = new DateTime(2020,05,20),
                 },
 
                 //OPERADORES
@@ -1486,7 +1486,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Mauro Oliveira",
-                    Data = new DateTime(1997,1,4),
+                    Data = new DateTime(1997,01,04),
                     CartaoCidadao="26568472",
                     Contribuinte="14369851",
                     Morada="Rua da Praça nº 45",
@@ -1499,12 +1499,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="200",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,1,23),
+                    DataRegisto = new DateTime(2019,01,23),
                 },
                 new Users
                 {
                     Nome = "Sérgio Moura",
-                    Data = new DateTime(1986,4,11),
+                    Data = new DateTime(1986,04,11),
                     CartaoCidadao="26547268",
                     Contribuinte="14985361",
                     Morada="Rua da Fonte nº 32",
@@ -1517,12 +1517,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="210",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2019,5,14),
+                    DataRegisto = new DateTime(2019,05,14),
                 },
                 new Users
                 {
                     Nome = "Laura Fonseca",
-                    Data = new DateTime(1994,4,7),
+                    Data = new DateTime(1994,04,07),
                     CartaoCidadao="26698572",
                     Contribuinte="16795851",
                     Morada="Rua da Fonte nº 27",
@@ -1535,12 +1535,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="220",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2018,8,23),
+                    DataRegisto = new DateTime(2018,08,23),
                 },
                 new Users
                 {
                     Nome = "Miguel Salgueiro",
-                    Data = new DateTime(1986,7,1),
+                    Data = new DateTime(1986,07,01),
                     CartaoCidadao="26793572",
                     Contribuinte="16712451",
                     Morada="Rua do Largo nº 20",
@@ -1576,7 +1576,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Duarte Damas",
-                    Data = new DateTime(1990,8,4),
+                    Data = new DateTime(1990,08,04),
                     CartaoCidadao="24632179",
                     Contribuinte="27625824",
                     Morada="Rua do Largo nº 31",
@@ -1589,12 +1589,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="250",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2018,3,30),
+                    DataRegisto = new DateTime(2018,03,30),
                 },
                 new Users
                 {
                     Nome = "Clara Silva",
-                    Data = new DateTime(1982,9,11),
+                    Data = new DateTime(1982,09,11),
                     CartaoCidadao="24618579",
                     Contribuinte="27975824",
                     Morada="Rua do Ferreiro nº10",
@@ -1612,7 +1612,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Micaela Ramos",
-                    Data = new DateTime(1983,9,28),
+                    Data = new DateTime(1983,09,28),
                     CartaoCidadao="26185479",
                     Contribuinte="28259375",
                     Morada="Rua do Ferreiro nº24",
@@ -1625,14 +1625,14 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="270",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2016,4,26),
+                    DataRegisto = new DateTime(2016,04,26),
                 },
                 new Users
                 {
                     Nome = "Manuel Almeida",
-                    Data = new DateTime(1986,5,2),
-                    CartaoCidadao="26791854",
-                    Contribuinte="28297553",
+                    Data = new DateTime(1986,05,02),
+                    CartaoCidadao="26791855",
+                    Contribuinte="28297559",
                     Morada="Largo do General nº10",
                     CodigoPostal="4500",
                     Telefone="272142916",
@@ -1643,12 +1643,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="280",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2018,6,30),
+                    DataRegisto = new DateTime(2018,06,30),
                 },
                 new Users
                 {
                     Nome = "Joana Costa",
-                    Data = new DateTime(1992,5,12),
+                    Data = new DateTime(1992,05,12),
                     CartaoCidadao="26791854",
                     Contribuinte="28297553",
                     Morada="Largo do General nº28",
@@ -1661,7 +1661,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="290",
                     DistritoId = 3,
-                    DataRegisto = new DateTime(2020,2,25),
+                    DataRegisto = new DateTime(2020,02,25),
                 },
 
                 //USERS COIMBRA ID=7
@@ -1682,7 +1682,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="100",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2020,6,20),
+                    DataRegisto = new DateTime(2020,06,20),
                 },
                 new Users
                 {
@@ -1700,12 +1700,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="110",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,7,9),
+                    DataRegisto = new DateTime(2019,07,09),
                 },
                 new Users
                 {
                     Nome = "Soraia Ramos",
-                    Data = new DateTime(1989,7,6),
+                    Data = new DateTime(1989,07,06),
                     CartaoCidadao="12685456",
                     Contribuinte="154842239",
                     Morada="Largo da Fonte Antiga nº4",
@@ -1718,12 +1718,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="120",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,7,20),
+                    DataRegisto = new DateTime(2019,07,20),
                 },
                 new Users
                 {
                     Nome = "Luis Albuquerque",
-                    Data = new DateTime(1979,12,6),
+                    Data = new DateTime(1979,12,06),
                     CartaoCidadao="12696456",
                     Contribuinte="154452639",
                     Morada="Largo da Fonte Antiga nº18",
@@ -1736,12 +1736,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="130",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2018,8,16),
+                    DataRegisto = new DateTime(2018,08,16),
                 },
                 new Users
                 {
                     Nome = "Rita Pereira",
-                    Data = new DateTime(1977,6,18),
+                    Data = new DateTime(1977,06,18),
                     CartaoCidadao="12648984",
                     Contribuinte="154634489",
                     Morada="Rua do Mercado nº3",
@@ -1754,12 +1754,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="140",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,1,18),
+                    DataRegisto = new DateTime(2019,01,18),
                 },
                 new Users
                 {
                     Nome = "Susana Matias",
-                    Data = new DateTime(1980,9,5),
+                    Data = new DateTime(1980,09,05),
                     CartaoCidadao="12643644",
                     Contribuinte="154784489",
                     Morada="Rua do Mercado nº6",
@@ -1772,12 +1772,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="150",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2020,1,30),
+                    DataRegisto = new DateTime(2020,01,30),
                 },
                 new Users
                 {
                     Nome = "Júlio Pinheiro",
-                    Data = new DateTime(1978,7,8),
+                    Data = new DateTime(1978,07,08),
                     CartaoCidadao="12925644",
                     Contribuinte="154799489",
                     Morada="Rua da Estação nº4",
@@ -1790,12 +1790,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="160",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,8,9),
+                    DataRegisto = new DateTime(2019,08,09),
                 },
                 new Users
                 {
                     Nome = "Marta Tobias",
-                    Data = new DateTime(1978,12,8),
+                    Data = new DateTime(1978,12,08),
                     CartaoCidadao="12996844",
                     Contribuinte="154785489",
                     Morada="Rua da Estação nº9",
@@ -1808,12 +1808,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="170",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,4,9),
+                    DataRegisto = new DateTime(2019,04,09),
                 },
                 new Users
                 {
                     Nome = "Hélder Tomás",
-                    Data = new DateTime(1986,6,7),
+                    Data = new DateTime(1986,06,07),
                     CartaoCidadao="12996354",
                     Contribuinte="159784489",
                     Morada="Rua do Parque nº11",
@@ -1826,12 +1826,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="180",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,12,9),
+                    DataRegisto = new DateTime(2019,12,09),
                 },
                 new Users
                 {
                     Nome = "Pedro Saraiva",
-                    Data = new DateTime(1990,2,28),
+                    Data = new DateTime(1990,02,28),
                     CartaoCidadao="12999654",
                     Contribuinte="154788889",
                     Morada="Rua da Estação nº9",
@@ -1844,7 +1844,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="190",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2020,1,31),
+                    DataRegisto = new DateTime(2020,01,31),
                 },
 
                 //OPERADORES
@@ -1864,12 +1864,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="200",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,1,10),
+                    DataRegisto = new DateTime(2019,01,10),
                 },
                 new Users
                 {
                     Nome = "Joaquim Barreiros",
-                    Data = new DateTime(1992,1,1),
+                    Data = new DateTime(1992,01,01),
                     CartaoCidadao="26368122",
                     Contribuinte="14991251",
                     Morada="Rua da Fonte nº 5",
@@ -1882,12 +1882,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="210",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2021,3,18),
+                    DataRegisto = new DateTime(2021,03,18),
                 },
                 new Users
                 {
                     Nome = "Filipa César",
-                    Data = new DateTime(1999,1,26),
+                    Data = new DateTime(1999,01,26),
                     CartaoCidadao="21263682",
                     Contribuinte="14125991",
                     Morada="Rua da Fonte nº 18",
@@ -1900,12 +1900,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="220",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2020,5,20),
+                    DataRegisto = new DateTime(2020,05,20),
                 },
                 new Users
                 {
                     Nome = "Mário Luis",
-                    Data = new DateTime(1980,6,26),
+                    Data = new DateTime(1980,06,26),
                     CartaoCidadao="21824569",
                     Contribuinte="14259251",
                     Morada="Rua João de Sousa nº 8",
@@ -1918,12 +1918,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="230",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,7,16),
+                    DataRegisto = new DateTime(2019,07,16),
                 },
                 new Users
                 {
                     Nome = "André Coelho",
-                    Data = new DateTime(1985,5,25),
+                    Data = new DateTime(1985,05,25),
                     CartaoCidadao="21569824",
                     Contribuinte="14251592",
                     Morada="Rua Filipe Leão nº3",
@@ -1936,7 +1936,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="240",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,4,15),
+                    DataRegisto = new DateTime(2019,04,15),
                 },
                 new Users
                 {
@@ -1954,12 +1954,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="250",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,6,20),
+                    DataRegisto = new DateTime(2019,06,20),
                 },
                 new Users
                 {
                     Nome = "Manuel Carriço",
-                    Data = new DateTime(1991,1,21),
+                    Data = new DateTime(1991,01,21),
                     CartaoCidadao="21538612",
                     Contribuinte="19585384",
                     Morada="Rua da Fonte nº1",
@@ -1972,12 +1972,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="260",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,6,30),
+                    DataRegisto = new DateTime(2019,06,30),
                 },
                 new Users
                 {
                     Nome = "Nuno Pedrosa",
-                    Data = new DateTime(1993,3,23),
+                    Data = new DateTime(1993,03,23),
                     CartaoCidadao="24321121",
                     Contribuinte="19869544",
                     Morada="Rua da Fonte nº16",
@@ -1990,12 +1990,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="270",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2019,8,15),
+                    DataRegisto = new DateTime(2019,08,15),
                 },
                 new Users
                 {
                     Nome = "Bernardo Amorim",
-                    Data = new DateTime(1994,4,24),
+                    Data = new DateTime(1994,04,24),
                     CartaoCidadao="21061542",
                     Contribuinte="19034585",
                     Morada="Bairro Luis de Camões nº2",
@@ -2008,12 +2008,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="280",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2017,7,21),
+                    DataRegisto = new DateTime(2017,07,21),
                 },
                 new Users
                 {
                     Nome = "Salvador Pinhal",
-                    Data = new DateTime(1995,5,25),
+                    Data = new DateTime(1995,05,25),
                     CartaoCidadao="21062742",
                     Contribuinte="19068345",
                     Morada="Bairro Luis de Camões nº9",
@@ -2026,7 +2026,7 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="290",
                     DistritoId = 7,
-                    DataRegisto = new DateTime(2018,7,2),
+                    DataRegisto = new DateTime(2018,07,02),
                 },
 
                 //USERS LEIRIA ID=11
@@ -2034,7 +2034,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Tiago Silva",
-                    Data = new DateTime(1981,1,19),
+                    Data = new DateTime(1981,01,19),
                     CartaoCidadao="12419904",
                     Contribuinte="153910045",
                     Morada="Rua do Castelo nº 2",
@@ -2047,12 +2047,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="100",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,4,23),
+                    DataRegisto = new DateTime(2020,04,23),
                 },
                 new Users
                 {
                     Nome = "Filipe Costa",
-                    Data = new DateTime(1982,2,10),
+                    Data = new DateTime(1982,02,10),
                     CartaoCidadao="12491417",
                     Contribuinte="153004915",
                     Morada="Rua do Castelo nº6",
@@ -2065,12 +2065,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="110",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,5,24),
+                    DataRegisto = new DateTime(2020,05,24),
                 },
                 new Users
                 {
                     Nome = "Alexandre Conde",
-                    Data = new DateTime(1983,3,11),
+                    Data = new DateTime(1983,03,11),
                     CartaoCidadao="12414917",
                     Contribuinte="150049135",
                     Morada="Rua de S.Luis nº2",
@@ -2083,12 +2083,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="120",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,6,26),
+                    DataRegisto = new DateTime(2020,06,26),
                 },
                 new Users
                 {
                     Nome = "Beatriz Lopes",
-                    Data = new DateTime(1994,4,12),
+                    Data = new DateTime(1994,04,12),
                     CartaoCidadao="12435867",
                     Contribuinte="154830305",
                     Morada="Rua de S.Luis nº6",
@@ -2101,12 +2101,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="130",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,7,27),
+                    DataRegisto = new DateTime(2020,07,27),
                 },
                 new Users
                 {
                     Nome = "Beatriz Lopes",
-                    Data = new DateTime(1995,5,13),
+                    Data = new DateTime(1995,05,13),
                     CartaoCidadao="12435342",
                     Contribuinte="154841965",
                     Morada="Rua da Estação Nova nº6",
@@ -2119,12 +2119,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="140",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,8,20),
+                    DataRegisto = new DateTime(2020,08,20),
                 },
                 new Users
                 {
                     Nome = "Sofia Monteiro",
-                    Data = new DateTime(1996,6,14),
+                    Data = new DateTime(1996,06,14),
                     CartaoCidadao="12415792",
                     Contribuinte="154861119",
                     Morada="Rua da Estação Nova nº13",
@@ -2137,12 +2137,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="150",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,9,10),
+                    DataRegisto = new DateTime(2020,09,10),
                 },
                 new Users
                 {
                     Nome = "Vasco Teixeira",
-                    Data = new DateTime(1997,5,12),
+                    Data = new DateTime(1997,05,12),
                     CartaoCidadao="12436992",
                     Contribuinte="154236499",
                     Morada="Rua da Torre nº2",
@@ -2155,12 +2155,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="160",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,10,1),
+                    DataRegisto = new DateTime(2020,10,01),
                 },
                 new Users
                 {
                     Nome = "João Pedro",
-                    Data = new DateTime(1997,7,27),
+                    Data = new DateTime(1997,07,27),
                     CartaoCidadao="12436132",
                     Contribuinte="154236139",
                     Morada="Rua da Torre nº1",
@@ -2173,13 +2173,13 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="170",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,3,17),
+                    DataRegisto = new DateTime(2020,03,17),
                 },
                 new Users
                 {
                     Nome = "António Reis",
-                    Data = new DateTime(1987,7,30),
-                    CartaoCidadao="12613243",
+                    Data = new DateTime(1987,07,30),
+                    CartaoCidadao="12613247",
                     Contribuinte="154323619",
                     Morada="Rua da Torre nº6",
                     CodigoPostal="1600",
@@ -2191,12 +2191,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="180",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2019,6,24),
+                    DataRegisto = new DateTime(2019,06,24),
                 },
                 new Users
                 {
                     Nome = "Conceição Pimenta",
-                    Data = new DateTime(1988,8,18),
+                    Data = new DateTime(1988,08,18),
                     CartaoCidadao="12613243",
                     Contribuinte="153611432",
                     Morada="Rua do Bispo nº4",
@@ -2209,14 +2209,15 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="190",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2018,1,16),
+                    DataRegisto = new DateTime(2018,05,25),
+
                 },
 
                 //OPERADORES
                 new Users
                 {
                     Nome = "Silvia Ventura",
-                    Data = new DateTime(1979,5,16),
+                    Data = new DateTime(1979,05,16),
                     CartaoCidadao="12356995",
                     Contribuinte="14130254",
                     Morada="Rua Diogo Cão nº1",
@@ -2229,12 +2230,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="200",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2019,6,15),
+                    DataRegisto = new DateTime(2019,06,15),
                 },
                 new Users
                 {
                     Nome = "Manuel Figueiras",
-                    Data = new DateTime(1981,6,13),
+                    Data = new DateTime(1981,06,13),
                     CartaoCidadao="19295356",
                     Contribuinte="10213544",
                     Morada="Rua Diogo Cão nº6",
@@ -2247,12 +2248,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="210",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2019,7,16),
+                    DataRegisto = new DateTime(2019,07,16),
                 },
                 new Users
                 {
                     Nome = "Gustavo Santos",
-                    Data = new DateTime(1982,2,12),
+                    Data = new DateTime(1982,02,12),
                     CartaoCidadao="19295322",
                     Contribuinte="10218974",
                     Morada="Rua do Castelo nº3",
@@ -2265,12 +2266,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="220",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2019,8,17),
+                    DataRegisto = new DateTime(2019,08,17),
                 },
                 new Users
                 {
                     Nome = "Filipe Neto",
-                    Data = new DateTime(1983,3,30),
+                    Data = new DateTime(1983,03,30),
                     CartaoCidadao="19291243",
                     Contribuinte="10210474",
                     Morada="Rua do Castelo nº10",
@@ -2288,7 +2289,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Marta Seguro",
-                    Data = new DateTime(1983,6,3),
+                    Data = new DateTime(1983,06,03),
                     CartaoCidadao="19243912",
                     Contribuinte="10042174",
                     Morada="Rua S.João nº3",
@@ -2306,7 +2307,7 @@ namespace UPtel.Data
                 new Users
                 {
                     Nome = "Sabrina Oliveira",
-                    Data = new DateTime(1985,9,10),
+                    Data = new DateTime(1985,09,10),
                     CartaoCidadao="19241102",
                     Contribuinte="10049684",
                     Morada="Rua S.João nº9",
@@ -2319,12 +2320,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="250",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,6,18),
+                    DataRegisto = new DateTime(2020,06,18),
                 },
                 new Users
                 {
                     Nome = "Fábio Torres",
-                    Data = new DateTime(1987,9,13),
+                    Data = new DateTime(1987,09,13),
                     CartaoCidadao="19215841",
                     Contribuinte="10896448",
                     Morada="Rua da Misericórdia nº4",
@@ -2337,12 +2338,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="260",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,8,6),
+                    DataRegisto = new DateTime(2020,08,06),
                 },
                 new Users
                 {
                     Nome = "Paulo Silva",
-                    Data = new DateTime(1989,9,19),
+                    Data = new DateTime(1989,09,19),
                     CartaoCidadao="11101492",
                     Contribuinte="16440898",
                     Morada="Rua da Misericórdia nº6",
@@ -2355,12 +2356,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="270",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,7,7),
+                    DataRegisto = new DateTime(2020,07,07),
                 },
                 new Users
                 {
                     Nome = "Natália Figueiredo",
-                    Data = new DateTime(1995,10,5),
+                    Data = new DateTime(1995,10,05),
                     CartaoCidadao="12101491",
                     Contribuinte="16444898",
                     Morada="Rua da Misericórdia nº13",
@@ -2373,12 +2374,12 @@ namespace UPtel.Data
                     Estado = "Ativo",
                     CodigoPostalExt="280",
                     DistritoId = 11,
-                    DataRegisto = new DateTime(2020,12,2),
+                    DataRegisto = new DateTime(2020,12,02),
                 },
                 new Users
                 {
                     Nome = "Raúl Ramos",
-                    Data = new DateTime(1994,8,17),
+                    Data = new DateTime(1994,08,17),
                     CartaoCidadao="12012561",
                     Contribuinte="16444818",
                     Morada="Rua da Fonte nº6",
