@@ -4,6 +4,67 @@
     ViewData["Title"] = "Distrito";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    
+
+    $(
+        function () {
+            let pA = false;
+            let pB = false;
+            let pC = false;
+            let pD = false;
+            //$("#pA").hide();
+            $("#pB").hide();
+            $("#pC").hide();
+            $("#pD").hide();
+
+
+            $("body").click(function (event) {
+                target = event.target.id;
+                switch (target) {
+                    case ("h1A"):
+                        if (pA == false) {
+                            $("#pA").slideDown(1000);
+                            pA = !pA;
+                        } else {
+                            $("#pA").slideUp(500);
+                            pA = !pA;
+                        }
+                        break;
+                    case ("h1B"):
+                        if (pB == false) {
+                            $("#pB").slideDown(1000);
+                            pB = !pB;
+                        } else {
+                            $("#pB").slideUp(500);
+                            pB = !pB;
+                        }
+                        break;
+                    case ("h1C"):
+                        if (pC == false) {
+                            $("#pC").slideDown(1000);
+                            pC = !pC;
+                        } else {
+                            $("#pC").slideUp(500);
+                            pC = !pC;
+                        }
+                        break;
+                    case ("h1D"):
+                        if (pD == false) {
+                            $("#pD").slideDown(1000);
+                            pD = !pD;
+                        } else {
+                            $("#pD").slideUp(500);
+                            pD = !pD;
+                        }
+                        break;
+                }
+            })
+
+        })
+</script>
+
 <section id="secondhero">
     <div class="container">
         <div class="row justify-content-center">
@@ -12,35 +73,36 @@
                 <br />
                 <div class="col-md-12 border-info mb-4">
                     <div class="card-body">
-                        <h5 class="card-title" style="color:darkgray">Pesquisar Por Distrito</h5>
+                       
                         @*<form asp-action="Distrito" method="get">
-            <div class="form-group">
-                <label for="nomePesquisar" class="control-label">Selecione o Distrito</label>
-                <select asp-for="@Model.NomePesquisar" class="form-control" type="search" asp-items="ViewBag.DistritoId"></select>
-                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-            </div>
-        </form>*@
+                                <div class="form-group">
+                                    <label for="nomePesquisar" class="control-label">Selecione o Distrito</label>
+                                    <select asp-for="@Model.NomePesquisar" class="form-control" type="search" asp-items="ViewBag.DistritoId"></select>
+                                    <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                                </div>
+                            </form>*@
 
 
-                        <form asp-action="Distrito" method="get">
-                            <div class="form-group">
-                                <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
-                                <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
-                                <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
+                    <form asp-action="Distrito" method="get">
+                        <h2 id="h1A">Por Distrito</h2>
+                        <div id="pA" class="form-group">
+                            <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
+                            <input type="submit" value="Pesquisar" class="btn btn-outline-light" />
+                            <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
 
-                            </div>
-                        </form>
+                        </div>
+                    </form>
                         <form asp-action="DistritoOperador" method="get">
-                            <h2>Operadores</h2>
-                            <div class="form-group">
+                            <h2 id="h1B">Operadores</h2>
+                            <div id="pB" class="form-group">
                                 <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
                                 <input type="submit" value="Pesquisar Operadores" class="btn btn-outline-light" />
                                 <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
 
                             </div>
                         </form><form asp-action="DistritoCliente" method="get">
-                            <h2>Clientes</h2>
-                            <div class="form-group">
+                            <h2 id="h1C" >Clientes</h2>
+                            <div id="pC" class="form-group">
                                 <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
                                 <input type="submit" value="Pesquisar Clientes" class="btn btn-outline-light" />
                                 <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
@@ -48,8 +110,8 @@
                         </form>
 
                         <form asp-controller="Contratos" asp-action="MelhorClienteDistrito" method="get">
-                            <h2>Top 10 Clientes</h2>
-                            <div class="form-group">
+                            <h2 id="h1D" >Top 10 Clientes</h2>
+                            <div id="pD" class="form-group">
                                 <input name="distrito" placeholder="Ex: Lisboa" class="form-control" type="search" value="@Model.NomePesquisar" />
                                 <input type="submit" value="Top10Cliente" class="btn btn-outline-light" />
                                 <a asp-action="Distrito" class="btn btn-outline-light">Limpar</a>
@@ -62,8 +124,8 @@
                                     <a href="">Top utilizador</a>
                                     <ul style="background: #808080">
                                         <li>
-                                            <a asp-action="MaisAntigo" title="Mais Antigos" >Top 10 Mais Antigos</a>
-                                            
+                                            <a asp-action="MaisAntigo" title="Mais Antigos">Top 10 Mais Antigos</a>
+
                                         </li>
                                         <li>
                                             <a asp-controller="Contratos" asp-action="MelhorCliente">Top 10 Melhores Clientes</a>
@@ -75,9 +137,9 @@
 
                         <!--<form>
                             <div class="form-group">-->
-                                @*<a asp-action="DistritoOperador" title="Operadores" class="btn btn-outline-light"><i> Operadores</i></a>
-                <a asp-action="DistritoCliente" title="Clientes" class="btn btn-outline-light">  <i>Clientes</i></a>*@
-                                <!--<a asp-action="Top10Operador" title="Top 10 Operador" class="btn btn-outline-light"> <i>Top 10 Operador</i></a>
+                        @*<a asp-action="DistritoOperador" title="Operadores" class="btn btn-outline-light"><i> Operadores</i></a>
+                            <a asp-action="DistritoCliente" title="Clientes" class="btn btn-outline-light">  <i>Clientes</i></a>*@
+                        <!--<a asp-action="Top10Operador" title="Top 10 Operador" class="btn btn-outline-light"> <i>Top 10 Operador</i></a>
                                 <a asp-action="Top10Cliente" title="Top 10 Cliente" class="btn btn-outline-light"> <i>Top 10 Cliente</i></a>
                                 <a asp-action="MaisAntigo" title="Mais Antigos" class="btn btn-outline-light"><i>Top 10 Mais Antigos</i></a>
                                 <a asp-controller="Contratos" asp-action="MelhorCliente" class="btn btn-outline-light"><i title="Mais Antigos">Top 10 Melhores Clientes</i></a>
@@ -126,7 +188,7 @@
                                         </td>
                                         <td class="text-center">
                                             <a asp-action="Details" asp-route-id="@item.UsersId"><i title="Detalhes" class="fas fa-search-plus fa-2x"></i></a>
-                                            </td>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
