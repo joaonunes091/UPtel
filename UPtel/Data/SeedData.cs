@@ -97,21 +97,28 @@ namespace UPtel.Data
             new Televisao
             {
                 Nome = "Básico",
-                Descricao= "Teste",
+                Descricao= "Canais básicos associados ao pacote",
                 PrecoPacoteTelevisao = 30m,
 
             },
             new Televisao
             {
                 Nome = "Entretenimento",
-                Descricao= "Teste",
+                Descricao= "Com acesso a canais de filmes, séries e documentários.",
                 PrecoPacoteTelevisao = 30m,
 
             },
             new Televisao
             {
                 Nome = "Premium",
-                Descricao= "Teste",
+                Descricao= "Com acesso a canias pagos",
+                PrecoPacoteTelevisao = 30m,
+
+            },
+            new Televisao
+            {
+                Nome = "VIP",
+                Descricao= "Para clientes VIP",
                 PrecoPacoteTelevisao = 30m,
 
             },
@@ -119,6 +126,7 @@ namespace UPtel.Data
             });
             DbContext.SaveChanges();
         }
+
         private static void InsereTelevisaoFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
 
@@ -150,14 +158,14 @@ namespace UPtel.Data
             DbContext.Telemovel.AddRange(new Telemovel[] {
             new Telemovel
             {
-                Nome = "Novo",
+                Nome = "Premium",
                 LimiteMinutos = 3000,
                 LimiteSms = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
                 PrecoSms = 0.05M,
                 PrecoMms = 0.1M,
-                PrecoPacoteTelemovel = 0m
+                PrecoPacoteTelemovel = 20m
             },
                new Telemovel
             {
@@ -170,10 +178,33 @@ namespace UPtel.Data
                 PrecoMms = 0.1M,
                 PrecoPacoteTelemovel = 15m
             },
-           
+               new Telemovel
+            {
+                Nome = "VIP",
+                LimiteMinutos = 3000,
+                LimiteSms = 3000,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0.1M,
+                PrecoSms = 0.05M,
+                PrecoMms = 0.1M,
+                PrecoPacoteTelemovel = 18m
+            },
+               new Telemovel
+            {
+                Nome = "Sem serviço",
+                LimiteMinutos = 0,
+                LimiteSms = 0,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0M,
+                PrecoSms = 0M,
+                PrecoMms = 0M,
+                PrecoPacoteTelemovel = 0m
+            },
+
         });
             DbContext.SaveChanges();
         }
+
         private static void InsereTeleMovelFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
 
@@ -223,13 +254,31 @@ namespace UPtel.Data
                 Limite = 3000,
                 PrecoMinutoNacional = 0,
                 PrecoMinutoInternacional = 0.1M,
+                PrecoPacoteTelefone = 8m
+
+            },
+             new Telefone
+            {
+                Nome = "VIP",
+                Limite = 5000,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0.1M,
+                PrecoPacoteTelefone = 10m
+                
+            },
+              new Telefone
+            {
+                Nome = "Sem serviço",
+                Limite = 0,
+                PrecoMinutoNacional = 0,
+                PrecoMinutoInternacional = 0M,
                 PrecoPacoteTelefone = 0m
 
             },
-           
         });
             DbContext.SaveChanges();
         }
+
         private static void InsereTelefoneFicticiosParaTestarPaginacao(UPtelContext DbContext)
         {
 
@@ -274,17 +323,22 @@ namespace UPtel.Data
             },
             new Canais
             {
-                NomeCanal = "RTP 3",
+                NomeCanal = "SIC",
                 Foto = null
             },
             new Canais
             {
-                NomeCanal = "RTP Africa",
+                NomeCanal = "TVI",
+                Foto = null
+            },
+            new Canais
+            {
+                NomeCanal = "SportTv",
                 Foto = null
             },
               new Canais
             {
-                NomeCanal = "TV Cine 1",
+                NomeCanal = "Sporting TV",
                 Foto = null
             },
                 new Canais
@@ -543,6 +597,16 @@ namespace UPtel.Data
                     NetIfixa = netFixa,
                     Telefone = telefone,
                     NetMovel = netMovel
+
+                },
+                   new Pacotes
+                {
+                    NomePacote = "3UP",
+                    PrecoTotal = 30m,
+                    Televisao = televisaoBasico,
+                    NetIfixa = netFixa,
+                    Telefone = telefone,
+                   
 
                 }
 
