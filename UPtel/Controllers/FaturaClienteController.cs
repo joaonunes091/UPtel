@@ -26,11 +26,11 @@ namespace UPtel.Controllers
 
             Paginacao paginacao = new Paginacao
             {
-                TotalItems = await _context.Faturas.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar)).CountAsync(),
+                TotalItems = await _context.Faturas.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar)|| p.Fatura.Cliente.Contribuinte.Contains(nomePesquisar)).CountAsync(),
                 PaginaAtual = pagina
             };
 
-            List<FaturaCliente> faturaClientes = await _context.Faturas.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar))
+            List<FaturaCliente> faturaClientes = await _context.Faturas.Where(p => nomePesquisar == null || p.NomeCliente.Contains(nomePesquisar) || p.Fatura.Cliente.Contribuinte.Contains(nomePesquisar))
                 .OrderBy(c => c.NomeCliente)
                 .Skip(paginacao.ItemsPorPagina * (pagina - 1))
                 .Take(paginacao.ItemsPorPagina)

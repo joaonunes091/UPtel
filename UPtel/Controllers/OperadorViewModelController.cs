@@ -28,9 +28,11 @@ namespace UPtel.Controllers
         // GET: OperadorViewModel
         public async Task<IActionResult> Index(int? id, OperadorViewModel operador)
         {
+            var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
+            Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
             
 
-            List<Users> melhoresOperadores = await _context.Users.Where(p => p.Tipo.Tipo.Contains("Operador"))
+            List<Users> melhoresOperadores = await _context.Users.Where(p => p.Tipo.Tipo.Contains("Operador") && p.DistritoId == infoOperador.DistritoId)
                 .Include(d=>d.DistritoNome)
                .OrderByDescending(c => c.PrecoContratosFunc)
                .ToListAsync();
@@ -49,8 +51,8 @@ namespace UPtel.Controllers
             }
 
 
-            var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
-            Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
+            //var userEmail = _gestorUtilizadores.GetUserName(HttpContext.User);
+            //Users infoOperador = await _context.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
             FaturacaoOperador op = await _context.FaturacaoOperadors.SingleOrDefaultAsync(x => x.FuncinarioId == infoOperador.UsersId);
 
 
