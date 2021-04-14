@@ -933,7 +933,7 @@ namespace UPtel.Data
                     DataRegisto = new DateTime(1999,12,01),
                 },
 
-                //USERS AVEIRO ID=2
+                //USERS AVEIRO ID=19
                 //CLIENTES
                 new Users
                 {
@@ -950,7 +950,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="756",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,12,01),
                 },
                 new Users
@@ -968,7 +968,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="700",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,10,12),
                 },
                 new Users
@@ -986,7 +986,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="550",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2019,12,28),
                 },
                 new Users
@@ -1004,7 +1004,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="726",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2021,03,01),
                 },
                 new Users
@@ -1022,7 +1022,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="700",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,12,20),
                 },
                 new Users
@@ -1040,7 +1040,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="421",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2021,02,17),
                 },
                 new Users
@@ -1058,7 +1058,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="421",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,02,14),
                 },
                 new Users
@@ -1076,7 +1076,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="300",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2019,08,13),
                 },
                 new Users
@@ -1094,7 +1094,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="301",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2019,08,28),
                 },
                 new Users
@@ -1112,7 +1112,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="289",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2019,10,08),
                 },
 
@@ -1132,7 +1132,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="600",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2017,08,02),
                 },
                 new Users
@@ -1150,7 +1150,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="390",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2017,08,03),
                 },
                 new Users
@@ -1168,7 +1168,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="600",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2017,08,02),
                 },
                 new Users
@@ -1186,7 +1186,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="186",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2017,11,22),
                 },
                 new Users
@@ -1204,7 +1204,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="189",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2018,07,10),
                 },
                 new Users
@@ -1222,7 +1222,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="109",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2018,05,17),
                 },
                 new Users
@@ -1240,7 +1240,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="139",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2021,01,26),
                 },
                 new Users
@@ -1258,7 +1258,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="220",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2021,01,14),
                 },
                 new Users
@@ -1276,7 +1276,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="356",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,11,08),
                 },
                 new Users
@@ -1294,11 +1294,11 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="140",
-                    DistritoId = 2,
+                    DistritoId = 19,
                     DataRegisto = new DateTime(2020,01,006),
                 },
 
-                //USERS BEJA ID=3
+                //USERS BEJA ID=18
                 //CLIENTES
                 new Users
                 {
@@ -1315,7 +1315,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="100",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,06,15),
                 },
                 new Users
@@ -1333,7 +1333,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="110",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,04,20),
                 },
                 new Users
@@ -1351,7 +1351,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="120",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,06,03),
                 },
                 new Users
@@ -1369,7 +1369,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="130",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,10,18),
                 },
                 new Users
@@ -1387,7 +1387,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="140",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,09,10),
                 },
                 new Users
@@ -1405,7 +1405,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="150",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,10,15),
                 },
                 new Users
@@ -1423,7 +1423,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="160",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,03,31),
                 },
                 new Users
@@ -1441,7 +1441,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="170",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,10,01),
                 },
                 new Users
@@ -1459,7 +1459,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="180",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2021,01,08),
                 },
                 new Users
@@ -1477,7 +1477,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="190",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2020,05,20),
                 },
 
@@ -1498,7 +1498,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="200",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,01,23),
                 },
                 new Users
@@ -1516,7 +1516,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="210",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2019,05,14),
                 },
                 new Users
@@ -1534,7 +1534,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="220",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,08,23),
                 },
                 new Users
@@ -1552,7 +1552,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="230",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,10,14),
                 },
                 new Users
@@ -1570,7 +1570,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="240",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,11,30),
                 },
                 new Users
@@ -1588,7 +1588,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="250",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,03,30),
                 },
                 new Users
@@ -1606,7 +1606,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="260",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2017,10,20),
                 },
                 new Users
@@ -1624,7 +1624,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="270",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2016,04,26),
                 },
                 new Users
@@ -1642,7 +1642,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="280",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2018,06,30),
                 },
                 new Users
@@ -1660,11 +1660,11 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="290",
-                    DistritoId = 3,
+                    DistritoId = 18,
                     DataRegisto = new DateTime(2020,02,25),
                 },
 
-                //USERS COIMBRA ID=7
+                //USERS COIMBRA ID=14
                 //CLIENTES
                 new Users
                 {
@@ -1681,7 +1681,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="100",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2020,06,20),
                 },
                 new Users
@@ -1699,7 +1699,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="110",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,07,09),
                 },
                 new Users
@@ -1717,7 +1717,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="120",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,07,20),
                 },
                 new Users
@@ -1735,7 +1735,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="130",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2018,08,16),
                 },
                 new Users
@@ -1753,7 +1753,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="140",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,01,18),
                 },
                 new Users
@@ -1771,7 +1771,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="150",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2020,01,30),
                 },
                 new Users
@@ -1789,7 +1789,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="160",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,08,09),
                 },
                 new Users
@@ -1807,7 +1807,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="170",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,04,09),
                 },
                 new Users
@@ -1825,7 +1825,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="180",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,12,09),
                 },
                 new Users
@@ -1843,7 +1843,7 @@ namespace UPtel.Data
                     Tipo = tipoUserParticular,
                     Estado = "Ativo",
                     CodigoPostalExt="190",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2020,01,31),
                 },
 
@@ -1863,7 +1863,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="200",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,01,10),
                 },
                 new Users
@@ -1881,7 +1881,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="210",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2021,03,18),
                 },
                 new Users
@@ -1899,7 +1899,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="220",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2020,05,20),
                 },
                 new Users
@@ -1917,7 +1917,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="230",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,07,16),
                 },
                 new Users
@@ -1935,7 +1935,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="240",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,04,15),
                 },
                 new Users
@@ -1953,7 +1953,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="250",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,06,20),
                 },
                 new Users
@@ -1971,7 +1971,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="260",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,06,30),
                 },
                 new Users
@@ -1989,7 +1989,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="270",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2019,08,15),
                 },
                 new Users
@@ -2007,7 +2007,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="280",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2017,07,21),
                 },
                 new Users
@@ -2025,7 +2025,7 @@ namespace UPtel.Data
                     Tipo = tipoUserOperador,
                     Estado = "Ativo",
                     CodigoPostalExt="290",
-                    DistritoId = 7,
+                    DistritoId = 14,
                     DataRegisto = new DateTime(2018,07,02),
                 },
 
